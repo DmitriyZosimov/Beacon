@@ -3,9 +3,12 @@ plugins {
 }
 
 dependencies {
-    implementation  hibernate.annotations,
-                    jakarta.jpa,
+    implementation  jakarta.jpa,
                     jackson.annotations
+
+    implementation (hibernate.core) {
+        transitive = false
+    }
 
     compileOnly lombok.lombok
     annotationProcessor lombok.lombok
