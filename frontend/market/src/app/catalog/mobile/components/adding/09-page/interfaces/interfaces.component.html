@@ -1,0 +1,112 @@
+<div class="d-flex">
+  <div class="flex-fill">
+    <form class="mb-4" [formGroup]="form" (ngSubmit)="onNext()">
+      <div class="mb-3">
+        <div class="mt-md-3 mb-3 mx-3">
+          <h3 class="mb-0">Interfaces</h3>
+        </div>
+        <div class="container-sm">
+          <div class="mb-2">
+            <input formControlName="bluetooth"
+                   class="form-check-input"
+                   aria-label="bluetooth"
+                   id="bluetooth"
+                   type="checkbox" value="true"/>
+            <label for="bluetooth" class="form-check-label ms-2">Bluetooth</label>
+          </div>
+          <div *ngIf="this.controls.bluetooth.value">
+            <div class="mb-2">
+              <label for="bluetoothVersion" class="form-label">Bluetooth version</label>
+              <select formControlName="bluetoothVersion"
+                      class="form-control form-select"
+                      aria-label="bluetoothVersion"
+                      id="bluetoothVersion"
+                      [ngClass]="{'is-invalid':submitted && controls.bluetoothVersion.errors }">
+                <option *ngFor="let bluetoothVersion of bluetoothVersions" [ngValue]="bluetoothVersion">{{bluetoothVersion}}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="mb-2">
+            <input formControlName="audioOutput"
+                   class="form-check-input"
+                   aria-label="audioOutput"
+                   id="audioOutput"
+                   type="checkbox" value="true"/>
+            <label for="audioOutput" class="form-check-label ms-2">Audio output</label>
+          </div>
+          <div *ngIf="this.controls.audioOutput.value">
+            <div class="mb-2">
+              <label for="audioOutputVersion" class="form-label">Audio output version</label>
+              <select formControlName="audioOutputVersion"
+                      class="form-control form-select"
+                      aria-label="audioOutputVersion"
+                      id="audioOutputVersion"
+                      [ngClass]="{'is-invalid':submitted && controls.audioOutputVersion.errors }">
+                <option *ngFor="let audioOutputVersion of audioOutputVersions" [ngValue]="audioOutputVersion">{{audioOutputVersion}}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="mb-2">
+            <input formControlName="wifi"
+                   class="form-check-input"
+                   aria-label="wifi"
+                   id="wifi"
+                   type="checkbox" value="true"/>
+            <label for="wifi" class="form-check-label ms-2">Wi-Fi</label>
+          </div>
+          <div *ngIf="this.controls.wifi.value">
+            <div class="mb-2">
+              <label for="wifiVersion" class="form-label">Wi-Fi version</label>
+              <select formControlName="wifiVersion"
+                      class="form-control form-select"
+                      aria-label="wifiVersion"
+                      id="wifiVersion"
+                      [ngClass]="{'is-invalid':submitted && controls.wifiVersion.errors }">
+                <option *ngFor="let wifiVersion of wifiVersions" [ngValue]="wifiVersion">{{wifiVersion}}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="mb-2">
+            <label for="connection" class="form-label">Connection</label>
+            <select formControlName="connection"
+                    class="form-control form-select"
+                    aria-label="connection"
+                    id="connection"
+                    [ngClass]="{'is-invalid':submitted && controls.connection.errors }">
+              <option *ngFor="let connection of connections" [ngValue]="connection">{{connection}}</option>
+            </select>
+          </div>
+
+          <div class="mb-2">
+            <input formControlName="nfc"
+                   class="form-check-input"
+                   aria-label="nfc"
+                   id="nfc"
+                   type="checkbox" value="true"/>
+            <label for="nfc" class="form-check-label ms-2">NFC</label>
+          </div>
+
+          <div class="d-flex justify-content-between mt-4">
+            <div>
+              <button type="button" class="btn btn-info" (click)="onBack()">Back</button>
+            </div>
+            <div>
+              <button type="button" class="btn btn-info" (click)="onNext()">Next</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="d-none d-md-block flex-fill">
+    <div class="d-flex h-100 justify-content-center align-items-center">
+      <img src="/assets/img/catalog/mobile/ic_mobile_interfaces.png">
+    </div>
+  </div>
+</div>
+
+
+

@@ -1,0 +1,60 @@
+<section class="container-lg">
+  <h1 class="border-bottom border-info border-3 mb-md-3">Adding a new mobile</h1>
+  <div class="d-none d-md-block my-5 px-4">
+    <div class="position-relative my-4">
+      <div class="progress" style="height: 5px;">
+        <div class="progress-bar bg-info"
+             role="progressbar"
+             [ngStyle]="{'width': progress + '%'}">
+        </div>
+      </div>
+      <div class="position-absolute w-100 translate-middle-y pb-1">
+        <div class="d-flex justify-content-between">
+          <div *ngFor="let number of this.pages">
+            <button type="button" class="btn btn-sm rounded-pill"
+                    [ngClass]="[this.page >= number ? 'btn-info' : 'btn-outline-info bg-white']"
+                    style="width: 2rem; height:2rem;">{{number}}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div [ngSwitch]="this.page">
+    <div *ngSwitchCase="1">
+      <app-common-properties [page]="page" [mobileDtoFull]="mobileDtoFull" (outputPage)="changePage($event)"></app-common-properties>
+    </div>
+    <div *ngSwitchCase="2">
+      <app-main-properties [page]="page" [mobileDtoFull]="mobileDtoFull" (outputPage)="changePage($event)"></app-main-properties>
+    </div>
+    <div *ngSwitchCase="3">
+      <app-processor [page]="page" [mobileDtoFull]="mobileDtoFull" (outputPage)="changePage($event)"></app-processor>
+    </div>
+    <div *ngSwitchCase="4">
+      <app-construction [page]="page" [mobileDtoFull]="mobileDtoFull" (outputPage)="changePage($event)"></app-construction>
+    </div>
+    <div *ngSwitchCase="5">
+      <app-size [page]="page" [mobileDtoFull]="mobileDtoFull" (outputPage)="changePage($event)"></app-size>
+    </div>
+    <div *ngSwitchCase="6">
+      <app-camera [page]="page" [mobileDtoFull]="mobileDtoFull" (outputPage)="changePage($event)"></app-camera>
+    </div>
+    <div *ngSwitchCase="7">
+      <app-navigation [page]="page" [mobileDtoFull]="mobileDtoFull" (outputPage)="changePage($event)"></app-navigation>
+    </div>
+    <div *ngSwitchCase="8">
+      <app-data-transmission [page]="page" [mobileDtoFull]="mobileDtoFull" (outputPage)="changePage($event)"></app-data-transmission>
+    </div>
+    <div *ngSwitchCase="9">
+      <app-interfaces [page]="page" [mobileDtoFull]="mobileDtoFull" (outputPage)="changePage($event)"></app-interfaces>
+    </div>
+    <div *ngSwitchCase="10">
+      <app-battery [page]="page" [mobileDtoFull]="mobileDtoFull" (outputPage)="changePage($event)"></app-battery>
+    </div>
+    <div *ngSwitchCase="11">
+      <app-image [page]="page" [mobileDtoFull]="mobileDtoFull" (outputPage)="changePage($event)"></app-image>
+    </div>
+    <div *ngSwitchDefault>
+      <app-review [page]="page" [mobileDtoFull]="mobileDtoFull" (outputPage)="changePage($event)"></app-review>
+    </div>
+  </div>
+</section>

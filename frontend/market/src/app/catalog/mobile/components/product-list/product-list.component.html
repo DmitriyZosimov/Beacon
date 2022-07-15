@@ -1,0 +1,37 @@
+<div class="container mt-2">
+  <div class="row border-bottom mb-3 pb-2" *ngFor="let mobileDto of mobileDtos">
+    <div class="col-md-2 pe-0" id="mobile-image">
+      <img [src]="getImage(mobileDto)" class="img-width w-75"/>
+    </div>
+
+    <div class="col-md-6 ps-0">
+      <div>
+        <a (click)="getNavigationLink(mobileDto)"
+              class="fw-bold text-black">{{this.getMobileTitle(mobileDto)}}
+        </a>
+      </div>
+      <div>
+        {{this.getShortDescription(mobileDto)}}
+      </div>
+      <div>
+        <a href="/#">
+          <i class="bi bi-star-fill" style="color:darkorange"></i>
+          <i class="bi bi-star-fill" style="color:darkorange"></i>
+          <i class="bi bi-star-fill" style="color:darkorange"></i>
+          <i class="bi bi-star-half" style="color:darkorange"></i>
+          <i class="bi bi-star" style="color:darkorange"></i>
+          <span class="ps-1 text-secondary">28 reviews</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="col-md-2">
+      <span class="fw-bold">from 1200,00 p.</span>
+    </div>
+
+    <div class="col-md-2">
+      <a href="/#" class="btn btn-warning text-white">10 offers</a>
+    </div>
+  </div>
+
+</div>

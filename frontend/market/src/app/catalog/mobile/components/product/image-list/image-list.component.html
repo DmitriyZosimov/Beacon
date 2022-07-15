@@ -1,0 +1,24 @@
+<div class="row navbar-nav-scroll">
+  <ul class="list-group list-group-flush list-group-horizontal">
+    <li class="list-group-item" *ngFor="let image of images; let i = index">
+      <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#imageModal"
+              (click)="this.currentIndex=i">
+        <img [src]="image" class="img-clg-width w-50"/>
+      </button>
+    </li>
+  </ul>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-fullscreen-md-down">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <app-carousel [images]="images" [first]="currentIndex"></app-carousel>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,60 @@
+<div class="d-flex">
+  <div class="flex-fill">
+    <form class="mb-4" [formGroup]="form" (ngSubmit)="onNext()">
+      <div class="mb-3">
+        <div class="mt-md-3 mb-3 mx-3">
+          <h3 class="mb-0">Battery</h3>
+        </div>
+        <div class="container-sm">
+          <div class="mb-2">
+            <label for="batteryType" class="form-label">Type of battery</label>
+            <select formControlName="batteryType"
+                    class="form-control form-select"
+                    aria-label="batteryType"
+                    id="batteryType"
+                    [ngClass]="{'is-invalid':submitted && controls.batteryType.errors }">
+              <option *ngFor="let batteryType of batteryTypes" [ngValue]="batteryType">{{batteryType}}</option>
+            </select>
+          </div>
+          <div class="mb-2">
+            <label for="battery" class="form-label">Battery capacity, mA*h</label>
+            <input formControlName="battery"
+                   class="form-control"
+                   aria-label="battery"
+                   id="battery"
+                   [ngClass]="{'is-invalid':submitted && controls.battery.errors }"
+                   type="number" min="0" step="1"/>
+            <div *ngIf="submitted && controls.battery.errors" class="invalid-feedback">
+              <div *ngIf="controls.battery.errors.required">The field is required</div>
+              <div *ngIf="controls.battery.errors.min">The value must be positive</div>
+            </div>
+          </div>
+          <div class="mb-2">
+            <label for="chargeTime" class="form-label">Charge time</label>
+            <input formControlName="chargeTime"
+                   class="form-control"
+                   aria-label="chargeTime"
+                   id="chargeTime"
+                   type="text"/>
+          </div>
+          <div class="d-flex justify-content-between mt-4">
+            <div>
+              <button type="button" class="btn btn-info" (click)="onBack()">Back</button>
+            </div>
+            <div>
+              <button type="button" class="btn btn-info" (click)="onNext()">Next</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="d-none d-md-block flex-fill">
+    <div class="d-flex h-100 justify-content-center align-items-center">
+      <img src="/assets/img/catalog/mobile/ic_mobile_battery.png">
+    </div>
+  </div>
+</div>
+
+
+

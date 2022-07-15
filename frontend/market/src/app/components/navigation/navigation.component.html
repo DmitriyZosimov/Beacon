@@ -1,0 +1,24 @@
+<nav class="navbar navbar-expand-sm">
+  <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse">
+    <ul ngbNav #nav="ngbNav" class="navbar-nav">
+      <li ngbNavItem>
+        <a ngbNavLink class="nav-item nav-link"
+           routerLink="/">Home
+        </a>
+      </li>
+      <li ngbNavItem>
+        <a ngbNavLink class="nav-item nav-link"
+           routerLink="/mobile">Mobile
+        </a>
+      </li>
+      <li ngbNavItem>
+        <a ngbNavLink class="nav-item nav-link"
+           routerLink="/computer">Computers
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>

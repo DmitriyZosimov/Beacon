@@ -1,0 +1,73 @@
+<div class="d-flex">
+  <div class="flex-fill">
+    <form class="mb-4" [formGroup]="form" (ngSubmit)="onNext()">
+      <div class="mb-3">
+        <div class="mt-md-3 mb-3 mx-3">
+          <h3 class="mb-0">Construction</h3>
+        </div>
+        <div class="container-sm">
+          <div class="mb-2">
+            <label for="housingMaterial" class="form-label">Housing material</label>
+            <select formControlName="housingMaterial"
+                    class="form-control form-select"
+                    aria-label="housingMaterial"
+                    id="housingMaterial"
+                    [ngClass]="{'is-invalid':submitted && controls.housingMaterial.errors }">
+              <option *ngFor="let housingMaterial of housingMaterials" [ngValue]="housingMaterial">{{housingMaterial}}</option>
+            </select>
+          </div>
+          <div class="mb-2">
+            <label for="color" class="form-label">Color</label>
+            <select formControlName="color"
+                    class="form-control form-select"
+                    aria-label="color"
+                    id="color"
+                    [ngClass]="{'is-invalid':submitted && controls.color.errors }">
+              <option *ngFor="let color of colors" [ngValue]="color">{{color}}</option>
+            </select>
+          </div>
+          <div class="mb-2">
+            <label for="simFormat" class="form-label">SIM card format</label>
+            <select formControlName="simFormat"
+                    class="form-control form-select"
+                    aria-label="simFormat"
+                    id="simFormat"
+                    [ngClass]="{'is-invalid':submitted && controls.simFormat.errors }">
+              <option *ngFor="let simFormat of simFormats" [ngValue]="simFormat">{{simFormat}}</option>
+            </select>
+          </div>
+          <div class="mb-2">
+            <label for="simCardSlot" class="form-label">Number of the SIM card slots</label>
+            <input formControlName="simCardSlot"
+                   class="form-control"
+                   aria-label="simCardSlot"
+                   id="simCardSlot"
+                   [ngClass]="{'is-invalid':submitted && controls.simCardSlot.errors }"
+                   type="number" min="0" step="1"/>
+            <div *ngIf="submitted && controls.simCardSlot.errors" class="invalid-feedback">
+              <div *ngIf="controls.simCardSlot.errors.required">The field is required</div>
+              <div *ngIf="controls.simCardSlot.errors.min">The value must be positive</div>
+            </div>
+          </div>
+          <div class="d-flex justify-content-between mt-4">
+            <div>
+              <button type="button" class="btn btn-info" (click)="onBack()">Back</button>
+            </div>
+            <div>
+              <button type="button" class="btn btn-info" (click)="onNext()">Next</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="d-none d-md-block flex-fill">
+    <div class="d-flex h-100 justify-content-center align-items-center">
+      <img src="/assets/img/catalog/mobile/ic_mobile_construction.png">
+    </div>
+  </div>
+</div>
+
+
+
+

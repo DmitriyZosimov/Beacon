@@ -1,0 +1,36 @@
+<div class="mb-3">
+  <h3>Images</h3>
+</div>
+<div class="row navbar-nav-scroll mb-3">
+  <ul class="list-group list-group-flush list-group-horizontal">
+    <li class="list-group-item d-flex" *ngFor="let image of images; let i = index">
+      <div>
+        <button type="button" class="btn"
+                title="Select the image as main"
+                (click)="this.currentIndex = i; this.changed = true"
+                [ngClass]="{'border border-info border-3':currentIndex === i}">
+          <img [src]="image" class="img-width"/>
+        </button>
+      </div>
+      <div>
+        <button type="button" class="btn btn-close" (click)="onDelete(i)"></button>
+      </div>
+    </li>
+  </ul>
+</div>
+<div>
+  <label for="image" class="form-label pe-3">Upload image</label>
+  <input type="file" accept="image/*" id="image" (change)="uploadImage($event)" (click)="this.changed = true">
+</div>
+
+<div class="mb-3">Click on image to select as the main</div>
+
+<div class="d-flex justify-content-between">
+  <div>
+    <button type="button" class="btn btn-info" (click)="onBack()">Back</button>
+  </div>
+  <div>
+    <button type="button" class="btn btn-info" (click)="onReview()"
+            [ngClass]="{'disabled': currentIndex === -1}">Review</button>
+  </div>
+</div>

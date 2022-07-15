@@ -1,0 +1,143 @@
+<div class="d-flex">
+  <div class="flex-fill">
+    <form class="mb-4" [formGroup]="form" (ngSubmit)="onNext()">
+      <div class="mb-3">
+        <div class="mt-md-3 mb-3 mx-3">
+          <h3 class="mb-0">Camera</h3>
+        </div>
+        <div class="container-sm">
+
+          <!-- Main camera -->
+          <div class="mb-2">
+            <input formControlName="mainCamera"
+                   class="form-check-input"
+                   aria-label="mainCamera"
+                   id="mainCamera"
+                   type="checkbox" value="true"/>
+            <label for="mainCamera" class="form-check-label ms-2">Main camera</label>
+          </div>
+          <div *ngIf="this.controls.mainCamera.value">
+            <div class="mb-2">
+              <label for="cameraResolution" class="form-label">Camera resolution, MP</label>
+              <input formControlName="cameraResolution"
+                     class="form-control"
+                     aria-label="cameraResolution"
+                     id="cameraResolution"
+                     [ngClass]="{'is-invalid':submitted && controls.cameraResolution.errors }"
+                     type="number" min="0" step="1"/>
+              <div *ngIf="submitted && controls.cameraResolution.errors" class="invalid-feedback">
+                <div *ngIf="controls.cameraResolution.errors.required">The field is required</div>
+                <div *ngIf="controls.cameraResolution.errors.min">The value must be positive</div>
+              </div>
+            </div>
+            <div class="mb-2">
+              <label for="mainCamerasNumber" class="form-label">Number of the main cameras</label>
+              <input formControlName="mainCamerasNumber"
+                     class="form-control"
+                     aria-label="mainCamerasNumber"
+                     id="mainCamerasNumber"
+                     [ngClass]="{'is-invalid':submitted && controls.mainCamerasNumber.errors }"
+                     type="number" min="0" step="1"/>
+              <div *ngIf="submitted && controls.mainCamerasNumber.errors" class="invalid-feedback">
+                <div *ngIf="controls.mainCamerasNumber.errors.required">The field is required</div>
+                <div *ngIf="controls.mainCamerasNumber.errors.min">The value must be positive</div>
+              </div>
+            </div>
+            <div class="mb-2">
+              <label for="mainCameraAperture" class="form-label">Main camera aperture, f/X.X</label>
+              <input formControlName="mainCameraAperture"
+                     class="form-control"
+                     aria-label="mainCameraAperture"
+                     id="mainCameraAperture"
+                     [ngClass]="{'is-invalid':submitted && controls.mainCameraAperture.errors }"
+                     type="number" min="0" step="0.1"/>
+              <div *ngIf="submitted && controls.mainCameraAperture.errors" class="invalid-feedback">
+                <div *ngIf="controls.mainCameraAperture.errors.required">The field is required</div>
+                <div *ngIf="controls.mainCameraAperture.errors.min">The value must be positive</div>
+              </div>
+            </div>
+            <div class="mb-2">
+              <input formControlName="builtInFlash"
+                     class="form-check-input"
+                     aria-label="builtInFlash"
+                     id="builtInFlash"
+                     type="checkbox" value="true"/>
+              <label for="builtInFlash" class="form-check-label- ms-2">Built-in flash</label>
+            </div>
+            <div class="mb-2">
+              <input formControlName="automaticFocus"
+                     class="form-check-input"
+                     aria-label="automaticFocus"
+                     id="automaticFocus"
+                     type="checkbox" value="true"/>
+              <label for="automaticFocus" class="form-check-label ms-2">Automatic focus</label>
+            </div>
+            <div class="mb-2">
+              <input formControlName="opticalStabilization"
+                     class="form-check-input"
+                     aria-label="opticalStabilization"
+                     id="opticalStabilization"
+                     type="checkbox" value="true"/>
+              <label for="opticalStabilization" class="form-check-label ms-2">Optical stabilization</label>
+            </div>
+          </div>
+
+          <!-- Front camera -->
+          <div class="mb-2">
+            <input formControlName="frontCamera"
+                   class="form-check-input"
+                   aria-label="frontCamera"
+                   id="frontCamera"
+                   type="checkbox" value="true"/>
+            <label for="frontCamera" class="form-check-label ms-2">Front camera</label>
+          </div>
+          <div *ngIf="this.controls.frontCamera.value">
+            <div class="mb-2">
+              <label for="frontCameraResolution" class="form-label">Front camera resolution, MP</label>
+              <input formControlName="frontCameraResolution"
+                     class="form-control"
+                     aria-label="frontCameraResolution"
+                     id="frontCameraResolution"
+                     [ngClass]="{'is-invalid':submitted && controls.frontCameraResolution.errors }"
+                     type="number" min="0" step="1"/>
+              <div *ngIf="submitted && controls.frontCameraResolution.errors" class="invalid-feedback">
+                <div *ngIf="controls.frontCameraResolution.errors.required">The field is required</div>
+                <div *ngIf="controls.frontCameraResolution.errors.min">The value must be positive</div>
+              </div>
+            </div>
+            <div class="mb-2">
+              <label for="frontCameraAperture" class="form-label">Front camera aperture, f/X.X</label>
+              <input formControlName="frontCameraAperture"
+                     class="form-control"
+                     aria-label="frontCameraAperture"
+                     id="frontCameraAperture"
+                     [ngClass]="{'is-invalid':submitted && controls.frontCameraAperture.errors }"
+                     type="number" min="0" step="0.1"/>
+              <div *ngIf="submitted && controls.frontCameraAperture.errors" class="invalid-feedback">
+                <div *ngIf="controls.frontCameraAperture.errors.required">The field is required</div>
+                <div *ngIf="controls.frontCameraAperture.errors.min">The value must be positive</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="d-flex justify-content-between mt-4">
+            <div>
+              <button type="button" class="btn btn-info" (click)="onBack()">Back</button>
+            </div>
+            <div>
+              <button type="button" class="btn btn-info" (click)="onNext()">Next</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="d-none d-md-block flex-fill">
+    <div class="d-flex h-100 justify-content-center align-items-center">
+      <img src="/assets/img/catalog/mobile/ic_mobile_camera.png">
+    </div>
+  </div>
+</div>
+
+
+

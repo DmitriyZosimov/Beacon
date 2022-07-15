@@ -1,0 +1,64 @@
+<div class="d-flex">
+  <div class="flex-fill">
+    <form class="mb-4" [formGroup]="form" (ngSubmit)="onNext()">
+      <div class="mb-3">
+        <div class="mt-md-3 mb-3 mx-3">
+          <h3 class="mb-0">Common information</h3>
+        </div>
+        <div class="container-sm">
+          <div class="mb-2">
+            <label for="brand" class="form-label px-1 mb-1">Brand</label>
+            <select formControlName="brand"
+                    class="form-control form-select"
+                    aria-label="brand"
+                    id="brand">
+              <option *ngFor="let brand of brands; index as index" [ngValue]="brand">{{brand}}</option>
+            </select>
+          </div>
+          <div class="mb-2">
+            <label for="model" class="form-label px-1 mb-1">Model</label>
+            <input formControlName="model"
+                   class="form-control"
+                   aria-label="model"
+                   id="model"
+                   [ngClass]="{'is-invalid':submitted && controls.model.errors }"
+                   type="text"/>
+            <div *ngIf="submitted && controls.model.errors" class="invalid-feedback">
+              <div *ngIf="controls.model.errors.required">The field is required</div>
+            </div>
+          </div>
+          <div class="mb-2">
+            <label for="releaseYear" class="form-label px-1 mb-1">Year of market release</label>
+            <input formControlName="releaseYear"
+                   class="form-control"
+                   aria-label="releaseYear"
+                   id="releaseYear"
+                   [ngClass]="{'is-invalid':submitted && controls.releaseYear.errors }"
+                   type="number" [min]="1970" [max]="currentYear" [step]="1"/>
+            <div *ngIf="submitted && controls.releaseYear.errors" class="invalid-feedback">
+              <div *ngIf="controls.releaseYear.errors.required">The field is required</div>
+              <div *ngIf="controls.releaseYear.errors.min">The value must be more 1970</div>
+              <div *ngIf="controls.releaseYear.errors.max">The value must not be more {{currentYear}}</div>
+            </div>
+          </div>
+          <div class="d-flex justify-content-between mt-4">
+            <div>
+              <button type="button" class="btn btn-info" (click)="onBack()">Back</button>
+            </div>
+            <div>
+              <button type="button" class="btn btn-info" (click)="onNext()">Next</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="d-none d-md-block flex-fill">
+    <div class="d-flex h-100 justify-content-center align-items-center">
+      <img src="/assets/img/catalog/mobile/ic_mobile_common.png">
+    </div>
+  </div>
+</div>
+
+
+

@@ -1,0 +1,160 @@
+<div class="d-flex">
+  <div class="flex-fill">
+    <form class="mb-4" [formGroup]="form" (ngSubmit)="onNext()">
+      <div class="mb-3">
+        <div class="mt-md-3 mb-3 mx-3">
+          <h3 class="mb-0">Main properties</h3>
+        </div>
+        <div class="container-sm">
+          <div class="mb-3">
+            <div class="border-bottom border-info mb-1">
+              <h6 class="mb-0">Operation system</h6>
+            </div>
+            <div>
+              <div class="mb-2">
+                <div class="d-md-flex">
+                  <div class="flex-fill pe-md-3">
+                    <label for="type" class="form-label">Type</label>
+                    <select formControlName="type"
+                            class="form-control form-select"
+                            aria-label="type"
+                            id="type"
+                            [ngClass]="{'is-invalid':submitted && controls.type.errors }">
+                      <option *ngFor="let type of types" [ngValue]="type">{{type}}</option>
+                    </select>
+                  </div>
+                  <div class="flex-fill ps-md-3">
+                    <label for="os" class="form-label">Operation system</label>
+                    <select formControlName="os"
+                            class="form-control form-select"
+                            aria-label="os"
+                            id="os"
+                            [ngClass]="{'is-invalid':submitted && controls.os.errors }">
+                      <option *ngFor="let os of oss" [ngValue]="os">{{os}}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="mb-2">
+                <label for="osVersion" class="form-label">Version of the operation system</label>
+                <input formControlName="osVersion"
+                       class="form-control"
+                       aria-label="osVersion"
+                       id="osVersion"
+                       [ngClass]="{'is-invalid':submitted && controls.osVersion.errors }"
+                       type="text"/>
+                <div *ngIf="submitted && controls.osVersion.errors" class="invalid-feedback">
+                  <div *ngIf="controls.osVersion.errors.required">The field is required</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <div class="border-bottom border-info mb-1">
+              <h6 class="mb-0">Display</h6>
+            </div>
+            <div>
+              <div class="mb-2">
+                <div class="d-md-flex">
+                  <div class="flex-fill pe-md-3">
+                    <label for="screenSize" class="form-label">Screen size, "</label>
+                    <input formControlName="screenSize"
+                           class="form-control"
+                           aria-label="screenSize"
+                           id="screenSize"
+                           [ngClass]="{'is-invalid':submitted && controls.screenSize.errors }"
+                           type="number" min="0" step="0.01"/>
+                    <div *ngIf="submitted && controls.screenSize.errors" class="invalid-feedback">
+                      <div *ngIf="controls.screenSize.errors.required">The field is required</div>
+                      <div *ngIf="controls.screenSize.errors.min">The value must be positive</div>
+                    </div>
+                  </div>
+                  <div class="flex-fill ps-md-3">
+                    <label for="displayResolution" class="form-label">Display resolution</label>
+                    <input formControlName="displayResolution"
+                           class="form-control"
+                           aria-label="displayResolution"
+                           id="displayResolution"
+                           [ngClass]="{'is-invalid':submitted && controls.displayResolution.errors }"
+                           type="text"
+                           placeholder="0000x0000"/>
+                    <div *ngIf="submitted && controls.displayResolution.errors" class="invalid-feedback">
+                      <div *ngIf="controls.displayResolution.errors.required">The field is required</div>
+                      <div *ngIf="controls.displayResolution.errors.pattern">The value must fit a pattern 0000x0000
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="mb-2">
+                <label for="displayTechnology" class="form-label">Display technology</label>
+                <select formControlName="displayTechnology"
+                        class="form-control form-select"
+                        aria-label="displayTechnology"
+                        id="displayTechnology"
+                        [ngClass]="{'is-invalid':submitted && controls.displayTechnology.errors }">
+                  <option *ngFor="let displayTechnology of displayTechnologies"
+                          [ngValue]="displayTechnology">{{displayTechnology}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <div class="border-bottom border-info mb-1">
+              <h6 class="mb-0">Memory</h6>
+            </div>
+            <div>
+              <div class="mb-2">
+                <div class="d-md-flex">
+                  <div class="flex-fill pe-md-3">
+                    <label for="ram" class="form-label">RAM, GB</label>
+                    <input formControlName="ram"
+                           class="form-control"
+                           aria-label="ram"
+                           id="ram"
+                           [ngClass]="{'is-invalid':submitted && controls.ram.errors }"
+                           type="number" min="0" step="1"/>
+                    <div *ngIf="submitted && controls.ram.errors" class="invalid-feedback">
+                      <div *ngIf="controls.ram.errors.required">The field is required</div>
+                      <div *ngIf="controls.ram.errors.min">The value must be positive</div>
+                    </div>
+                  </div>
+                  <div class="flex-fill ps-md-3">
+                    <label for="storageCapacity" class="form-label">Storage capacity, GB</label>
+                    <input formControlName="storageCapacity"
+                           class="form-control"
+                           aria-label="storageCapacity"
+                           id="storageCapacity"
+                           [ngClass]="{'is-invalid':submitted && controls.storageCapacity.errors }"
+                           type="number" min="0" step="1"/>
+                    <div *ngIf="submitted && controls.storageCapacity.errors" class="invalid-feedback">
+                      <div *ngIf="controls.storageCapacity.errors.required">The field is required</div>
+                      <div *ngIf="controls.storageCapacity.errors.min">The value must be positive</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="d-flex justify-content-between mt-4">
+            <div>
+              <button type="button" class="btn btn-info" (click)="onBack()">Back</button>
+            </div>
+            <div>
+              <button type="button" class="btn btn-info" (click)="onNext()">Next</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="d-none d-md-block flex-fill">
+    <div class="d-flex h-100 justify-content-center align-items-center">
+      <img src="/assets/img/catalog/mobile/ic_mobile_main.png">
+    </div>
+  </div>
+</div>
+
+

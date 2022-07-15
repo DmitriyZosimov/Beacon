@@ -1,0 +1,79 @@
+<div class="d-flex">
+  <div class="flex-fill">
+    <form class="mb-4" [formGroup]="form" (ngSubmit)="onNext()">
+      <div class="mb-3">
+        <div class="mt-md-3 mb-3 mx-3">
+          <h3 class="mb-0">Processor</h3>
+        </div>
+        <div class="container-sm">
+          <div class="mb-2">
+            <label for="chipsetModel" class="form-label">Chipset model</label>
+            <select formControlName="chipsetModel"
+                    class="form-control form-select"
+                    aria-label="chipsetModel"
+                    id="chipsetModel"
+                    [ngClass]="{'is-invalid':submitted && controls.chipsetModel.errors }">
+              <option *ngFor="let chipsetModel of chipsetModels" [ngValue]="chipsetModel">{{chipsetModel}}</option>
+            </select>
+          </div>
+          <div class="mb-2">
+            <label for="processorClockFrequency" class="form-label">Processor clock frequency, MHz</label>
+            <input formControlName="processorClockFrequency"
+                   class="form-control"
+                   aria-label="processorClockFrequency"
+                   id="processorClockFrequency"
+                   [ngClass]="{'is-invalid':submitted && controls.processorClockFrequency.errors }"
+                   type="number" min="0" step="1"/>
+            <div *ngIf="submitted && controls.processorClockFrequency.errors" class="invalid-feedback">
+              <div *ngIf="controls.processorClockFrequency.errors.required">The field is required</div>
+              <div *ngIf="controls.processorClockFrequency.errors.min">The value must be positive</div>
+            </div>
+          </div>
+          <div class="mb-2">
+            <label for="coresNumber" class="form-label">Number of the cores</label>
+            <input formControlName="coresNumber"
+                   class="form-control"
+                   aria-label="coresNumber"
+                   id="coresNumber"
+                   [ngClass]="{'is-invalid':submitted && controls.coresNumber.errors }"
+                   type="number" min="0" step="1"/>
+            <div *ngIf="submitted && controls.coresNumber.errors" class="invalid-feedback">
+              <div *ngIf="controls.coresNumber.errors.required">The field is required</div>
+              <div *ngIf="controls.coresNumber.errors.min">The value must be positive</div>
+            </div>
+          </div>
+          <div class="mb-2">
+            <label for="technicalProcess" class="form-label">Technical process, nm</label>
+            <input formControlName="technicalProcess"
+                   class="form-control"
+                   aria-label="technicalProcess"
+                   id="technicalProcess"
+                   [ngClass]="{'is-invalid':submitted && controls.technicalProcess.errors }"
+                   type="number" min="0" step="1"/>
+            <div *ngIf="submitted && controls.technicalProcess.errors" class="invalid-feedback">
+              <div *ngIf="controls.technicalProcess.errors.required">The field is required</div>
+              <div *ngIf="controls.technicalProcess.errors.min">The value must be positive</div>
+            </div>
+          </div>
+          <div class="d-flex justify-content-between mt-4">
+            <div>
+              <button type="button" class="btn btn-info" (click)="onBack()">Back</button>
+            </div>
+            <div>
+              <button type="button" class="btn btn-info" (click)="onNext()">Next</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="d-none d-md-block flex-fill">
+    <div class="d-flex h-100 justify-content-center align-items-center">
+      <img src="/assets/img/catalog/mobile/ic_mobile_processor.png">
+    </div>
+  </div>
+</div>
+
+
+
+
