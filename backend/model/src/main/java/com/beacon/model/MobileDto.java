@@ -62,6 +62,9 @@ public class MobileDto {
     @Column(name = "color")
     private String color;
 
+    @Column(name = "release_year")
+    private String releaseYear;
+
     @OneToOne(mappedBy = "mobileDto", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JsonManagedReference
     private MobileMainImage mainImage;
@@ -92,6 +95,7 @@ public class MobileDto {
         if (simCardSlot != null ? !simCardSlot.equals(mobileDto.simCardSlot) : mobileDto.simCardSlot != null)
             return false;
         if (battery != null ? !battery.equals(mobileDto.battery) : mobileDto.battery != null) return false;
+        if (releaseYear != null ? !releaseYear.equals(mobileDto.releaseYear) : mobileDto.releaseYear != null) return false;
         return color != null ? color.equals(mobileDto.color) : mobileDto.color == null;
     }
 
@@ -116,6 +120,7 @@ public class MobileDto {
         result = 31 * result + (simCardSlot != null ? simCardSlot.hashCode() : 0);
         result = 31 * result + (battery != null ? battery.hashCode() : 0);
         result = 31 * result + (color != null ? color.hashCode() : 0);
+        result = 31 * result + (releaseYear != null ? releaseYear.hashCode() : 0);
         return result;
     }
 }

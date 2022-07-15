@@ -49,12 +49,14 @@ public class MobileDaoIT {
         Assertions.assertEquals(2, dtos.size());
         // if it doesn't pass, check import.sql. Mobiles should be inserted in row
         Assertions.assertEquals("honor508128black", dtos.get(0).getMobileId());
+        Assertions.assertNotNull(dtos.get(0).getReleaseYear());
         for (int i = 0; i < FIRST_IMAGE.length; i++) {
             Assertions.assertEquals(FIRST_IMAGE[i], dtos.get(0).getMainImage().getImage()[i]);
         }
         System.out.println("\nFirst: " + dtos.get(0).toString());
 
         Assertions.assertEquals("pocox3pro8256green", dtos.get(1).getMobileId());
+        Assertions.assertNotNull(dtos.get(1).getReleaseYear());
         for (int i = 0; i < SECOND_IMAGE.length; i++) {
             Assertions.assertEquals(SECOND_IMAGE[i], dtos.get(1).getMainImage().getImage()[i]);
         }

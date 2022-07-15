@@ -15,6 +15,7 @@ export class MobileDto {
               public simCardSlot?: string,
               public battery?: number,
               public color?: string,
+              public releaseYear?: string,
               public mainImage?: MobileMainImage) {}
 }
 

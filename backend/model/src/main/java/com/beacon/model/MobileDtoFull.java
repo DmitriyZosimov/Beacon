@@ -19,9 +19,6 @@ import java.util.List;
 @NoArgsConstructor
 public class MobileDtoFull extends MobileDto {
 
-    @Column(name = "release_year")
-    private String releaseYear;
-
     @Column(name = "type")
     private String type;
 
@@ -149,7 +146,6 @@ public class MobileDtoFull extends MobileDto {
 
         MobileDtoFull that = (MobileDtoFull) o;
 
-        if (releaseYear != null ? !releaseYear.equals(that.releaseYear) : that.releaseYear != null) return false;
         if (type != null ? !type.equals(that.type) : that.type != null) return false;
         if (osVersion != null ? !osVersion.equals(that.osVersion) : that.osVersion != null) return false;
         if (processorClockFrequency != null ? !processorClockFrequency.equals(that.processorClockFrequency) : that.processorClockFrequency != null)
@@ -209,7 +205,6 @@ public class MobileDtoFull extends MobileDto {
     @Override
     public int hashCode() {
         int result = super.hashCode();
-        result = 31 * result + (releaseYear != null ? releaseYear.hashCode() : 0);
         result = 31 * result + (type != null ? type.hashCode() : 0);
         result = 31 * result + (osVersion != null ? osVersion.hashCode() : 0);
         result = 31 * result + (processorClockFrequency != null ? processorClockFrequency.hashCode() : 0);

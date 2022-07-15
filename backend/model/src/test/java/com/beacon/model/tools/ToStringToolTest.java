@@ -25,6 +25,7 @@ public class ToStringToolTest {
         mobileDto.setDisplayResolution("1920x2100");
         mobileDto.setDisplayTechnology("IPS");
         mobileDto.setScreenSize("6.67\"");
+        mobileDto.setReleaseYear("2022");
     }
 
     @Test
