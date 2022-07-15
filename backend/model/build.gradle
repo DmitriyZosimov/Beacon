@@ -1,0 +1,27 @@
+plugins {
+    id 'maven-publish'
+}
+
+dependencies {
+    implementation  hibernate.annotations,
+                    jakarta.jpa,
+                    jackson.annotations
+
+    compileOnly lombok.lombok
+    annotationProcessor lombok.lombok
+    testImplementation  junit.jupiter
+}
+
+project.afterEvaluate {
+    publishing {
+        publications {
+            maven(MavenPublication) {
+                artifact jar
+            }
+        }
+    }
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}

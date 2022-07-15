@@ -1,4 +1,6 @@
 subprojects {
+    apply plugin: 'java'
+
     group 'com.beacon'
     version '0.0.1'
 
@@ -8,4 +10,27 @@ subprojects {
         mavenLocal()
         mavenCentral()
     }
+}
+
+ext {
+
+    hibernate = [
+            annotations :   "org.hibernate:hibernate-annotations:$hibernateAnnotationsVersion"
+    ]
+
+    jakarta = [
+            jpa :   "jakarta.persistence:jakarta.persistence-api:$jakartaVersion"
+    ]
+
+    jackson = [
+            annotations :   "com.fasterxml.jackson.core:jackson-annotations:$jacksonAnnotationsVersion"
+    ]
+
+    junit = [
+            jupiter :   "org.junit.jupiter:junit-jupiter:$junitVersion"
+    ]
+
+    lombok = [
+            lombok  :   "org.projectlombok:lombok:$lombokVersion"
+    ]
 }
