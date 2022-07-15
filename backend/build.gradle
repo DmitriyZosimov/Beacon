@@ -15,7 +15,11 @@ subprojects {
 ext {
 
     hibernate = [
-            annotations :   "org.hibernate:hibernate-annotations:$hibernateAnnotationsVersion"
+            core :   "org.hibernate:hibernate-core:$hibernateVersion"
+    ]
+
+    h2 = [
+            h2  :   "com.h2database:h2:$h2Version"
     ]
 
     jakarta = [
@@ -32,5 +36,9 @@ ext {
 
     lombok = [
             lombok  :   "org.projectlombok:lombok:$lombokVersion"
+    ]
+
+    postgresql = [
+            postgresql  :   "org.postgresql:postgresql:$postgresqlVersion"
     ]
 }
