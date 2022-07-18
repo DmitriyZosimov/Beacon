@@ -1,4 +1,5 @@
 rootProject.name = 'beacon'
 include 'model'
 include 'catalog'
+include 'search'
 
