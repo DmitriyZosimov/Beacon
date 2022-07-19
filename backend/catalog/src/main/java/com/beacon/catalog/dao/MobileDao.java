@@ -32,9 +32,9 @@ public interface MobileDao extends JpaRepository<MobileDto, String> {
      * In case only superclass values is needed, clazz_ value must be explicitly input as 0.
      * To resolve this situation a native sql should be used.
      *
-     * @return list of mobile dto models
+     * @return list of mobile dto models sorted by release year.
      */
-    @Query(value = "SELECT *, 0 as clazz_ FROM mobile_dto", nativeQuery = true)
+    @Query(value = "SELECT *, 0 as clazz_ FROM mobile_dto m ORDER BY m.release_year DESC", nativeQuery = true)
     @Override
     List<MobileDto> findAll();
 }
