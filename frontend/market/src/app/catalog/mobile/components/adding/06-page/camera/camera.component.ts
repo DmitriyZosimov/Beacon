@@ -76,10 +76,10 @@ export class CameraComponent implements OnInit {
       this.mobileDtoFull.automaticFocus = this.controls.automaticFocus.value;
       this.mobileDtoFull.opticalStabilization = this.controls.opticalStabilization.value;
       this.mobileDtoFull.mainCamera = this.controls.mainCamera.value;
-      this.mobileDtoFull.mainCameraAperture = this.controls.mainCameraAperture.value;
+      this.mobileDtoFull.mainCameraAperture = 'f/' + this.controls.mainCameraAperture.value;
       this.mobileDtoFull.frontCamera = this.controls.frontCamera.value;
       this.mobileDtoFull.frontCameraResolution = this.controls.frontCameraResolution.value;
-      this.mobileDtoFull.frontCameraAperture = this.controls.frontCameraAperture.value;
+      this.mobileDtoFull.frontCameraAperture = 'f/' + this.controls.frontCameraAperture.value;
     }
   }
 
