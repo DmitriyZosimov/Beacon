@@ -1,5 +1,6 @@
 package com.beacon.catalog.service;
 
+import com.beacon.catalog.TestMobileDtoFulBuilder;
 import com.beacon.catalog.dao.MobileDtoFullDao;
 import com.beacon.model.MobileDtoFull;
 import org.junit.jupiter.api.Assertions;
@@ -10,8 +11,11 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.util.ReflectionTestUtils;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
+
 @ExtendWith(MockitoExtension.class)
-public class MobileDtoFullServiceImplMockito {
+public class MobileDtoFullServiceImplMockito implements TestMobileDtoFulBuilder {
 
     @InjectMocks
     MobileDtoFullServiceImpl service;
@@ -32,6 +36,21 @@ public class MobileDtoFullServiceImplMockito {
 
         Assertions.assertEquals("joyss10plus8128navyblue",
                 ReflectionTestUtils.invokeMethod(service, "generateMobileId", mobileDtoFullThird));
+    }
+
+    @Test
+    public void checkValidationOfMainAndFrontApertureCameras_shouldInsertSlashFAtTheBeginning() {
+        MobileDtoFull mobile = build();
+        mobile.setMainCameraAperture("1.8");
+        mobile.setFrontCameraAperture("1.8");
+
+        when(dao.saveAndFlush(any())).thenAnswer(invocation -> {
+            MobileDtoFull argument = invocation.getArgument(0, MobileDtoFull.class);
+            Assertions.assertTrue(argument.getMainCameraAperture().startsWith("f/"));
+            Assertions.assertTrue(argument.getFrontCameraAperture().startsWith("f/"));
+            return null;
+        });
+        service.saveMobileDtoFull(mobile);
     }
 
     private MobileDtoFull generateMobileDtoFull(String brand, String model, String color) {

@@ -31,6 +31,7 @@ public class MobileDtoFullServiceImpl implements MobileDtoFullService {
         if (mobileDtoFull.getMobileId() == null) {
             mobileDtoFull.setMobileId(generateMobileId(mobileDtoFull));
         }
+        validateProperties(mobileDtoFull);
         validateImages(mobileDtoFull);
         return mobileDtoFullDao.saveAndFlush(mobileDtoFull);
     }
@@ -52,6 +53,15 @@ public class MobileDtoFullServiceImpl implements MobileDtoFullService {
                 .toLowerCase()
                 .trim()
                 .replaceAll("[\\s\\p{Punct}]", "");
+    }
+
+    private void validateProperties(MobileDtoFull mobileDtoFull) {
+        if (!mobileDtoFull.getMainCameraAperture().startsWith("f/")) {
+            mobileDtoFull.setMainCameraAperture("f/" + mobileDtoFull.getMainCameraAperture());
+        }
+        if (!mobileDtoFull.getFrontCameraAperture().startsWith("f/")) {
+            mobileDtoFull.setFrontCameraAperture("f/" + mobileDtoFull.getFrontCameraAperture());
+        }
     }
 
     private void validateImages(MobileDtoFull mobileDtoFull) {
