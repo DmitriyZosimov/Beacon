@@ -14,7 +14,7 @@ export class InformationComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.currentTime = this.getClock();
+    // this.currentTime = this.getClock();
   }
 
   getClock() : Observable<String> {
