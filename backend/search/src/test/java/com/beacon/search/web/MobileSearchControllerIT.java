@@ -133,4 +133,54 @@ public class MobileSearchControllerIT {
 
         Assertions.assertTrue(result.isEmpty());
     }
+
+    @Test
+    public void testStringStripOfInputQuery_shouldCutUnnecessaryBlanksAndSpaces() throws Exception {
+        String query = "            first second                     third   ";
+
+        MockHttpServletResponse response = mockMvc.perform(MockMvcRequestBuilders.get(MOBILE_URL)
+                .param("query", query)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn().getResponse();
+        List<MobileDto> result = (List<MobileDto>) objectMapper.readValue(response.getContentAsString(),
+                new TypeReference<List<MobileDto>>() {
+                });
+
+        Assertions.assertNotNull(result);
+    }
+
+    @Test
+    public void testBlankCheckOfInputQuery_shouldReturnNull() throws Exception {
+        String query = "              ";
+
+        MockHttpServletResponse response = mockMvc.perform(MockMvcRequestBuilders.get(MOBILE_URL)
+                .param("query", query)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn().getResponse();
+        Assertions.assertEquals(0, response.getContentLength());
+    }
+
+    @Test
+    public void testEmptyCheckOfInputQuery_shouldReturnNull() throws Exception {
+        String query = "";
+        MockHttpServletResponse response = mockMvc.perform(MockMvcRequestBuilders.get(MOBILE_URL)
+                .param("query", query)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn().getResponse();
+        Assertions.assertEquals(0, response.getContentLength());
+    }
+
+    @Test
+    public void testNullCheckOfInputQuery_shouldReturnBadRequest() throws Exception {
+        String query = null;
+        MockHttpServletResponse response = mockMvc.perform(MockMvcRequestBuilders.get(MOBILE_URL)
+                .param("query", query)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isBadRequest())
+                .andReturn().getResponse();
+        Assertions.assertNotNull(response);
+    }
 }

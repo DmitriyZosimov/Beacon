@@ -20,6 +20,9 @@ public class DefaultMobileSearchService implements MobileSearchService {
     @Transactional(readOnly = true)
     @Override
     public List<MobileDto> search(String query) {
-        return dao.search(query);
+        if (query.isBlank()) {
+            return null;
+        }
+        return dao.search(query.strip().replaceAll("\\s+", " "));
     }
 }
