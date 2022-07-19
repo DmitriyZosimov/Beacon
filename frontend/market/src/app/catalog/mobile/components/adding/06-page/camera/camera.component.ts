@@ -44,6 +44,8 @@ export class CameraComponent implements OnInit {
 
         frontCameraAperture: [this.mobileDtoFull?.frontCameraAperture ? this.mobileDtoFull?.frontCameraAperture : null],
       });
+    this.enableMainCamerasProperties();
+    this.enableFrontCamerasProperties();
     this.checkMainCamerasProperties();
     this.checkFrontCamerasProperties();
   }
@@ -76,29 +78,19 @@ export class CameraComponent implements OnInit {
       this.mobileDtoFull.automaticFocus = this.controls.automaticFocus.value;
       this.mobileDtoFull.opticalStabilization = this.controls.opticalStabilization.value;
       this.mobileDtoFull.mainCamera = this.controls.mainCamera.value;
-      this.mobileDtoFull.mainCameraAperture = 'f/' + this.controls.mainCameraAperture.value;
+      this.mobileDtoFull.mainCameraAperture = this.controls.mainCameraAperture.value;
       this.mobileDtoFull.frontCamera = this.controls.frontCamera.value;
       this.mobileDtoFull.frontCameraResolution = this.controls.frontCameraResolution.value;
-      this.mobileDtoFull.frontCameraAperture = 'f/' + this.controls.frontCameraAperture.value;
+      this.mobileDtoFull.frontCameraAperture = this.controls.frontCameraAperture.value;
     }
   }
 
   private checkMainCamerasProperties() {
     this.form.get('mainCamera')?.valueChanges.subscribe(value => {
       if (value) {
-        this.form.get('cameraResolution')?.setValidators([Validators.required, Validators.min(0)]);
-        this.form.get('mainCamerasNumber')?.setValidators([Validators.required, Validators.min(0)]);
-        this.form.get('mainCameraAperture')?.setValidators([Validators.required, Validators.min(0)]);
+        this.enableMainCamerasProperties();
       } else {
-        this.form.get('cameraResolution')?.clearValidators();
-        this.form.get('mainCamerasNumber')?.clearValidators();
-        this.form.get('mainCameraAperture')?.clearValidators();
-        this.form.get('cameraResolution')?.setValue(null);
-        this.form.get('mainCamerasNumber')?.setValue(null);
-        this.form.get('mainCameraAperture')?.setValue(null);
-        this.form.get('builtInFlash')?.setValue(false);
-        this.form.get('automaticFocus')?.setValue(false);
-        this.form.get('opticalStabilization')?.setValue(false);
+        this.disableMainCamerasProperties();
       }
       this.form.get('cameraResolution')?.updateValueAndValidity();
       this.form.get('mainCamerasNumber')?.updateValueAndValidity();
@@ -106,20 +98,53 @@ export class CameraComponent implements OnInit {
     });
   }
 
+  private enableMainCamerasProperties() {
+    if (this.form.get('mainCamera')?.value) {
+      this.form.get('cameraResolution')?.setValidators([Validators.required, Validators.min(0)]);
+      this.form.get('mainCamerasNumber')?.setValidators([Validators.required, Validators.min(0)]);
+      this.form.get('mainCameraAperture')?.setValidators([Validators.required, Validators.pattern('[0-9]{1}(\.){1}[0-9]{1,2}')]);
+    }
+  }
+
+  private disableMainCamerasProperties() {
+    if (!this.form.get('mainCamera')?.value) {
+      this.form.get('cameraResolution')?.clearValidators();
+      this.form.get('mainCamerasNumber')?.clearValidators();
+      this.form.get('mainCameraAperture')?.clearValidators();
+      this.form.get('cameraResolution')?.setValue(null);
+      this.form.get('mainCamerasNumber')?.setValue(null);
+      this.form.get('mainCameraAperture')?.setValue(null);
+      this.form.get('builtInFlash')?.setValue(false);
+      this.form.get('automaticFocus')?.setValue(false);
+      this.form.get('opticalStabilization')?.setValue(false);
+    }
+  }
+
   private checkFrontCamerasProperties() {
     this.form.get('frontCamera')?.valueChanges.subscribe(value => {
       if (value) {
-        this.form.get('frontCameraResolution')?.setValidators([Validators.required, Validators.min(0)]);
-        this.form.get('frontCameraAperture')?.setValidators([Validators.required, Validators.min(0)]);
+        this.enableFrontCamerasProperties()
       } else {
-        this.form.get('frontCameraResolution')?.clearValidators();
-        this.form.get('frontCameraAperture')?.clearValidators();
-        this.form.get('frontCameraResolution')?.setValue(null);
-        this.form.get('frontCameraAperture')?.setValue(null);
+        this.disableFrontCamerasProperties()
       }
       this.form.get('frontCameraResolution')?.updateValueAndValidity();
       this.form.get('frontCameraAperture')?.updateValueAndValidity();
     });
   }
 
+  private enableFrontCamerasProperties() {
+    if (this.form.get('frontCamera')?.value) {
+      this.form.get('frontCameraResolution')?.setValidators([Validators.required, Validators.min(0)]);
+      this.form.get('frontCameraAperture')?.setValidators([Validators.required, Validators.pattern('[0-9]{1}(\.){1}[0-9]{1,2}')]);
+    }
+  }
+
+  private disableFrontCamerasProperties() {
+    if (!this.form.get('frontCamera')?.value) {
+      this.form.get('frontCameraResolution')?.clearValidators();
+      this.form.get('frontCameraAperture')?.clearValidators();
+      this.form.get('frontCameraResolution')?.setValue(null);
+      this.form.get('frontCameraAperture')?.setValue(null);
+    }
+  }
 }

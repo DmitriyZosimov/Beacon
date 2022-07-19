@@ -45,15 +45,18 @@
             </div>
             <div class="mb-2">
               <label for="mainCameraAperture" class="form-label">Main camera aperture, f/X.X</label>
-              <input formControlName="mainCameraAperture"
-                     class="form-control"
-                     aria-label="mainCameraAperture"
-                     id="mainCameraAperture"
-                     [ngClass]="{'is-invalid':submitted && controls.mainCameraAperture.errors }"
-                     type="number" min="0" step="0.1"/>
-              <div *ngIf="submitted && controls.mainCameraAperture.errors" class="invalid-feedback">
-                <div *ngIf="controls.mainCameraAperture.errors.required">The field is required</div>
-                <div *ngIf="controls.mainCameraAperture.errors.min">The value must be positive</div>
+              <div class="input-group">
+                <span class="input-group-text bg-info bg-opacity-50">f/</span>
+                <input formControlName="mainCameraAperture"
+                       class="form-control"
+                       aria-label="mainCameraAperture"
+                       id="mainCameraAperture"
+                       [ngClass]="{'is-invalid':submitted && controls.mainCameraAperture.errors }"
+                       type="text"/>
+                <div *ngIf="submitted && controls.mainCameraAperture.errors" class="invalid-feedback">
+                  <div *ngIf="controls.mainCameraAperture.errors.required">The field is required</div>
+                  <div *ngIf="controls.mainCameraAperture.errors.pattern">The value must be like X.X</div>
+                </div>
               </div>
             </div>
             <div class="mb-2">
@@ -107,15 +110,18 @@
             </div>
             <div class="mb-2">
               <label for="frontCameraAperture" class="form-label">Front camera aperture, f/X.X</label>
-              <input formControlName="frontCameraAperture"
-                     class="form-control"
-                     aria-label="frontCameraAperture"
-                     id="frontCameraAperture"
-                     [ngClass]="{'is-invalid':submitted && controls.frontCameraAperture.errors }"
-                     type="number" min="0" step="0.1"/>
-              <div *ngIf="submitted && controls.frontCameraAperture.errors" class="invalid-feedback">
-                <div *ngIf="controls.frontCameraAperture.errors.required">The field is required</div>
-                <div *ngIf="controls.frontCameraAperture.errors.min">The value must be positive</div>
+              <div class="input-group">
+                <span class="input-group-text bg-info bg-opacity-50">f/</span>
+                <input formControlName="frontCameraAperture"
+                       class="form-control"
+                       aria-label="frontCameraAperture"
+                       id="frontCameraAperture"
+                       [ngClass]="{'is-invalid':submitted && controls.frontCameraAperture.errors }"
+                       type="text"/>
+                <div *ngIf="submitted && controls.frontCameraAperture.errors" class="invalid-feedback">
+                  <div *ngIf="controls.frontCameraAperture.errors.required">The field is required</div>
+                  <div *ngIf="controls.frontCameraAperture.errors.pattern">The value must be like X.X</div>
+                </div>
               </div>
             </div>
           </div>
