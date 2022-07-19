@@ -86,7 +86,7 @@
             <td>Screen size</td>
             <td>
               <ng-template [ngIf]="mobileDtoFull.screenSize !== null"
-                           [ngIfElse]="noData">{{this.mobileDtoFull.screenSize}}</ng-template>
+                           [ngIfElse]="noData">{{this.mobileDtoFull.screenSize}}"</ng-template>
             </td>
           </tr>
           <tr>
@@ -106,7 +106,7 @@
           <tr>
             <td>RAM</td>
             <td>
-              <ng-template [ngIf]="mobileDtoFull.ram !== null" [ngIfElse]="noData">{{this.mobileDtoFull.ram}}GB
+              <ng-template [ngIf]="mobileDtoFull.ram !== null" [ngIfElse]="noData">{{this.mobileDtoFull.ram}} GB
               </ng-template>
             </td>
           </tr>
@@ -199,28 +199,28 @@
           <tr>
             <td>Length</td>
             <td>
-              <ng-template [ngIf]="mobileDtoFull.length !== null" [ngIfElse]="noData">{{this.mobileDtoFull.length}}mm
+              <ng-template [ngIf]="mobileDtoFull.length !== null" [ngIfElse]="noData">{{this.mobileDtoFull.length}} mm
               </ng-template>
             </td>
           </tr>
           <tr>
             <td>Width</td>
             <td>
-              <ng-template [ngIf]="mobileDtoFull.width !== null" [ngIfElse]="noData">{{this.mobileDtoFull.width}}mm
+              <ng-template [ngIf]="mobileDtoFull.width !== null" [ngIfElse]="noData">{{this.mobileDtoFull.width}} mm
               </ng-template>
             </td>
           </tr>
           <tr>
             <td>Height</td>
             <td>
-              <ng-template [ngIf]="mobileDtoFull.height !== null" [ngIfElse]="noData">{{this.mobileDtoFull.height}}mm
+              <ng-template [ngIf]="mobileDtoFull.height !== null" [ngIfElse]="noData">{{this.mobileDtoFull.height}} mm
               </ng-template>
             </td>
           </tr>
           <tr>
             <td>Weight</td>
             <td>
-              <ng-template [ngIf]="mobileDtoFull.weight !== null" [ngIfElse]="noData">{{this.mobileDtoFull.weight}}g
+              <ng-template [ngIf]="mobileDtoFull.weight !== null" [ngIfElse]="noData">{{this.mobileDtoFull.weight}} g
               </ng-template>
             </td>
           </tr>
@@ -233,8 +233,8 @@
             <td>
               <ng-template [ngIf]="mobileDtoFull.mainCamera !== null" [ngIfElse]="noData">
                 <ng-template [ngIf]="mobileDtoFull.mainCamera" [ngIfThen]="exist" [ngIfElse]="notExist"></ng-template>
-                <ng-template [ngIf]="mobileDtoFull.cameraResolution !== null">{{this.mobileDtoFull.cameraResolution}}
-                  MP
+                <ng-template [ngIf]="mobileDtoFull.cameraResolution !== null">
+                  <span class="ps-1">{{this.mobileDtoFull.cameraResolution}} MP</span>
                 </ng-template>
               </ng-template>
             </td>
@@ -288,8 +288,9 @@
             <td>
               <ng-template [ngIf]="mobileDtoFull.frontCamera !== null" [ngIfElse]="noData">
                 <ng-template [ngIf]="mobileDtoFull.frontCamera" [ngIfThen]="exist" [ngIfElse]="notExist"></ng-template>
-                <ng-template
-                  [ngIf]="mobileDtoFull.frontCameraResolution !== null">{{this.mobileDtoFull.frontCameraResolution}}</ng-template>
+                <ng-template [ngIf]="mobileDtoFull.frontCameraResolution !== null">
+                  <span class="ps-1">{{this.mobileDtoFull.frontCameraResolution}}</span>
+                </ng-template>
               </ng-template>
             </td>
           </tr>
@@ -382,8 +383,9 @@
             <td>
               <ng-template [ngIf]="mobileDtoFull.bluetooth !== null" [ngIfElse]="noData">
                 <ng-template [ngIf]="mobileDtoFull.bluetooth" [ngIfThen]="exist" [ngIfElse]="notExist"></ng-template>
-                <ng-template
-                  [ngIf]="mobileDtoFull.bluetoothVersion !== null">{{this.mobileDtoFull.bluetoothVersion}}</ng-template>
+                <ng-template [ngIf]="mobileDtoFull.bluetoothVersion !== null">
+                  <span class="ps-1">{{this.mobileDtoFull.bluetoothVersion}}</span>
+                </ng-template>
               </ng-template>
             </td>
           </tr>
@@ -392,8 +394,9 @@
             <td>
               <ng-template [ngIf]="mobileDtoFull.audioOutput !== null" [ngIfElse]="noData">
                 <ng-template [ngIf]="mobileDtoFull.audioOutput" [ngIfThen]="exist" [ngIfElse]="notExist"></ng-template>
-                <ng-template
-                  [ngIf]="mobileDtoFull.audioOutputVersion !== null">{{this.mobileDtoFull.audioOutputVersion}}</ng-template>
+                <ng-template [ngIf]="mobileDtoFull.audioOutputVersion !== null">
+                  <span class="ps-1">{{this.mobileDtoFull.audioOutputVersion}}</span>
+                </ng-template>
               </ng-template>
             </td>
           </tr>
@@ -402,8 +405,9 @@
             <td>
               <ng-template [ngIf]="mobileDtoFull.wifi !== null" [ngIfElse]="noData">
                 <ng-template [ngIf]="mobileDtoFull.wifi" [ngIfThen]="exist" [ngIfElse]="notExist"></ng-template>
-                <ng-template
-                  [ngIf]="mobileDtoFull.wifiVersion !== null">{{this.mobileDtoFull.wifiVersion}}</ng-template>
+                <ng-template [ngIf]="mobileDtoFull.wifiVersion !== null">
+                  <span class="ps-1">{{this.mobileDtoFull.wifiVersion}}</span>
+                </ng-template>
               </ng-template>
             </td>
           </tr>
