@@ -20,12 +20,10 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMobileDtos();
-    console.log('ProductList: ' + this.mobileDtos)
   }
 
   getMobileDtos(): void {
     this.mobileService.getMobileDtos().subscribe(response => {
-      console.log(JSON.stringify(response.body));
       this.mobileDtos = response.body!;
     });
   }
@@ -51,7 +49,6 @@ export class ProductListComponent implements OnInit {
     if (mobileDto.mainImage !== null) {
       let objectUrl = 'data:image/jpeg;base64,' + mobileDto.mainImage?.image;
       let image = this.sanitizer.bypassSecurityTrustUrl(objectUrl);
-      console.log('image: ' + image);
       return image;
     }
   }
