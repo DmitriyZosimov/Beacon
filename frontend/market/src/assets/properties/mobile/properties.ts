@@ -65,7 +65,7 @@ export const mobileProperties = {
     'prussian blue', 'purple', 'quartz grey', 'red', 'rose', 'royal blue', 'ruby', 'salmon pink', 'sandy brown', 'sapphire',
     'scarlet', 'shocking pink', 'silver', 'sky blue', 'tan', 'tangerine', 'turquoise', 'violet', 'yellow'],
   simFormats: ['standard', 'micro-SIM', 'nano-SIM', 'eSIM'],
-  bluetoothVersions : [5.3, 5.2, 5.1, 5.0, 4.2, 4.1, 4.0, 3.0, 2.1, 2.0],
+  bluetoothVersions : ['5.3', '5.2', '5.1', '5.0', '4.2', '4.1', '4.0', '3.0', '2.1', '2.0'],
   audioOutputVersions: ['jack 3.5 mm', 'microUSB', 'USB Type-C', 'lightning'],
   wifiVersions: ['802.11ax', '802.11ad', '802.11ac', '802.11n', '802.11g', '802.11b', '802.11a'],
   connections: ['lightning', 'microUSB 2.0', 'USB Type-C', 'USB Type-C 2.0', 'USB Type-C 3.1', 'USB Type-C', 'proprietary'],
