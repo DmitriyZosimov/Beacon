@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.test.annotation.DirtiesContext;
 
 import java.util.Optional;
@@ -13,6 +15,13 @@ import java.util.Optional;
 @SpringBootTest
 public class MobileDtoFullServiceImplIT implements TestMobileDtoFulBuilder {
 
+    /**
+     * As the {@code SpringBootTest} loads all configuration and the application uses security configuration with JWT
+     * and this tests do not load checking security configuration but only control the application, we should mock the
+     * {@code JwtDecoder}. Without this simple step the test will not pass.
+     */
+    @MockBean
+    JwtDecoder jwtDecoder;
     @Autowired
     MobileDtoFullService mobileDtoFullService;
 
