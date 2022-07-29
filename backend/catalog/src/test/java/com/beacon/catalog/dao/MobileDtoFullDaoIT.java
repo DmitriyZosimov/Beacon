@@ -1,18 +1,21 @@
 package com.beacon.catalog.dao;
 
+import com.beacon.catalog.config.DaoConfiguration;
 import com.beacon.model.MobileDtoFull;
 import com.beacon.model.MobileNotMainImage;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.ContextConfiguration;
 
 import java.io.*;
 import java.util.List;
 import java.util.Optional;
 
-@SpringBootTest
+@DataJpaTest
+@ContextConfiguration(classes = DaoConfiguration.class)
 public class MobileDtoFullDaoIT {
 
     @Autowired
