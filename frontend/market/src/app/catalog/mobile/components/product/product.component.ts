@@ -90,7 +90,7 @@ export class ProductComponent implements OnInit {
   }
 
   getMainImage(): any {
-    if (this.mobileDtoFull !== null && this.mobileDtoFull.mainImage !== null) {
+    if (this.mobileDtoFull != null && this.mobileDtoFull.mainImage !== null) {
       let objectUrl = 'data:image/jpeg;base64,' + this.mobileDtoFull.mainImage?.image;
       return this.sanitizer.bypassSecurityTrustUrl(objectUrl);
     }
