@@ -1,3 +1,11 @@
-<div class="pe-1">
-  <a href="/#" class="btn btn-outline-danger btn-lg">Sign in</a>
-</div>
+<ng-template *ngIf="isLoggedIn; then log_out else sign_in"></ng-template>
+<ng-template #sign_in>
+  <div class="pe-1">
+    <button type="button" class="btn btn-outline-danger btn-lg" (click)="login()">Sign in</button>
+  </div>
+</ng-template>
+<ng-template #log_out>
+  <div class="pe-1">
+    <button type="button" class="btn btn-outline-danger btn-lg" (click)="logout()">Logout</button>
+  </div>
+</ng-template>
