@@ -1,7 +1,7 @@
 package com.beacon.catalog.web;
 
-import com.beacon.model.MobileDtoFull;
 import com.beacon.catalog.service.MobileDtoFullService;
+import com.beacon.model.MobileDtoFull;
 import com.beacon.model.tools.MobileIdToUrlPathConverter;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +12,6 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/mobile")
-@CrossOrigin
 public class MobileDtoFullController {
 
     private MobileDtoFullService mobileDtoFullService;
