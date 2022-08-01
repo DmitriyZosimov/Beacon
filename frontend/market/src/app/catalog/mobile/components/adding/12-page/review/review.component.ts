@@ -29,16 +29,7 @@ export class ReviewComponent implements OnInit {
 
   onSave() {
     const mobile = {...this.mobileDtoFull} as MobileDtoFull;
-    this.mobileService.createMobile(mobile).subscribe(
-      (res) => {
-        console.log("Fail: " + res);
-        this.onSuccess();
-      },
-      (fail: Error) => {
-        console.log("Fail: " + fail.message);
-        this.onFail();
-      }
-    )
+    this.mobileService.createMobile(mobile)
   }
 
   getMainImage(): any {
@@ -78,13 +69,4 @@ export class ReviewComponent implements OnInit {
     }
     return title;
   }
-
-  private onSuccess() {
-    this.router.navigate(['/success']);
-  }
-
-  private onFail() {
-    this.router.navigate(['/fail'])
-  }
-
 }
