@@ -1,12 +1,16 @@
 package com.beacon.search.dao;
 
 import com.beacon.model.MobileDto;
+import com.beacon.search.config.DaoConfiguration;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -17,7 +21,9 @@ import java.util.List;
  * <p>
  * Test class uses a postgres database.
  */
-@SpringBootTest
+@DataJpaTest
+@ContextConfiguration(classes = DaoConfiguration.class)
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @Transactional
 public class SearchMobileDaoIT {
 
