@@ -35,4 +35,23 @@ public class MobileDtoFullServiceImplMockito implements TestMobileDtoFulBuilder 
         });
         service.saveMobileDtoFull(mobile);
     }
+
+    @Test
+    public void testValidationOfImages() {
+        when(dao.saveAndFlush(any())).thenAnswer(invocation -> {
+            MobileDtoFull argument = invocation.getArgument(0, MobileDtoFull.class);
+            Assertions.assertEquals(argument, argument.getMainImage().getMobileDto());
+            argument.getNotMainImages().forEach(image -> {
+                Assertions.assertEquals(argument, image.getMobileDtoFull());
+            });
+            return null;
+        });
+
+        MobileDtoFull mobileDtoFull = build();
+        mobileDtoFull.setMobileId(null);
+        mobileDtoFull.getMainImage().setMobileDto(null);
+        mobileDtoFull.getNotMainImages().forEach(image -> image.setMobileDtoFull(null));
+
+        service.saveMobileDtoFull(mobileDtoFull);
+    }
 }

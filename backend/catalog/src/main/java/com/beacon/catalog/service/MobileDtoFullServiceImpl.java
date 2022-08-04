@@ -47,11 +47,11 @@ public class MobileDtoFullServiceImpl implements MobileDtoFullService {
     }
 
     private void validateImages(MobileDtoFull mobileDtoFull) {
-        if (mobileDtoFull.getMainImage() != null && mobileDtoFull.getMainImage().getMobileDto() != mobileDtoFull) {
+        if (mobileDtoFull.getMainImage() != null && !mobileDtoFull.equals(mobileDtoFull.getMainImage().getMobileDto())) {
             mobileDtoFull.getMainImage().setMobileDto(mobileDtoFull);
         }
         if (mobileDtoFull.getNotMainImages() != null) {
-            mobileDtoFull.getNotMainImages().stream().filter(image -> image.getMobileDtoFull() != mobileDtoFull)
+            mobileDtoFull.getNotMainImages().stream().filter(image -> !mobileDtoFull.equals(image.getMobileDtoFull()))
                     .forEach(image -> image.setMobileDtoFull(mobileDtoFull));
         }
     }
