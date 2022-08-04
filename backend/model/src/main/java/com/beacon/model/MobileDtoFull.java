@@ -41,16 +41,16 @@ public class MobileDtoFull extends MobileDto {
     private String simFormat;
 
     @Column(name = "length")
-    private Integer length;
+    private Double length;
 
     @Column(name = "width")
-    private Integer width;
+    private Double width;
 
     @Column(name = "height")
-    private Integer height;
+    private Double height;
 
     @Column(name = "weight")
-    private Integer weight;
+    private Double weight;
 
     @Column(name = "main_cameras_number")
     private Integer mainCamerasNumber;

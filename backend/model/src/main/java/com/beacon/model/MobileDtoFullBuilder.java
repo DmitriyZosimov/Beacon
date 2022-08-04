@@ -33,10 +33,10 @@ public class MobileDtoFullBuilder {
     private Integer technicalProcess;
     private String housingMaterial;
     private String simFormat;
-    private Integer length;
-    private Integer width;
-    private Integer height;
-    private Integer weight;
+    private Double length;
+    private Double width;
+    private Double height;
+    private Double weight;
     private Integer mainCamerasNumber;
     private Boolean builtInFlash;
     private Boolean automaticFocus;
@@ -181,22 +181,22 @@ public class MobileDtoFullBuilder {
         return INSTANCE;
     }
 
-    public MobileDtoFullBuilder setLength(Integer length) {
+    public MobileDtoFullBuilder setLength(Double length) {
         this.length = length;
         return INSTANCE;
     }
 
-    public MobileDtoFullBuilder setWidth(Integer width) {
+    public MobileDtoFullBuilder setWidth(Double width) {
         this.width = width;
         return INSTANCE;
     }
 
-    public MobileDtoFullBuilder setHeight(Integer height) {
+    public MobileDtoFullBuilder setHeight(Double height) {
         this.height = height;
         return INSTANCE;
     }
 
-    public MobileDtoFullBuilder setWeight(Integer weight) {
+    public MobileDtoFullBuilder setWeight(Double weight) {
         this.weight = weight;
         return INSTANCE;
     }

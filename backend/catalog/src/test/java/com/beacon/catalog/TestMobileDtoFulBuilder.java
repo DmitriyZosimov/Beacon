@@ -29,10 +29,10 @@ public interface TestMobileDtoFulBuilder {
     Integer technicalProcess = 6;
     String housingMaterial = "plastic";
     String simFormat = "nano-SIM";
-    Integer length = 166;
-    Integer width = 76;
-    Integer height = 8;
-    Integer weight = 189;
+    Double length = 166.75;
+    Double width = 76.45;
+    Double height = 8.79;
+    Double weight = 189.9;
     Integer mainCamerasNumber = 4;
     Boolean builtInFlash = true;
     Boolean automaticFocus = true;

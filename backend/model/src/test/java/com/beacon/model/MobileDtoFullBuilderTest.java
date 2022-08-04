@@ -29,10 +29,10 @@ public class MobileDtoFullBuilderTest {
     private final Integer technicalProcess = 14;
     private final String housingMaterial = "housingMaterial";
     private final String simFormat = "simFormat";
-    private final Integer length = 170;
-    private final Integer width = 50;
-    private final Integer height = 8;
-    private final Integer weight = 150;
+    private final Double length = 170.81;
+    private final Double width = 50.98;
+    private final Double height = 8.78;
+    private final Double weight = 150.41;
     private final Integer mainCamerasNumber = 3;
     private final Boolean builtInFlash = true;
     private final Boolean automaticFocus = true;
