@@ -3,7 +3,7 @@
     <li class="list-group-item" *ngFor="let image of images; let i = index">
       <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#imageModal"
               (click)="this.currentIndex=i">
-        <img [src]="image" class="img-clg-width w-50"/>
+        <img [src]="image" class="img-size"/>
       </button>
     </li>
   </ul>
