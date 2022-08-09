@@ -1,11 +1,11 @@
 INSERT INTO shop_logo(logo) VALUES
- (FILE_READ('/home/dmitriy_zosimov/work/BEACON/Beacon/backend/shop/src/test/resources/img/21vek.jpeg')),
- (FILE_READ('/home/dmitriy_zosimov/work/BEACON/Beacon/backend/shop/src/test/resources/img/5element.jpeg')),
- (FILE_READ('/home/dmitriy_zosimov/work/BEACON/Beacon/backend/shop/src/test/resources/img/ttn.jpeg')),
- (FILE_READ('/home/dmitriy_zosimov/work/BEACON/Beacon/backend/shop/src/test/resources/img/7745by.jpeg')),
- (FILE_READ('/home/dmitriy_zosimov/work/BEACON/Beacon/backend/shop/src/test/resources/img/silaby.jpeg')),
- (FILE_READ('/home/dmitriy_zosimov/work/BEACON/Beacon/backend/shop/src/test/resources/img/evroset.jpeg')),
- (FILE_READ('/home/dmitriy_zosimov/work/BEACON/Beacon/backend/shop/src/test/resources/img/technomir.jpeg'));
+ (FILE_READ('/home/dmitriy_zosimov/work/BEACON/Beacon/backend/shop/src/test/resources/img/beacon-small-logo.png')),
+ (FILE_READ('/home/dmitriy_zosimov/work/BEACON/Beacon/backend/shop/src/test/resources/img/beacon-small-logo.png')),
+ (FILE_READ('/home/dmitriy_zosimov/work/BEACON/Beacon/backend/shop/src/test/resources/img/beacon-small-logo.png')),
+ (FILE_READ('/home/dmitriy_zosimov/work/BEACON/Beacon/backend/shop/src/test/resources/img/beacon-small-logo.png')),
+ (FILE_READ('/home/dmitriy_zosimov/work/BEACON/Beacon/backend/shop/src/test/resources/img/beacon-small-logo.png')),
+ (FILE_READ('/home/dmitriy_zosimov/work/BEACON/Beacon/backend/shop/src/test/resources/img/beacon-small-logo.png')),
+ (FILE_READ('/home/dmitriy_zosimov/work/BEACON/Beacon/backend/shop/src/test/resources/img/beacon-small-logo.png'));
 
 INSERT INTO shop(name, description, logo_id)
 VALUES ('21Vek', 'Гарантия 12 месяцев. Код товара 7.556.886. Без выходных. Собственная курьерская служба. Цена без рассрочки. Более 1 000 000 товаров. Мы работаем для Вас с 2004 года!', 1),
