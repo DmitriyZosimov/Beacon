@@ -1,0 +1,153 @@
+<ng-container>
+  <section class="container-md mb-3">
+    <div class="d-flex flex-grow-1 border-bottom mb-3">
+      <h1>
+        Shop
+      </h1>
+    </div>
+    <div class="d-flex align-items-center mb-3">
+      <div class="px-4">
+        <h2>
+          Name of Store
+        </h2>
+      </div>
+      <div class="px-4">
+        <div style="width: 120px; height: 60px" class="bg-info">Logo</div>
+
+      </div>
+    </div>
+
+    <div class="d-md-flex border border-info p-4">
+      <div class="me-md-5">
+        <!-- Days of week -->
+        <div class="d-flex">
+          <div [ngClass]="{'border border-4 border-success mt-4-px-minus': currentDay == 1}">
+            <div class="border working-hours-size text-center pt-1 text-secondary"
+                 [ngClass]="{'bg-success bg-opacity-50 text-success' : mo}">
+              <span class="fw-bold">Mo</span>
+            </div>
+          </div>
+          <div [ngClass]="{'border border-4 border-success mt-4-px-minus': currentDay == 2}">
+            <div class="border working-hours-size text-center pt-1 text-secondary"
+                 [ngClass]="{'bg-success bg-opacity-50 text-success' : tu}">
+              <span class="fw-bold">Tu</span>
+            </div>
+          </div>
+          <div [ngClass]="{'border border-4 border-success mt-4-px-minus': currentDay == 3}">
+            <div class="border working-hours-size text-center pt-1 text-secondary"
+                 [ngClass]="{'bg-success bg-opacity-50 text-success' : we}">
+              <span class="fw-bold">We</span>
+            </div>
+          </div>
+          <div [ngClass]="{'border border-4 border-success mt-4-px-minus': currentDay == 4}">
+            <div class="border working-hours-size text-center pt-1 text-secondary"
+                 [ngClass]="{'bg-success bg-opacity-50 text-success' : th}">
+              <span class="fw-bold">Th</span>
+            </div>
+          </div>
+          <div [ngClass]="{'border border-4 border-success mt-4-px-minus': currentDay == 5}">
+            <div class="border working-hours-size text-center pt-1 text-secondary"
+                 [ngClass]="{'bg-success bg-opacity-50 text-success' : fr}">
+              <span class="fw-bold">Fr</span>
+            </div>
+          </div>
+          <div [ngClass]="{'border border-4 border-success mt-4-px-minus': currentDay == 6}">
+            <div class="border working-hours-size text-center pt-1 text-secondary"
+                 [ngClass]="{'bg-success bg-opacity-50 text-success' : st}">
+              <span class="fw-bold">St</span>
+            </div>
+          </div>
+          <div [ngClass]="{'border border-4 border-success mt-4-px-minus': currentDay == 0}">
+            <div class="border working-hours-size text-center pt-1 text-secondary"
+                 [ngClass]="{'bg-success bg-opacity-50 text-success' : su}">
+              <span class="fw-bold">Su</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Open Close -->
+        <ng-template *ngIf="isOpen(); then open else close"></ng-template>
+        <ng-template #open>
+          <div class="text-success">Open</div>
+        </ng-template>
+        <ng-template #close>
+          <div class="text-danger">Close</div>
+        </ng-template>
+
+        <div class="lh-sm">
+          Today the store is working:<br>
+          from {{workFrom()}} to {{workTo()}}
+        </div>
+
+        <!-- working hours -->
+        <div class="mb-3">
+          <button type="button" class="btn btn-link btn-sm p-0" placement="bottom"
+                  tooltipClass="tooltip-background"
+                  [ngbTooltip]="workingHoursContent"
+                  [openDelay]="300" [closeDelay]="500"
+          >
+            Working hours
+          </button>
+          <ng-template #workingHoursContent>
+            <div class="">
+              <table class="table-secondary">
+                <tbody>
+                <tr>
+                  <th scope="row" class="px-1">Mo</th>
+                  <td class="px-1">09:00</td>
+                  <td class="px-1">21:00</td>
+                </tr>
+                <tr>
+                  <th scope="row">Tu</th>
+                  <td>09:00</td>
+                  <td>21:00</td>
+                </tr>
+                <tr>
+                  <th scope="row">We</th>
+                  <td>09:00</td>
+                  <td>21:00</td>
+                </tr>
+                <tr>
+                  <th scope="row">Th</th>
+                  <td>09:00</td>
+                  <td>21:00</td>
+                </tr>
+                <tr>
+                  <th scope="row">Fr</th>
+                  <td>09:00</td>
+                  <td>21:00</td>
+                </tr>
+                <tr>
+                  <th scope="row">St</th>
+                  <td>09:00</td>
+                  <td>21:00</td>
+                </tr>
+                <tr>
+                  <th scope="row">Su</th>
+                  <td>09:00</td>
+                  <td>21:00</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </ng-template>
+        </div>
+
+        <!-- payments methods -->
+        <div>
+          <h5>Payment methods</h5>
+          <div *ngFor="let method of paymentMethods" class="ps-2 lh-sm">
+            {{method}}
+          </div>
+        </div>
+      </div>
+      <div class="flex-fill">
+        <div class="lh-sm">
+          Только для юридических лиц. Гарантия 12 месяцев. Код товара 550541. СТБ.
+          Профессиональная консультация, индивидуальный подход. Цены с НДС. Широкий ассортимент периферии HP,
+          Epson, Panasonic, LG, Philips, Canon, Xerox в наличии.
+        </div>
+      </div>
+    </div>
+  </section>
+</ng-container>

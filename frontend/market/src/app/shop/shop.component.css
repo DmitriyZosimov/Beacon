@@ -1,0 +1,10 @@
+.working-hours-size {
+  width: 35px;
+  height: 35px;
+}
+.mt-4-px-minus {
+  margin-top: -4px;
+}
+.tooltip-background .tooltip-inner {
+  background-color: lemonchiffon;
+}

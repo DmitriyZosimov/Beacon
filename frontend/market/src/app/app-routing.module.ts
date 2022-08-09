@@ -13,6 +13,10 @@ const routes: Routes = [
     loadChildren: () => import('./catalog/mobile/mobile.module').then(m => m.MobileModule)
   },
   {
+    path: 'shop',
+    loadChildren: () => import('./shop/shop.module').then(m => m.ShopModule)
+  },
+  {
     path: '**',
     component: PageNotFoundComponent
   }

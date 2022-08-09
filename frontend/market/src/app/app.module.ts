@@ -16,6 +16,7 @@ import {PageNotFoundComponent} from './components/page-not-found/page-not-found.
 import {AuthenticationService} from "./service/auth/authentication.service";
 import {ErrorHandlerService} from "./service/error/error-handler.service";
 import {UnauthorizedErrorHandlerService} from "./service/error/unauthorized-error-handler.service";
+import {ShopModule} from "./shop/shop.module";
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import {UnauthorizedErrorHandlerService} from "./service/error/unauthorized-erro
     AppRoutingModule,
     NgbModule,
     HttpClientModule,
-    MobileModule
+    MobileModule,
+    ShopModule
   ],
   providers: [
     AuthenticationService,
