@@ -5,6 +5,11 @@ import {ShopComponent} from "./shop.component";
 const routes: Routes = [
   {
     path: '',
+    redirectTo: '1',
+    pathMatch: 'full'
+  },
+  {
+    path: ':id',
     component: ShopComponent
   }
 ];

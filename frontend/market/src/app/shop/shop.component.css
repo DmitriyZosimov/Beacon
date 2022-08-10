@@ -8,3 +8,7 @@
 .tooltip-background .tooltip-inner {
   background-color: lemonchiffon;
 }
+
+.logo-size {
+  max-height: 60px;
+}

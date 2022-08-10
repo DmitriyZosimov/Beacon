@@ -8,12 +8,13 @@
     <div class="d-flex align-items-center mb-3">
       <div class="px-4">
         <h2>
-          Name of Store
+          {{this.shop?.name}}
         </h2>
       </div>
       <div class="px-4">
-        <div style="width: 120px; height: 60px" class="bg-info">Logo</div>
-
+        <div>
+          <img [src]="getLogo()" class="logo-size">
+        </div>
       </div>
     </div>
 
@@ -21,45 +22,45 @@
       <div class="me-md-5">
         <!-- Days of week -->
         <div class="d-flex">
-          <div [ngClass]="{'border border-4 border-success mt-4-px-minus': currentDay == 1}">
+          <div [ngClass]="{'border border-4 border-success mt-4-px-minus': currentDayOfWeek == 1}">
             <div class="border working-hours-size text-center pt-1 text-secondary"
-                 [ngClass]="{'bg-success bg-opacity-50 text-success' : mo}">
+                 [ngClass]="{'bg-success bg-opacity-50 text-success' : checkWorkingHours(1)}">
               <span class="fw-bold">Mo</span>
             </div>
           </div>
-          <div [ngClass]="{'border border-4 border-success mt-4-px-minus': currentDay == 2}">
+          <div [ngClass]="{'border border-4 border-success mt-4-px-minus': currentDayOfWeek == 2}">
             <div class="border working-hours-size text-center pt-1 text-secondary"
-                 [ngClass]="{'bg-success bg-opacity-50 text-success' : tu}">
+                 [ngClass]="{'bg-success bg-opacity-50 text-success' : checkWorkingHours(2)}">
               <span class="fw-bold">Tu</span>
             </div>
           </div>
-          <div [ngClass]="{'border border-4 border-success mt-4-px-minus': currentDay == 3}">
+          <div [ngClass]="{'border border-4 border-success mt-4-px-minus': currentDayOfWeek == 3}">
             <div class="border working-hours-size text-center pt-1 text-secondary"
-                 [ngClass]="{'bg-success bg-opacity-50 text-success' : we}">
+                 [ngClass]="{'bg-success bg-opacity-50 text-success' : checkWorkingHours(3)}">
               <span class="fw-bold">We</span>
             </div>
           </div>
-          <div [ngClass]="{'border border-4 border-success mt-4-px-minus': currentDay == 4}">
+          <div [ngClass]="{'border border-4 border-success mt-4-px-minus': currentDayOfWeek == 4}">
             <div class="border working-hours-size text-center pt-1 text-secondary"
-                 [ngClass]="{'bg-success bg-opacity-50 text-success' : th}">
+                 [ngClass]="{'bg-success bg-opacity-50 text-success' : checkWorkingHours(4)}">
               <span class="fw-bold">Th</span>
             </div>
           </div>
-          <div [ngClass]="{'border border-4 border-success mt-4-px-minus': currentDay == 5}">
+          <div [ngClass]="{'border border-4 border-success mt-4-px-minus': currentDayOfWeek == 5}">
             <div class="border working-hours-size text-center pt-1 text-secondary"
-                 [ngClass]="{'bg-success bg-opacity-50 text-success' : fr}">
+                 [ngClass]="{'bg-success bg-opacity-50 text-success' : checkWorkingHours(5)}">
               <span class="fw-bold">Fr</span>
             </div>
           </div>
-          <div [ngClass]="{'border border-4 border-success mt-4-px-minus': currentDay == 6}">
+          <div [ngClass]="{'border border-4 border-success mt-4-px-minus': currentDayOfWeek == 6}">
             <div class="border working-hours-size text-center pt-1 text-secondary"
-                 [ngClass]="{'bg-success bg-opacity-50 text-success' : st}">
+                 [ngClass]="{'bg-success bg-opacity-50 text-success' : checkWorkingHours(6)}">
               <span class="fw-bold">St</span>
             </div>
           </div>
-          <div [ngClass]="{'border border-4 border-success mt-4-px-minus': currentDay == 0}">
+          <div [ngClass]="{'border border-4 border-success mt-4-px-minus': currentDayOfWeek == 0}">
             <div class="border working-hours-size text-center pt-1 text-secondary"
-                 [ngClass]="{'bg-success bg-opacity-50 text-success' : su}">
+                 [ngClass]="{'bg-success bg-opacity-50 text-success' : checkWorkingHours(0)}">
               <span class="fw-bold">Su</span>
             </div>
           </div>
@@ -94,38 +95,38 @@
                 <tbody>
                 <tr>
                   <th scope="row" class="px-1">Mo</th>
-                  <td class="px-1">09:00</td>
-                  <td class="px-1">21:00</td>
+                  <td class="px-1">{{workFrom(1)}}</td>
+                  <td class="px-1">{{workTo(1)}}</td>
                 </tr>
                 <tr>
                   <th scope="row">Tu</th>
-                  <td>09:00</td>
-                  <td>21:00</td>
+                  <td>{{workFrom(2)}}</td>
+                  <td>{{workTo(2)}}</td>
                 </tr>
                 <tr>
                   <th scope="row">We</th>
-                  <td>09:00</td>
-                  <td>21:00</td>
+                  <td>{{workFrom(3)}}</td>
+                  <td>{{workTo(3)}}</td>
                 </tr>
                 <tr>
                   <th scope="row">Th</th>
-                  <td>09:00</td>
-                  <td>21:00</td>
+                  <td>{{workFrom(4)}}</td>
+                  <td>{{workTo(4)}}</td>
                 </tr>
                 <tr>
                   <th scope="row">Fr</th>
-                  <td>09:00</td>
-                  <td>21:00</td>
+                  <td>{{workFrom(5)}}</td>
+                  <td>{{workTo(5)}}</td>
                 </tr>
                 <tr>
                   <th scope="row">St</th>
-                  <td>09:00</td>
-                  <td>21:00</td>
+                  <td>{{workFrom(6)}}</td>
+                  <td>{{workTo(6)}}</td>
                 </tr>
                 <tr>
                   <th scope="row">Su</th>
-                  <td>09:00</td>
-                  <td>21:00</td>
+                  <td>{{workFrom(0)}}</td>
+                  <td>{{workTo(0)}}</td>
                 </tr>
                 </tbody>
               </table>
@@ -136,16 +137,14 @@
         <!-- payments methods -->
         <div>
           <h5>Payment methods</h5>
-          <div *ngFor="let method of paymentMethods" class="ps-2 lh-sm">
+          <div *ngFor="let method of shop?.paymentMethods" class="ps-2 lh-sm">
             {{method}}
           </div>
         </div>
       </div>
       <div class="flex-fill">
         <div class="lh-sm">
-          Только для юридических лиц. Гарантия 12 месяцев. Код товара 550541. СТБ.
-          Профессиональная консультация, индивидуальный подход. Цены с НДС. Широкий ассортимент периферии HP,
-          Epson, Panasonic, LG, Philips, Canon, Xerox в наличии.
+          {{shop?.description}}
         </div>
       </div>
     </div>

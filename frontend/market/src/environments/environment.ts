@@ -6,6 +6,7 @@ export const environment = {
   production: false,
   catalogServer: 'http://localhost:8010',
   searchServer: 'http://localhost:8020',
+  shopServer: 'http://localhost:8030',
 
   //Authentication
   clientId: 'beacon-market',
