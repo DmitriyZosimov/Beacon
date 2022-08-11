@@ -20,7 +20,7 @@ export class ErrorHandlerService implements ErrorHandler {
     } else if (err.status === 403) {
       this.router.navigate(['error/forbidden']);
     } else if (err.status === 404) {
-      this.router.navigate(['404']);
+      this.router.navigate(['error/not-found']);
     } else {
       errorMessage = `Backend returned code ${err.status}, body was: ${err.error}`;
     }

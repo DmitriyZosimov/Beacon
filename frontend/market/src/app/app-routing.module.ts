@@ -28,6 +28,10 @@ const routes: Routes = [
       {
         path: 'forbidden',
         component: ForbiddenErrorComponent
+      },
+      {
+        path: 'not-found',
+        component: PageNotFoundComponent
       }
     ]
   },
