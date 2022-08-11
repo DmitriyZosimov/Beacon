@@ -1,4 +1,4 @@
-import {ErrorHandler, Injectable, ViewContainerRef} from '@angular/core';
+import {ErrorHandler, Injectable} from '@angular/core';
 import {HttpErrorResponse} from "@angular/common/http";
 import {NEVER, Observable, throwError} from "rxjs";
 import {UnauthorizedErrorHandlerService} from "./unauthorized-error-handler.service";
@@ -8,7 +8,7 @@ import {Router} from "@angular/router";
 export class ErrorHandlerService implements ErrorHandler {
 
   constructor(private unauthorizedErrorHandler: UnauthorizedErrorHandlerService,
-              private router:Router) {
+              private router: Router) {
   }
 
   public handleError(err: HttpErrorResponse): Observable<never> {

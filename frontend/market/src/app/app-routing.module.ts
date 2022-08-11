@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {PageNotFoundComponent} from "./components/page-not-found/page-not-found.component";
+import {UnauthorizedErrorComponent} from "./components/error/unauthorized-error/unauthorized-error.component";
 
 const routes: Routes = [
   {
@@ -15,6 +16,15 @@ const routes: Routes = [
   {
     path: 'shop',
     loadChildren: () => import('./shop/shop.module').then(m => m.ShopModule)
+  },
+  {
+    path: 'error',
+    children: [
+      {
+        path: 'unauthorized',
+        component: UnauthorizedErrorComponent
+      }
+    ]
   },
   {
     path: '**',
