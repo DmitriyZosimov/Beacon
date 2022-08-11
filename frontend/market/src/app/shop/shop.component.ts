@@ -79,7 +79,7 @@ export class ShopComponent implements OnInit {
       let objectUrl = 'data:image/jpeg;base64,' + this.shop.logo?.logo;
       return this.sanitizer.bypassSecurityTrustUrl(objectUrl);
     } else {
-      return '/assets/img/beacon-small-logo.png'
+      return '/assets/img/no_logo_available.png'
     }
   }
 
