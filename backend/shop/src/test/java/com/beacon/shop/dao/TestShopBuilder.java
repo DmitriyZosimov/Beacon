@@ -1,11 +1,11 @@
 package com.beacon.shop.dao;
 
-import com.beacon.shop.model.Logo;
-import com.beacon.shop.model.PaymentMethod;
-import com.beacon.shop.model.Shop;
-import com.beacon.shop.model.WorkingHours;
-import com.beacon.shop.model.builders.ShopBuilder;
-import com.beacon.shop.model.builders.WorkingHoursBuilder;
+import com.beacon.model.builders.ShopBuilder;
+import com.beacon.model.builders.WorkingHoursBuilder;
+import com.beacon.model.shop.Logo;
+import com.beacon.model.shop.PaymentMethod;
+import com.beacon.model.shop.Shop;
+import com.beacon.model.shop.WorkingHours;
 import org.junit.jupiter.api.Assertions;
 
 import java.io.*;
@@ -30,7 +30,7 @@ public interface TestShopBuilder {
                 .build();
     }
 
-    default void checkDefaultValuesFromImportSql(Shop ...shops) {
+    default void checkDefaultValuesFromImportSql(Shop... shops) {
         Arrays.stream(shops).forEach(shop -> {
             Assertions.assertNotNull(shop.getName());
             Assertions.assertNotNull(shop.getDescription());

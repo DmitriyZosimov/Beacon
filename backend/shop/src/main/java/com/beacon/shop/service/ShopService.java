@@ -1,6 +1,6 @@
 package com.beacon.shop.service;
 
-import com.beacon.shop.model.Shop;
+import com.beacon.model.shop.Shop;
 
 import java.util.Optional;
 

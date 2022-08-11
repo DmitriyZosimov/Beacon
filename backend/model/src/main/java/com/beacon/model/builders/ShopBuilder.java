@@ -1,9 +1,9 @@
-package com.beacon.shop.model.builders;
+package com.beacon.model.builders;
 
-import com.beacon.shop.model.Logo;
-import com.beacon.shop.model.PaymentMethod;
-import com.beacon.shop.model.Shop;
-import com.beacon.shop.model.WorkingHours;
+import com.beacon.model.shop.Logo;
+import com.beacon.model.shop.PaymentMethod;
+import com.beacon.model.shop.Shop;
+import com.beacon.model.shop.WorkingHours;
 
 import java.time.DayOfWeek;
 import java.util.Map;

@@ -1,7 +1,7 @@
 package com.beacon.shop.service;
 
 import com.beacon.shop.dao.ShopDao;
-import com.beacon.shop.model.Shop;
+import com.beacon.model.shop.Shop;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

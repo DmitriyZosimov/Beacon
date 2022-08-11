@@ -1,6 +1,6 @@
-package com.beacon.shop.model.builders;
+package com.beacon.model.builders;
 
-import com.beacon.shop.model.WorkingHours;
+import com.beacon.model.shop.WorkingHours;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;

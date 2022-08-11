@@ -1,4 +1,4 @@
-package com.beacon.shop.model;
+package com.beacon.model.shop;
 
 import lombok.Data;
 

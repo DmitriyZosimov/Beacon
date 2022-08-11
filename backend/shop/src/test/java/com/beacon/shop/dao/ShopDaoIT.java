@@ -1,7 +1,7 @@
 package com.beacon.shop.dao;
 
+import com.beacon.model.shop.Shop;
 import com.beacon.shop.config.DaoConfiguration;
-import com.beacon.shop.model.Shop;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

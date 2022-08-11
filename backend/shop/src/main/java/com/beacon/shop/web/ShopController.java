@@ -1,6 +1,6 @@
 package com.beacon.shop.web;
 
-import com.beacon.shop.model.Shop;
+import com.beacon.model.shop.Shop;
 import com.beacon.shop.service.ShopService;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

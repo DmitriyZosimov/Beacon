@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @Configuration
-@EntityScan("com.beacon.shop.model")
+@EntityScan("com.beacon.model.shop")
 @EnableJpaRepositories(basePackages = "com.beacon.shop.dao")
 @ComponentScan(basePackages = "com.beacon.shop.dao")
 public class DaoConfiguration {

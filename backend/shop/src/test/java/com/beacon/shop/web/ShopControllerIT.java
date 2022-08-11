@@ -1,7 +1,7 @@
 package com.beacon.shop.web;
 
+import com.beacon.model.shop.Shop;
 import com.beacon.shop.dao.TestShopBuilder;
-import com.beacon.shop.model.Shop;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
