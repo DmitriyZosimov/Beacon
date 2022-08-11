@@ -17,6 +17,8 @@ export class ErrorHandlerService implements ErrorHandler {
       errorMessage = `An error occurred: ${err.error.message}`;
     } else if (err.status === 401) {
       this.unauthorizedErrorHandler.handleError(err);
+    } else if (err.status === 403) {
+      this.router.navigate(['error/forbidden']);
     } else if (err.status === 404) {
       this.router.navigate(['404']);
     } else {

@@ -18,6 +18,7 @@ import {ErrorHandlerService} from "./service/error/error-handler.service";
 import {UnauthorizedErrorHandlerService} from "./service/error/unauthorized-error-handler.service";
 import {ShopModule} from "./shop/shop.module";
 import { UnauthorizedErrorComponent } from './components/error/unauthorized-error/unauthorized-error.component';
+import { ForbiddenErrorComponent } from './components/error/forbidden-error/forbidden-error.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { UnauthorizedErrorComponent } from './components/error/unauthorized-erro
     LoginComponent,
     CartComponent,
     PageNotFoundComponent,
-    UnauthorizedErrorComponent
+    UnauthorizedErrorComponent,
+    ForbiddenErrorComponent
   ],
   imports: [
     BrowserModule,
