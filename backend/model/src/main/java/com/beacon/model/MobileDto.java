@@ -1,11 +1,13 @@
 package com.beacon.model;
 
+import com.beacon.model.shop.Shop;
 import com.beacon.model.tools.ToStringTool;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Map;
 
 /**
  * Mobile Dto is a model with small information of mobile. It must be the same like MobileDto class in mobile_dto.ts in
@@ -69,6 +71,12 @@ public class MobileDto {
     @JsonManagedReference
     private MobileMainImage mainImage;
 
+    @ElementCollection
+    @CollectionTable(name = "offers", joinColumns = @JoinColumn(name = "mobile_id"))
+    @MapKeyJoinColumn(name = "shop_id")
+    @Column(name = "price")
+    private Map<Shop, Double> offers;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -95,7 +103,8 @@ public class MobileDto {
         if (simCardSlot != null ? !simCardSlot.equals(mobileDto.simCardSlot) : mobileDto.simCardSlot != null)
             return false;
         if (battery != null ? !battery.equals(mobileDto.battery) : mobileDto.battery != null) return false;
-        if (releaseYear != null ? !releaseYear.equals(mobileDto.releaseYear) : mobileDto.releaseYear != null) return false;
+        if (releaseYear != null ? !releaseYear.equals(mobileDto.releaseYear) : mobileDto.releaseYear != null)
+            return false;
         return color != null ? color.equals(mobileDto.color) : mobileDto.color == null;
     }
 

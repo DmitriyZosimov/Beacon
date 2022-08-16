@@ -27,7 +27,8 @@ ext {
     ]
 
     jackson = [
-            annotations :   "com.fasterxml.jackson.core:jackson-annotations:$jacksonAnnotationsVersion"
+            annotations :   "com.fasterxml.jackson.core:jackson-annotations:$jacksonAnnotationsVersion",
+            databind :   "com.fasterxml.jackson.core:jackson-databind:$jacksonAnnotationsVersion"
     ]
 
     junit = [
