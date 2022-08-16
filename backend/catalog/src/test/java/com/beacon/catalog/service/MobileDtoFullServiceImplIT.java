@@ -9,10 +9,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
 @SpringBootTest
+@Transactional
 public class MobileDtoFullServiceImplIT implements TestMobileDtoFulBuilder {
 
     /**

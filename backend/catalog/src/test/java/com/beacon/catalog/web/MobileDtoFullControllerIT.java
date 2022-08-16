@@ -5,12 +5,14 @@ import com.beacon.model.MobileDtoFull;
 import com.beacon.model.tools.MobileIdToUrlPathConverter;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -42,6 +44,9 @@ public class MobileDtoFullControllerIT implements TestMobileDtoFulBuilder {
 
     @Autowired
     WebApplicationContext context;
+    @Autowired
+    @Qualifier("customSimpleModule")
+    SimpleModule simpleModule;
     @MockBean
     JwtDecoder jwtDecoder;
     private MockMvc mockMvc;
@@ -56,6 +61,7 @@ public class MobileDtoFullControllerIT implements TestMobileDtoFulBuilder {
         MockitoAnnotations.openMocks(this);
         objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
+        objectMapper.registerModule(simpleModule);
     }
 
     @Test
