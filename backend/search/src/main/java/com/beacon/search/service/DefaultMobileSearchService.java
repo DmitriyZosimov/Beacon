@@ -1,6 +1,6 @@
 package com.beacon.search.service;
 
-import com.beacon.model.MobileDto;
+import com.beacon.model.Mobile;
 import com.beacon.search.dao.MobileSearchDao;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,7 +19,7 @@ public class DefaultMobileSearchService implements MobileSearchService {
 
     @Transactional(readOnly = true)
     @Override
-    public List<MobileDto> search(String query) {
+    public List<Mobile> search(String query) {
         if (query.isBlank()) {
             return null;
         }

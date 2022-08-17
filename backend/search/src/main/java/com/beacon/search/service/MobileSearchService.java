@@ -1,6 +1,6 @@
 package com.beacon.search.service;
 
-import com.beacon.model.MobileDto;
+import com.beacon.model.Mobile;
 
 import java.util.List;
 
@@ -12,5 +12,5 @@ public interface MobileSearchService {
      * @param query is on the basis of which the search will be conducted.
      * @return result list with found rows.
      */
-    public List<MobileDto> search(String query);
+    public List<Mobile> search(String query);
 }

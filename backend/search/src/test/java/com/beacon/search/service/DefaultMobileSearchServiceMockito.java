@@ -1,6 +1,6 @@
 package com.beacon.search.service;
 
-import com.beacon.model.MobileDto;
+import com.beacon.model.Mobile;
 import com.beacon.search.dao.MobileSearchDao;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -40,14 +40,14 @@ public class DefaultMobileSearchServiceMockito {
     @Test
     public void testBlankCheckOfInputQuery_shouldReturnNull() {
         String query = "              ";
-        List<MobileDto> list = service.search(query);
+        List<Mobile> list = service.search(query);
         Assertions.assertNull(list);
     }
 
     @Test
     public void testEmptyCheckOfInputQuery_shouldReturnNull() {
         String query = "";
-        List<MobileDto> list = service.search(query);
+        List<Mobile> list = service.search(query);
         Assertions.assertNull(list);
     }
 }

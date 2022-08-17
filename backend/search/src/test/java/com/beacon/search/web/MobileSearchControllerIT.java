@@ -1,6 +1,6 @@
 package com.beacon.search.web;
 
-import com.beacon.model.MobileDto;
+import com.beacon.model.Mobile;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -61,8 +61,8 @@ public class MobileSearchControllerIT {
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse();
-        List<MobileDto> result = (List<MobileDto>) objectMapper.readValue(response.getContentAsString(),
-                new TypeReference<List<MobileDto>>() {
+        List<Mobile> result = (List<Mobile>) objectMapper.readValue(response.getContentAsString(),
+                new TypeReference<List<Mobile>>() {
                 });
 
         Assertions.assertEquals(1, result.size());
@@ -78,8 +78,8 @@ public class MobileSearchControllerIT {
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse();
-        List<MobileDto> result = (List<MobileDto>) objectMapper.readValue(response.getContentAsString(),
-                new TypeReference<List<MobileDto>>() {
+        List<Mobile> result = (List<Mobile>) objectMapper.readValue(response.getContentAsString(),
+                new TypeReference<List<Mobile>>() {
                 });
 
         Assertions.assertEquals(1, result.size());
@@ -95,8 +95,8 @@ public class MobileSearchControllerIT {
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse();
-        List<MobileDto> result = (List<MobileDto>) objectMapper.readValue(response.getContentAsString(),
-                new TypeReference<List<MobileDto>>() {
+        List<Mobile> result = (List<Mobile>) objectMapper.readValue(response.getContentAsString(),
+                new TypeReference<List<Mobile>>() {
                 });
 
         Assertions.assertEquals(2, result.size());
@@ -113,8 +113,8 @@ public class MobileSearchControllerIT {
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse();
-        List<MobileDto> result = (List<MobileDto>) objectMapper.readValue(response.getContentAsString(),
-                new TypeReference<List<MobileDto>>() {
+        List<Mobile> result = (List<Mobile>) objectMapper.readValue(response.getContentAsString(),
+                new TypeReference<List<Mobile>>() {
                 });
 
         Assertions.assertEquals(2, result.size());
@@ -132,8 +132,8 @@ public class MobileSearchControllerIT {
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse();
-        List<MobileDto> result = (List<MobileDto>) objectMapper.readValue(response.getContentAsString(),
-                new TypeReference<List<MobileDto>>() {
+        List<Mobile> result = (List<Mobile>) objectMapper.readValue(response.getContentAsString(),
+                new TypeReference<List<Mobile>>() {
                 });
 
         Assertions.assertTrue(result.isEmpty());
@@ -148,8 +148,8 @@ public class MobileSearchControllerIT {
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse();
-        List<MobileDto> result = (List<MobileDto>) objectMapper.readValue(response.getContentAsString(),
-                new TypeReference<List<MobileDto>>() {
+        List<Mobile> result = (List<Mobile>) objectMapper.readValue(response.getContentAsString(),
+                new TypeReference<List<Mobile>>() {
                 });
 
         Assertions.assertNotNull(result);
