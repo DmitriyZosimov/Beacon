@@ -15,7 +15,7 @@ public class MobileMainImage extends MobileImage {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mobile_id", nullable = false)
     @JsonBackReference
-    private MobileDto mobileDto;
+    private Mobile mobile;
 
     @Override
     public boolean equals(Object o) {
@@ -25,13 +25,13 @@ public class MobileMainImage extends MobileImage {
 
         MobileMainImage that = (MobileMainImage) o;
 
-        return mobileDto.equals(that.mobileDto);
+        return mobile.equals(that.mobile);
     }
 
     @Override
     public int hashCode() {
         int result = super.hashCode();
-        result = 31 * result + mobileDto.hashCode();
+        result = 31 * result + mobile.hashCode();
         return result;
     }
 

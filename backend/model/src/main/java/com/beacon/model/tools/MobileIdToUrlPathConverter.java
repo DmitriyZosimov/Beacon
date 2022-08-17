@@ -1,6 +1,6 @@
 package com.beacon.model.tools;
 
-import com.beacon.model.MobileDto;
+import com.beacon.model.Mobile;
 
 import java.util.function.Function;
 
@@ -9,15 +9,15 @@ import java.util.function.Function;
  */
 public interface MobileIdToUrlPathConverter {
 
-    static String convert(MobileDto mobileDto) {
-        Function<MobileDto, String> function = (mobile) -> {
-            String brand = mobile.getBrand()
+    static String convert(Mobile mobile) {
+        Function<Mobile, String> function = (param) -> {
+            String brand = param.getBrand()
                     .toLowerCase()
                     .trim()
                     .replaceAll("[+]", "plus")
                     .replaceAll("[-\\s\\p{Punct}]", "");
-            return mobile.getMobileId().replaceAll(brand, brand + "/");
+            return param.getMobileId().replaceAll(brand, brand + "/");
         };
-        return function.apply(mobileDto);
+        return function.apply(mobile);
     }
 }

@@ -1,11 +1,12 @@
 package com.beacon.model;
 
+import com.beacon.model.builders.MobileFullBuilder;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
 
-public class MobileDtoFullBuilderTest {
+public class MobileFullBuilderTest {
 
     private final String mobileId = "mobileId";
     private final String brand = "brand";
@@ -66,7 +67,7 @@ public class MobileDtoFullBuilderTest {
 
     @Test
     public void testCreatingMobileDtoFullByBuilder() {
-        MobileDtoFull mobileDtoFull = MobileDtoFullBuilder.create()
+        MobileFull mobileDtoFull = MobileFullBuilder.create()
                 .setMobileId(this.mobileId)
                 .setBrand(this.brand)
                 .setModel(this.model)
@@ -123,66 +124,66 @@ public class MobileDtoFullBuilderTest {
                 .setMainImage(FIRST_IMAGE)
                 .setNotMainImages(SECOND_IMAGE, THIRD_IMAGE)
                 .build();
-        
+
         Assertions.assertEquals(this.mobileId, mobileDtoFull.getMobileId());
-                Assertions.assertEquals(this.brand , mobileDtoFull.getBrand());
-                Assertions.assertEquals(this.model , mobileDtoFull.getModel());
-                Assertions.assertEquals(this.os , mobileDtoFull.getOs());
-                Assertions.assertEquals(this.screenSize , mobileDtoFull.getScreenSize());
-                Assertions.assertEquals(this.displayResolution , mobileDtoFull.getDisplayResolution());
-                Assertions.assertEquals(this.displayTechnology , mobileDtoFull.getDisplayTechnology());
-                Assertions.assertEquals(this.ram , mobileDtoFull.getRam());
-                Assertions.assertEquals(this.storageCapacity , mobileDtoFull.getStorageCapacity());
-                Assertions.assertEquals(this.chipsetModel , mobileDtoFull.getChipsetModel());
-                Assertions.assertEquals(this.cameraResolution , mobileDtoFull.getCameraResolution());
-                Assertions.assertEquals(this.simCardSlot , mobileDtoFull.getSimCardSlot());
-                Assertions.assertEquals(this.battery , mobileDtoFull.getBattery());
-                Assertions.assertEquals(this.color , mobileDtoFull.getColor());
-                Assertions.assertEquals(this.releaseYear , mobileDtoFull.getReleaseYear());
-                Assertions.assertEquals(this.type , mobileDtoFull.getType());
-                Assertions.assertEquals(this.osVersion , mobileDtoFull.getOsVersion());
-                Assertions.assertEquals(this.processorClockFrequency , mobileDtoFull.getProcessorClockFrequency());
-                Assertions.assertEquals(this.coresNumber , mobileDtoFull.getCoresNumber());
-                Assertions.assertEquals(this.technicalProcess , mobileDtoFull.getTechnicalProcess());
-                Assertions.assertEquals(this.housingMaterial , mobileDtoFull.getHousingMaterial());
-                Assertions.assertEquals(this.simFormat , mobileDtoFull.getSimFormat());
-                Assertions.assertEquals(this.length , mobileDtoFull.getLength());
-                Assertions.assertEquals(this.width , mobileDtoFull.getWidth());
-                Assertions.assertEquals(this.height , mobileDtoFull.getHeight());
-                Assertions.assertEquals(this.weight , mobileDtoFull.getWeight());
-                Assertions.assertEquals(this.mainCamerasNumber , mobileDtoFull.getMainCamerasNumber());
-                Assertions.assertEquals(this.builtInFlash , mobileDtoFull.getBuiltInFlash());
-                Assertions.assertEquals(this.automaticFocus , mobileDtoFull.getAutomaticFocus());
-                Assertions.assertEquals(this.opticalStabilization , mobileDtoFull.getOpticalStabilization());
-                Assertions.assertEquals(this.mainCamera , mobileDtoFull.getMainCamera());
-                Assertions.assertEquals(this.mainCameraAperture , mobileDtoFull.getMainCameraAperture());
-                Assertions.assertEquals(this.frontCamera , mobileDtoFull.getFrontCamera());
-                Assertions.assertEquals(this.frontCameraResolution , mobileDtoFull.getFrontCameraResolution());
-                Assertions.assertEquals(this.frontCameraAperture , mobileDtoFull.getFrontCameraAperture());
-                Assertions.assertEquals(this.gps , mobileDtoFull.getGps());
-                Assertions.assertEquals(this.glonass , mobileDtoFull.getGlonass());
-                Assertions.assertEquals(this.beidou , mobileDtoFull.getBeidou());
-                Assertions.assertEquals(this.edge , mobileDtoFull.getEdge());
-                Assertions.assertEquals(this.hspa , mobileDtoFull.getHspa());
-                Assertions.assertEquals(this.hspaPlus , mobileDtoFull.getHspaPlus());
-                Assertions.assertEquals(this.lte , mobileDtoFull.getLte());
-                Assertions.assertEquals(this.fiveG , mobileDtoFull.getFiveG());
-                Assertions.assertEquals(this.bluetooth , mobileDtoFull.getBluetooth());
-                Assertions.assertEquals(this.bluetoothVersion , mobileDtoFull.getBluetoothVersion());
-                Assertions.assertEquals(this.audioOutput , mobileDtoFull.getAudioOutput());
-                Assertions.assertEquals(this.audioOutputVersion , mobileDtoFull.getAudioOutputVersion());
-                Assertions.assertEquals(this.wifi , mobileDtoFull.getWifi());
-                Assertions.assertEquals(this.wifiVersion , mobileDtoFull.getWifiVersion());
-                Assertions.assertEquals(this.connection , mobileDtoFull.getConnection());
-                Assertions.assertEquals(this.nfc , mobileDtoFull.getNfc());
-                Assertions.assertEquals(this.batteryType , mobileDtoFull.getBatteryType());
-                Assertions.assertEquals(this.chargeTime , mobileDtoFull.getChargeTime());
-                Assertions.assertNotNull(mobileDtoFull.getMainImage());
-                Assertions.assertEquals(mobileDtoFull, mobileDtoFull.getMainImage().getMobileDto());
-                Assertions.assertNotNull(mobileDtoFull.getNotMainImages());
-                mobileDtoFull.getNotMainImages().forEach(image -> {
-                    Assertions.assertEquals(mobileDtoFull, image.getMobileDtoFull());
-                });
+        Assertions.assertEquals(this.brand, mobileDtoFull.getBrand());
+        Assertions.assertEquals(this.model, mobileDtoFull.getModel());
+        Assertions.assertEquals(this.os, mobileDtoFull.getOs());
+        Assertions.assertEquals(this.screenSize, mobileDtoFull.getScreenSize());
+        Assertions.assertEquals(this.displayResolution, mobileDtoFull.getDisplayResolution());
+        Assertions.assertEquals(this.displayTechnology, mobileDtoFull.getDisplayTechnology());
+        Assertions.assertEquals(this.ram, mobileDtoFull.getRam());
+        Assertions.assertEquals(this.storageCapacity, mobileDtoFull.getStorageCapacity());
+        Assertions.assertEquals(this.chipsetModel, mobileDtoFull.getChipsetModel());
+        Assertions.assertEquals(this.cameraResolution, mobileDtoFull.getCameraResolution());
+        Assertions.assertEquals(this.simCardSlot, mobileDtoFull.getSimCardSlot());
+        Assertions.assertEquals(this.battery, mobileDtoFull.getBattery());
+        Assertions.assertEquals(this.color, mobileDtoFull.getColor());
+        Assertions.assertEquals(this.releaseYear, mobileDtoFull.getReleaseYear());
+        Assertions.assertEquals(this.type, mobileDtoFull.getType());
+        Assertions.assertEquals(this.osVersion, mobileDtoFull.getOsVersion());
+        Assertions.assertEquals(this.processorClockFrequency, mobileDtoFull.getProcessorClockFrequency());
+        Assertions.assertEquals(this.coresNumber, mobileDtoFull.getCoresNumber());
+        Assertions.assertEquals(this.technicalProcess, mobileDtoFull.getTechnicalProcess());
+        Assertions.assertEquals(this.housingMaterial, mobileDtoFull.getHousingMaterial());
+        Assertions.assertEquals(this.simFormat, mobileDtoFull.getSimFormat());
+        Assertions.assertEquals(this.length, mobileDtoFull.getLength());
+        Assertions.assertEquals(this.width, mobileDtoFull.getWidth());
+        Assertions.assertEquals(this.height, mobileDtoFull.getHeight());
+        Assertions.assertEquals(this.weight, mobileDtoFull.getWeight());
+        Assertions.assertEquals(this.mainCamerasNumber, mobileDtoFull.getMainCamerasNumber());
+        Assertions.assertEquals(this.builtInFlash, mobileDtoFull.getBuiltInFlash());
+        Assertions.assertEquals(this.automaticFocus, mobileDtoFull.getAutomaticFocus());
+        Assertions.assertEquals(this.opticalStabilization, mobileDtoFull.getOpticalStabilization());
+        Assertions.assertEquals(this.mainCamera, mobileDtoFull.getMainCamera());
+        Assertions.assertEquals(this.mainCameraAperture, mobileDtoFull.getMainCameraAperture());
+        Assertions.assertEquals(this.frontCamera, mobileDtoFull.getFrontCamera());
+        Assertions.assertEquals(this.frontCameraResolution, mobileDtoFull.getFrontCameraResolution());
+        Assertions.assertEquals(this.frontCameraAperture, mobileDtoFull.getFrontCameraAperture());
+        Assertions.assertEquals(this.gps, mobileDtoFull.getGps());
+        Assertions.assertEquals(this.glonass, mobileDtoFull.getGlonass());
+        Assertions.assertEquals(this.beidou, mobileDtoFull.getBeidou());
+        Assertions.assertEquals(this.edge, mobileDtoFull.getEdge());
+        Assertions.assertEquals(this.hspa, mobileDtoFull.getHspa());
+        Assertions.assertEquals(this.hspaPlus, mobileDtoFull.getHspaPlus());
+        Assertions.assertEquals(this.lte, mobileDtoFull.getLte());
+        Assertions.assertEquals(this.fiveG, mobileDtoFull.getFiveG());
+        Assertions.assertEquals(this.bluetooth, mobileDtoFull.getBluetooth());
+        Assertions.assertEquals(this.bluetoothVersion, mobileDtoFull.getBluetoothVersion());
+        Assertions.assertEquals(this.audioOutput, mobileDtoFull.getAudioOutput());
+        Assertions.assertEquals(this.audioOutputVersion, mobileDtoFull.getAudioOutputVersion());
+        Assertions.assertEquals(this.wifi, mobileDtoFull.getWifi());
+        Assertions.assertEquals(this.wifiVersion, mobileDtoFull.getWifiVersion());
+        Assertions.assertEquals(this.connection, mobileDtoFull.getConnection());
+        Assertions.assertEquals(this.nfc, mobileDtoFull.getNfc());
+        Assertions.assertEquals(this.batteryType, mobileDtoFull.getBatteryType());
+        Assertions.assertEquals(this.chargeTime, mobileDtoFull.getChargeTime());
+        Assertions.assertNotNull(mobileDtoFull.getMainImage());
+        Assertions.assertEquals(mobileDtoFull, mobileDtoFull.getMainImage().getMobile());
+        Assertions.assertNotNull(mobileDtoFull.getNotMainImages());
+        mobileDtoFull.getNotMainImages().forEach(image -> {
+            Assertions.assertEquals(mobileDtoFull, image.getMobileFull());
+        });
 
     }
 }

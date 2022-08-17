@@ -10,16 +10,15 @@ import javax.persistence.*;
 import java.util.Map;
 
 /**
- * Mobile Dto is a model with small information of mobile. It must be the same like MobileDto class in mobile_dto.ts in
- * frontend in project Market.
+ * Mobile is a model with small information of mobile.
  */
 
 @Entity
-@Table(name = "mobile_dto")
+@Table(name = "mobile")
 @Inheritance(strategy = InheritanceType.JOINED)
 @Data
 @NoArgsConstructor
-public class MobileDto {
+public class Mobile {
 
     @Id
     @Column(name = "mobile_id", nullable = false, unique = true)
@@ -67,7 +66,7 @@ public class MobileDto {
     @Column(name = "release_year")
     private String releaseYear;
 
-    @OneToOne(mappedBy = "mobileDto", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "mobile", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JsonManagedReference
     private MobileMainImage mainImage;
 
@@ -82,30 +81,30 @@ public class MobileDto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        MobileDto mobileDto = (MobileDto) o;
+        Mobile mobile = (Mobile) o;
 
-        if (mobileId != null ? !mobileId.equals(mobileDto.mobileId) : mobileDto.mobileId != null) return false;
-        if (brand != null ? !brand.equals(mobileDto.brand) : mobileDto.brand != null) return false;
-        if (model != null ? !model.equals(mobileDto.model) : mobileDto.model != null) return false;
-        if (os != null ? !os.equals(mobileDto.os) : mobileDto.os != null) return false;
-        if (screenSize != null ? !screenSize.equals(mobileDto.screenSize) : mobileDto.screenSize != null) return false;
-        if (displayResolution != null ? !displayResolution.equals(mobileDto.displayResolution) : mobileDto.displayResolution != null)
+        if (mobileId != null ? !mobileId.equals(mobile.mobileId) : mobile.mobileId != null) return false;
+        if (brand != null ? !brand.equals(mobile.brand) : mobile.brand != null) return false;
+        if (model != null ? !model.equals(mobile.model) : mobile.model != null) return false;
+        if (os != null ? !os.equals(mobile.os) : mobile.os != null) return false;
+        if (screenSize != null ? !screenSize.equals(mobile.screenSize) : mobile.screenSize != null) return false;
+        if (displayResolution != null ? !displayResolution.equals(mobile.displayResolution) : mobile.displayResolution != null)
             return false;
-        if (displayTechnology != null ? !displayTechnology.equals(mobileDto.displayTechnology) : mobileDto.displayTechnology != null)
+        if (displayTechnology != null ? !displayTechnology.equals(mobile.displayTechnology) : mobile.displayTechnology != null)
             return false;
-        if (ram != null ? !ram.equals(mobileDto.ram) : mobileDto.ram != null) return false;
-        if (storageCapacity != null ? !storageCapacity.equals(mobileDto.storageCapacity) : mobileDto.storageCapacity != null)
+        if (ram != null ? !ram.equals(mobile.ram) : mobile.ram != null) return false;
+        if (storageCapacity != null ? !storageCapacity.equals(mobile.storageCapacity) : mobile.storageCapacity != null)
             return false;
-        if (chipsetModel != null ? !chipsetModel.equals(mobileDto.chipsetModel) : mobileDto.chipsetModel != null)
+        if (chipsetModel != null ? !chipsetModel.equals(mobile.chipsetModel) : mobile.chipsetModel != null)
             return false;
-        if (cameraResolution != null ? !cameraResolution.equals(mobileDto.cameraResolution) : mobileDto.cameraResolution != null)
+        if (cameraResolution != null ? !cameraResolution.equals(mobile.cameraResolution) : mobile.cameraResolution != null)
             return false;
-        if (simCardSlot != null ? !simCardSlot.equals(mobileDto.simCardSlot) : mobileDto.simCardSlot != null)
+        if (simCardSlot != null ? !simCardSlot.equals(mobile.simCardSlot) : mobile.simCardSlot != null)
             return false;
-        if (battery != null ? !battery.equals(mobileDto.battery) : mobileDto.battery != null) return false;
-        if (releaseYear != null ? !releaseYear.equals(mobileDto.releaseYear) : mobileDto.releaseYear != null)
+        if (battery != null ? !battery.equals(mobile.battery) : mobile.battery != null) return false;
+        if (releaseYear != null ? !releaseYear.equals(mobile.releaseYear) : mobile.releaseYear != null)
             return false;
-        return color != null ? color.equals(mobileDto.color) : mobileDto.color == null;
+        return color != null ? color.equals(mobile.color) : mobile.color == null;
     }
 
     @Override

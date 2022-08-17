@@ -14,10 +14,10 @@ import java.util.List;
  */
 
 @Entity
-@Table(name = "mobile_dto_full")
+@Table(name = "mobile_full")
 @Data
 @NoArgsConstructor
-public class MobileDtoFull extends MobileDto {
+public class MobileFull extends Mobile {
 
     @Column(name = "type")
     private String type;
@@ -133,7 +133,7 @@ public class MobileDtoFull extends MobileDto {
     @Column(name = "charge_time")
     private String chargeTime;
 
-    @OneToMany(mappedBy = "mobileDtoFull", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "mobileFull", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @Where(clause = "main=2")
     @JsonManagedReference
     private List<MobileNotMainImage> notMainImages;
@@ -144,7 +144,7 @@ public class MobileDtoFull extends MobileDto {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
 
-        MobileDtoFull that = (MobileDtoFull) o;
+        MobileFull that = (MobileFull) o;
 
         if (type != null ? !type.equals(that.type) : that.type != null) return false;
         if (osVersion != null ? !osVersion.equals(that.osVersion) : that.osVersion != null) return false;

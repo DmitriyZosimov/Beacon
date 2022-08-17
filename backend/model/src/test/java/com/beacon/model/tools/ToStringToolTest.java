@@ -1,36 +1,36 @@
 package com.beacon.model.tools;
 
-import com.beacon.model.MobileDto;
+import com.beacon.model.Mobile;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class ToStringToolTest {
 
-    MobileDto mobileDto = new MobileDto();
+    Mobile mobile = new Mobile();
 
     @BeforeEach
     public void setup() {
-        mobileDto.setMobileId("honor508128black");
-        mobileDto.setBrand("honor");
-        mobileDto.setModel("50");
-        mobileDto.setBattery(4100);
-        mobileDto.setColor("black");
-        mobileDto.setRam(8);
-        mobileDto.setStorageCapacity(128);
-        mobileDto.setOs("android");
-        mobileDto.setSimCardSlot("2");
-        mobileDto.setCameraResolution("48");
-        mobileDto.setChipsetModel("Qualcomm");
-        mobileDto.setDisplayResolution("1920x2100");
-        mobileDto.setDisplayTechnology("IPS");
-        mobileDto.setScreenSize("6.67\"");
-        mobileDto.setReleaseYear("2022");
+        mobile.setMobileId("honor508128black");
+        mobile.setBrand("honor");
+        mobile.setModel("50");
+        mobile.setBattery(4100);
+        mobile.setColor("black");
+        mobile.setRam(8);
+        mobile.setStorageCapacity(128);
+        mobile.setOs("android");
+        mobile.setSimCardSlot("2");
+        mobile.setCameraResolution("48");
+        mobile.setChipsetModel("Qualcomm");
+        mobile.setDisplayResolution("1920x2100");
+        mobile.setDisplayTechnology("IPS");
+        mobile.setScreenSize("6.67\"");
+        mobile.setReleaseYear("2022");
     }
 
     @Test
     public void getStringUsingTool() {
-        ToStringTool<MobileDto> tool = new ToStringTool<>(mobileDto);
+        ToStringTool<Mobile> tool = new ToStringTool<>(mobile);
         String result = tool.getString();
         Assertions.assertNotNull(result);
         System.out.println(result);
