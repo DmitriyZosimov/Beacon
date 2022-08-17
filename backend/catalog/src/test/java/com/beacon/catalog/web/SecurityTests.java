@@ -1,9 +1,9 @@
 package com.beacon.catalog.web;
 
-import com.beacon.catalog.TestMobileDtoFulBuilder;
-import com.beacon.catalog.service.MobileDtoFullService;
-import com.beacon.catalog.service.MobileDtoService;
-import com.beacon.model.MobileDtoFull;
+import com.beacon.catalog.TestMobileFullBuilder;
+import com.beacon.catalog.service.MobileFullService;
+import com.beacon.catalog.service.MobileService;
+import com.beacon.model.MobileFull;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.junit.jupiter.api.Assertions;
@@ -33,7 +33,7 @@ import static org.springframework.security.test.web.servlet.request.SecurityMock
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 
 @SpringBootTest
-public class SecurityTests implements TestMobileDtoFulBuilder {
+public class SecurityTests implements TestMobileFullBuilder {
     private static final String MOBILE_URL = "/mobile/";
     private static final String MOBILE_ID_URL = "/mobile/";
 
@@ -42,9 +42,9 @@ public class SecurityTests implements TestMobileDtoFulBuilder {
     @MockBean
     JwtDecoder jwtDecoder;
     @MockBean
-    MobileDtoService service;
+    MobileService service;
     @MockBean
-    MobileDtoFullService dtoFullService;
+    MobileFullService FullService;
     private MockMvc mockMvc;
     private ObjectMapper objectMapper;
 
@@ -57,18 +57,18 @@ public class SecurityTests implements TestMobileDtoFulBuilder {
         MockitoAnnotations.openMocks(this);
         objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
-        when(service.findAllMobileDtos()).thenReturn(List.of());
-        when(dtoFullService.findMobileDtoFullById(any())).thenReturn(Optional.empty());
-        when(dtoFullService.saveMobileDtoFull(any())).thenReturn(null);
+        when(service.findAllMobiles()).thenReturn(List.of());
+        when(FullService.findMobileFullById(any())).thenReturn(Optional.empty());
+        when(FullService.saveMobileFull(any())).thenReturn(null);
     }
 
     @Test
-    public void createNewMobileDtoFull_401_WithoutManagerCatalogRole() throws Exception {
-        MobileDtoFull mobileDtoFull = build();
-        mobileDtoFull.setMobileId(null);
-        mobileDtoFull.getMainImage().setMobileDto(null);
-        mobileDtoFull.getNotMainImages().forEach(image -> image.setMobileDtoFull(null));
-        String json = objectMapper.writeValueAsString(mobileDtoFull);
+    public void createNewMobileFull_401_WithoutManagerCatalogRole() throws Exception {
+        MobileFull mobileFull = build();
+        mobileFull.setMobileId(null);
+        mobileFull.getMainImage().setMobile(null);
+        mobileFull.getNotMainImages().forEach(image -> image.setMobileFull(null));
+        String json = objectMapper.writeValueAsString(mobileFull);
 
         MockHttpServletResponse response = mockMvc.perform(MockMvcRequestBuilders.post(MOBILE_ID_URL)
                 .with(csrf())
@@ -82,12 +82,12 @@ public class SecurityTests implements TestMobileDtoFulBuilder {
 
     @Test
     @WithMockUser(roles = "Consumer")
-    public void createNewMobileDtoFull_403_WithNotManagerCatalogRole() throws Exception {
-        MobileDtoFull mobileDtoFull = build();
-        mobileDtoFull.setMobileId(null);
-        mobileDtoFull.getMainImage().setMobileDto(null);
-        mobileDtoFull.getNotMainImages().forEach(image -> image.setMobileDtoFull(null));
-        String json = objectMapper.writeValueAsString(mobileDtoFull);
+    public void createNewMobileFull_403_WithNotManagerCatalogRole() throws Exception {
+        MobileFull mobileFull = build();
+        mobileFull.setMobileId(null);
+        mobileFull.getMainImage().setMobile(null);
+        mobileFull.getNotMainImages().forEach(image -> image.setMobileFull(null));
+        String json = objectMapper.writeValueAsString(mobileFull);
 
         MockHttpServletResponse response = mockMvc.perform(MockMvcRequestBuilders.post(MOBILE_ID_URL)
                 .with(csrf())

@@ -1,11 +1,11 @@
 package com.beacon.catalog;
 
-import com.beacon.model.MobileDtoFull;
-import com.beacon.model.MobileDtoFullBuilder;
+import com.beacon.model.MobileFull;
+import com.beacon.model.builders.MobileFullBuilder;
 
 import java.io.File;
 
-public interface TestMobileDtoFulBuilder {
+public interface TestMobileFullBuilder {
 
     String mobileId = "honorx96128titan";
     String brand = "HONOR";
@@ -61,8 +61,8 @@ public interface TestMobileDtoFulBuilder {
     String batteryType = "Li-ion";
     String chargeTime = null;
 
-    default MobileDtoFull build() {
-        return MobileDtoFullBuilder.create()
+    default MobileFull build() {
+        return MobileFullBuilder.create()
                 .setMobileId(this.mobileId)
                 .setBrand(this.brand)
                 .setModel(this.model)

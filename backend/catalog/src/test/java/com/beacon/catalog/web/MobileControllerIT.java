@@ -1,6 +1,6 @@
 package com.beacon.catalog.web;
 
-import com.beacon.model.MobileDto;
+import com.beacon.model.Mobile;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
@@ -33,7 +33,7 @@ import static org.springframework.security.test.web.servlet.setup.SecurityMockMv
  */
 @SpringBootTest
 @AutoConfigureMockMvc
-public class MobileDtoControllerIT {
+public class MobileControllerIT {
 
     private static final String MOBILE_URL = "/mobile/";
 
@@ -60,13 +60,13 @@ public class MobileDtoControllerIT {
     }
 
     @Test
-    public void returnResponseEntityWithAllMobileDtos_OK_UsingConsumerRole() throws Exception {
+    public void returnResponseEntityWithAllMobiles_OK_UsingConsumerRole() throws Exception {
         MockHttpServletResponse response = mockMvc.perform(MockMvcRequestBuilders.get(MOBILE_URL)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse();
-        List<MobileDto> resultList = (List<MobileDto>) objectMapper.readValue(response.getContentAsString(),
-                new TypeReference<Iterable<MobileDto>>() {
+        List<Mobile> resultList = (List<Mobile>) objectMapper.readValue(response.getContentAsString(),
+                new TypeReference<Iterable<Mobile>>() {
                 });
         Assertions.assertNotNull(resultList);
         Assertions.assertEquals(2, resultList.size());

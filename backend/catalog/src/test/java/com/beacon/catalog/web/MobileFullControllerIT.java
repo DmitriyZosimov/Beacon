@@ -1,7 +1,7 @@
 package com.beacon.catalog.web;
 
-import com.beacon.catalog.TestMobileDtoFulBuilder;
-import com.beacon.model.MobileDtoFull;
+import com.beacon.catalog.TestMobileFullBuilder;
+import com.beacon.model.MobileFull;
 import com.beacon.model.tools.MobileIdToUrlPathConverter;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -37,7 +37,7 @@ import static org.springframework.security.test.web.servlet.setup.SecurityMockMv
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class MobileDtoFullControllerIT implements TestMobileDtoFulBuilder {
+public class MobileFullControllerIT implements TestMobileFullBuilder {
 
     private static final String MOBILE_ID_URL = "/mobile/";
     private static final String FULL_MOBILE_ID_URL = "http://localhost/mobile/";
@@ -65,24 +65,24 @@ public class MobileDtoFullControllerIT implements TestMobileDtoFulBuilder {
     }
 
     @Test
-    public void findMobileDtoFullById_statusOK() throws Exception {
+    public void findMobileFullById_statusOK() throws Exception {
         MockHttpServletResponse response = mockMvc.perform(MockMvcRequestBuilders.get(MOBILE_ID_URL + "honor/508128black")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse();
-        MobileDtoFull mobileDtoFull = objectMapper.readValue(response.getContentAsString(), new TypeReference<>() {
+        MobileFull mobileFull = objectMapper.readValue(response.getContentAsString(), new TypeReference<>() {
         });
-        Assertions.assertNotNull(mobileDtoFull);
+        Assertions.assertNotNull(mobileFull);
         //if it doesn't pass, see import.sql
-        Assertions.assertEquals("honor508128black", mobileDtoFull.getMobileId());
-        Assertions.assertEquals("honor", mobileDtoFull.getBrand());
-        Assertions.assertEquals("50", mobileDtoFull.getModel());
-        Assertions.assertEquals(MobileDtoFull.class, mobileDtoFull.getClass());
-        System.out.println(mobileDtoFull.toString());
+        Assertions.assertEquals("honor508128black", mobileFull.getMobileId());
+        Assertions.assertEquals("honor", mobileFull.getBrand());
+        Assertions.assertEquals("50", mobileFull.getModel());
+        Assertions.assertEquals(MobileFull.class, mobileFull.getClass());
+        System.out.println(mobileFull.toString());
     }
 
     @Test
-    public void notFindMobileDtoFullById_statusNotFound() throws Exception {
+    public void notFindMobileFullById_statusNotFound() throws Exception {
         MockHttpServletResponse response = mockMvc.perform(MockMvcRequestBuilders.get(MOBILE_ID_URL + "1/2")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isNotFound()).andReturn().getResponse();
@@ -93,12 +93,12 @@ public class MobileDtoFullControllerIT implements TestMobileDtoFulBuilder {
     @DirtiesContext
     @Test
     @WithMockUser(roles = "Manager-catalog")
-    public void createNewMobileDtoFull_statusCreated() throws Exception {
-        MobileDtoFull mobileDtoFull = build();
-        mobileDtoFull.setMobileId(null);
-        mobileDtoFull.getMainImage().setMobileDto(null);
-        mobileDtoFull.getNotMainImages().forEach(image -> image.setMobileDtoFull(null));
-        String json = objectMapper.writeValueAsString(mobileDtoFull);
+    public void createNewMobileFull_statusCreated() throws Exception {
+        MobileFull mobileFull = build();
+        mobileFull.setMobileId(null);
+        mobileFull.getMainImage().setMobile(null);
+        mobileFull.getNotMainImages().forEach(image -> image.setMobileFull(null));
+        String json = objectMapper.writeValueAsString(mobileFull);
 
         MockHttpServletResponse response = mockMvc.perform(MockMvcRequestBuilders.post(MOBILE_ID_URL)
                 .with(csrf())
@@ -116,12 +116,12 @@ public class MobileDtoFullControllerIT implements TestMobileDtoFulBuilder {
     @DirtiesContext
     @Test
     @WithMockUser(roles = "Manager-catalog")
-    public void createNewMobileDtoFull_WithoutImages_statusCreated() throws Exception {
-        MobileDtoFull mobileDtoFull = build();
-        mobileDtoFull.setMobileId(null);
-        mobileDtoFull.setMainImage(null);
-        mobileDtoFull.setNotMainImages(null);
-        String json = objectMapper.writeValueAsString(mobileDtoFull);
+    public void createNewMobileFull_WithoutImages_statusCreated() throws Exception {
+        MobileFull mobileFull = build();
+        mobileFull.setMobileId(null);
+        mobileFull.setMainImage(null);
+        mobileFull.setNotMainImages(null);
+        String json = objectMapper.writeValueAsString(mobileFull);
 
         MockHttpServletResponse response = mockMvc.perform(MockMvcRequestBuilders.post(MOBILE_ID_URL)
                 .with(csrf())

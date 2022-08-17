@@ -1,7 +1,7 @@
 package com.beacon.catalog.web;
 
-import com.beacon.catalog.service.MobileDtoFullService;
-import com.beacon.model.MobileDtoFull;
+import com.beacon.catalog.service.MobileFullService;
+import com.beacon.model.MobileFull;
 import com.beacon.model.tools.MobileIdToUrlPathConverter;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -12,12 +12,12 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/mobile")
-public class MobileDtoFullController {
+public class MobileFullController {
 
-    private MobileDtoFullService mobileDtoFullService;
+    private MobileFullService mobileFullService;
 
-    public MobileDtoFullController(MobileDtoFullService mobileDtoFullService) {
-        this.mobileDtoFullService = mobileDtoFullService;
+    public MobileFullController(MobileFullService mobileFullService) {
+        this.mobileFullService = mobileFullService;
     }
 
     /**
@@ -28,20 +28,21 @@ public class MobileDtoFullController {
      * @return mobile dto with full description or status 404
      */
     @GetMapping("/{brand}/{id}")
-    public ResponseEntity findMobileDtoFullById(@PathVariable(name = "brand") String brand,
-                                                @PathVariable(name = "id") String id) {
-        Optional<MobileDtoFull> mobileDtoFull = mobileDtoFullService.findMobileDtoFullById(brand + id);
-        return ResponseEntity.of(mobileDtoFull);
+    public ResponseEntity findMobileFullById(@PathVariable(name = "brand") String brand,
+                                             @PathVariable(name = "id") String id) {
+        Optional<MobileFull> mobileFull = mobileFullService.findMobileFullById(brand + id);
+        return ResponseEntity.of(mobileFull);
     }
 
     /**
      * Save a new mobile dto full model in database
-     * @param mobileDtoFull entity to save
+     *
+     * @param mobileFull entity to save
      * @return status 201 if entity is saved, or 400 with message.
      */
     @PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity createMobileDtoFull(@RequestBody MobileDtoFull mobileDtoFull) {
-        MobileDtoFull saved = mobileDtoFullService.saveMobileDtoFull(mobileDtoFull);
+    public ResponseEntity createMobileFull(@RequestBody MobileFull mobileFull) {
+        MobileFull saved = mobileFullService.saveMobileFull(mobileFull);
         return saved.getMainImage() == null && saved.getMobileId() != null || saved.getMainImage().getImageId() != null ? ResponseEntity
                 .created(ServletUriComponentsBuilder
                         .fromCurrentRequest()

@@ -1,6 +1,6 @@
 package com.beacon.catalog.service;
 
-import com.beacon.model.MobileDto;
+import com.beacon.model.Mobile;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ import java.util.List;
 
 @SpringBootTest
 @Transactional
-public class MobileDtoServiceImplIT {
+public class MobileServiceImplIT {
 
     /**
      * As the {@code SpringBootTest} loads all configuration and the application uses security configuration with JWT
@@ -23,22 +23,22 @@ public class MobileDtoServiceImplIT {
     @MockBean
     JwtDecoder jwtDecoder;
     @Autowired
-    MobileDtoService mobileDtoService;
+    MobileService mobileService;
 
     @Test
-    public void findAllMobileDto() {
-        List<MobileDto> list = mobileDtoService.findAllMobileDtos();
+    public void findAllMobile() {
+        List<Mobile> list = mobileService.findAllMobiles();
         Assertions.assertNotNull(list);
         //if it doesn't pass, see import.sql
         // Also check release_years. First goes the newest phone.
         Assertions.assertEquals(2, list.size());
         Assertions.assertEquals("pocox3pro8256green", list.get(0).getMobileId());
         Assertions.assertEquals("green", list.get(0).getColor());
-        Assertions.assertEquals(MobileDto.class, list.get(0).getClass());
+        Assertions.assertEquals(Mobile.class, list.get(0).getClass());
         Assertions.assertEquals("honor508128black", list.get(1).getMobileId());
         Assertions.assertEquals("honor", list.get(1).getBrand());
         Assertions.assertEquals("50", list.get(1).getModel());
-        Assertions.assertEquals(MobileDto.class, list.get(1).getClass());
+        Assertions.assertEquals(Mobile.class, list.get(1).getClass());
         System.out.println(list.get(0).toString());
         System.out.println(list.get(1).toString());
     }

@@ -1,8 +1,8 @@
 package com.beacon.catalog.service;
 
-import com.beacon.catalog.TestMobileDtoFulBuilder;
-import com.beacon.catalog.dao.MobileDtoFullDao;
-import com.beacon.model.MobileDtoFull;
+import com.beacon.catalog.TestMobileFullBuilder;
+import com.beacon.catalog.dao.MobileFullDao;
+import com.beacon.model.MobileFull;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -14,44 +14,44 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class MobileDtoFullServiceImplMockito implements TestMobileDtoFulBuilder {
+public class MobileFullServiceImplMockito implements TestMobileFullBuilder {
 
     @InjectMocks
-    MobileDtoFullServiceImpl service;
+    MobileFullServiceImpl service;
     @Mock
-    MobileDtoFullDao dao;
+    MobileFullDao dao;
 
     @Test
     public void checkValidationOfMainAndFrontApertureCameras_shouldInsertSlashFAtTheBeginning() {
-        MobileDtoFull mobile = build();
+        MobileFull mobile = build();
         mobile.setMainCameraAperture("1.8");
         mobile.setFrontCameraAperture("1.8");
 
         when(dao.saveAndFlush(any())).thenAnswer(invocation -> {
-            MobileDtoFull argument = invocation.getArgument(0, MobileDtoFull.class);
+            MobileFull argument = invocation.getArgument(0, MobileFull.class);
             Assertions.assertTrue(argument.getMainCameraAperture().startsWith("f/"));
             Assertions.assertTrue(argument.getFrontCameraAperture().startsWith("f/"));
             return null;
         });
-        service.saveMobileDtoFull(mobile);
+        service.saveMobileFull(mobile);
     }
 
     @Test
     public void testValidationOfImages() {
         when(dao.saveAndFlush(any())).thenAnswer(invocation -> {
-            MobileDtoFull argument = invocation.getArgument(0, MobileDtoFull.class);
-            Assertions.assertEquals(argument, argument.getMainImage().getMobileDto());
+            MobileFull argument = invocation.getArgument(0, MobileFull.class);
+            Assertions.assertEquals(argument, argument.getMainImage().getMobile());
             argument.getNotMainImages().forEach(image -> {
-                Assertions.assertEquals(argument, image.getMobileDtoFull());
+                Assertions.assertEquals(argument, image.getMobileFull());
             });
             return null;
         });
 
-        MobileDtoFull mobileDtoFull = build();
-        mobileDtoFull.setMobileId(null);
-        mobileDtoFull.getMainImage().setMobileDto(null);
-        mobileDtoFull.getNotMainImages().forEach(image -> image.setMobileDtoFull(null));
+        MobileFull mobileFull = build();
+        mobileFull.setMobileId(null);
+        mobileFull.getMainImage().setMobile(null);
+        mobileFull.getNotMainImages().forEach(image -> image.setMobileFull(null));
 
-        service.saveMobileDtoFull(mobileDtoFull);
+        service.saveMobileFull(mobileFull);
     }
 }

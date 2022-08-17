@@ -1,7 +1,7 @@
 package com.beacon.catalog.dao;
 
 import com.beacon.catalog.config.DaoConfiguration;
-import com.beacon.model.MobileDto;
+import com.beacon.model.Mobile;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -67,7 +67,7 @@ public class MobileDaoIT {
 
     @Test
     public void getAllMobileDto_FirstShouldPOCOPhone_BecauseItIsTheNewestPhone() {
-        List<MobileDto> dtos = mobileDao.findAll();
+        List<Mobile> dtos = mobileDao.findAll();
         Assertions.assertNotNull(dtos);
         Assertions.assertEquals(2, dtos.size());
         // if it doesn't pass, check import.sql. Mobiles should be inserted in row
