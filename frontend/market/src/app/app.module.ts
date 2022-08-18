@@ -35,11 +35,11 @@ import {ShopModule} from "./shop/shop.module";
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     NgbModule,
     HttpClientModule,
     MobileModule,
-    ShopModule,
-    AppRoutingModule,
+    ShopModule
   ],
   providers: [
     AuthenticationService,
