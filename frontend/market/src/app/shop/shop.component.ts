@@ -1,10 +1,12 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {ShopService} from "../service/shop/shop.service";
-import {PaymentMethod, Shop, WorkingHours} from "../model/shop/shop";
+
 import {Router} from "@angular/router";
 import {DomSanitizer} from "@angular/platform-browser";
 import {WeekDay} from "@angular/common";
-import {JavaLocalTimeAdapter} from "../adapter/java-local-time.adapter";
+
+import {ShopService} from "../service/shop/shop.service";
+import {PaymentMethod, Shop, WorkingHours} from "../model/shop/shop";
+import {JavaLocalTimeAdapter} from "../adapter";
 
 @Component({
   selector: 'app-shop',

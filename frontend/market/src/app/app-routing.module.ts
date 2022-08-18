@@ -1,8 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {PageNotFoundComponent} from "./components/page-not-found/page-not-found.component";
-import {UnauthorizedErrorComponent} from "./components/error/unauthorized-error/unauthorized-error.component";
-import {ForbiddenErrorComponent} from "./components/error/forbidden-error/forbidden-error.component";
+import {ForbiddenErrorComponent, PageNotFoundComponent, UnauthorizedErrorComponent} from "./components";
 
 const routes: Routes = [
   {
@@ -45,4 +43,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
