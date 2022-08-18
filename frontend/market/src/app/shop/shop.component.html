@@ -77,7 +77,7 @@
 
         <div class="lh-sm">
           Today the store is working:<br>
-          from {{workFrom()}} to {{workTo()}}
+          from {{workFrom() | date: 'shortTime'}} to {{workTo() | date: 'shortTime'}}
         </div>
 
         <!-- working hours -->
@@ -95,38 +95,38 @@
                 <tbody>
                 <tr>
                   <th scope="row" class="px-1">Mo</th>
-                  <td class="px-1">{{workFrom(1)}}</td>
-                  <td class="px-1">{{workTo(1)}}</td>
+                  <td class="px-1">{{workFrom(1) | date: 'shortTime'}}</td>
+                  <td class="px-1">{{workTo(1) | date: 'shortTime'}}</td>
                 </tr>
                 <tr>
                   <th scope="row">Tu</th>
-                  <td>{{workFrom(2)}}</td>
-                  <td>{{workTo(2)}}</td>
+                  <td>{{workFrom(2) | date: 'shortTime'}}</td>
+                  <td>{{workTo(2) | date: 'shortTime'}}</td>
                 </tr>
                 <tr>
                   <th scope="row">We</th>
-                  <td>{{workFrom(3)}}</td>
-                  <td>{{workTo(3)}}</td>
+                  <td>{{workFrom(3) | date: 'shortTime'}}</td>
+                  <td>{{workTo(3) | date: 'shortTime'}}</td>
                 </tr>
                 <tr>
                   <th scope="row">Th</th>
-                  <td>{{workFrom(4)}}</td>
-                  <td>{{workTo(4)}}</td>
+                  <td>{{workFrom(4) | date: 'shortTime'}}</td>
+                  <td>{{workTo(4) | date: 'shortTime'}}</td>
                 </tr>
                 <tr>
                   <th scope="row">Fr</th>
-                  <td>{{workFrom(5)}}</td>
-                  <td>{{workTo(5)}}</td>
+                  <td>{{workFrom(5) | date: 'shortTime'}}</td>
+                  <td>{{workTo(5) | date: 'shortTime'}}</td>
                 </tr>
                 <tr>
                   <th scope="row">St</th>
-                  <td>{{workFrom(6)}}</td>
-                  <td>{{workTo(6)}}</td>
+                  <td>{{workFrom(6) | date: 'shortTime'}}</td>
+                  <td>{{workTo(6) | date: 'shortTime'}}</td>
                 </tr>
                 <tr>
                   <th scope="row">Su</th>
-                  <td>{{workFrom(0)}}</td>
-                  <td>{{workTo(0)}}</td>
+                  <td>{{workFrom(0) | date: 'shortTime'}}</td>
+                  <td>{{workTo(0) | date: 'shortTime'}}</td>
                 </tr>
                 </tbody>
               </table>

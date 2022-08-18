@@ -93,22 +93,12 @@ export class ShopComponent implements OnInit {
 
   workFrom(dayOfWeek?: number) {
     let day = dayOfWeek === undefined ? this.currentDayOfWeek : dayOfWeek;
-    let time = this.shop?.workingHoursMap?.get(day)?.open?.toLocaleTimeString();
-    if (time === undefined) {
-      return '-'
-    } else {
-      return time.slice(0, time.lastIndexOf(':'))! + time?.slice(time.lastIndexOf(':') + 3);
-    }
+    return this.shop?.workingHoursMap?.get(day)?.open;
   }
 
   workTo(dayOfWeek?: number) {
     let day = dayOfWeek === undefined ? this.currentDayOfWeek : dayOfWeek;
-    let time = this.shop?.workingHoursMap?.get(day)?.close?.toLocaleTimeString();
-    if (time === undefined) {
-      return '-'
-    } else {
-      return time.slice(0, time.lastIndexOf(':'))! + time?.slice(time.lastIndexOf(':') + 3);
-    }
+    return this.shop?.workingHoursMap?.get(day)?.close;
   }
 
   checkWorkingHours(number: number): boolean {
