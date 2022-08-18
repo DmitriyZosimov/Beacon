@@ -1,8 +1,10 @@
 import {Injectable} from '@angular/core';
-import {Observable} from "rxjs";
 import {HttpClient, HttpErrorResponse, HttpParams, HttpResponse} from "@angular/common/http";
-import {MobileDto} from "../../model/mobile/mobile-dto";
+//rxjs
+import {Observable} from "rxjs";
 import {catchError, map, tap} from "rxjs/operators";
+
+import {MobileModel} from "../../model/mobile";
 import {environment} from "../../../environments/environment";
 
 @Injectable({
@@ -15,13 +17,13 @@ export class SearchService {
   constructor(protected httpClient: HttpClient) {
   }
 
-  public search(query: string): Observable<HttpResponse<Array<MobileDto>>> {
+  public search(query: string): Observable<HttpResponse<Array<MobileModel>>> {
     const params = new HttpParams({
       fromObject: {
         query: query
       }
     });
-    return this.httpClient.get<Array<MobileDto>>(`${this.searchServer}/search`, {
+    return this.httpClient.get<Array<MobileModel>>(`${this.searchServer}/search`, {
       responseType: 'json',
       observe: 'response',
       params: params

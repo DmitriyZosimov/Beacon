@@ -42,7 +42,7 @@
         <h2>Description</h2>
       </div>
       <div>
-        <table class="table" *ngIf="mobileDtoFull != null">
+        <table class="table" *ngIf="mobileFull != null">
           <ng-template #exist><i class="bi bi-check-lg" style="color:green"></i></ng-template>
           <ng-template #notExist><i class="bi bi-x-lg" style="color:grey"></i></ng-template>
           <ng-template #noData><span class="text-secondary">no data</span></ng-template>
@@ -53,8 +53,8 @@
           <tr>
             <td>Date of market release</td>
             <td>
-              <ng-template [ngIf]="mobileDtoFull.releaseYear !== null"
-                           [ngIfElse]="noData">{{this.mobileDtoFull.releaseYear}}</ng-template>
+              <ng-template [ngIf]="mobileFull.releaseYear !== null"
+                           [ngIfElse]="noData">{{this.mobileFull.releaseYear}}</ng-template>
             </td>
           </tr>
 
@@ -64,73 +64,73 @@
           <tr>
             <td>Type</td>
             <td>
-              <ng-template [ngIf]="mobileDtoFull.type !== null"
-                           [ngIfElse]="noData">{{this.mobileDtoFull.type}}</ng-template>
+              <ng-template [ngIf]="mobileFull.type !== null"
+                           [ngIfElse]="noData">{{this.mobileFull.type}}</ng-template>
             </td>
           </tr>
           <tr>
             <td>Operation system</td>
             <td>
-              <ng-template [ngIf]="mobileDtoFull.os !== null"
-                           [ngIfElse]="noData">{{this.mobileDtoFull.os}}</ng-template>
+              <ng-template [ngIf]="mobileFull.os !== null"
+                           [ngIfElse]="noData">{{this.mobileFull.os}}</ng-template>
             </td>
           </tr>
           <tr>
             <td>Version of the operation system</td>
             <td>
-              <ng-template [ngIf]="mobileDtoFull.osVersion !== null"
-                           [ngIfElse]="noData">{{this.mobileDtoFull.osVersion}}</ng-template>
+              <ng-template [ngIf]="mobileFull.osVersion !== null"
+                           [ngIfElse]="noData">{{this.mobileFull.osVersion}}</ng-template>
             </td>
           </tr>
           <tr>
             <td>Screen size</td>
             <td>
-              <ng-template [ngIf]="mobileDtoFull.screenSize !== null"
-                           [ngIfElse]="noData">{{this.mobileDtoFull.screenSize}}"</ng-template>
+              <ng-template [ngIf]="mobileFull.screenSize !== null"
+                           [ngIfElse]="noData">{{this.mobileFull.screenSize}}"</ng-template>
             </td>
           </tr>
           <tr>
             <td>Display resolution</td>
             <td>
-              <ng-template [ngIf]="mobileDtoFull.displayResolution !== null"
-                           [ngIfElse]="noData">{{this.mobileDtoFull.displayResolution}}</ng-template>
+              <ng-template [ngIf]="mobileFull.displayResolution !== null"
+                           [ngIfElse]="noData">{{this.mobileFull.displayResolution}}</ng-template>
             </td>
           </tr>
           <tr>
             <td>Display technology</td>
             <td>
-              <ng-template [ngIf]="mobileDtoFull.displayTechnology !== null"
-                           [ngIfElse]="noData">{{this.mobileDtoFull.displayTechnology}}</ng-template>
+              <ng-template [ngIf]="mobileFull.displayTechnology !== null"
+                           [ngIfElse]="noData">{{this.mobileFull.displayTechnology}}</ng-template>
             </td>
           </tr>
           <tr>
             <td>RAM</td>
             <td>
-              <ng-template [ngIf]="mobileDtoFull.ram !== null" [ngIfElse]="noData">{{this.mobileDtoFull.ram}} GB
+              <ng-template [ngIf]="mobileFull.ram !== null" [ngIfElse]="noData">{{this.mobileFull.ram}} GB
               </ng-template>
             </td>
           </tr>
           <tr>
             <td>Storage capacity</td>
             <td>
-              <ng-template [ngIf]="mobileDtoFull.storageCapacity !== null"
-                           [ngIfElse]="noData">{{this.mobileDtoFull.storageCapacity}} GB
+              <ng-template [ngIf]="mobileFull.storageCapacity !== null"
+                           [ngIfElse]="noData">{{this.mobileFull.storageCapacity}} GB
               </ng-template>
             </td>
           </tr>
           <tr>
             <td>Camera resolution</td>
             <td>
-              <ng-template [ngIf]="mobileDtoFull.cameraResolution !== null"
-                           [ngIfElse]="noData">{{this.mobileDtoFull.cameraResolution}} MP
+              <ng-template [ngIf]="mobileFull.cameraResolution !== null"
+                           [ngIfElse]="noData">{{this.mobileFull.cameraResolution}} MP
               </ng-template>
             </td>
           </tr>
           <tr>
             <td>Number of the SIM card slots</td>
             <td>
-              <ng-template [ngIf]="mobileDtoFull.simCardSlot !== null"
-                           [ngIfElse]="noData">{{this.mobileDtoFull.simCardSlot}}</ng-template>
+              <ng-template [ngIf]="mobileFull.simCardSlot !== null"
+                           [ngIfElse]="noData">{{this.mobileFull.simCardSlot}}</ng-template>
             </td>
           </tr>
 
@@ -140,30 +140,30 @@
           <tr>
             <td>Chipset model</td>
             <td>
-              <ng-template [ngIf]="mobileDtoFull.chipsetModel !== null"
-                           [ngIfElse]="noData">{{this.mobileDtoFull.chipsetModel}}</ng-template>
+              <ng-template [ngIf]="mobileFull.chipsetModel !== null"
+                           [ngIfElse]="noData">{{this.mobileFull.chipsetModel}}</ng-template>
             </td>
           </tr>
           <tr>
             <td>Processor clock frequency</td>
             <td>
-              <ng-template [ngIf]="mobileDtoFull.processorClockFrequency !== null"
-                           [ngIfElse]="noData">{{this.mobileDtoFull.processorClockFrequency}} MHz
+              <ng-template [ngIf]="mobileFull.processorClockFrequency !== null"
+                           [ngIfElse]="noData">{{this.mobileFull.processorClockFrequency}} MHz
               </ng-template>
             </td>
           </tr>
           <tr>
             <td>Number of the cores</td>
             <td>
-              <ng-template [ngIf]="mobileDtoFull.coresNumber !== null"
-                           [ngIfElse]="noData">{{this.mobileDtoFull.coresNumber}}</ng-template>
+              <ng-template [ngIf]="mobileFull.coresNumber !== null"
+                           [ngIfElse]="noData">{{this.mobileFull.coresNumber}}</ng-template>
             </td>
           </tr>
           <tr>
             <td>Technical processor</td>
             <td>
-              <ng-template [ngIf]="mobileDtoFull.technicalProcess !== null"
-                           [ngIfElse]="noData">{{this.mobileDtoFull.technicalProcess}} nm
+              <ng-template [ngIf]="mobileFull.technicalProcess !== null"
+                           [ngIfElse]="noData">{{this.mobileFull.technicalProcess}} nm
               </ng-template>
             </td>
           </tr>
@@ -174,22 +174,22 @@
           <tr>
             <td>Housing material</td>
             <td>
-              <ng-template [ngIf]="mobileDtoFull.housingMaterial !== null"
-                           [ngIfElse]="noData">{{this.mobileDtoFull.housingMaterial}}</ng-template>
+              <ng-template [ngIf]="mobileFull.housingMaterial !== null"
+                           [ngIfElse]="noData">{{this.mobileFull.housingMaterial}}</ng-template>
             </td>
           </tr>
           <tr>
             <td>Color</td>
             <td>
-              <ng-template [ngIf]="mobileDtoFull.color !== null"
-                           [ngIfElse]="noData">{{this.mobileDtoFull.color}}</ng-template>
+              <ng-template [ngIf]="mobileFull.color !== null"
+                           [ngIfElse]="noData">{{this.mobileFull.color}}</ng-template>
             </td>
           </tr>
           <tr>
             <td>SIM card format</td>
             <td>
-              <ng-template [ngIf]="mobileDtoFull.simFormat !== null"
-                           [ngIfElse]="noData">{{this.mobileDtoFull.simFormat}}</ng-template>
+              <ng-template [ngIf]="mobileFull.simFormat !== null"
+                           [ngIfElse]="noData">{{this.mobileFull.simFormat}}</ng-template>
             </td>
           </tr>
 
@@ -199,28 +199,28 @@
           <tr>
             <td>Length</td>
             <td>
-              <ng-template [ngIf]="mobileDtoFull.length !== null" [ngIfElse]="noData">{{this.mobileDtoFull.length}} mm
+              <ng-template [ngIf]="mobileFull.length !== null" [ngIfElse]="noData">{{this.mobileFull.length}} mm
               </ng-template>
             </td>
           </tr>
           <tr>
             <td>Width</td>
             <td>
-              <ng-template [ngIf]="mobileDtoFull.width !== null" [ngIfElse]="noData">{{this.mobileDtoFull.width}} mm
+              <ng-template [ngIf]="mobileFull.width !== null" [ngIfElse]="noData">{{this.mobileFull.width}} mm
               </ng-template>
             </td>
           </tr>
           <tr>
             <td>Height</td>
             <td>
-              <ng-template [ngIf]="mobileDtoFull.height !== null" [ngIfElse]="noData">{{this.mobileDtoFull.height}} mm
+              <ng-template [ngIf]="mobileFull.height !== null" [ngIfElse]="noData">{{this.mobileFull.height}} mm
               </ng-template>
             </td>
           </tr>
           <tr>
             <td>Weight</td>
             <td>
-              <ng-template [ngIf]="mobileDtoFull.weight !== null" [ngIfElse]="noData">{{this.mobileDtoFull.weight}} g
+              <ng-template [ngIf]="mobileFull.weight !== null" [ngIfElse]="noData">{{this.mobileFull.weight}} g
               </ng-template>
             </td>
           </tr>
@@ -231,10 +231,10 @@
           <tr>
             <td>Built-in camera</td>
             <td>
-              <ng-template [ngIf]="mobileDtoFull.mainCamera !== null" [ngIfElse]="noData">
-                <ng-template [ngIf]="mobileDtoFull.mainCamera" [ngIfThen]="exist" [ngIfElse]="notExist"></ng-template>
-                <ng-template [ngIf]="mobileDtoFull.cameraResolution !== null">
-                  <span class="ps-1">{{this.mobileDtoFull.cameraResolution}} MP</span>
+              <ng-template [ngIf]="mobileFull.mainCamera !== null" [ngIfElse]="noData">
+                <ng-template [ngIf]="mobileFull.mainCamera" [ngIfThen]="exist" [ngIfElse]="notExist"></ng-template>
+                <ng-template [ngIf]="mobileFull.cameraResolution !== null">
+                  <span class="ps-1">{{this.mobileFull.cameraResolution}} MP</span>
                 </ng-template>
               </ng-template>
             </td>
@@ -242,23 +242,23 @@
           <tr>
             <td>Number of the main cameras</td>
             <td>
-              <ng-template [ngIf]="mobileDtoFull.mainCamerasNumber !== null"
-                           [ngIfElse]="noData">{{this.mobileDtoFull.mainCamerasNumber}}</ng-template>
+              <ng-template [ngIf]="mobileFull.mainCamerasNumber !== null"
+                           [ngIfElse]="noData">{{this.mobileFull.mainCamerasNumber}}</ng-template>
             </td>
           </tr>
           <tr>
             <td>Built-in flash</td>
             <td>
-              <ng-template [ngIf]="mobileDtoFull.builtInFlash !== null" [ngIfElse]="noData">
-                <ng-template [ngIf]="mobileDtoFull.builtInFlash" [ngIfThen]="exist" [ngIfElse]="notExist"></ng-template>
+              <ng-template [ngIf]="mobileFull.builtInFlash !== null" [ngIfElse]="noData">
+                <ng-template [ngIf]="mobileFull.builtInFlash" [ngIfThen]="exist" [ngIfElse]="notExist"></ng-template>
               </ng-template>
             </td>
           </tr>
           <tr>
             <td>Automatic focus</td>
             <td>
-              <ng-template [ngIf]="mobileDtoFull.automaticFocus !== null" [ngIfElse]="noData">
-                <ng-template [ngIf]="mobileDtoFull.automaticFocus" [ngIfThen]="exist"
+              <ng-template [ngIf]="mobileFull.automaticFocus !== null" [ngIfElse]="noData">
+                <ng-template [ngIf]="mobileFull.automaticFocus" [ngIfThen]="exist"
                              [ngIfElse]="notExist"></ng-template>
               </ng-template>
             </td>
@@ -266,8 +266,8 @@
           <tr>
             <td>Optical stabilization</td>
             <td>
-              <ng-template [ngIf]="mobileDtoFull.opticalStabilization !== null" [ngIfElse]="noData">
-                <ng-template [ngIf]="mobileDtoFull.opticalStabilization" [ngIfThen]="exist"
+              <ng-template [ngIf]="mobileFull.opticalStabilization !== null" [ngIfElse]="noData">
+                <ng-template [ngIf]="mobileFull.opticalStabilization" [ngIfThen]="exist"
                              [ngIfElse]="notExist"></ng-template>
               </ng-template>
             </td>
@@ -275,8 +275,8 @@
           <tr>
             <td>Main camera aperture</td>
             <td>
-              <ng-template [ngIf]="mobileDtoFull.mainCameraAperture !== null"
-                           [ngIfElse]="noData">{{this.mobileDtoFull.mainCameraAperture}}</ng-template>
+              <ng-template [ngIf]="mobileFull.mainCameraAperture !== null"
+                           [ngIfElse]="noData">{{this.mobileFull.mainCameraAperture}}</ng-template>
             </td>
           </tr>
 
@@ -286,10 +286,10 @@
           <tr>
             <td>Built-in flash</td>
             <td>
-              <ng-template [ngIf]="mobileDtoFull.frontCamera !== null" [ngIfElse]="noData">
-                <ng-template [ngIf]="mobileDtoFull.frontCamera" [ngIfThen]="exist" [ngIfElse]="notExist"></ng-template>
-                <ng-template [ngIf]="mobileDtoFull.frontCameraResolution !== null">
-                  <span class="ps-1">{{this.mobileDtoFull.frontCameraResolution}}</span>
+              <ng-template [ngIf]="mobileFull.frontCamera !== null" [ngIfElse]="noData">
+                <ng-template [ngIf]="mobileFull.frontCamera" [ngIfThen]="exist" [ngIfElse]="notExist"></ng-template>
+                <ng-template [ngIf]="mobileFull.frontCameraResolution !== null">
+                  <span class="ps-1">{{this.mobileFull.frontCameraResolution}}</span>
                 </ng-template>
               </ng-template>
             </td>
@@ -297,8 +297,8 @@
           <tr>
             <td>Front camera aperture</td>
             <td>
-              <ng-template [ngIf]="mobileDtoFull.frontCameraAperture !== null" [ngIfElse]="noData">
-                {{this.mobileDtoFull.frontCameraAperture}}
+              <ng-template [ngIf]="mobileFull.frontCameraAperture !== null" [ngIfElse]="noData">
+                {{this.mobileFull.frontCameraAperture}}
               </ng-template>
             </td>
           </tr>
@@ -309,24 +309,24 @@
           <tr>
             <td>GPS</td>
             <td>
-              <ng-template [ngIf]="mobileDtoFull.gps !== null" [ngIfElse]="noData">
-                <ng-template [ngIf]="mobileDtoFull.gps" [ngIfThen]="exist" [ngIfElse]="notExist"></ng-template>
+              <ng-template [ngIf]="mobileFull.gps !== null" [ngIfElse]="noData">
+                <ng-template [ngIf]="mobileFull.gps" [ngIfThen]="exist" [ngIfElse]="notExist"></ng-template>
               </ng-template>
             </td>
           </tr>
           <tr>
             <td>GLONASS</td>
             <td>
-              <ng-template [ngIf]="mobileDtoFull.glonass !== null" [ngIfElse]="noData">
-                <ng-template [ngIf]="mobileDtoFull.glonass" [ngIfThen]="exist" [ngIfElse]="notExist"></ng-template>
+              <ng-template [ngIf]="mobileFull.glonass !== null" [ngIfElse]="noData">
+                <ng-template [ngIf]="mobileFull.glonass" [ngIfThen]="exist" [ngIfElse]="notExist"></ng-template>
               </ng-template>
             </td>
           </tr>
           <tr>
             <td>Beidou</td>
             <td>
-              <ng-template [ngIf]="mobileDtoFull.beidou !== null" [ngIfElse]="noData">
-                <ng-template [ngIf]="mobileDtoFull.beidou" [ngIfThen]="exist" [ngIfElse]="notExist"></ng-template>
+              <ng-template [ngIf]="mobileFull.beidou !== null" [ngIfElse]="noData">
+                <ng-template [ngIf]="mobileFull.beidou" [ngIfThen]="exist" [ngIfElse]="notExist"></ng-template>
               </ng-template>
             </td>
           </tr>
@@ -337,40 +337,40 @@
           <tr>
             <td>EDGE</td>
             <td>
-              <ng-template [ngIf]="mobileDtoFull.edge !== null" [ngIfElse]="noData">
-                <ng-template [ngIf]="mobileDtoFull.edge" [ngIfThen]="exist" [ngIfElse]="notExist"></ng-template>
+              <ng-template [ngIf]="mobileFull.edge !== null" [ngIfElse]="noData">
+                <ng-template [ngIf]="mobileFull.edge" [ngIfThen]="exist" [ngIfElse]="notExist"></ng-template>
               </ng-template>
             </td>
           </tr>
           <tr>
             <td>HSPA</td>
             <td>
-              <ng-template [ngIf]="mobileDtoFull.hspa !== null" [ngIfElse]="noData">
-                <ng-template [ngIf]="mobileDtoFull.hspa" [ngIfThen]="exist" [ngIfElse]="notExist"></ng-template>
+              <ng-template [ngIf]="mobileFull.hspa !== null" [ngIfElse]="noData">
+                <ng-template [ngIf]="mobileFull.hspa" [ngIfThen]="exist" [ngIfElse]="notExist"></ng-template>
               </ng-template>
             </td>
           </tr>
           <tr>
             <td>HSPA+</td>
             <td>
-              <ng-template [ngIf]="mobileDtoFull.hspaPlus !== null" [ngIfElse]="noData">
-                <ng-template [ngIf]="mobileDtoFull.hspaPlus" [ngIfThen]="exist" [ngIfElse]="notExist"></ng-template>
+              <ng-template [ngIf]="mobileFull.hspaPlus !== null" [ngIfElse]="noData">
+                <ng-template [ngIf]="mobileFull.hspaPlus" [ngIfThen]="exist" [ngIfElse]="notExist"></ng-template>
               </ng-template>
             </td>
           </tr>
           <tr>
             <td>LTE</td>
             <td>
-              <ng-template [ngIf]="mobileDtoFull.lte !== null" [ngIfElse]="noData">
-                <ng-template [ngIf]="mobileDtoFull.lte" [ngIfThen]="exist" [ngIfElse]="notExist"></ng-template>
+              <ng-template [ngIf]="mobileFull.lte !== null" [ngIfElse]="noData">
+                <ng-template [ngIf]="mobileFull.lte" [ngIfThen]="exist" [ngIfElse]="notExist"></ng-template>
               </ng-template>
             </td>
           </tr>
           <tr>
             <td>5G</td>
             <td>
-              <ng-template [ngIf]="mobileDtoFull.fiveG !== null" [ngIfElse]="noData">
-                <ng-template [ngIf]="mobileDtoFull.fiveG" [ngIfThen]="exist" [ngIfElse]="notExist"></ng-template>
+              <ng-template [ngIf]="mobileFull.fiveG !== null" [ngIfElse]="noData">
+                <ng-template [ngIf]="mobileFull.fiveG" [ngIfThen]="exist" [ngIfElse]="notExist"></ng-template>
               </ng-template>
             </td>
           </tr>
@@ -381,10 +381,10 @@
           <tr>
             <td>Bluetooth</td>
             <td>
-              <ng-template [ngIf]="mobileDtoFull.bluetooth !== null" [ngIfElse]="noData">
-                <ng-template [ngIf]="mobileDtoFull.bluetooth" [ngIfThen]="exist" [ngIfElse]="notExist"></ng-template>
-                <ng-template [ngIf]="mobileDtoFull.bluetoothVersion !== null">
-                  <span class="ps-1">{{this.mobileDtoFull.bluetoothVersion}}</span>
+              <ng-template [ngIf]="mobileFull.bluetooth !== null" [ngIfElse]="noData">
+                <ng-template [ngIf]="mobileFull.bluetooth" [ngIfThen]="exist" [ngIfElse]="notExist"></ng-template>
+                <ng-template [ngIf]="mobileFull.bluetoothVersion !== null">
+                  <span class="ps-1">{{this.mobileFull.bluetoothVersion}}</span>
                 </ng-template>
               </ng-template>
             </td>
@@ -392,10 +392,10 @@
           <tr>
             <td>Audio output</td>
             <td>
-              <ng-template [ngIf]="mobileDtoFull.audioOutput !== null" [ngIfElse]="noData">
-                <ng-template [ngIf]="mobileDtoFull.audioOutput" [ngIfThen]="exist" [ngIfElse]="notExist"></ng-template>
-                <ng-template [ngIf]="mobileDtoFull.audioOutputVersion !== null">
-                  <span class="ps-1">{{this.mobileDtoFull.audioOutputVersion}}</span>
+              <ng-template [ngIf]="mobileFull.audioOutput !== null" [ngIfElse]="noData">
+                <ng-template [ngIf]="mobileFull.audioOutput" [ngIfThen]="exist" [ngIfElse]="notExist"></ng-template>
+                <ng-template [ngIf]="mobileFull.audioOutputVersion !== null">
+                  <span class="ps-1">{{this.mobileFull.audioOutputVersion}}</span>
                 </ng-template>
               </ng-template>
             </td>
@@ -403,10 +403,10 @@
           <tr>
             <td>Wi-Fi</td>
             <td>
-              <ng-template [ngIf]="mobileDtoFull.wifi !== null" [ngIfElse]="noData">
-                <ng-template [ngIf]="mobileDtoFull.wifi" [ngIfThen]="exist" [ngIfElse]="notExist"></ng-template>
-                <ng-template [ngIf]="mobileDtoFull.wifiVersion !== null">
-                  <span class="ps-1">{{this.mobileDtoFull.wifiVersion}}</span>
+              <ng-template [ngIf]="mobileFull.wifi !== null" [ngIfElse]="noData">
+                <ng-template [ngIf]="mobileFull.wifi" [ngIfThen]="exist" [ngIfElse]="notExist"></ng-template>
+                <ng-template [ngIf]="mobileFull.wifiVersion !== null">
+                  <span class="ps-1">{{this.mobileFull.wifiVersion}}</span>
                 </ng-template>
               </ng-template>
             </td>
@@ -414,16 +414,16 @@
           <tr>
             <td>Connection</td>
             <td>
-              <ng-template [ngIf]="mobileDtoFull.connection !== null" [ngIfElse]="noData">
-                {{this.mobileDtoFull.connection}}
+              <ng-template [ngIf]="mobileFull.connection !== null" [ngIfElse]="noData">
+                {{this.mobileFull.connection}}
               </ng-template>
             </td>
           </tr>
           <tr>
             <td>NFC</td>
             <td>
-              <ng-template [ngIf]="mobileDtoFull.nfc !== null" [ngIfElse]="noData">
-                <ng-template [ngIf]="mobileDtoFull.nfc" [ngIfThen]="exist" [ngIfElse]="notExist"></ng-template>
+              <ng-template [ngIf]="mobileFull.nfc !== null" [ngIfElse]="noData">
+                <ng-template [ngIf]="mobileFull.nfc" [ngIfThen]="exist" [ngIfElse]="notExist"></ng-template>
               </ng-template>
             </td>
           </tr>
@@ -434,16 +434,16 @@
           <tr>
             <td>Type of battery</td>
             <td>
-              <ng-template [ngIf]="mobileDtoFull.batteryType !== null" [ngIfElse]="noData">
-                {{this.mobileDtoFull.batteryType}}
+              <ng-template [ngIf]="mobileFull.batteryType !== null" [ngIfElse]="noData">
+                {{this.mobileFull.batteryType}}
               </ng-template>
             </td>
           </tr>
           <tr>
             <td>Charge time</td>
             <td>
-              <ng-template [ngIf]="mobileDtoFull.chargeTime !== null" [ngIfElse]="noData">
-                {{this.mobileDtoFull.chargeTime}}
+              <ng-template [ngIf]="mobileFull.chargeTime !== null" [ngIfElse]="noData">
+                {{this.mobileFull.chargeTime}}
               </ng-template>
             </td>
           </tr>

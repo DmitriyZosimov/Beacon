@@ -4,9 +4,10 @@ import {Router} from "@angular/router";
 import {DomSanitizer} from "@angular/platform-browser";
 import {WeekDay} from "@angular/common";
 
-import {ShopService} from "../service/shop/shop.service";
-import {PaymentMethod, Shop, WorkingHours} from "../model/shop/shop";
 import {JavaLocalTimeAdapter} from "../adapter";
+import {ShopService} from "../service";
+
+import {PaymentMethodEnum, ShopModel, WorkingHoursModel} from "../model/shop";
 
 @Component({
   selector: 'app-shop',
@@ -16,7 +17,7 @@ import {JavaLocalTimeAdapter} from "../adapter";
 })
 export class ShopComponent implements OnInit {
 
-  shop!: Shop | null;
+  shop!: ShopModel | null;
 
   currentDay = new Date();
   currentDayOfWeek = this.currentDay.getDay();
@@ -32,18 +33,18 @@ export class ShopComponent implements OnInit {
       let name = response.body?.name;
       let description = response.body?.description;
       let workingHoursMap = this.convertMap(response.body?.workingHoursMap);
-      let paymentMethods: Set<PaymentMethod> = new Set<PaymentMethod>();
+      let paymentMethods: Set<PaymentMethodEnum> = new Set<PaymentMethodEnum>();
       response.body?.paymentMethods?.forEach(v => paymentMethods.add(v));
       let logo = response.body?.logo;
-      this.shop = new Shop(shopId, name, description, workingHoursMap, paymentMethods, logo);
+      this.shop = new ShopModel(shopId, name, description, workingHoursMap, paymentMethods, logo);
     })
   }
 
   private convertMap(priorWorkingHoursMap: any) {
-    let priorMap: Map<string, WorkingHours> = new Map(Object.entries(priorWorkingHoursMap));
-    let finalMap = new Map<WeekDay, WorkingHours>();
+    let priorMap: Map<string, WorkingHoursModel> = new Map(Object.entries(priorWorkingHoursMap));
+    let finalMap = new Map<WeekDay, WorkingHoursModel>();
     priorMap.forEach((value, key) => {
-      let workingHour = new WorkingHours();
+      let workingHour = new WorkingHoursModel();
       workingHour.id = value.id;
       workingHour.open = JavaLocalTimeAdapter.adapt('' + value.open);
       workingHour.close = JavaLocalTimeAdapter.adapt('' + value.close);
@@ -70,7 +71,8 @@ export class ShopComponent implements OnInit {
         case 'SUNDAY':
           finalMap.set(WeekDay.Sunday, workingHour);
           break;
-        default: break;
+        default:
+          break;
       }
     });
     return finalMap;
@@ -104,17 +106,24 @@ export class ShopComponent implements OnInit {
   }
 
   checkWorkingHours(number: number): boolean {
-      switch (number) {
-        case 1: return !!this.shop?.workingHoursMap?.has(WeekDay.Monday);
-        case 2: return !!this.shop?.workingHoursMap?.has(WeekDay.Tuesday);
-        case 3: return !!this.shop?.workingHoursMap?.has(WeekDay.Wednesday);
-        case 4: return !!this.shop?.workingHoursMap?.has(WeekDay.Thursday);
-        case 5: return !!this.shop?.workingHoursMap?.has(WeekDay.Friday);
-        case 6: return !!this.shop?.workingHoursMap?.has(WeekDay.Saturday);
-        case 0: return !!this.shop?.workingHoursMap?.has(WeekDay.Sunday);
-        default:
-          return false;
-      }
+    switch (number) {
+      case 1:
+        return !!this.shop?.workingHoursMap?.has(WeekDay.Monday);
+      case 2:
+        return !!this.shop?.workingHoursMap?.has(WeekDay.Tuesday);
+      case 3:
+        return !!this.shop?.workingHoursMap?.has(WeekDay.Wednesday);
+      case 4:
+        return !!this.shop?.workingHoursMap?.has(WeekDay.Thursday);
+      case 5:
+        return !!this.shop?.workingHoursMap?.has(WeekDay.Friday);
+      case 6:
+        return !!this.shop?.workingHoursMap?.has(WeekDay.Saturday);
+      case 0:
+        return !!this.shop?.workingHoursMap?.has(WeekDay.Sunday);
+      default:
+        return false;
+    }
   }
 
 }

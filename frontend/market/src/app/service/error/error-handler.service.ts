@@ -1,8 +1,9 @@
 import {ErrorHandler, Injectable} from '@angular/core';
 import {HttpErrorResponse} from "@angular/common/http";
 import {NEVER, Observable, throwError} from "rxjs";
-import {UnauthorizedErrorHandlerService} from "./unauthorized-error-handler.service";
 import {Router} from "@angular/router";
+
+import {UnauthorizedErrorHandlerService} from "./unauthorized-error-handler.service";
 
 @Injectable()
 export class ErrorHandlerService implements ErrorHandler {

@@ -1,17 +1,17 @@
 <div class="container mt-2">
-  <div class="row border-bottom mb-3 pb-2" *ngFor="let mobileDto of mobileDtos">
+  <div class="row border-bottom mb-3 pb-2" *ngFor="let mobile of mobiles">
     <div class="col-md-2 pe-0" id="mobile-image">
-      <img [src]="getImage(mobileDto)" class="img-width w-75"/>
+      <img [src]="getImage(mobile)" class="img-width w-75"/>
     </div>
 
     <div class="col-md-6 ps-0">
       <div>
-        <a (click)="getNavigationLink(mobileDto)"
-              class="fw-bold text-black">{{this.getMobileTitle(mobileDto)}}
+        <a (click)="getNavigationLink(mobile)"
+              class="fw-bold text-black">{{this.getMobileTitle(mobile)}}
         </a>
       </div>
       <div>
-        {{this.getShortDescription(mobileDto)}}
+        {{this.getShortDescription(mobile)}}
       </div>
       <div>
         <a href="/#">

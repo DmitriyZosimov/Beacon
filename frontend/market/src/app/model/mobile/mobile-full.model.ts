@@ -1,25 +1,7 @@
 import {MobileMainImage, MobileNotMainImage} from "./mobile-image";
+import {MobileModel} from "./mobile.model";
 
-export class MobileDto {
-  constructor(public mobileId?: string,
-              public brand?: string,
-              public model?: string,
-              public os?: string,
-              public screenSize?: string,
-              public displayResolution?: string,
-              public displayTechnology?: string,
-              public ram?: number,
-              public storageCapacity?: number,
-              public chipsetModel?: string,
-              public cameraResolution?: string,
-              public simCardSlot?: string,
-              public battery?: number,
-              public color?: string,
-              public releaseYear?: string,
-              public mainImage?: MobileMainImage) {}
-}
-
-export class MobileDtoFull {
+export class MobileFullModel extends MobileModel {
   constructor(public mobileId?: string,
               public brand?: string,
               public model?: string,
@@ -75,5 +57,10 @@ export class MobileDtoFull {
               public chargeTime?: string,
               public mainImage?: MobileMainImage,
               public notMainImages?: Array<MobileNotMainImage>
-              ) {}
+  ) {
+    super(
+      mobileId, brand, model, os, screenSize, displayResolution, displayTechnology, ram, storageCapacity,
+      chipsetModel, cameraResolution, simCardSlot, battery, color, releaseYear, mainImage
+    )
+  }
 }

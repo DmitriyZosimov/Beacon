@@ -5,7 +5,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MobileRoutingModule} from './mobile-routing.module';
 import {MobileComponent} from './mobile.component';
 import {FilterComponent, ProductListComponent} from './components';
-import {MobileService} from "../../service/mobile/mobile.service";
+import {MobileService} from "../../service";
 import {CarouselComponent, ImageListComponent, ProductComponent} from './components/product';
 import {
   AddingComponent,

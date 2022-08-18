@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {MobileDtoFull} from "../../../../model/mobile/mobile-dto";
-import {MobileService} from "../../../../service/mobile/mobile.service";
 import {Router} from "@angular/router";
 import {DomSanitizer} from "@angular/platform-browser";
+
+import {MobileService} from "../../../../service";
+import {MobileFullModel} from "../../../../model/mobile";
 
 @Component({
   selector: 'app-product',
@@ -11,7 +12,7 @@ import {DomSanitizer} from "@angular/platform-browser";
 })
 export class ProductComponent implements OnInit {
 
-  mobileDtoFull!: MobileDtoFull | null;
+  mobileFull!: MobileFullModel | null;
 
   constructor(private mobileService: MobileService,
               private router: Router,
@@ -19,30 +20,30 @@ export class ProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.mobileService.getMobileDtoFull(this.router.url).subscribe(response => {
-      this.mobileDtoFull = response.body;
+    this.mobileService.getMobileFull(this.router.url).subscribe(response => {
+      this.mobileFull = response.body;
     });
-    console.log(this.mobileDtoFull);
+    console.log(this.mobileFull);
     console.log(this.router.url);
   }
 
   getMobileTitle(): string {
     let title = '';
-    if (this.mobileDtoFull !== undefined && this.mobileDtoFull !== null) {
-      if (this.mobileDtoFull.brand != null) {
-        title = title.concat(this.mobileDtoFull.brand);
+    if (this.mobileFull !== undefined && this.mobileFull !== null) {
+      if (this.mobileFull.brand != null) {
+        title = title.concat(this.mobileFull.brand);
       }
-      if (this.mobileDtoFull.model !== null) {
-        title = title.concat(' ' + this.mobileDtoFull.model);
+      if (this.mobileFull.model !== null) {
+        title = title.concat(' ' + this.mobileFull.model);
       }
-      if (this.mobileDtoFull.ram !== null) {
-        title = title.concat(' ' + this.mobileDtoFull.ram);
+      if (this.mobileFull.ram !== null) {
+        title = title.concat(' ' + this.mobileFull.ram);
       }
-      if (this.mobileDtoFull.storageCapacity !== null) {
-        title = title.concat('/' + this.mobileDtoFull.storageCapacity);
+      if (this.mobileFull.storageCapacity !== null) {
+        title = title.concat('/' + this.mobileFull.storageCapacity);
       }
-      if (this.mobileDtoFull.color !== null) {
-        title = title.concat(' (' + this.mobileDtoFull.color + ')')
+      if (this.mobileFull.color !== null) {
+        title = title.concat(' (' + this.mobileFull.color + ')')
       }
     }
     return title;
@@ -50,36 +51,36 @@ export class ProductComponent implements OnInit {
 
   getShortDescription(): string {
     let shortDescription = '';
-    if (this.mobileDtoFull !== undefined && this.mobileDtoFull !== null) {
-      if (this.mobileDtoFull.os !== null) {
-        shortDescription = shortDescription.concat(this.mobileDtoFull.os + ', ');
+    if (this.mobileFull !== undefined && this.mobileFull !== null) {
+      if (this.mobileFull.os !== null) {
+        shortDescription = shortDescription.concat(this.mobileFull.os + ', ');
       }
-      if (this.mobileDtoFull.screenSize !== null) {
-        shortDescription = shortDescription.concat('screen ' + this.mobileDtoFull.screenSize + '\", ');
+      if (this.mobileFull.screenSize !== null) {
+        shortDescription = shortDescription.concat('screen ' + this.mobileFull.screenSize + '\", ');
       }
-      if (this.mobileDtoFull.displayTechnology !== null) {
-        shortDescription = shortDescription.concat(this.mobileDtoFull.displayTechnology + ', ');
+      if (this.mobileFull.displayTechnology !== null) {
+        shortDescription = shortDescription.concat(this.mobileFull.displayTechnology + ', ');
       }
-      if (this.mobileDtoFull.displayResolution !== null) {
-        shortDescription = shortDescription.concat('(' + this.mobileDtoFull.displayResolution + '), ');
+      if (this.mobileFull.displayResolution !== null) {
+        shortDescription = shortDescription.concat('(' + this.mobileFull.displayResolution + '), ');
       }
-      if (this.mobileDtoFull.chipsetModel !== null) {
-        shortDescription = shortDescription.concat(this.mobileDtoFull.chipsetModel + ', ');
+      if (this.mobileFull.chipsetModel !== null) {
+        shortDescription = shortDescription.concat(this.mobileFull.chipsetModel + ', ');
       }
-      if (this.mobileDtoFull.ram !== null) {
-        shortDescription = shortDescription.concat('RAM ' + this.mobileDtoFull.ram + ' GB, ');
+      if (this.mobileFull.ram !== null) {
+        shortDescription = shortDescription.concat('RAM ' + this.mobileFull.ram + ' GB, ');
       }
-      if (this.mobileDtoFull.storageCapacity !== null) {
-        shortDescription = shortDescription.concat('storage capacity ' + this.mobileDtoFull.storageCapacity + ' GB, ');
+      if (this.mobileFull.storageCapacity !== null) {
+        shortDescription = shortDescription.concat('storage capacity ' + this.mobileFull.storageCapacity + ' GB, ');
       }
-      if (this.mobileDtoFull.cameraResolution !== null) {
-        shortDescription = shortDescription.concat('camera ' + this.mobileDtoFull.cameraResolution + ' MP, ');
+      if (this.mobileFull.cameraResolution !== null) {
+        shortDescription = shortDescription.concat('camera ' + this.mobileFull.cameraResolution + ' MP, ');
       }
-      if (this.mobileDtoFull.battery !== null) {
-        shortDescription = shortDescription.concat('battery ' + this.mobileDtoFull.battery + ' mAh, ');
+      if (this.mobileFull.battery !== null) {
+        shortDescription = shortDescription.concat('battery ' + this.mobileFull.battery + ' mAh, ');
       }
-      if (this.mobileDtoFull.simCardSlot !== null) {
-        shortDescription = shortDescription.concat(this.mobileDtoFull.simCardSlot + ' SIM');
+      if (this.mobileFull.simCardSlot !== null) {
+        shortDescription = shortDescription.concat(this.mobileFull.simCardSlot + ' SIM');
       }
       shortDescription = shortDescription.trim();
       if (shortDescription.endsWith(',')) {
@@ -90,15 +91,15 @@ export class ProductComponent implements OnInit {
   }
 
   getMainImage(): any {
-    if (this.mobileDtoFull != null && this.mobileDtoFull.mainImage !== null) {
-      let objectUrl = 'data:image/jpeg;base64,' + this.mobileDtoFull.mainImage?.image;
+    if (this.mobileFull != null && this.mobileFull.mainImage !== null) {
+      let objectUrl = 'data:image/jpeg;base64,' + this.mobileFull.mainImage?.image;
       return this.sanitizer.bypassSecurityTrustUrl(objectUrl);
     }
   }
 
   getNotMainImages(): Array<Object> {
     let images = new Array<Object>();
-    this.mobileDtoFull?.notMainImages?.forEach(image => {
+    this.mobileFull?.notMainImages?.forEach(image => {
       let objectUrl = 'data:image/jpeg;base64,' + image.image;
       images.push(this.sanitizer.bypassSecurityTrustUrl(objectUrl))
     });

@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {MobileDtoFull} from "../../../../../../model/mobile/mobile-dto";
+import {MobileFullModel} from "../../../../../../model/mobile";
 
 @Component({
   selector: 'app-camera',
@@ -10,7 +10,7 @@ import {MobileDtoFull} from "../../../../../../model/mobile/mobile-dto";
 export class CameraComponent implements OnInit {
 
   @Input("page") page: any;
-  @Input("mobileDtoFull") mobileDtoFull?: MobileDtoFull;
+  @Input("mobileFull") mobileFull?: MobileFullModel;
   @Output() outputPage = new EventEmitter<number>();
 
   form!: FormGroup;
@@ -22,27 +22,27 @@ export class CameraComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.formBuilder.group(
       {
-        mainCamera: [this.mobileDtoFull?.mainCamera ? this.mobileDtoFull?.mainCamera : false],
+        mainCamera: [this.mobileFull?.mainCamera ? this.mobileFull?.mainCamera : false],
 
-        cameraResolution: [this.mobileDtoFull?.cameraResolution != null ? this.mobileDtoFull?.cameraResolution : null],
+        cameraResolution: [this.mobileFull?.cameraResolution != null ? this.mobileFull?.cameraResolution : null],
 
-        mainCamerasNumber: [this.mobileDtoFull?.mainCamerasNumber != null ? this.mobileDtoFull?.mainCamerasNumber : null],
+        mainCamerasNumber: [this.mobileFull?.mainCamerasNumber != null ? this.mobileFull?.mainCamerasNumber : null],
 
-        builtInFlash: [this.mobileDtoFull?.builtInFlash ? this.mobileDtoFull?.builtInFlash : false],
+        builtInFlash: [this.mobileFull?.builtInFlash ? this.mobileFull?.builtInFlash : false],
 
-        automaticFocus: [this.mobileDtoFull?.automaticFocus ? this.mobileDtoFull?.automaticFocus : false],
+        automaticFocus: [this.mobileFull?.automaticFocus ? this.mobileFull?.automaticFocus : false],
 
-        opticalStabilization: [this.mobileDtoFull?.opticalStabilization ?
-          this.mobileDtoFull?.opticalStabilization : false],
+        opticalStabilization: [this.mobileFull?.opticalStabilization ?
+          this.mobileFull?.opticalStabilization : false],
 
-        mainCameraAperture: [this.mobileDtoFull?.mainCameraAperture ? this.mobileDtoFull?.mainCameraAperture : null],
+        mainCameraAperture: [this.mobileFull?.mainCameraAperture ? this.mobileFull?.mainCameraAperture : null],
 
-        frontCamera: [this.mobileDtoFull?.frontCamera ? this.mobileDtoFull?.frontCamera : false],
+        frontCamera: [this.mobileFull?.frontCamera ? this.mobileFull?.frontCamera : false],
 
-        frontCameraResolution: [this.mobileDtoFull?.frontCameraResolution != null ?
-          this.mobileDtoFull?.frontCameraResolution : null],
+        frontCameraResolution: [this.mobileFull?.frontCameraResolution != null ?
+          this.mobileFull?.frontCameraResolution : null],
 
-        frontCameraAperture: [this.mobileDtoFull?.frontCameraAperture ? this.mobileDtoFull?.frontCameraAperture : null],
+        frontCameraAperture: [this.mobileFull?.frontCameraAperture ? this.mobileFull?.frontCameraAperture : null],
       });
     this.enableMainCamerasProperties();
     this.enableFrontCamerasProperties();
@@ -55,8 +55,8 @@ export class CameraComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
-    this.saveToMobileDtoFull();
-    console.log(JSON.stringify(this.mobileDtoFull, null, 2));
+    this.saveToMobileFull();
+    console.log(JSON.stringify(this.mobileFull, null, 2));
     this.page++;
     this.outputPage.emit(this.page);
   }
@@ -70,18 +70,18 @@ export class CameraComponent implements OnInit {
     return this.form.controls;
   }
 
-  private saveToMobileDtoFull() {
-    if (this.mobileDtoFull != null) {
-      this.mobileDtoFull.cameraResolution = this.controls.cameraResolution.value;
-      this.mobileDtoFull.mainCamerasNumber = this.controls.mainCamerasNumber.value;
-      this.mobileDtoFull.builtInFlash = this.controls.builtInFlash.value;
-      this.mobileDtoFull.automaticFocus = this.controls.automaticFocus.value;
-      this.mobileDtoFull.opticalStabilization = this.controls.opticalStabilization.value;
-      this.mobileDtoFull.mainCamera = this.controls.mainCamera.value;
-      this.mobileDtoFull.mainCameraAperture = this.controls.mainCameraAperture.value;
-      this.mobileDtoFull.frontCamera = this.controls.frontCamera.value;
-      this.mobileDtoFull.frontCameraResolution = this.controls.frontCameraResolution.value;
-      this.mobileDtoFull.frontCameraAperture = this.controls.frontCameraAperture.value;
+  private saveToMobileFull() {
+    if (this.mobileFull != null) {
+      this.mobileFull.cameraResolution = this.controls.cameraResolution.value;
+      this.mobileFull.mainCamerasNumber = this.controls.mainCamerasNumber.value;
+      this.mobileFull.builtInFlash = this.controls.builtInFlash.value;
+      this.mobileFull.automaticFocus = this.controls.automaticFocus.value;
+      this.mobileFull.opticalStabilization = this.controls.opticalStabilization.value;
+      this.mobileFull.mainCamera = this.controls.mainCamera.value;
+      this.mobileFull.mainCameraAperture = this.controls.mainCameraAperture.value;
+      this.mobileFull.frontCamera = this.controls.frontCamera.value;
+      this.mobileFull.frontCameraResolution = this.controls.frontCameraResolution.value;
+      this.mobileFull.frontCameraAperture = this.controls.frontCameraAperture.value;
     }
   }
 

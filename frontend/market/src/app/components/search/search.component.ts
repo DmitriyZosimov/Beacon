@@ -1,8 +1,9 @@
-import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {SearchService} from "../../service/search/search.service";
-import {MobileDto} from "../../model/mobile/mobile-dto";
+import {Component, OnInit} from '@angular/core';;
 import {DomSanitizer} from "@angular/platform-browser";
 import {Router} from "@angular/router";
+
+import {SearchService} from "../../service";
+import {MobileModel} from "../../model/mobile"
 
 @Component({
   selector: 'app-search',
@@ -11,11 +12,12 @@ import {Router} from "@angular/router";
 })
 export class SearchComponent implements OnInit {
 
-  searchResults!: Array<MobileDto> | null;
+  searchResults!: Array<MobileModel> | null;
 
   constructor(private searchService: SearchService,
               private router: Router,
-              private sanitizer: DomSanitizer) { }
+              private sanitizer: DomSanitizer) {
+  }
 
   ngOnInit(): void {
   }
@@ -28,19 +30,19 @@ export class SearchComponent implements OnInit {
     })
   }
 
-  getDescriptionOfItem(item: MobileDto): string {
+  getDescriptionOfItem(item: MobileModel): string {
     let shortDescription = `${item.os}, screen ${item.screenSize}\" ${item.displayTechnology} (${item.displayResolution}` +
       `, ${item.chipsetModel}, RAM ${item.ram} GB, storage capacity ${item.storageCapacity} GB, camera ${item.cameraResolution} MP, ` +
       `battery ${item.battery} mAh, ${item.simCardSlot} SIM`;
     return shortDescription;
   }
 
-  getTitleOfItem(item: MobileDto): string {
+  getTitleOfItem(item: MobileModel): string {
     let title = `${item.brand} ${item.model} ${item.ram}/${item.storageCapacity} (${item.color})`;
     return title;
   }
 
-  getImageOfItem(item: MobileDto): any {
+  getImageOfItem(item: MobileModel): any {
     if (item.mainImage !== null) {
       let objectUrl = 'data:image/jpeg;base64,' + item.mainImage?.image;
       let image = this.sanitizer.bypassSecurityTrustUrl(objectUrl);
@@ -48,7 +50,7 @@ export class SearchComponent implements OnInit {
     }
   }
 
-  getNavigationLink(item: MobileDto): void {
+  getNavigationLink(item: MobileModel): void {
     this.searchResults = null;
     this.router.navigateByUrl('', {skipLocationChange: true}).then(() => {
       this.router.navigate(['mobile', item.brand?.toLocaleLowerCase().replace(/\s/g, ''),

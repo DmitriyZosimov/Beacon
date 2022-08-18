@@ -1,8 +1,9 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {MobileDtoFull} from "../../../../../../model/mobile/mobile-dto";
-import {DomSanitizer} from "@angular/platform-browser";
-import {MobileService} from "../../../../../../service/mobile/mobile.service";
 import {Router} from "@angular/router";
+import {DomSanitizer} from "@angular/platform-browser";
+
+import {MobileService} from "../../../../../../service";
+import {MobileFullModel} from "../../../../../../model/mobile";
 
 @Component({
   selector: 'app-review',
@@ -12,12 +13,13 @@ import {Router} from "@angular/router";
 export class ReviewComponent implements OnInit {
 
   @Input("page") page: any;
-  @Input("mobileDtoFull") mobileDtoFull?: MobileDtoFull;
+  @Input("mobileFull") mobileFull?: MobileFullModel;
   @Output() outputPage = new EventEmitter<number>();
 
   constructor(private mobileService: MobileService,
               private router: Router,
-              private sanitizer: DomSanitizer) { }
+              private sanitizer: DomSanitizer) {
+  }
 
   ngOnInit(): void {
   }
@@ -28,20 +30,20 @@ export class ReviewComponent implements OnInit {
   }
 
   onSave() {
-    const mobile = {...this.mobileDtoFull} as MobileDtoFull;
+    const mobile = {...this.mobileFull} as MobileFullModel;
     this.mobileService.createMobile(mobile)
   }
 
   getMainImage(): any {
-    if (this.mobileDtoFull?.mainImage !== null) {
-      let objectUrl = 'data:image/jpeg;base64,' + this.mobileDtoFull?.mainImage?.image;
+    if (this.mobileFull?.mainImage !== null) {
+      let objectUrl = 'data:image/jpeg;base64,' + this.mobileFull?.mainImage?.image;
       return this.sanitizer.bypassSecurityTrustUrl(objectUrl);
     }
   }
 
   getNotMainImages(): Array<Object> {
     let images = new Array<Object>();
-    this.mobileDtoFull?.notMainImages?.forEach(image => {
+    this.mobileFull?.notMainImages?.forEach(image => {
       let objectUrl = 'data:image/jpeg;base64,' + image.image;
       images.push(this.sanitizer.bypassSecurityTrustUrl(objectUrl))
     });
@@ -50,21 +52,21 @@ export class ReviewComponent implements OnInit {
 
   getMobileTitle(): string {
     let title = '';
-    if (this.mobileDtoFull != null) {
-      if (this.mobileDtoFull.brand != null) {
-        title = title.concat(this.mobileDtoFull.brand);
+    if (this.mobileFull != null) {
+      if (this.mobileFull.brand != null) {
+        title = title.concat(this.mobileFull.brand);
       }
-      if (this.mobileDtoFull.model !== null) {
-        title = title.concat(' ' + this.mobileDtoFull.model);
+      if (this.mobileFull.model !== null) {
+        title = title.concat(' ' + this.mobileFull.model);
       }
-      if (this.mobileDtoFull.ram !== null) {
-        title = title.concat(' ' + this.mobileDtoFull.ram);
+      if (this.mobileFull.ram !== null) {
+        title = title.concat(' ' + this.mobileFull.ram);
       }
-      if (this.mobileDtoFull.storageCapacity !== null) {
-        title = title.concat('/' + this.mobileDtoFull.storageCapacity);
+      if (this.mobileFull.storageCapacity !== null) {
+        title = title.concat('/' + this.mobileFull.storageCapacity);
       }
-      if (this.mobileDtoFull.color !== null) {
-        title = title.concat(' (' + this.mobileDtoFull.color + ')')
+      if (this.mobileFull.color !== null) {
+        title = title.concat(' (' + this.mobileFull.color + ')')
       }
     }
     return title;

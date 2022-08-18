@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {MobileDtoFull} from "../../../../model/mobile/mobile-dto";
+
+import {MobileFullModel} from "../../../../model/mobile";
 
 @Component({
   selector: 'app-adding',
@@ -12,7 +13,7 @@ export class AddingComponent implements OnInit {
   pages!: Array<number>;
   progress = 0;
 
-  mobileDtoFull = new MobileDtoFull();
+  mobileFull = new MobileFullModel();
 
   constructor() {
   }

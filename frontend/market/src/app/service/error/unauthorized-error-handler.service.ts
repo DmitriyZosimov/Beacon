@@ -1,12 +1,14 @@
 import {ErrorHandler, Injectable} from '@angular/core';
-import {AuthenticationService} from "../auth/authentication.service";
 import {Router} from "@angular/router";
+
+import {AuthenticationService} from "../";
 
 @Injectable()
 export class UnauthorizedErrorHandlerService implements ErrorHandler {
 
   constructor(private authenticationService: AuthenticationService,
-              private router: Router) {}
+              private router: Router) {
+  }
 
   handleError = (error: any) => {
     if (this.authenticationService.checkCredentials()) {

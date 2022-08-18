@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthenticationService} from "../../../service/auth/authentication.service";
+import {AuthenticationService} from "../../../service";
 
 @Component({
   selector: 'app-unauthorized-error',

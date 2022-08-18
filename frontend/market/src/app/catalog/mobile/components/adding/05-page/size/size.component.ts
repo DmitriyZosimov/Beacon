@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {MobileDtoFull} from "../../../../../../model/mobile/mobile-dto";
+
+import {MobileFullModel} from "../../../../../../model/mobile";
 
 @Component({
   selector: 'app-size',
@@ -10,7 +11,7 @@ import {MobileDtoFull} from "../../../../../../model/mobile/mobile-dto";
 export class SizeComponent implements OnInit {
 
   @Input("page") page: any;
-  @Input("mobileDtoFull") mobileDtoFull?: MobileDtoFull;
+  @Input("mobileFull") mobileFull?: MobileFullModel;
   @Output() outputPage = new EventEmitter<number>();
 
   form!: FormGroup;
@@ -22,13 +23,13 @@ export class SizeComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.formBuilder.group(
       {
-        length: [this.mobileDtoFull?.length != null ? this.mobileDtoFull?.length : null,
+        length: [this.mobileFull?.length != null ? this.mobileFull?.length : null,
           [Validators.required, Validators.min]],
-        width: [this.mobileDtoFull?.length != null ? this.mobileDtoFull?.length : null,
+        width: [this.mobileFull?.length != null ? this.mobileFull?.length : null,
           [Validators.required, Validators.min]],
-        height: [this.mobileDtoFull?.length != null ? this.mobileDtoFull?.length : null,
+        height: [this.mobileFull?.length != null ? this.mobileFull?.length : null,
           [Validators.required, Validators.min]],
-        weight: [this.mobileDtoFull?.length != null ? this.mobileDtoFull?.length : null,
+        weight: [this.mobileFull?.length != null ? this.mobileFull?.length : null,
           [Validators.required, Validators.min]]
       });
   }
@@ -38,8 +39,8 @@ export class SizeComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
-    this.saveToMobileDtoFull();
-    console.log(JSON.stringify(this.mobileDtoFull, null, 2));
+    this.saveToMobileFull();
+    console.log(JSON.stringify(this.mobileFull, null, 2));
     this.page++;
     this.outputPage.emit(this.page);
   }
@@ -53,12 +54,12 @@ export class SizeComponent implements OnInit {
     return this.form.controls;
   }
 
-  private saveToMobileDtoFull() {
-    if (this.mobileDtoFull != null) {
-      this.mobileDtoFull.length = this.controls.length.value;
-      this.mobileDtoFull.width = this.controls.width.value;
-      this.mobileDtoFull.height = this.controls.height.value;
-      this.mobileDtoFull.weight = this.controls.weight.value;
+  private saveToMobileFull() {
+    if (this.mobileFull != null) {
+      this.mobileFull.length = this.controls.length.value;
+      this.mobileFull.width = this.controls.width.value;
+      this.mobileFull.height = this.controls.height.value;
+      this.mobileFull.weight = this.controls.weight.value;
     }
   }
 }

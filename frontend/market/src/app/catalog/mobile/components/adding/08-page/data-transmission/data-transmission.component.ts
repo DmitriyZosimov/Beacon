@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {MobileDtoFull} from "../../../../../../model/mobile/mobile-dto";
 import {AbstractControl, FormBuilder, FormGroup} from "@angular/forms";
+
+import {MobileFullModel} from "../../../../../../model/mobile";
 
 @Component({
   selector: 'app-data-transmission',
@@ -10,7 +11,7 @@ import {AbstractControl, FormBuilder, FormGroup} from "@angular/forms";
 export class DataTransmissionComponent implements OnInit {
 
   @Input("page") page: any;
-  @Input("mobileDtoFull") mobileDtoFull?: MobileDtoFull;
+  @Input("mobileFull") mobileFull?: MobileFullModel;
   @Output() outputPage = new EventEmitter<number>();
 
   form!: FormGroup;
@@ -23,11 +24,11 @@ export class DataTransmissionComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.formBuilder.group(
       {
-        edge: [this.mobileDtoFull?.edge ? this.mobileDtoFull?.edge : false],
-        hspa: [this.mobileDtoFull?.hspa ? this.mobileDtoFull?.hspa : false],
-        hspaPlus: [this.mobileDtoFull?.hspaPlus ? this.mobileDtoFull?.hspaPlus : false],
-        lte: [this.mobileDtoFull?.lte ? this.mobileDtoFull?.lte : false],
-        fiveG: [this.mobileDtoFull?.fiveG ? this.mobileDtoFull?.fiveG : false]
+        edge: [this.mobileFull?.edge ? this.mobileFull?.edge : false],
+        hspa: [this.mobileFull?.hspa ? this.mobileFull?.hspa : false],
+        hspaPlus: [this.mobileFull?.hspaPlus ? this.mobileFull?.hspaPlus : false],
+        lte: [this.mobileFull?.lte ? this.mobileFull?.lte : false],
+        fiveG: [this.mobileFull?.fiveG ? this.mobileFull?.fiveG : false]
       });
   }
 
@@ -36,8 +37,8 @@ export class DataTransmissionComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
-    this.saveToMobileDtoFull();
-    console.log(JSON.stringify(this.mobileDtoFull, null, 2));
+    this.saveToMobileFull();
+    console.log(JSON.stringify(this.mobileFull, null, 2));
     this.page++;
     this.outputPage.emit(this.page);
   }
@@ -51,13 +52,13 @@ export class DataTransmissionComponent implements OnInit {
     return this.form.controls;
   }
 
-  private saveToMobileDtoFull() {
-    if (this.mobileDtoFull != null) {
-      this.mobileDtoFull.edge = this.controls.edge.value;
-      this.mobileDtoFull.hspa = this.controls.hspa.value;
-      this.mobileDtoFull.hspaPlus = this.controls.hspaPlus.value;
-      this.mobileDtoFull.lte = this.controls.lte.value;
-      this.mobileDtoFull.fiveG = this.controls.fiveG.value;
+  private saveToMobileFull() {
+    if (this.mobileFull != null) {
+      this.mobileFull.edge = this.controls.edge.value;
+      this.mobileFull.hspa = this.controls.hspa.value;
+      this.mobileFull.hspaPlus = this.controls.hspaPlus.value;
+      this.mobileFull.lte = this.controls.lte.value;
+      this.mobileFull.fiveG = this.controls.fiveG.value;
     }
   }
 

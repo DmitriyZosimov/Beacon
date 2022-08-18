@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+
+//rxjs
 import {interval, Observable, of} from "rxjs";
 import {mergeMap} from "rxjs/operators";
 

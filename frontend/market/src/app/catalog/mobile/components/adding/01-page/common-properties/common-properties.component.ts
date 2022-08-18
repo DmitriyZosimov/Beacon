@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {mobileProperties} from "../../../../../../../assets/properties/mobile/properties";
-import {MobileDtoFull} from "../../../../../../model/mobile/mobile-dto";
+import {MobileFullModel} from "../../../../../../model/mobile";
 
 @Component({
   selector: 'app-common-properties',
@@ -10,7 +10,7 @@ import {MobileDtoFull} from "../../../../../../model/mobile/mobile-dto";
 })
 export class CommonPropertiesComponent implements OnInit {
   @Input("page") page: any;
-  @Input("mobileDtoFull") mobileDtoFull?: MobileDtoFull;
+  @Input("mobileFull") mobileFull?: MobileFullModel;
   @Output() outputPage = new EventEmitter<number>();
 
   form!: FormGroup;
@@ -25,9 +25,9 @@ export class CommonPropertiesComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.formBuilder.group(
       {
-        brand: [this.mobileDtoFull?.brand != null ? this.mobileDtoFull?.brand : this.brands[0]],
-        model: [this.mobileDtoFull?.model != null ? this.mobileDtoFull?.model : null, Validators.required],
-        releaseYear: [this.mobileDtoFull?.releaseYear != null ? this.mobileDtoFull?.releaseYear : this.currentYear,
+        brand: [this.mobileFull?.brand != null ? this.mobileFull?.brand : this.brands[0]],
+        model: [this.mobileFull?.model != null ? this.mobileFull?.model : null, Validators.required],
+        releaseYear: [this.mobileFull?.releaseYear != null ? this.mobileFull?.releaseYear : this.currentYear,
           [Validators.required, Validators.max, Validators.min]]
       });
   }
@@ -37,8 +37,8 @@ export class CommonPropertiesComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
-    this.saveToMobileDtoFull();
-    console.log(JSON.stringify(this.mobileDtoFull, null, 2));
+    this.saveToMobileFull();
+    console.log(JSON.stringify(this.mobileFull, null, 2));
     this.page++;
     this.outputPage.emit(this.page);
   }
@@ -52,11 +52,11 @@ export class CommonPropertiesComponent implements OnInit {
     return this.form.controls;
   }
 
-  private saveToMobileDtoFull() {
-    if (this.mobileDtoFull != null) {
-      this.mobileDtoFull.brand = this.controls.brand.value;
-      this.mobileDtoFull.model = this.controls.model.value;
-      this.mobileDtoFull.releaseYear = this.controls.releaseYear.value;
+  private saveToMobileFull() {
+    if (this.mobileFull != null) {
+      this.mobileFull.brand = this.controls.brand.value;
+      this.mobileFull.model = this.controls.model.value;
+      this.mobileFull.releaseYear = this.controls.releaseYear.value;
     }
   }
 

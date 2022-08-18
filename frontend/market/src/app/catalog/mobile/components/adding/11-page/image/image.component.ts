@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {MobileDtoFull} from "../../../../../../model/mobile/mobile-dto";
 import {DomSanitizer} from "@angular/platform-browser";
-import {MobileMainImage, MobileNotMainImage} from "../../../../../../model/mobile/mobile-image";
+
+import {MobileFullModel, MobileMainImage, MobileNotMainImage} from "../../../../../../model/mobile";
 
 @Component({
   selector: 'app-image',
@@ -11,26 +11,27 @@ import {MobileMainImage, MobileNotMainImage} from "../../../../../../model/mobil
 export class ImageComponent implements OnInit {
 
   @Input("page") page: any;
-  @Input("mobileDtoFull") mobileDtoFull?: MobileDtoFull;
+  @Input("mobileFull") mobileFull?: MobileFullModel;
   @Output() outputPage = new EventEmitter<number>();
 
   images = new Array<string>();
   currentIndex = -1;
   changed = false;
 
-  constructor(private sanitizer: DomSanitizer) { }
+  constructor(private sanitizer: DomSanitizer) {
+  }
 
   ngOnInit(): void {
     this.displayImages();
   }
 
   displayImages() {
-    if (this.mobileDtoFull!.mainImage?.image != null) {
-      this.images.push(this.encodeImage(this.mobileDtoFull!.mainImage?.image));
+    if (this.mobileFull!.mainImage?.image != null) {
+      this.images.push(this.encodeImage(this.mobileFull!.mainImage?.image));
       this.currentIndex = 0;
     }
-    if (this.mobileDtoFull!.notMainImages != null) {
-      this.mobileDtoFull!.notMainImages!.forEach(image => {
+    if (this.mobileFull!.notMainImages != null) {
+      this.mobileFull!.notMainImages!.forEach(image => {
         if (image.image != null) {
           this.images.push(this.encodeImage(image.image));
         }
@@ -46,22 +47,22 @@ export class ImageComponent implements OnInit {
 
   onReview() {
     this.onSave();
-    console.log("FINAL:\n" + JSON.stringify(this.mobileDtoFull, null, 2));
+    console.log("FINAL:\n" + JSON.stringify(this.mobileFull, null, 2));
     this.page++;
     this.outputPage.emit(this.page);
   }
 
   private onSave() {
     if (this.changed) {
-      this.mobileDtoFull!.mainImage = new MobileMainImage();
-      this.mobileDtoFull!.notMainImages = new Array<MobileNotMainImage>();
+      this.mobileFull!.mainImage = new MobileMainImage();
+      this.mobileFull!.notMainImages = new Array<MobileNotMainImage>();
       this.images.forEach((image, index) => {
         if (this.currentIndex === index) {
-          this.mobileDtoFull!.mainImage!.image = this.decodeImage(image);
+          this.mobileFull!.mainImage!.image = this.decodeImage(image);
         } else {
           let notMainImage = new MobileNotMainImage();
           notMainImage.image = this.decodeImage(image);
-          this.mobileDtoFull!.notMainImages!.push(notMainImage)
+          this.mobileFull!.notMainImages!.push(notMainImage)
         }
       });
     }
@@ -87,7 +88,7 @@ export class ImageComponent implements OnInit {
       this.currentIndex--;
     } else if (this.currentIndex == index && this.images.length > 0) {
       this.currentIndex = 0;
-    } else if(this.images.length == 0) {
+    } else if (this.images.length == 0) {
       this.currentIndex = -1;
     }
   }

@@ -1,7 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {MobileDtoFull} from "../../../../../../model/mobile/mobile-dto";
 import {AbstractControl, FormBuilder, FormGroup} from "@angular/forms";
+
 import {mobileProperties} from "../../../../../../../assets/properties/mobile/properties";
+import {MobileFullModel} from "../../../../../../model/mobile";
 
 @Component({
   selector: 'app-interfaces',
@@ -11,7 +12,7 @@ import {mobileProperties} from "../../../../../../../assets/properties/mobile/pr
 export class InterfacesComponent implements OnInit {
 
   @Input("page") page: any;
-  @Input("mobileDtoFull") mobileDtoFull?: MobileDtoFull;
+  @Input("mobileFull") mobileFull?: MobileFullModel;
   @Output() outputPage = new EventEmitter<number>();
 
   form!: FormGroup;
@@ -28,14 +29,14 @@ export class InterfacesComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.formBuilder.group(
       {
-        bluetooth: [this.mobileDtoFull?.bluetooth ? this.mobileDtoFull?.bluetooth : false],
-        bluetoothVersion: [this.mobileDtoFull?.bluetoothVersion != null ? this.mobileDtoFull?.bluetoothVersion : null],
-        audioOutput: [this.mobileDtoFull?.audioOutput ? this.mobileDtoFull?.audioOutput : false],
-        audioOutputVersion: [this.mobileDtoFull?.audioOutputVersion != null ? this.mobileDtoFull?.audioOutputVersion : null],
-        wifi: [this.mobileDtoFull?.wifi ? this.mobileDtoFull?.wifi : false],
-        wifiVersion: [this.mobileDtoFull?.wifiVersion != null ? this.mobileDtoFull?.wifiVersion : null],
-        connection: [this.mobileDtoFull?.connection != null ? this.mobileDtoFull?.connection : this.connections[0]],
-        nfc: [this.mobileDtoFull?.nfc ? this.mobileDtoFull?.nfc : false]
+        bluetooth: [this.mobileFull?.bluetooth ? this.mobileFull?.bluetooth : false],
+        bluetoothVersion: [this.mobileFull?.bluetoothVersion != null ? this.mobileFull?.bluetoothVersion : null],
+        audioOutput: [this.mobileFull?.audioOutput ? this.mobileFull?.audioOutput : false],
+        audioOutputVersion: [this.mobileFull?.audioOutputVersion != null ? this.mobileFull?.audioOutputVersion : null],
+        wifi: [this.mobileFull?.wifi ? this.mobileFull?.wifi : false],
+        wifiVersion: [this.mobileFull?.wifiVersion != null ? this.mobileFull?.wifiVersion : null],
+        connection: [this.mobileFull?.connection != null ? this.mobileFull?.connection : this.connections[0]],
+        nfc: [this.mobileFull?.nfc ? this.mobileFull?.nfc : false]
       });
 
     this.checkBluetoothProperties();
@@ -48,8 +49,8 @@ export class InterfacesComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
-    this.saveToMobileDtoFull();
-    console.log(JSON.stringify(this.mobileDtoFull, null, 2));
+    this.saveToMobileFull();
+    console.log(JSON.stringify(this.mobileFull, null, 2));
     this.page++;
     this.outputPage.emit(this.page);
   }
@@ -63,16 +64,16 @@ export class InterfacesComponent implements OnInit {
     return this.form.controls;
   }
 
-  private saveToMobileDtoFull() {
-    if (this.mobileDtoFull != null) {
-      this.mobileDtoFull.bluetooth = this.controls.bluetooth.value;
-      this.mobileDtoFull.bluetoothVersion = this.controls.bluetoothVersion.value;
-      this.mobileDtoFull.audioOutput = this.controls.audioOutput.value;
-      this.mobileDtoFull.audioOutputVersion = this.controls.audioOutputVersion.value;
-      this.mobileDtoFull.wifi = this.controls.wifi.value;
-      this.mobileDtoFull.wifiVersion = this.controls.wifiVersion.value;
-      this.mobileDtoFull.connection = this.controls.connection.value;
-      this.mobileDtoFull.nfc = this.controls.nfc.value;
+  private saveToMobileFull() {
+    if (this.mobileFull != null) {
+      this.mobileFull.bluetooth = this.controls.bluetooth.value;
+      this.mobileFull.bluetoothVersion = this.controls.bluetoothVersion.value;
+      this.mobileFull.audioOutput = this.controls.audioOutput.value;
+      this.mobileFull.audioOutputVersion = this.controls.audioOutputVersion.value;
+      this.mobileFull.wifi = this.controls.wifi.value;
+      this.mobileFull.wifiVersion = this.controls.wifiVersion.value;
+      this.mobileFull.connection = this.controls.connection.value;
+      this.mobileFull.nfc = this.controls.nfc.value;
     }
   }
 

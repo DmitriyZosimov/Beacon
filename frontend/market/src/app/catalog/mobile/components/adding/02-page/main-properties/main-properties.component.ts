@@ -1,7 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {MobileDtoFull} from "../../../../../../model/mobile/mobile-dto";
 import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
+
 import {mobileProperties} from "../../../../../../../assets/properties/mobile/properties";
+import {MobileFullModel} from "../../../../../../model/mobile";
 
 @Component({
   selector: 'app-main-properties',
@@ -11,7 +12,7 @@ import {mobileProperties} from "../../../../../../../assets/properties/mobile/pr
 export class MainPropertiesComponent implements OnInit {
 
   @Input("page") page: any;
-  @Input("mobileDtoFull") mobileDtoFull?: MobileDtoFull;
+  @Input("mobileFull") mobileFull?: MobileFullModel;
   @Output() outputPage = new EventEmitter<number>();
 
   form!: FormGroup;
@@ -27,17 +28,17 @@ export class MainPropertiesComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.formBuilder.group(
       {
-        type: [this.mobileDtoFull?.type != null ? this.mobileDtoFull?.type : this.types[0]],
-        os: [this.mobileDtoFull?.os != null ? this.mobileDtoFull?.os : this.oss[0]],
-        osVersion: [this.mobileDtoFull?.osVersion != null ? this.mobileDtoFull?.osVersion : null, Validators.required],
-        screenSize: [this.mobileDtoFull?.screenSize != null ? this.mobileDtoFull?.screenSize : null,
+        type: [this.mobileFull?.type != null ? this.mobileFull?.type : this.types[0]],
+        os: [this.mobileFull?.os != null ? this.mobileFull?.os : this.oss[0]],
+        osVersion: [this.mobileFull?.osVersion != null ? this.mobileFull?.osVersion : null, Validators.required],
+        screenSize: [this.mobileFull?.screenSize != null ? this.mobileFull?.screenSize : null,
           [Validators.required, Validators.min]],
-        displayResolution: [this.mobileDtoFull?.displayResolution != null ? this.mobileDtoFull?.displayResolution : null,
+        displayResolution: [this.mobileFull?.displayResolution != null ? this.mobileFull?.displayResolution : null,
           [Validators.required, Validators.pattern('[0-9]{0,4}[xX]{1}[0-9]{0,4}')]],
-        displayTechnology: [this.mobileDtoFull?.displayTechnology != null ? this.mobileDtoFull?.displayTechnology :
+        displayTechnology: [this.mobileFull?.displayTechnology != null ? this.mobileFull?.displayTechnology :
           this.displayTechnologies[0]],
-        ram: [this.mobileDtoFull?.ram != null ? this.mobileDtoFull?.ram : null, [Validators.required, Validators.min]],
-        storageCapacity: [this.mobileDtoFull?.storageCapacity != null ? this.mobileDtoFull?.storageCapacity : null,
+        ram: [this.mobileFull?.ram != null ? this.mobileFull?.ram : null, [Validators.required, Validators.min]],
+        storageCapacity: [this.mobileFull?.storageCapacity != null ? this.mobileFull?.storageCapacity : null,
           [Validators.required, Validators.min]]
       });
   }
@@ -47,8 +48,8 @@ export class MainPropertiesComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
-    this.saveToMobileDtoFull();
-    console.log(JSON.stringify(this.mobileDtoFull, null, 2));
+    this.saveToMobileFull();
+    console.log(JSON.stringify(this.mobileFull, null, 2));
     this.page++;
     this.outputPage.emit(this.page);
   }
@@ -62,16 +63,16 @@ export class MainPropertiesComponent implements OnInit {
     return this.form.controls;
   }
 
-  private saveToMobileDtoFull() {
-    if (this.mobileDtoFull != null) {
-      this.mobileDtoFull.type = this.controls.type.value;
-      this.mobileDtoFull.os = this.controls.os.value;
-      this.mobileDtoFull.osVersion = this.controls.osVersion.value;
-      this.mobileDtoFull.screenSize = this.controls.screenSize.value;
-      this.mobileDtoFull.displayResolution = this.controls.displayResolution.value;
-      this.mobileDtoFull.displayTechnology = this.controls.displayTechnology.value;
-      this.mobileDtoFull.ram = this.controls.ram.value;
-      this.mobileDtoFull.storageCapacity = this.controls.storageCapacity.value;
+  private saveToMobileFull() {
+    if (this.mobileFull != null) {
+      this.mobileFull.type = this.controls.type.value;
+      this.mobileFull.os = this.controls.os.value;
+      this.mobileFull.osVersion = this.controls.osVersion.value;
+      this.mobileFull.screenSize = this.controls.screenSize.value;
+      this.mobileFull.displayResolution = this.controls.displayResolution.value;
+      this.mobileFull.displayTechnology = this.controls.displayTechnology.value;
+      this.mobileFull.ram = this.controls.ram.value;
+      this.mobileFull.storageCapacity = this.controls.storageCapacity.value;
     }
   }
 

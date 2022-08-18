@@ -1,7 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {MobileDtoFull} from "../../../../../../model/mobile/mobile-dto";
+
 import {mobileProperties} from "../../../../../../../assets/properties/mobile/properties";
+import {MobileFullModel} from "../../../../../../model/mobile";
 
 @Component({
   selector: 'app-battery',
@@ -11,7 +12,7 @@ import {mobileProperties} from "../../../../../../../assets/properties/mobile/pr
 export class BatteryComponent implements OnInit {
 
   @Input("page") page: any;
-  @Input("mobileDtoFull") mobileDtoFull?: MobileDtoFull;
+  @Input("mobileFull") mobileFull?: MobileFullModel;
   @Output() outputPage = new EventEmitter<number>();
 
   form!: FormGroup;
@@ -25,10 +26,10 @@ export class BatteryComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.formBuilder.group(
       {
-        batteryType: [this.mobileDtoFull?.batteryType != null ? this.mobileDtoFull?.batteryType : this.batteryTypes[0]],
-        battery: [this.mobileDtoFull?.battery != null ? this.mobileDtoFull?.battery : null,
+        batteryType: [this.mobileFull?.batteryType != null ? this.mobileFull?.batteryType : this.batteryTypes[0]],
+        battery: [this.mobileFull?.battery != null ? this.mobileFull?.battery : null,
           [Validators.required, Validators.min]],
-        chargeTime: [this.mobileDtoFull?.chargeTime != null ? this.mobileDtoFull?.chargeTime : null]
+        chargeTime: [this.mobileFull?.chargeTime != null ? this.mobileFull?.chargeTime : null]
       });
   }
 
@@ -37,8 +38,8 @@ export class BatteryComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
-    this.saveToMobileDtoFull();
-    console.log(JSON.stringify(this.mobileDtoFull, null, 2));
+    this.saveToMobileFull();
+    console.log(JSON.stringify(this.mobileFull, null, 2));
     this.page++;
     this.outputPage.emit(this.page);
   }
@@ -52,11 +53,11 @@ export class BatteryComponent implements OnInit {
     return this.form.controls;
   }
 
-  private saveToMobileDtoFull() {
-    if (this.mobileDtoFull != null) {
-      this.mobileDtoFull.battery = this.controls.battery.value;
-      this.mobileDtoFull.batteryType = this.controls.batteryType.value;
-      this.mobileDtoFull.chargeTime = this.controls.chargeTime.value;
+  private saveToMobileFull() {
+    if (this.mobileFull != null) {
+      this.mobileFull.battery = this.controls.battery.value;
+      this.mobileFull.batteryType = this.controls.batteryType.value;
+      this.mobileFull.chargeTime = this.controls.chargeTime.value;
     }
   }
 

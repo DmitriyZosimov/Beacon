@@ -1,10 +1,13 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpResponse} from "@angular/common/http";
-import {environment} from "../../../environments/environment";
-import {ErrorHandlerService} from "../error/error-handler.service";
+//rxjs
 import {Observable} from "rxjs";
-import {Shop} from "../../model/shop/shop";
 import {catchError, map} from "rxjs/operators";
+
+import {environment} from "../../../environments/environment";
+
+import {ShopModel} from "../../model/shop";
+import {ErrorHandlerService} from "../";
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +20,7 @@ export class ShopService {
               private errorHandler: ErrorHandlerService) {
   }
 
-  public getShopById(id: string): Observable<HttpResponse<Shop>> {
+  public getShopById(id: string): Observable<HttpResponse<ShopModel>> {
     console.log(`${this.shopServer}${id}`);
     return this.httpClient.get(`${this.shopServer}${id}`, {
       responseType: 'json',

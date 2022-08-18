@@ -1,7 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {MobileDtoFull} from "../../../../../../model/mobile/mobile-dto";
 import {AbstractControl, FormBuilder, FormGroup, Validators} from "@angular/forms";
+
 import {mobileProperties} from "../../../../../../../assets/properties/mobile/properties";
+import {MobileFullModel} from "../../../../../../model/mobile";
 
 @Component({
   selector: 'app-construction',
@@ -11,7 +12,7 @@ import {mobileProperties} from "../../../../../../../assets/properties/mobile/pr
 export class ConstructionComponent implements OnInit {
 
   @Input("page") page: any;
-  @Input("mobileDtoFull") mobileDtoFull?: MobileDtoFull;
+  @Input("mobileFull") mobileFull?: MobileFullModel;
   @Output() outputPage = new EventEmitter<number>();
 
   form!: FormGroup;
@@ -28,11 +29,11 @@ export class ConstructionComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.formBuilder.group(
       {
-        housingMaterial: [this.mobileDtoFull?.housingMaterial != null ? this.mobileDtoFull?.housingMaterial :
+        housingMaterial: [this.mobileFull?.housingMaterial != null ? this.mobileFull?.housingMaterial :
           this.housingMaterials[0]],
-        color: [this.mobileDtoFull?.color != null ? this.mobileDtoFull?.color : this.colors[0]],
-        simFormat: [this.mobileDtoFull?.simFormat != null ? this.mobileDtoFull?.simFormat : this.simFormats[0]],
-        simCardSlot: [this.mobileDtoFull?.simCardSlot != null ? this.mobileDtoFull?.simCardSlot : null,
+        color: [this.mobileFull?.color != null ? this.mobileFull?.color : this.colors[0]],
+        simFormat: [this.mobileFull?.simFormat != null ? this.mobileFull?.simFormat : this.simFormats[0]],
+        simCardSlot: [this.mobileFull?.simCardSlot != null ? this.mobileFull?.simCardSlot : null,
           [Validators.required, Validators.min]]
       });
   }
@@ -42,8 +43,8 @@ export class ConstructionComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }
-    this.saveToMobileDtoFull();
-    console.log(JSON.stringify(this.mobileDtoFull, null, 2));
+    this.saveToMobileFull();
+    console.log(JSON.stringify(this.mobileFull, null, 2));
     this.page++;
     this.outputPage.emit(this.page);
   }
@@ -57,12 +58,12 @@ export class ConstructionComponent implements OnInit {
     return this.form.controls;
   }
 
-  private saveToMobileDtoFull() {
-    if (this.mobileDtoFull != null) {
-      this.mobileDtoFull.housingMaterial = this.controls.housingMaterial.value;
-      this.mobileDtoFull.color = this.controls.color.value;
-      this.mobileDtoFull.simFormat = this.controls.simFormat.value;
-      this.mobileDtoFull.simCardSlot = this.controls.simCardSlot.value;
+  private saveToMobileFull() {
+    if (this.mobileFull != null) {
+      this.mobileFull.housingMaterial = this.controls.housingMaterial.value;
+      this.mobileFull.color = this.controls.color.value;
+      this.mobileFull.simFormat = this.controls.simFormat.value;
+      this.mobileFull.simCardSlot = this.controls.simCardSlot.value;
     }
   }
 }

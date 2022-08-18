@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {MobileService} from "../../../../service/mobile/mobile.service";
 import {Router} from "@angular/router";
-import {MobileDto} from "../../../../model/mobile/mobile-dto";
 import {DomSanitizer} from "@angular/platform-browser";
+
+import {MobileModel} from "../../../../model/mobile";
+import {MobileService} from "../../../../service";
 
 @Component({
   selector: 'app-product-list',
@@ -11,7 +12,7 @@ import {DomSanitizer} from "@angular/platform-browser";
 })
 export class ProductListComponent implements OnInit {
 
-  mobileDtos!: Array<MobileDto> | null;
+  mobiles!: Array<MobileModel> | null;
 
   constructor(private mobileService: MobileService,
               private router: Router,
@@ -19,37 +20,34 @@ export class ProductListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getMobileDtos();
+    this.getMobiles();
   }
 
-  getMobileDtos(): void {
-    this.mobileService.getMobileDtos().subscribe(response => {
-      this.mobileDtos = response.body!;
+  getMobiles(): void {
+    this.mobileService.getMobiles().subscribe(response => {
+      this.mobiles = response.body!;
     });
   }
 
-  getNavigationLink(mobileDto: MobileDto): void {
-    this.router.navigate(['mobile', mobileDto.brand?.toLocaleLowerCase().replace(/\s/g, ''),
-    mobileDto.mobileId?.slice(mobileDto.brand?.length)]);
+  getNavigationLink(mobile: MobileModel): void {
+    this.router.navigate(['mobile', mobile.brand?.toLocaleLowerCase().replace(/\s/g, ''),
+    mobile.mobileId?.slice(mobile.brand?.length)]);
   }
 
-  getMobileTitle(mobileDto: MobileDto): string {
-    let title = `${mobileDto.brand} ${mobileDto.model} ${mobileDto.ram}/${mobileDto.storageCapacity} (${mobileDto.color})`;
-    return title;
+  getMobileTitle(mobile: MobileModel): string {
+    return `${mobile.brand} ${mobile.model} ${mobile.ram}/${mobile.storageCapacity} (${mobile.color})`;
   }
 
-  getShortDescription(mobileDto: MobileDto): string {
-    let shortDescription = `${mobileDto.os}, screen ${mobileDto.screenSize}\" ${mobileDto.displayTechnology} (${mobileDto.displayResolution}` +
-      `, ${mobileDto.chipsetModel}, RAM ${mobileDto.ram} GB, storage capacity ${mobileDto.storageCapacity} GB, camera ${mobileDto.cameraResolution} MP, ` +
-      `battery ${mobileDto.battery} mAh, ${mobileDto.simCardSlot} SIM`;
-    return shortDescription;
+  getShortDescription(mobile: MobileModel): string {
+    return `${mobile.os}, screen ${mobile.screenSize}\" ${mobile.displayTechnology} (${mobile.displayResolution}` +
+      `, ${mobile.chipsetModel}, RAM ${mobile.ram} GB, storage capacity ${mobile.storageCapacity} GB, camera ${mobile.cameraResolution} MP, ` +
+      `battery ${mobile.battery} mAh, ${mobile.simCardSlot} SIM`;
   }
 
-  getImage(mobileDto: MobileDto): any {
-    if (mobileDto.mainImage !== null) {
-      let objectUrl = 'data:image/jpeg;base64,' + mobileDto.mainImage?.image;
-      let image = this.sanitizer.bypassSecurityTrustUrl(objectUrl);
-      return image;
+  getImage(mobile: MobileModel): any {
+    if (mobile.mainImage !== null) {
+      let objectUrl = 'data:image/jpeg;base64,' + mobile.mainImage?.image;
+      return this.sanitizer.bypassSecurityTrustUrl(objectUrl);
     }
   }
 }
