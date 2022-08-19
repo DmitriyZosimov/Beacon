@@ -4,7 +4,7 @@ import {Router} from "@angular/router";
 import {DomSanitizer} from "@angular/platform-browser";
 import {WeekDay} from "@angular/common";
 
-import {JavaLocalTimeAdapter} from "../adapter";
+import {JavaLocalTimeAdapter} from "../core/adapter";
 import {ShopService} from "../service";
 
 import {PaymentMethodEnum, ShopModel, WorkingHoursModel} from "../model/shop";
