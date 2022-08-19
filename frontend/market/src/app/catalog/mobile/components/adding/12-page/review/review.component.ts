@@ -15,8 +15,9 @@ export class ReviewComponent implements OnInit {
   @Input("page") page: any;
   @Input("mobileFull") mobileFull?: MobileFullModel;
   @Output() outputPage = new EventEmitter<number>();
+  @Output() outputMobile = new EventEmitter<MobileFullModel>();
 
-  constructor(private mobileService: MobileService,
+  constructor(
               private router: Router,
               private sanitizer: DomSanitizer) {
   }
@@ -30,8 +31,7 @@ export class ReviewComponent implements OnInit {
   }
 
   onSave() {
-    const mobile = {...this.mobileFull} as MobileFullModel;
-    this.mobileService.createMobile(mobile)
+    this.outputMobile.emit(this.mobileFull);
   }
 
   getMainImage(): any {

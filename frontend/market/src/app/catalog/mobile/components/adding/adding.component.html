@@ -54,7 +54,7 @@
       <app-image [page]="page" [mobileFull]="mobileFull" (outputPage)="changePage($event)"></app-image>
     </div>
     <div *ngSwitchDefault>
-      <app-review [page]="page" [mobileFull]="mobileFull" (outputPage)="changePage($event)"></app-review>
+      <app-review [page]="page" [mobileFull]="mobileFull" (outputPage)="changePage($event)" (outputMobile)="onSave($event)"></app-review>
     </div>
   </div>
 </section>
