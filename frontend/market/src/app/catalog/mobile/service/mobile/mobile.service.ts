@@ -8,13 +8,13 @@ import {catchError, map} from "rxjs/operators";
 
 import {Cookie} from 'ng2-cookies';
 
-import {environment} from "../../../environments/environment";
+import {environment} from "../../../../../environments/environment";
 
-import {ErrorHandlerService} from "../";
-import {MobileModel, MobileFullModel} from "../../model/mobile";
+import {ErrorHandlerService} from "../../../../service";
+import {MobileModel, MobileFullModel} from "../../../../model/mobile";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'any'
 })
 export class MobileService {
 

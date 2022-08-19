@@ -10,7 +10,11 @@ const routes: Routes = [
   },
   {
     path: 'mobile',
-    loadChildren: () => import('./catalog/mobile/mobile.module').then(m => m.MobileModule)
+    loadChildren: () => import('./catalog/mobile/mobile.module').then(m => m.MobileModule),
+    data: {
+      preload: true,
+      title: 'Mobile'
+    },
   },
   {
     path: 'shop',

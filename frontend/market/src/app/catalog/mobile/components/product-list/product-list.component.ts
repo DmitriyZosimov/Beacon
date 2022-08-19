@@ -3,7 +3,7 @@ import {Router} from "@angular/router";
 import {DomSanitizer} from "@angular/platform-browser";
 
 import {MobileModel} from "../../../../model/mobile";
-import {MobileService} from "../../../../service";
+import {MobileService} from "../../service/mobile";
 
 @Component({
   selector: 'app-product-list',

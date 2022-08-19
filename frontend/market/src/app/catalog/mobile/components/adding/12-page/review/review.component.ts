@@ -2,8 +2,8 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Router} from "@angular/router";
 import {DomSanitizer} from "@angular/platform-browser";
 
-import {MobileService} from "../../../../../../service";
 import {MobileFullModel} from "../../../../../../model/mobile";
+import {MobileService} from "../../../../service/mobile";
 
 @Component({
   selector: 'app-review',

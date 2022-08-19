@@ -3,12 +3,9 @@ import {CommonModule} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 import {MobileRoutingModule} from './mobile-routing.module';
-import {MobileComponent} from './mobile.component';
 import {FilterComponent, ProductListComponent} from './components';
-import {MobileService} from "../../service";
-import {CarouselComponent, ImageListComponent, ProductComponent} from './components/product';
+import {CarouselComponent, ImageListComponent} from './components/product';
 import {
-  AddingComponent,
   BatteryComponent,
   CameraComponent,
   CommonPropertiesComponent,
@@ -23,16 +20,13 @@ import {
   SizeComponent
 } from './components/adding';
 
-
 @NgModule({
   declarations: [
-    MobileComponent,
+    MobileRoutingModule.components,
     FilterComponent,
     ProductListComponent,
-    ProductComponent,
     CarouselComponent,
     ImageListComponent,
-    AddingComponent,
     ImageComponent,
     MainPropertiesComponent,
     CommonPropertiesComponent,
@@ -51,9 +45,6 @@ import {
     MobileRoutingModule,
     FormsModule,
     ReactiveFormsModule
-  ],
-  providers: [
-    MobileService
   ]
 })
 export class MobileModule {

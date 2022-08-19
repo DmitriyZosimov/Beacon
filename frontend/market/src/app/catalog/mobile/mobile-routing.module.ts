@@ -24,4 +24,6 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class MobileRoutingModule { }
+export class MobileRoutingModule {
+  static components = [AddingComponent, MobileComponent, ProductComponent]
+}
