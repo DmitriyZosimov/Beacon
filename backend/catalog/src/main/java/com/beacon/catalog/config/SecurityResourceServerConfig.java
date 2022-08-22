@@ -24,7 +24,7 @@ public class SecurityResourceServerConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/mobile/")
-                .hasAuthority("ROLE_Manager-catalog")
+                .hasAuthority("ROLE_Manager-content")
                 .antMatchers(HttpMethod.GET, "/mobile/**")
                 .permitAll()
                 .anyRequest()
