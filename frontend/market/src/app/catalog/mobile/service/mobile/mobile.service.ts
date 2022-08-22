@@ -48,7 +48,7 @@ export class MobileService {
 
   public createMobile(mobileFull: MobileFullModel) {
     let headers = new HttpHeaders({
-      'Content-type': 'application/x-www-form-urlencoded; charset=utf-8',
+      'Content-type': 'application/json; charset=utf-8',
       'Authorization': 'Bearer ' + Cookie.get('access_token')
     });
     this.httpClient.post<number>(`${this.catalogServer}/mobile/`, mobileFull, {
