@@ -37,10 +37,12 @@ public class MobileFullServiceImpl implements MobileFullService {
     }
 
     private void validateProperties(MobileFull mobileDtoFull) {
-        if (!mobileDtoFull.getMainCameraAperture().startsWith("f/")) {
+        if (mobileDtoFull.getMainCameraAperture() != null &&
+                !mobileDtoFull.getMainCameraAperture().startsWith("f/")) {
             mobileDtoFull.setMainCameraAperture("f/" + mobileDtoFull.getMainCameraAperture());
         }
-        if (!mobileDtoFull.getFrontCameraAperture().startsWith("f/")) {
+        if (mobileDtoFull.getFrontCameraAperture() != null &&
+                !mobileDtoFull.getFrontCameraAperture().startsWith("f/")) {
             mobileDtoFull.setFrontCameraAperture("f/" + mobileDtoFull.getFrontCameraAperture());
         }
     }

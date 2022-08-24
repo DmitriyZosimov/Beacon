@@ -37,6 +37,21 @@ public class MobileFullServiceImplMockito implements TestMobileFullBuilder {
     }
 
     @Test
+    public void checkValidationOfMainAndFrontApertureCameras_shouldNotDoAnything() {
+        MobileFull mobile = build();
+        mobile.setMainCameraAperture(null);
+        mobile.setFrontCameraAperture(null);
+
+        when(dao.saveAndFlush(any())).thenAnswer(invocation -> {
+            MobileFull argument = invocation.getArgument(0, MobileFull.class);
+            Assertions.assertNull(argument.getMainCameraAperture());
+            Assertions.assertNull(argument.getFrontCameraAperture());
+            return null;
+        });
+        service.saveMobileFull(mobile);
+    }
+
+    @Test
     public void testValidationOfImages() {
         when(dao.saveAndFlush(any())).thenAnswer(invocation -> {
             MobileFull argument = invocation.getArgument(0, MobileFull.class);
