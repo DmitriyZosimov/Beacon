@@ -92,7 +92,7 @@ public class MobileFullControllerIT implements TestMobileFullBuilder {
 
     @DirtiesContext
     @Test
-    @WithMockUser(roles = "Manager-catalog")
+    @WithMockUser(roles = "Manager-content")
     public void createNewMobileFull_statusCreated() throws Exception {
         MobileFull mobileFull = build();
         mobileFull.setMobileId(null);
@@ -115,7 +115,7 @@ public class MobileFullControllerIT implements TestMobileFullBuilder {
 
     @DirtiesContext
     @Test
-    @WithMockUser(roles = "Manager-catalog")
+    @WithMockUser(roles = "Manager-content")
     public void createNewMobileFull_WithoutImages_statusCreated() throws Exception {
         MobileFull mobileFull = build();
         mobileFull.setMobileId(null);
