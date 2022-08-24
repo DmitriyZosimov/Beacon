@@ -3,4 +3,5 @@ include 'model'
 include 'catalog'
 include 'search'
 include 'shop'
+include 'security'
 

@@ -2,6 +2,8 @@ package com.beacon.search.config;
 
 import com.beacon.model.selialization.DefaultMapDeserializer;
 import com.beacon.model.selialization.DefaultMapSerializer;
+import com.beacon.security.annotation.EnableBeaconSecurity;
+import com.beacon.security.config.Application;
 import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.databind.deser.BeanDeserializerModifier;
 import com.fasterxml.jackson.databind.module.SimpleModule;
@@ -15,6 +17,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @ComponentScan(basePackages = "com.beacon.search")
+@EnableBeaconSecurity(application = Application.SEARCH)
 public class ContextConfiguration implements WebMvcConfigurer {
 
     @Override
