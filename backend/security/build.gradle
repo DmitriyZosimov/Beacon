@@ -1,0 +1,48 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+}
+
+dependencies {
+
+    compileOnly lombok.lombok
+    compileOnly "org.springframework.boot:spring-boot-autoconfigure:$springBootVersion"
+
+    annotationProcessor lombok.lombok
+    annotationProcessor "org.springframework.boot:spring-boot-autoconfigure-processor:$springBootVersion"
+
+    implementation "javax.servlet:javax.servlet-api:$javaxServletVersion"
+    implementation "org.springframework.boot:spring-boot-starter-oauth2-resource-server:$springBootVersion"
+
+    testImplementation ("org.springframework.boot:spring-boot-starter-test:$springBootVersion") {
+        exclude group: 'com.jayway.jsonpath'
+        exclude group: 'jakarta.xml.bind'
+        exclude group: 'org.assertj'
+        exclude group: 'org.hamcrest'
+        exclude group: 'org.mockito', module: 'mockito-junit-jupiter'
+        exclude group: 'org.skyscreamer'
+        exclude group: 'org.xmlunit'
+    }
+}
+
+project.afterEvaluate {
+    publishing {
+        publications {
+            maven(MavenPublication) {
+                groupId 'com.beacon.security'
+                artifactId 'beacon-security'
+                version project.version
+                pom.withXml {
+                    def root = asNode()
+                    root.appendNode('description', 'Beacon security')
+                    root.appendNode('name', 'beacon-security')
+                    root.children().last() + pomConfig
+                }
+            }
+        }
+    }
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}

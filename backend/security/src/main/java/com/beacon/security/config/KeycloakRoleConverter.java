@@ -1,4 +1,4 @@
-package com.beacon.catalog.config;
+package com.beacon.security.config;
 
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.core.GrantedAuthority;
