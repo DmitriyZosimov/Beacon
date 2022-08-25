@@ -5,13 +5,15 @@ import {Title} from '@angular/platform-browser';
 //rxjs
 import {Subscription} from "rxjs";
 import {filter, map, switchMap} from "rxjs/operators";
+import {AutoUnsubscribe} from "./core/decorators";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit, OnDestroy {
+@AutoUnsubscribe('sub')
+export class AppComponent implements OnInit {
 
   private sub: { [key: string]: Subscription } = {};
 
@@ -21,10 +23,6 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.setPageTitles();
-  }
-
-  ngOnDestroy(): void {
-    this.sub.navigationEnd.unsubscribe();
   }
 
   private setPageTitles(): void {
