@@ -3,6 +3,8 @@ import {environment} from "../../../environments/environment";
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {Cookie} from "ng2-cookies";
 import {Observable} from "rxjs";
+import {ActivatedRoute, Router} from "@angular/router";
+import {filter, map} from "rxjs/operators";
 
 @Injectable()
 export class AuthenticationService {
@@ -13,28 +15,38 @@ export class AuthenticationService {
   private authUrl = environment.authUrl;
   private logoutUrl = environment.logoutUrl;
 
-  constructor(protected httpClient: HttpClient) {
+  constructor(protected httpClient: HttpClient,
+              private route: ActivatedRoute,
+              private router: Router) {
   }
 
-  retrieveToken(code: any) {
-    const params = new URLSearchParams();
-    params.append('grant_type', 'authorization_code');
-    params.append('client_id', this.clientId);
-    params.append('redirect_uri', this.redirectUri);
-    params.append('code', code);
+  retrieveToken() {
+   this.route.queryParamMap
+      .pipe(
+        filter(param => param.has('code')),
+        map(params => params.get('code') || 'NONE')
+      )
+      .subscribe(code => {
+        const params = new URLSearchParams();
+        params.append('grant_type', 'authorization_code');
+        params.append('client_id', this.clientId);
+        params.append('redirect_uri', this.redirectUri);
+        params.append('code', code);
 
-    console.log(this.redirectUri);
-    const headers = new HttpHeaders(
-      {'Content-type': 'application/x-www-form-urlencoded; charset=utf-8'}
-    );
+        const headers = new HttpHeaders(
+          {'Content-type': 'application/x-www-form-urlencoded; charset=utf-8'}
+        );
 
-    this.httpClient.post(this.tokenUrl,
-      params.toString(), {headers: headers})
-      .subscribe(data => {
-          this.saveToken(data);
-          window.location.href = this.redirectUri;
-        },
-        err => alert('Invalid Credentials'));
+        this.httpClient.post(this.tokenUrl,
+          params.toString(), {headers: headers})
+          .subscribe(data => {
+              this.saveToken(data);
+              window.location.href = this.redirectUri;
+            },
+            err => alert('Invalid Credentials'));
+      }, error => {
+        this.router.navigate(['/'])
+      });
   }
 
   saveToken(token: any) {

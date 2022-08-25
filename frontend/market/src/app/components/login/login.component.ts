@@ -16,9 +16,9 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoggedIn = this.service.checkCredentials();
-    let i = window.location.href.indexOf('code');
-    if (!this.isLoggedIn && i != -1) {
-      this.service.retrieveToken(window.location.href.substring(i + 5));
+    let i = window.location.href.includes('code');
+    if (!this.isLoggedIn && i) {
+      this.service.retrieveToken();
     }
   }
 
