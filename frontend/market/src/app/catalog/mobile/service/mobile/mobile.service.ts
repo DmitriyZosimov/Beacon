@@ -10,7 +10,7 @@ import {Cookie} from 'ng2-cookies';
 
 import {environment} from "../../../../../environments/environment";
 
-import {ErrorHandlerService} from "../../../../service";
+import {AuthenticationService, ErrorHandlerService} from "../../../../service";
 import {MobileModel, MobileFullModel} from "../../../../model/mobile";
 
 @Injectable({
@@ -19,10 +19,12 @@ import {MobileModel, MobileFullModel} from "../../../../model/mobile";
 export class MobileService {
 
   private catalogServer = environment.catalogServer;
+  private domainUrl = environment.domainUrl;
 
   constructor(protected httpClient: HttpClient,
               private router: Router,
-              private errorHandler: ErrorHandlerService) {
+              private errorHandler: ErrorHandlerService,
+              private authService: AuthenticationService) {
   }
 
   public getMobiles(): Observable<HttpResponse<Array<MobileModel>>> {
@@ -47,21 +49,26 @@ export class MobileService {
   }
 
   public createMobile(mobileFull: MobileFullModel) {
-    let headers = new HttpHeaders({
-      'Content-type': 'application/json; charset=utf-8',
-      'Authorization': 'Bearer ' + Cookie.get('access_token')
-    });
-    this.httpClient.post<number>(`${this.catalogServer}/mobile/`, mobileFull, {
-      headers: headers,
-      observe: "response"
-    }).subscribe(
-      (resp) => {
-        console.log("Succ: " + resp.status.valueOf());
+    this.authService.refreshToken()
+      .subscribe(success =>{
+        this.authService.saveToken(success);
+        let headers = new HttpHeaders({
+          'Content-type': 'application/json; charset=utf-8',
+          'Authorization': 'Bearer ' + Cookie.get('access_token')
+        });
+        this.httpClient.post<number>(`${this.catalogServer}/mobile/`, mobileFull, {
+          headers: headers,
+          observe: "response"
+        })
+          .subscribe(
+          (resp) => {
+            this.router.navigate([resp.headers.get("Location")?.substring(this.domainUrl.length)]);
+          },
+          (fail: HttpErrorResponse) => {
+            this.errorHandler.handleError(fail);
+          }
+        )
       },
-      (fail: HttpErrorResponse) => {
-        this.errorHandler.handleError(fail);
-      }
-    )
-
+        error => this.errorHandler.handleError(error));
   }
 }

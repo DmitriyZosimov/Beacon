@@ -10,6 +10,7 @@ export const environment = {
 
   //Authentication
   clientId: 'beacon-market',
+  domainUrl: "http://localhost:4200",
   redirectUri:"http://localhost:4200/mobile",
   tokenUrl: 'http://localhost:8180/realms/catalog/protocol/openid-connect/token',
   authUrl: 'http://localhost:8180/realms/catalog/protocol/openid-connect/auth',
