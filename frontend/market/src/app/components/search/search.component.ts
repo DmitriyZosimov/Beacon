@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';;
 import {DomSanitizer} from "@angular/platform-browser";
 import {Router} from "@angular/router";
 
-import {SearchService} from "../../service";
 import {MobileModel} from "../../model/mobile"
+import {SearchService} from "../../core/services";
 
 @Component({
   selector: 'app-search',

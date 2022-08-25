@@ -10,9 +10,9 @@ import {Cookie} from 'ng2-cookies';
 
 import {environment} from "../../../../../environments/environment";
 
-import {AuthenticationService, ErrorHandlerService} from "../../../../service";
 import {MobileModel, MobileFullModel} from "../../../../model/mobile";
 import {DomainCutterPipe} from "../../../../core/pipes";
+import {AuthenticationService, ErrorHandlerService} from "../../../../core/services";
 
 @Injectable({
   providedIn: 'any'

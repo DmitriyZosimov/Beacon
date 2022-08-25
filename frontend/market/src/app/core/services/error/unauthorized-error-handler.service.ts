@@ -1,7 +1,7 @@
 import {ErrorHandler, Injectable} from '@angular/core';
 import {Router} from "@angular/router";
 
-import {AuthenticationService} from "../";
+import {AuthenticationService} from "../index";
 
 @Injectable()
 export class UnauthorizedErrorHandlerService implements ErrorHandler {

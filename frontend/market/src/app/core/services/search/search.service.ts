@@ -4,8 +4,8 @@ import {HttpClient, HttpErrorResponse, HttpParams, HttpResponse} from "@angular/
 import {Observable} from "rxjs";
 import {catchError, map, tap} from "rxjs/operators";
 
-import {MobileModel} from "../../model/mobile";
-import {environment} from "../../../environments/environment";
+import {MobileModel} from "../../../model/mobile";
+import {environment} from "../../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'

@@ -16,10 +16,11 @@ import {
   SearchComponent,
   UnauthorizedErrorComponent
 } from './components';
+import {AuthenticationService, ErrorHandlerService, UnauthorizedErrorHandlerService, DomainCutterPipe} from "./core";
+
+//modules
 import {MobileModule} from './catalog/mobile/mobile.module';
-import {AuthenticationService, ErrorHandlerService, UnauthorizedErrorHandlerService} from "./service";
 import {ShopModule} from "./shop/shop.module";
-import { DomainCutterPipe } from './core/pipes';
 
 @NgModule({
   declarations: [
