@@ -1,20 +1,19 @@
-import {Injectable} from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpParams, HttpResponse} from "@angular/common/http";
 //rxjs
 import {Observable} from "rxjs";
 import {catchError, map, tap} from "rxjs/operators";
 
 import {MobileModel} from "../../../model/mobile";
-import {environment} from "../../../../environments/environment";
+import {SearchAPI} from "./search.config";
 
 @Injectable({
   providedIn: 'root'
 })
 export class SearchService {
 
-  searchServer = environment.searchServer;
-
-  constructor(protected httpClient: HttpClient) {
+  constructor(protected httpClient: HttpClient,
+              @Inject(SearchAPI) private searchServer: string) {
   }
 
   public search(query: string): Observable<HttpResponse<Array<MobileModel>>> {
