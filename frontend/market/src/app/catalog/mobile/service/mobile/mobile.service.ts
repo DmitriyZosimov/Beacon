@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse} from "@angular/common/http";
 import {Router} from "@angular/router";
 
@@ -8,24 +8,22 @@ import {catchError, map} from "rxjs/operators";
 
 import {Cookie} from 'ng2-cookies';
 
-import {environment} from "../../../../../environments/environment";
-
 import {MobileModel, MobileFullModel} from "../../../../model/mobile";
 import {DomainCutterPipe} from "../../../../core/pipes";
 import {AuthenticationService, ErrorHandlerService} from "../../../../core/services";
+import {MobileAPI} from "../../mobile.config";
 
 @Injectable({
   providedIn: 'any'
 })
 export class MobileService {
 
-  private catalogServer = environment.catalogServer;
-
   constructor(protected httpClient: HttpClient,
               private router: Router,
               private errorHandler: ErrorHandlerService,
               private authService: AuthenticationService,
-              private domainCutterPipe: DomainCutterPipe) {
+              private domainCutterPipe: DomainCutterPipe,
+              @Inject(MobileAPI) private catalogServer: string) {
   }
 
   public getMobiles(): Observable<HttpResponse<Array<MobileModel>>> {
