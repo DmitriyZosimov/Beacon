@@ -12,7 +12,8 @@ const routes: Routes = [
   },
   {
     path: 'add',
-    component: AddingComponent
+    component: AddingComponent,
+    data: { title: 'Adding a new mobile'}
   },
   {
     path: '',

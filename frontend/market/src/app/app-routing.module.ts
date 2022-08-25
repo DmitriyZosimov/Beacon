@@ -18,28 +18,35 @@ const routes: Routes = [
   },
   {
     path: 'shop',
-    loadChildren: () => import('./shop/shop.module').then(m => m.ShopModule)
+    loadChildren: () => import('./shop/shop.module').then(m => m.ShopModule),
+    data: {
+      title: 'Shop'
+    }
   },
   {
     path: 'error',
     children: [
       {
         path: 'unauthorized',
-        component: UnauthorizedErrorComponent
+        component: UnauthorizedErrorComponent,
+        data: { title: 'Unauthorized' }
       },
       {
         path: 'forbidden',
-        component: ForbiddenErrorComponent
+        component: ForbiddenErrorComponent,
+        data: { title: 'Forbidden' }
       },
       {
         path: 'not-found',
-        component: PageNotFoundComponent
+        component: PageNotFoundComponent,
+        data: { title: 'Page not found' }
       }
     ]
   },
   {
     path: '**',
-    component: PageNotFoundComponent
+    component: PageNotFoundComponent,
+    data: { title: 'Page not found' }
   }
 ];
 
