@@ -106,6 +106,7 @@ public class MobileFullControllerIT implements TestMobileFullBuilder {
                 .content(json)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isCreated())
+                .andExpect(MockMvcResultMatchers.header().exists("Location"))
                 .andReturn().getResponse();
         Assertions.assertNotNull(response);
         Assertions.assertEquals(201, response.getStatus());

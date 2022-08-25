@@ -40,7 +40,7 @@ public abstract class AbstractBeaconSecurity extends WebSecurityConfigurerAdapte
         will fail with 403 Invalid CORS request
          */
         configuration.setAllowedHeaders(List.of("Cache-Control", "Content-Type", "Access-Control-Allow-Headers", "Authorization", "X-Requested-With", "observe"));
-        configuration.setExposedHeaders(List.of("Authentication", "responseType", "observe"));
+        configuration.setExposedHeaders(List.of("Authentication", "responseType", "observe", "Location"));
         configuration.setMaxAge(3600L);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
