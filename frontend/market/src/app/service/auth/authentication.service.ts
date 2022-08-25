@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {environment} from "../../../environments/environment";
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {Cookie} from "ng2-cookies";
+import {Observable} from "rxjs";
 
 @Injectable()
 export class AuthenticationService {
@@ -43,7 +44,7 @@ export class AuthenticationService {
     Cookie.set("refresh_token", token.refresh_token, expireDate, '/');
   }
 
-  refreshToken() {
+  refreshToken(): Observable<Object> {
     const params = new URLSearchParams();
     params.append('grant_type', 'refresh_token');
     params.append('client_id', this.clientId);
@@ -53,13 +54,8 @@ export class AuthenticationService {
       {'Content-type': 'application/x-www-form-urlencoded; charset=utf-8'}
     );
 
-    this.httpClient.post(this.tokenUrl,
+    return this.httpClient.post(this.tokenUrl,
       params.toString(), {headers: headers})
-      .subscribe(data => {
-          this.saveToken(data);
-          window.location.reload();
-        },
-        err => alert('Invalid Refresh token'));
   }
 
   checkCredentials(): boolean {

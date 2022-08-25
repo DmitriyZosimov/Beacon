@@ -12,7 +12,12 @@ export class UnauthorizedErrorHandlerService implements ErrorHandler {
 
   handleError = (error: any) => {
     if (this.authenticationService.checkCredentials()) {
-      this.authenticationService.refreshToken();
+      this.authenticationService.refreshToken()
+        .subscribe(data => {
+            this.authenticationService.saveToken(data);
+            window.location.reload();
+          },
+          err => alert('Invalid Refresh token'));
     } else {
       this.router.navigate(['error/unauthorized'])
     }
