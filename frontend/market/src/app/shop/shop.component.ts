@@ -5,9 +5,9 @@ import {DomSanitizer} from "@angular/platform-browser";
 import {WeekDay} from "@angular/common";
 
 import {JavaLocalTimeAdapter} from "../core/adapter";
-import {ShopService} from "../service";
 
 import {PaymentMethodEnum, ShopModel, WorkingHoursModel} from "../model/shop";
+import {ShopService} from "./service";
 
 @Component({
   selector: 'app-shop',

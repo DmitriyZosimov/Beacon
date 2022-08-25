@@ -7,10 +7,10 @@ import {catchError, map} from "rxjs/operators";
 import {environment} from "../../../environments/environment";
 
 import {ShopModel} from "../../model/shop";
-import {ErrorHandlerService} from "../";
+import {ErrorHandlerService} from "../../service";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'any'
 })
 export class ShopService {
 
