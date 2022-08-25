@@ -12,6 +12,7 @@ import {environment} from "../../../../../environments/environment";
 
 import {AuthenticationService, ErrorHandlerService} from "../../../../service";
 import {MobileModel, MobileFullModel} from "../../../../model/mobile";
+import {DomainCutterPipe} from "../../../../core/pipes";
 
 @Injectable({
   providedIn: 'any'
@@ -19,12 +20,12 @@ import {MobileModel, MobileFullModel} from "../../../../model/mobile";
 export class MobileService {
 
   private catalogServer = environment.catalogServer;
-  private domainUrl = environment.domainUrl;
 
   constructor(protected httpClient: HttpClient,
               private router: Router,
               private errorHandler: ErrorHandlerService,
-              private authService: AuthenticationService) {
+              private authService: AuthenticationService,
+              private domainCutterPipe: DomainCutterPipe) {
   }
 
   public getMobiles(): Observable<HttpResponse<Array<MobileModel>>> {
@@ -62,7 +63,7 @@ export class MobileService {
         })
           .subscribe(
           (resp) => {
-            this.router.navigate([resp.headers.get("Location")?.substring(this.domainUrl.length)]);
+            this.router.navigate([this.domainCutterPipe.transform(resp.headers.get("Location"))]);
           },
           (fail: HttpErrorResponse) => {
             this.errorHandler.handleError(fail);

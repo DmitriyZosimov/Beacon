@@ -19,6 +19,7 @@ import {
 import {MobileModule} from './catalog/mobile/mobile.module';
 import {AuthenticationService, ErrorHandlerService, UnauthorizedErrorHandlerService} from "./service";
 import {ShopModule} from "./shop/shop.module";
+import { DomainCutterPipe } from './core/pipes';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import {ShopModule} from "./shop/shop.module";
     CartComponent,
     PageNotFoundComponent,
     UnauthorizedErrorComponent,
-    ForbiddenErrorComponent
+    ForbiddenErrorComponent,
+    DomainCutterPipe
   ],
   imports: [
     BrowserModule,
@@ -44,7 +46,8 @@ import {ShopModule} from "./shop/shop.module";
   providers: [
     AuthenticationService,
     ErrorHandlerService,
-    UnauthorizedErrorHandlerService
+    UnauthorizedErrorHandlerService,
+    DomainCutterPipe
   ],
   bootstrap: [AppComponent]
 })
