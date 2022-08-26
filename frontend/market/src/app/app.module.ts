@@ -21,6 +21,7 @@ import {AuthenticationService, ErrorHandlerService, UnauthorizedErrorHandlerServ
 //modules
 import {MobileModule} from './catalog/mobile/mobile.module';
 import {ShopModule} from "./shop/shop.module";
+import {SpinnerModule} from "./widgets/spinner/spinner.module";
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import {ShopModule} from "./shop/shop.module";
     NgbModule,
     HttpClientModule,
     MobileModule,
-    ShopModule
+    ShopModule,
+    SpinnerModule
   ],
   providers: [
     AuthenticationService,
