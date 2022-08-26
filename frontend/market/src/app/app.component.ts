@@ -6,6 +6,7 @@ import {Meta, Title} from '@angular/platform-browser';
 import {Subscription} from "rxjs";
 import {filter, map, switchMap} from "rxjs/operators";
 import {AutoUnsubscribe} from "./core/decorators";
+import {SpinnerService} from "./widgets";
 
 @Component({
   selector: 'app-root',
@@ -17,7 +18,8 @@ export class AppComponent implements OnInit {
 
   private sub: { [key: string]: Subscription } = {};
 
-  constructor(private titleService: Title,
+  constructor(public spinnerService: SpinnerService,
+              private titleService: Title,
               private metaService: Meta,
               private router: Router) {
   }

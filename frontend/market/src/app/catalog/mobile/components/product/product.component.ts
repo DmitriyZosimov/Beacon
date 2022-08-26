@@ -1,9 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {DomSanitizer, Meta, Title} from "@angular/platform-browser";
 
 import {MobileFullModel} from "../../../../model/mobile";
-import {MobileService} from "../../service/mobile";
 
 @Component({
   selector: 'app-product',
@@ -14,7 +13,7 @@ export class ProductComponent implements OnInit {
 
   mobileFull!: MobileFullModel | null;
 
-  constructor(private mobileService: MobileService,
+  constructor(private route: ActivatedRoute,
               private router: Router,
               private sanitizer: DomSanitizer,
               private metaService: Meta,
@@ -22,12 +21,10 @@ export class ProductComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.mobileService.getMobileFull(this.router.url).subscribe(response => {
-      this.mobileFull = response.body;
-      this.setupMetaTagsAndTitle();
+    this.route.data.subscribe(data => {
+      this.mobileFull = data.mobile;
     });
-    console.log(this.mobileFull);
-    console.log(this.router.url);
+    this.setupMetaTagsAndTitle();
   }
 
   getMobileTitle(): string {

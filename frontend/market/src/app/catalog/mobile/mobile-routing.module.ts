@@ -5,6 +5,7 @@ import { MetaDefinition } from '@angular/platform-browser';
 import {MobileComponent} from "./mobile.component";
 import {ProductComponent} from "./components/product";
 import {AddingComponent} from "./components/adding";
+import {ProductResolverGuard} from "./guards";
 
 const metaTags: Array<MetaDefinition> = [
   {
@@ -20,7 +21,10 @@ const metaTags: Array<MetaDefinition> = [
 const routes: Routes = [
   {
     path: ':brand/:model',
-    component: ProductComponent
+    component: ProductComponent,
+    resolve: {
+      mobile: ProductResolverGuard
+    }
   },
   {
     path: 'add',

@@ -24,6 +24,7 @@
   </div>
 </div>
 <div class="mt-2">
+  <app-spinner *ngIf="spinnerService.isVisible()"></app-spinner>
   <div>
     <router-outlet></router-outlet>
   </div>

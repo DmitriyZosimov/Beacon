@@ -36,8 +36,8 @@ export class MobileService {
       );
   }
 
-  public getMobileFull(url: string): Observable<HttpResponse<MobileFullModel>> {
-    return this.httpClient.get<MobileFullModel>(`${this.catalogServer}${url}`, {
+  public getMobileFull(brand: any, model: any): Observable<HttpResponse<MobileFullModel>> {
+    return this.httpClient.get<MobileFullModel>(`${this.catalogServer}/mobile/${brand}/${model}`, {
       responseType: 'json',
       observe: 'response'
     })

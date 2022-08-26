@@ -44,7 +44,7 @@ import {SpinnerModule} from "./widgets/spinner/spinner.module";
     HttpClientModule,
     MobileModule,
     ShopModule,
-    SpinnerModule
+    SpinnerModule.forRoot()
   ],
   providers: [
     AuthenticationService,
