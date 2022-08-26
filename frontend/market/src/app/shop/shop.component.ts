@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 
 import {Router} from "@angular/router";
-import {DomSanitizer} from "@angular/platform-browser";
+import {DomSanitizer, Meta, Title} from "@angular/platform-browser";
 import {WeekDay} from "@angular/common";
 
 import {JavaLocalTimeAdapter} from "../core/adapter";
@@ -24,7 +24,9 @@ export class ShopComponent implements OnInit {
 
   constructor(private shopService: ShopService,
               private router: Router,
-              private sanitizer: DomSanitizer) {
+              private sanitizer: DomSanitizer,
+              private metaService: Meta,
+              private titleService: Title) {
   }
 
   ngOnInit(): void {
@@ -37,6 +39,7 @@ export class ShopComponent implements OnInit {
       response.body?.paymentMethods?.forEach(v => paymentMethods.add(v));
       let logo = response.body?.logo;
       this.shop = new ShopModel(shopId, name, description, workingHoursMap, paymentMethods, logo);
+      this.setupTitleAndMetaTags();
     })
   }
 
@@ -124,6 +127,22 @@ export class ShopComponent implements OnInit {
       default:
         return false;
     }
+  }
+
+  private setupTitleAndMetaTags() {
+    this.titleService.setTitle(this.shop?.name!);
+    this.metaService.updateTag(
+      {
+        name: 'description',
+        content: this.shop?.description!
+      }
+    );
+    this.metaService.updateTag(
+      {
+        name: 'keywords',
+        content: 'shops are in Beacon'
+      }
+    )
   }
 
 }

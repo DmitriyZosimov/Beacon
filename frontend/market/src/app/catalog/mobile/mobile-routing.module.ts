@@ -1,9 +1,21 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
+import { MetaDefinition } from '@angular/platform-browser';
 
 import {MobileComponent} from "./mobile.component";
 import {ProductComponent} from "./components/product";
 import {AddingComponent} from "./components/adding";
+
+const metaTags: Array<MetaDefinition> = [
+  {
+    name: 'description',
+    content: 'Buy a new phone in the Beacon of catalog'
+  },
+  {
+    name: 'keywords',
+    content: 'Mobile, Phone, New, Buy'
+  }
+];
 
 const routes: Routes = [
   {
@@ -17,7 +29,10 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: MobileComponent
+    component: MobileComponent,
+    data: {
+      meta: metaTags
+    }
   }
 ];
 

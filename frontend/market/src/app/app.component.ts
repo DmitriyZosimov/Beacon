@@ -1,6 +1,6 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NavigationEnd, Router} from "@angular/router";
-import {Title} from '@angular/platform-browser';
+import {Meta, Title} from '@angular/platform-browser';
 
 //rxjs
 import {Subscription} from "rxjs";
@@ -18,14 +18,15 @@ export class AppComponent implements OnInit {
   private sub: { [key: string]: Subscription } = {};
 
   constructor(private titleService: Title,
+              private metaService: Meta,
               private router: Router) {
   }
 
   ngOnInit(): void {
-    this.setPageTitles();
+    this.setPageTitlesAndMetaTags();
   }
 
-  private setPageTitles(): void {
+  private setPageTitlesAndMetaTags(): void {
     this.sub.navigationEnd = this.router.events
       .pipe(
         filter(event => event instanceof NavigationEnd),
@@ -39,7 +40,12 @@ export class AppComponent implements OnInit {
         switchMap(route => route.data)
       )
       .subscribe(
-        data => this.titleService.setTitle(data.title)
+        data => {
+          this.titleService.setTitle(data.title);
+          this.metaService.removeTag("name='description'");
+          this.metaService.removeTag("name='keywords'");
+          this.metaService.addTags(data.meta);
+        }
       );
   }
 }

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
-import {DomSanitizer} from "@angular/platform-browser";
+import {DomSanitizer, Meta, Title} from "@angular/platform-browser";
 
 import {MobileFullModel} from "../../../../model/mobile";
 import {MobileService} from "../../service/mobile";
@@ -16,12 +16,15 @@ export class ProductComponent implements OnInit {
 
   constructor(private mobileService: MobileService,
               private router: Router,
-              private sanitizer: DomSanitizer) {
+              private sanitizer: DomSanitizer,
+              private metaService: Meta,
+              private titleService: Title) {
   }
 
   ngOnInit(): void {
     this.mobileService.getMobileFull(this.router.url).subscribe(response => {
       this.mobileFull = response.body;
+      this.setupMetaTagsAndTitle();
     });
     console.log(this.mobileFull);
     console.log(this.router.url);
@@ -104,6 +107,28 @@ export class ProductComponent implements OnInit {
       images.push(this.sanitizer.bypassSecurityTrustUrl(objectUrl))
     });
     return images;
+  }
+
+  private setupMetaTagsAndTitle() {
+    this.metaService.updateTag(
+      {
+        name: 'description',
+        content: this.getShortDescription()
+      });
+    this.metaService.updateTag(
+      {
+        name: 'keywords',
+        content: this.getKeywords()
+      }
+    );
+    this.titleService.setTitle(this.getMobileTitle())
+  }
+
+  private getKeywords() {
+    return `${this.mobileFull?.brand}, ${this.mobileFull?.model?.split(' ')}, Mobile, Phone, ` +
+      `${this.mobileFull?.nfc ? 'NFC,': ''} ${this.mobileFull?.ram} GB, ${this.mobileFull?.storageCapacity} GB, ` +
+      `${this.mobileFull?.battery} mAh, ${this.mobileFull?.releaseYear}, ${this.mobileFull?.cameraResolution} MP, ` +
+      `${this.mobileFull?.fiveG ? '5G,': ''} ${this.mobileFull?.chipsetModel}, ${this.mobileFull?.color}, buy, new`
   }
 
 }
