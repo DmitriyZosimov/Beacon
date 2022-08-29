@@ -17,6 +17,10 @@ public class MobileMainImage extends MobileImage {
     @JsonBackReference
     private Mobile mobile;
 
+    public MobileMainImage(Long imageId, byte[] image) {
+        super(imageId, image);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

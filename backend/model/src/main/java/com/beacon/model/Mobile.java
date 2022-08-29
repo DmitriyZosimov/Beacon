@@ -1,5 +1,6 @@
 package com.beacon.model;
 
+import com.beacon.model.dtos.MobileDto;
 import com.beacon.model.tools.ToStringTool;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
@@ -11,6 +12,37 @@ import javax.persistence.*;
  * Mobile is a model with small information of mobile.
  */
 
+@NamedNativeQueries(
+        @NamedNativeQuery(name = "Mobile.findAllMobileDtos",
+                query = "SELECT m.mobile_id, m.brand, m.model, m.os, m.screen_size, m.display_resolution, " +
+                        "m.display_technology, m.ram, m.storage_capacity, m.chipset_model, m.camera_resolution, " +
+                        "m.sim_card_slot, m.battery, m.color, m.release_year, " +
+                        "im.image_id, im.image, " +
+                        "COUNT(shop_id) AS count_of_offers, MIN(price) AS minimal_price " +
+                        "FROM mobile m LEFT JOIN offers o ON m.mobile_id=o.mobile_id " +
+                        "LEFT JOIN mobile_image im ON m.mobile_id=im.mobile_id AND im.main=1 " +
+                        "GROUP BY m.mobile_id, m.brand, m.model, m.os, m.screen_size, m.display_resolution, " +
+                        "m.display_technology, m.ram, m.storage_capacity, m.chipset_model, m.camera_resolution, " +
+                        "m.sim_card_slot, m.battery, m.color, m.release_year, im.image_id, im.image " +
+                        "ORDER BY release_year DESC;",
+                resultSetMapping = "Mapping.MobileDto")
+)
+@SqlResultSetMappings(
+        @SqlResultSetMapping(name = "Mapping.MobileDto",
+                classes = @ConstructorResult(targetClass = MobileDto.class,
+                        columns = {
+                                @ColumnResult(name = "mobile_id"), @ColumnResult(name = "brand"),
+                                @ColumnResult(name = "model"), @ColumnResult(name = "os"),
+                                @ColumnResult(name = "screen_size"), @ColumnResult(name = "display_resolution"),
+                                @ColumnResult(name = "display_technology"), @ColumnResult(name = "ram"),
+                                @ColumnResult(name = "storage_capacity"), @ColumnResult(name = "chipset_model"),
+                                @ColumnResult(name = "camera_resolution"), @ColumnResult(name = "sim_card_slot"),
+                                @ColumnResult(name = "battery"), @ColumnResult(name = "color"),
+                                @ColumnResult(name = "release_year"), @ColumnResult(name = "image_id", type = Long.class),
+                                @ColumnResult(name = "image", type = byte[].class),
+                                @ColumnResult(name = "count_of_offers", type = Long.class), @ColumnResult(name = "minimal_price")
+                        }))
+)
 @Entity
 @Table(name = "mobile")
 @Inheritance(strategy = InheritanceType.JOINED)
