@@ -1,13 +1,11 @@
 package com.beacon.model;
 
-import com.beacon.model.shop.Shop;
 import com.beacon.model.tools.ToStringTool;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Map;
 
 /**
  * Mobile is a model with small information of mobile.
@@ -69,12 +67,6 @@ public class Mobile {
     @OneToOne(mappedBy = "mobile", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JsonManagedReference
     private MobileMainImage mainImage;
-
-    @ElementCollection
-    @CollectionTable(name = "offers", joinColumns = @JoinColumn(name = "mobile_id"))
-    @MapKeyJoinColumn(name = "shop_id")
-    @Column(name = "price")
-    private Map<Shop, Double> offers;
 
     @Override
     public boolean equals(Object o) {

@@ -1,5 +1,6 @@
 package com.beacon.model;
 
+import com.beacon.model.shop.Shop;
 import com.beacon.model.tools.ToStringTool;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
@@ -8,6 +9,7 @@ import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Contains additional information of mobile.
@@ -137,6 +139,12 @@ public class MobileFull extends Mobile {
     @Where(clause = "main=2")
     @JsonManagedReference
     private List<MobileNotMainImage> notMainImages;
+
+    @ElementCollection
+    @CollectionTable(name = "offers", joinColumns = @JoinColumn(name = "mobile_id"))
+    @MapKeyJoinColumn(name = "shop_id")
+    @Column(name = "price")
+    private Map<Shop, Double> offers;
 
     @Override
     public boolean equals(Object o) {
