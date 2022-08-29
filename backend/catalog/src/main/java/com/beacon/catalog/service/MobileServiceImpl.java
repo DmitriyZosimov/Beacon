@@ -1,7 +1,7 @@
 package com.beacon.catalog.service;
 
 import com.beacon.catalog.dao.MobileDao;
-import com.beacon.model.Mobile;
+import com.beacon.model.dtos.MobileDto;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,7 +22,7 @@ public class MobileServiceImpl implements MobileService {
 
     @Transactional(readOnly = true)
     @Override
-    public List<Mobile> findAllMobiles() {
-        return mobileDao.findAll();
+    public List<MobileDto> findAllMobileDtos() {
+        return mobileDao.findAllMobileDtos();
     }
 }

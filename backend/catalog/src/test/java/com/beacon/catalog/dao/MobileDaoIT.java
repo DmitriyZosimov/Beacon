@@ -2,6 +2,7 @@ package com.beacon.catalog.dao;
 
 import com.beacon.catalog.config.DaoConfiguration;
 import com.beacon.model.Mobile;
+import com.beacon.model.dtos.MobileDto;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -86,6 +87,28 @@ public class MobileDaoIT {
         Assertions.assertEquals(1, YearsComparator.COMPARATOR.compare(dtos.get(0).getReleaseYear(), dtos.get(1).getReleaseYear()));
         System.out.println("\nFirst: " + dtos.get(0).toString());
         System.out.println("\nSecond: " + dtos.get(1).toString());
+    }
+
+    @Test
+    public void shouldReturnMobileDtoList_findAllMobileDtos() {
+        List<MobileDto> dtos = mobileDao.findAllMobileDtos();
+        Assertions.assertNotNull(dtos);
+        Assertions.assertEquals("pocox3pro8256green", dtos.get(0).getMobileId());
+        Assertions.assertNotNull(dtos.get(0).getReleaseYear());
+        for (int i = 0; i < SECOND_IMAGE.length; i++) {
+            Assertions.assertEquals(SECOND_IMAGE[i], dtos.get(0).getMainImage().getImage()[i]);
+        }
+        Assertions.assertEquals("honor508128black", dtos.get(1).getMobileId());
+        Assertions.assertNotNull(dtos.get(1).getReleaseYear());
+        for (int i = 0; i < FIRST_IMAGE.length; i++) {
+            Assertions.assertEquals(FIRST_IMAGE[i], dtos.get(1).getMainImage().getImage()[i]);
+        }
+
+        Assertions.assertEquals(1, YearsComparator.COMPARATOR.compare(dtos.get(0).getReleaseYear(), dtos.get(1).getReleaseYear()));
+        dtos.forEach(dto -> {
+            Assertions.assertNotNull(dto.getCountOfOffers());
+            Assertions.assertNotNull(dto.getMinimalPrice());
+        });
     }
 
     private static class YearsComparator implements Comparator<String> {

@@ -1,6 +1,7 @@
 package com.beacon.catalog.dao;
 
 import com.beacon.model.Mobile;
+import com.beacon.model.dtos.MobileDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -37,4 +38,12 @@ public interface MobileDao extends JpaRepository<Mobile, String> {
     @Query(value = "SELECT *, 0 as clazz_ FROM mobile m ORDER BY m.release_year DESC", nativeQuery = true)
     @Override
     List<Mobile> findAll();
+
+    /**
+     * Sql query returns all {@code Mobile}, {@code MobileMainImage}, counts offers and returns minimal price.
+     * All these values will be converted to {@code MobileDto}.
+     * @return list of {@code MobileDto}
+     */
+    @Query(nativeQuery = true)
+    List<MobileDto> findAllMobileDtos();
 }

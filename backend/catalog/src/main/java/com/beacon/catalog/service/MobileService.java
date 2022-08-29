@@ -1,6 +1,6 @@
 package com.beacon.catalog.service;
 
-import com.beacon.model.Mobile;
+import com.beacon.model.dtos.MobileDto;
 
 import java.util.List;
 
@@ -10,9 +10,9 @@ import java.util.List;
 public interface MobileService {
 
     /**
-     * Find all mobiles
+     * Find all mobile dtos
      *
-     * @return list with all mobiles in a database
+     * @return list with all mobile dtos in a database
      */
-    List<Mobile> findAllMobiles();
+    List<MobileDto> findAllMobileDtos();
 }

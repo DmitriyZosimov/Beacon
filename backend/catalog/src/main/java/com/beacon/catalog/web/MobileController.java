@@ -1,7 +1,7 @@
 package com.beacon.catalog.web;
 
 import com.beacon.catalog.service.MobileService;
-import com.beacon.model.Mobile;
+import com.beacon.model.dtos.MobileDto;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,8 +26,8 @@ public class MobileController {
      * @return list with mobile dtos.
      */
     @GetMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<Mobile>> findAllMobiles() {
-        List<Mobile> list = mobileService.findAllMobiles();
+    public ResponseEntity<List<MobileDto>> findAllMobiles() {
+        List<MobileDto> list = mobileService.findAllMobileDtos();
         return ResponseEntity.ok(list);
     }
 }

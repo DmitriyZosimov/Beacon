@@ -57,7 +57,7 @@ public class SecurityTests implements TestMobileFullBuilder {
         MockitoAnnotations.openMocks(this);
         objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
-        when(service.findAllMobiles()).thenReturn(List.of());
+        when(service.findAllMobileDtos()).thenReturn(List.of());
         when(FullService.findMobileFullById(any())).thenReturn(Optional.empty());
         when(FullService.saveMobileFull(any())).thenReturn(null);
     }

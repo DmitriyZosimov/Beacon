@@ -1,6 +1,7 @@
 package com.beacon.catalog.web;
 
 import com.beacon.model.Mobile;
+import com.beacon.model.dtos.MobileDto;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
@@ -65,8 +66,8 @@ public class MobileControllerIT {
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse();
-        List<Mobile> resultList = (List<Mobile>) objectMapper.readValue(response.getContentAsString(),
-                new TypeReference<Iterable<Mobile>>() {
+        List<MobileDto> resultList = (List<MobileDto>) objectMapper.readValue(response.getContentAsString(),
+                new TypeReference<Iterable<MobileDto>>() {
                 });
         Assertions.assertNotNull(resultList);
         Assertions.assertEquals(2, resultList.size());
@@ -77,5 +78,10 @@ public class MobileControllerIT {
         Assertions.assertEquals("50", resultList.get(1).getModel());
         System.out.println(resultList.get(0).toString());
         System.out.println(resultList.get(1).toString());
+
+        resultList.forEach(dto -> {
+            Assertions.assertNotNull(dto.getCountOfOffers());
+            Assertions.assertNotNull(dto.getMinimalPrice());
+        });
     }
 }
