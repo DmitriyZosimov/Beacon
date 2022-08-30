@@ -26,11 +26,14 @@
     </div>
 
     <div class="col-md-2">
-      <span class="fw-bold">from 1200,00 p.</span>
+      <span class="fw-bold" *ngIf="mobile.minimalPrice">from {{mobile.minimalPrice}}</span>
     </div>
 
     <div class="col-md-2">
-      <a href="/#" class="btn btn-warning text-white">10 offers</a>
+      <div *ngIf="mobile.countOfOffers; else outOfStock">
+        <a href="/#" class="btn btn-warning text-white">{{mobile.countOfOffers}} offers</a>
+      </div>
+      <ng-template #outOfStock>out of stock</ng-template>
     </div>
   </div>
 

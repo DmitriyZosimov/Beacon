@@ -16,5 +16,7 @@ export class MobileModel {
               public battery?: number,
               public color?: string,
               public releaseYear?: string,
-              public mainImage?: MobileMainImage) {}
+              public mainImage?: MobileMainImage,
+              public countOfOffers?: number,
+              public minimalPrice?: number) {}
 }
