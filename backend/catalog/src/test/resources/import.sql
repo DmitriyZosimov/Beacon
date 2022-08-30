@@ -1,3 +1,7 @@
+-- Functions
+CREATE ALIAS lo_get AS 'byte[] lo_get(byte[] image) {return image;}';
+
+-- Insertion
 insert into mobile (mobile_id, brand, model, os, screen_size, display_resolution, display_technology, ram, storage_capacity, chipset_model, camera_resolution, sim_card_slot, battery, color, release_year) values
 ('honor508128black', 'honor', '50', 'android', '6.67', '1920x2100', 'IPS', 8, 128, 'Qualcom', '48', '2', 4100, 'black', '2021'),
 ('pocox3pro8256green', 'poco', 'x3pro', 'android', '6.67', '1920x2100', 'IPS', 8, 256, 'Qualcom', '48', '2', 5000, 'green', '2022');

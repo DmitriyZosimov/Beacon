@@ -1,12 +1,11 @@
 package com.beacon.catalog.web;
 
-import com.beacon.model.Mobile;
 import com.beacon.model.dtos.MobileDto;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
@@ -25,6 +24,10 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.List;
 
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
@@ -37,6 +40,8 @@ import static org.springframework.security.test.web.servlet.setup.SecurityMockMv
 public class MobileControllerIT {
 
     private static final String MOBILE_URL = "/mobile/";
+    private static byte[] FIRST_IMAGE;
+    private static byte[] SECOND_IMAGE;
 
     @Autowired
     WebApplicationContext context;
@@ -46,7 +51,25 @@ public class MobileControllerIT {
     @MockBean
     JwtDecoder jwtDecoder;
     private MockMvc mockMvc;
-    private ObjectMapper objectMapper;
+    @Autowired
+    ObjectMapper objectMapper;
+
+    @BeforeAll
+    public static void loadImages() {
+        File imgF = new File("src/test/resources/img/sample-phone.jpeg");
+        File imgS = new File("src/test/resources/img/sample-phone-2.jpeg");
+        try {
+            BufferedInputStream bufferedInputStream = new BufferedInputStream(new FileInputStream(imgF));
+            FIRST_IMAGE = bufferedInputStream.readAllBytes();
+            bufferedInputStream.close();
+
+            bufferedInputStream = new BufferedInputStream(new FileInputStream(imgS));
+            SECOND_IMAGE = bufferedInputStream.readAllBytes();
+            bufferedInputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @BeforeEach
     public void setup() {
@@ -55,8 +78,6 @@ public class MobileControllerIT {
                 .apply(springSecurity())
                 .build();
         MockitoAnnotations.openMocks(this);
-        objectMapper = new ObjectMapper();
-        objectMapper.registerModule(new JavaTimeModule());
         objectMapper.registerModule(simpleModule);
     }
 
@@ -76,12 +97,18 @@ public class MobileControllerIT {
         Assertions.assertEquals("honor508128black", resultList.get(1).getMobileId());
         Assertions.assertEquals("honor", resultList.get(1).getBrand());
         Assertions.assertEquals("50", resultList.get(1).getModel());
-        System.out.println(resultList.get(0).toString());
-        System.out.println(resultList.get(1).toString());
 
         resultList.forEach(dto -> {
             Assertions.assertNotNull(dto.getCountOfOffers());
             Assertions.assertNotNull(dto.getMinimalPrice());
         });
+
+        for (int i = 0; i < SECOND_IMAGE.length; i++) {
+            Assertions.assertEquals(SECOND_IMAGE[i], resultList.get(0).getMainImage().getImage()[i]);
+        }
+
+        for (int i = 0; i < FIRST_IMAGE.length; i++) {
+            Assertions.assertEquals(FIRST_IMAGE[i], resultList.get(1).getMainImage().getImage()[i]);
+        }
     }
 }

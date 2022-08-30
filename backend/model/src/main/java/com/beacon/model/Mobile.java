@@ -17,7 +17,7 @@ import javax.persistence.*;
                 query = "SELECT m.mobile_id, m.brand, m.model, m.os, m.screen_size, m.display_resolution, " +
                         "m.display_technology, m.ram, m.storage_capacity, m.chipset_model, m.camera_resolution, " +
                         "m.sim_card_slot, m.battery, m.color, m.release_year, " +
-                        "im.image_id, im.image, " +
+                        "im.image_id, lo_get(im.image) as image, " +
                         "COUNT(shop_id) AS count_of_offers, MIN(price) AS minimal_price " +
                         "FROM mobile m LEFT JOIN offers o ON m.mobile_id=o.mobile_id " +
                         "LEFT JOIN mobile_image im ON m.mobile_id=im.mobile_id AND im.main=1 " +
