@@ -1,5 +1,6 @@
 import {MobileMainImage, MobileNotMainImage} from "./mobile-image";
 import {MobileModel} from "./mobile.model";
+import {ShopModel} from "../shop";
 
 export class MobileFullModel extends MobileModel {
   constructor(public mobileId?: string,
@@ -56,7 +57,8 @@ export class MobileFullModel extends MobileModel {
               public batteryType?: string,
               public chargeTime?: string,
               public mainImage?: MobileMainImage,
-              public notMainImages?: Array<MobileNotMainImage>
+              public notMainImages?: Array<MobileNotMainImage>,
+              public offers?: Map<ShopModel, number>
   ) {
     super(
       mobileId, brand, model, os, screenSize, displayResolution, displayTechnology, ram, storageCapacity,

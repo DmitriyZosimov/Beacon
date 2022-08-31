@@ -1,0 +1,73 @@
+<div>
+  <ng-template *ngIf="isMobileLayout; then mobileLayout else notMobileLayout"></ng-template>
+</div>
+
+<ng-template #notMobileLayout>
+  <ng-container *ngTemplateOutlet="listOfOffers; context: {keyOffer: 'value'}"></ng-container>
+</ng-template>
+
+<!-- Offcanvas -->
+<ng-template #mobileLayout>
+  <div>
+    <button class="btn btn-warning" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasOffers" aria-controls="offcanvasOffers">
+      {{offers?.size}} offers
+    </button>
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasOffers" aria-labelledby="offcanvasOffersLabel">
+      <div class="offcanvas-header">
+        <div>
+          <h4>Offers</h4>
+        </div>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body p-0">
+        <div class="list-group-horizontal">
+          <ng-container *ngTemplateOutlet="listOfOffers"></ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #listOfOffers>
+  <ul class="list-group list-group-flush" *ngFor="let offer of offers | keyvalue">
+    <li class="list-group-item border-bottom border-warning mb-3">
+      <div class="d-flex">
+        <div class="flex-fill align-self-center">
+          <h3 class="ms-4">
+            {{offer.value}}
+          </h3>
+        </div>
+        <div class="flex-row-reverse">
+          <div class="mb-2">
+            <img [src]="getLogo(offer.key)" class="logo-size-25" alt="logo"/>
+          </div>
+          <div class="text-end">
+            <h6>
+              {{offer.key.name}}
+            </h6>
+          </div>
+        </div>
+      </div>
+      <div class="mb-2">
+        <div class="d-flex flex-row-reverse">
+          <ng-template *ngIf="isOpen(offer.key); then open else close"></ng-template>
+          <ng-template #open>
+            <div class="text-success">Open</div>
+          </ng-template>
+          <ng-template #close>
+            <div class="text-danger">Close</div>
+          </ng-template>
+        </div>
+        <div class="d-flex flex-row-reverse lh-sm">
+          Today the store is working:<br>
+          from {{workFrom(offer.key) | date: 'shortTime'}} to {{workTo(offer.key) | date: 'shortTime'}}
+        </div>
+      </div>
+      <div>
+        <div class="d-flex flex-row-reverse">
+          <button class="btn btn-warning">into a cart</button>
+        </div>
+      </div>
+    </li>
+  </ul>
+</ng-template>

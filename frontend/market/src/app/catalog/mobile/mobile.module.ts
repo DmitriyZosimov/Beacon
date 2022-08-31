@@ -19,6 +19,7 @@ import {
   ReviewComponent,
   SizeComponent
 } from './components/adding';
+import { ShopListComponent } from './components/product/shop-list/shop-list.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import {
     DataTransmissionComponent,
     InterfacesComponent,
     BatteryComponent,
-    ReviewComponent
+    ReviewComponent,
+    ShopListComponent
   ],
   imports: [
     CommonModule,

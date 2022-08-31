@@ -16,7 +16,12 @@ import {
   SearchComponent,
   UnauthorizedErrorComponent
 } from './components';
-import {AuthenticationService, ErrorHandlerService, UnauthorizedErrorHandlerService, DomainCutterPipe} from "./core";
+import {
+  AuthenticationService,
+  ErrorHandlerService,
+  UnauthorizedErrorHandlerService,
+  DomainCutterPipe
+} from "./core";
 
 //modules
 import {MobileModule} from './catalog/mobile/mobile.module';

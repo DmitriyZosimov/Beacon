@@ -1,17 +1,22 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {DomSanitizer, Meta, Title} from "@angular/platform-browser";
 
+import {Observable, of} from "rxjs";
+
 import {MobileFullModel} from "../../../../model/mobile";
+import {MobileLayout} from "../../../../core/decorators";
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.css']
 })
+@MobileLayout('isMobileLayout')
 export class ProductComponent implements OnInit {
 
   mobileFull!: MobileFullModel | null;
+  isMobileLayout!: boolean;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -25,6 +30,7 @@ export class ProductComponent implements OnInit {
       this.mobileFull = data.mobile;
     });
     this.setupMetaTagsAndTitle();
+    this.isMobileLayout = window.screen.width <= 768;
   }
 
   getMobileTitle(): string {
@@ -97,6 +103,16 @@ export class ProductComponent implements OnInit {
     }
   }
 
+  getMinimalPrice(): Observable<number | string> {
+    let min = -1;
+    this.mobileFull?.offers?.forEach(value => {
+      if (min === -1 || min > value) {
+        min = value;
+      }
+    });
+    return min > 0 ? of('from ' + min) : of('out of stock');
+  }
+
   getNotMainImages(): Array<Object> {
     let images = new Array<Object>();
     this.mobileFull?.notMainImages?.forEach(image => {
@@ -105,6 +121,9 @@ export class ProductComponent implements OnInit {
     });
     return images;
   }
+
+  @HostListener('window:resize')
+  onResize(){}
 
   private setupMetaTagsAndTitle() {
     this.metaService.updateTag(

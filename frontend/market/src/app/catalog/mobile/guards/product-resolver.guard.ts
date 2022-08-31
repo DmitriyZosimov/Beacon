@@ -2,9 +2,8 @@ import {Injectable} from "@angular/core";
 import {ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot} from "@angular/router";
 
 //rxjs
-import {EMPTY, Observable, of} from "rxjs";
-import {finalize, switchMap} from "rxjs/operators";
-
+import {Observable} from "rxjs";
+import {finalize} from "rxjs/operators";
 //from modules
 import {SpinnerService} from "../../../widgets";
 
@@ -27,13 +26,6 @@ export class ProductResolverGuard implements Resolve<MobileFullModel> {
     this.spinner.show();
     return this.mobileService.getMobileFull(route.paramMap.get('brand'), route.paramMap.get('model'))
       .pipe(
-        switchMap(value => {
-          if (value.body) {
-            return of(value.body)
-          } else {
-            return EMPTY;
-          }
-        }),
         finalize(() => this.spinner.hide())
       )
   }
