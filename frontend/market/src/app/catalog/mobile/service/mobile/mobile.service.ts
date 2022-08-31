@@ -1,4 +1,5 @@
-import {Inject, Injectable} from '@angular/core';
+import {Inject, Injectable, Optional} from '@angular/core';
+import {KeyValue} from "@angular/common";
 import {HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse} from "@angular/common/http";
 import {Router} from "@angular/router";
 
@@ -13,7 +14,10 @@ import {DomainCutterPipe} from "../../../../core/pipes";
 import {AuthenticationService, ErrorHandlerService} from "../../../../core/services";
 import {MobileAPI} from "../../mobile.config";
 import {ShopModel} from "../../../../model/shop";
-import {ShopAdapter} from "../../../../core/adapter";
+import {ImageAdapter, ShopAdapter} from "../../../../core/adapter";
+import {CartService} from "../../../../modules/cart/services";
+import {ProductModel} from "../../../../model/product";
+import {SafeUrl} from "@angular/platform-browser";
 
 @Injectable({
   providedIn: 'any'
@@ -25,8 +29,10 @@ export class MobileService {
               private errorHandler: ErrorHandlerService,
               private authService: AuthenticationService,
               private domainCutterPipe: DomainCutterPipe,
+              private imageAdapter: ImageAdapter,
               private shopAdapter: ShopAdapter,
-              @Inject(MobileAPI) private catalogServer: string) {
+              @Inject(MobileAPI) private catalogServer: string,
+              @Optional() cartService: CartService) {
   }
 
   public getMobiles(): Observable<HttpResponse<Array<MobileModel>>> {
@@ -86,5 +92,54 @@ export class MobileService {
         )
       },
         error => this.errorHandler.handleError(error));
+  }
+
+  getMobileTitle(mobileFull: MobileFullModel): string {
+    return `${mobileFull.brand} ${mobileFull.model} ${mobileFull.ram}/${mobileFull.storageCapacity} (${mobileFull.color})`;
+  }
+  
+  getMobileDescription(mobileFull: MobileFullModel): string {
+    let shortDescription = '';
+    if (mobileFull !== undefined && mobileFull !== null) {
+      if (mobileFull.os !== null) {
+        shortDescription = shortDescription.concat(mobileFull.os + ', ');
+      }
+      if (mobileFull.screenSize !== null) {
+        shortDescription = shortDescription.concat('screen ' + mobileFull.screenSize + '\", ');
+      }
+      if (mobileFull.displayTechnology !== null) {
+        shortDescription = shortDescription.concat(mobileFull.displayTechnology + ', ');
+      }
+      if (mobileFull.displayResolution !== null) {
+        shortDescription = shortDescription.concat('(' + mobileFull.displayResolution + '), ');
+      }
+      if (mobileFull.chipsetModel !== null) {
+        shortDescription = shortDescription.concat(mobileFull.chipsetModel + ', ');
+      }
+      if (mobileFull.ram !== null) {
+        shortDescription = shortDescription.concat('RAM ' + mobileFull.ram + ' GB, ');
+      }
+      if (mobileFull.storageCapacity !== null) {
+        shortDescription = shortDescription.concat('storage capacity ' + mobileFull.storageCapacity + ' GB, ');
+      }
+      if (mobileFull.cameraResolution !== null) {
+        shortDescription = shortDescription.concat('camera ' + mobileFull.cameraResolution + ' MP, ');
+      }
+      if (mobileFull.battery !== null) {
+        shortDescription = shortDescription.concat('battery ' + mobileFull.battery + ' mAh, ');
+      }
+      if (mobileFull.simCardSlot !== null) {
+        shortDescription = shortDescription.concat(mobileFull.simCardSlot + ' SIM');
+      }
+      shortDescription = shortDescription.trim();
+      if (shortDescription.endsWith(',')) {
+        shortDescription = shortDescription.slice(0, -1)
+      }
+    }
+    return shortDescription;
+  }
+
+  getImage(image: string): SafeUrl {
+    return this.imageAdapter.adapt(image);
   }
 }
