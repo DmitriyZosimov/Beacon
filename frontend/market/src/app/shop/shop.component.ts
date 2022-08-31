@@ -4,9 +4,9 @@ import {Router} from "@angular/router";
 import {DomSanitizer, Meta, Title} from "@angular/platform-browser";
 import {WeekDay} from "@angular/common";
 
-import {JavaLocalTimeAdapter} from "../core/adapter";
+import {ShopAdapter} from "../core/adapter";
 
-import {PaymentMethodEnum, ShopModel, WorkingHoursModel} from "../model/shop";
+import {ShopModel} from "../model/shop";
 import {ShopService} from "./service";
 
 @Component({
@@ -23,6 +23,7 @@ export class ShopComponent implements OnInit {
   currentDayOfWeek = this.currentDay.getDay();
 
   constructor(private shopService: ShopService,
+              private shopAdapter: ShopAdapter,
               private router: Router,
               private sanitizer: DomSanitizer,
               private metaService: Meta,
@@ -31,54 +32,9 @@ export class ShopComponent implements OnInit {
 
   ngOnInit(): void {
     this.shopService.getShopById(this.router.url).subscribe(response => {
-      let shopId = response.body?.shopId;
-      let name = response.body?.name;
-      let description = response.body?.description;
-      let workingHoursMap = this.convertMap(response.body?.workingHoursMap);
-      let paymentMethods: Set<PaymentMethodEnum> = new Set<PaymentMethodEnum>();
-      response.body?.paymentMethods?.forEach(v => paymentMethods.add(v));
-      let logo = response.body?.logo;
-      this.shop = new ShopModel(shopId, name, description, workingHoursMap, paymentMethods, logo);
+      this.shop = this.shopAdapter.adapt(response.body);
       this.setupTitleAndMetaTags();
     })
-  }
-
-  private convertMap(priorWorkingHoursMap: any) {
-    let priorMap: Map<string, WorkingHoursModel> = new Map(Object.entries(priorWorkingHoursMap));
-    let finalMap = new Map<WeekDay, WorkingHoursModel>();
-    priorMap.forEach((value, key) => {
-      let workingHour = new WorkingHoursModel();
-      workingHour.id = value.id;
-      workingHour.open = JavaLocalTimeAdapter.adapt('' + value.open);
-      workingHour.close = JavaLocalTimeAdapter.adapt('' + value.close);
-
-      switch (key) {
-        case 'MONDAY':
-          finalMap.set(WeekDay.Monday, workingHour);
-          break;
-        case 'TUESDAY':
-          finalMap.set(WeekDay.Tuesday, workingHour);
-          break;
-        case 'WEDNESDAY':
-          finalMap.set(WeekDay.Wednesday, workingHour);
-          break;
-        case 'THURSDAY':
-          finalMap.set(WeekDay.Thursday, workingHour);
-          break;
-        case 'FRIDAY':
-          finalMap.set(WeekDay.Friday, workingHour);
-          break;
-        case 'SATURDAY':
-          finalMap.set(WeekDay.Saturday, workingHour);
-          break;
-        case 'SUNDAY':
-          finalMap.set(WeekDay.Sunday, workingHour);
-          break;
-        default:
-          break;
-      }
-    });
-    return finalMap;
   }
 
   getLogo(): any {
