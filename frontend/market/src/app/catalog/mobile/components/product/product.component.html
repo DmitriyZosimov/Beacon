@@ -477,5 +477,5 @@
 </section>
 
 <ng-template #appShopList let-offers="offers">
-  <app-shop-list [offers]="offers"></app-shop-list>
+  <app-shop-list [offers]="offers" (selectedOffer)="onAddToCart($event)"></app-shop-list>
 </ng-template>

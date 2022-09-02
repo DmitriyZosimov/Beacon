@@ -24,6 +24,7 @@ import {
 } from "./core";
 
 //modules
+import {CartModule} from "./modules/cart/cart.module";
 import {MobileModule} from './catalog/mobile/mobile.module';
 import {ShopModule} from "./shop/shop.module";
 import {SpinnerModule} from "./widgets/spinner/spinner.module";
@@ -47,6 +48,7 @@ import {SpinnerModule} from "./widgets/spinner/spinner.module";
     AppRoutingModule,
     NgbModule,
     HttpClientModule,
+    CartModule.forRoot(),
     MobileModule,
     ShopModule,
     SpinnerModule.forRoot()

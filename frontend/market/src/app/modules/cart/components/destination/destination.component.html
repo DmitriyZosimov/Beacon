@@ -1,0 +1,13 @@
+<div *ngIf="cartForm">
+    <div class="fw-bold">{{cartForm.firstName}} {{cartForm.lastName}}</div>
+    <div>{{cartForm.email}}</div>
+    <div>{{cartForm.phoneNumber}}</div>
+    <div>{{cartForm.city}}</div>
+    <div>{{cartForm.street}}</div>
+    <div>
+      <span *ngIf="cartForm.porch">Porch {{cartForm.porch}}, </span>
+      <span *ngIf="cartForm.floor">Floor {{cartForm.floor}}, </span>
+      <span>Flat {{cartForm.flat}}</span>
+    </div>
+    <div *ngIf="cartForm.comment">{{cartForm.comment}}</div>
+</div>

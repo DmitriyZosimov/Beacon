@@ -32,7 +32,7 @@ export class MobileService {
               private imageAdapter: ImageAdapter,
               private shopAdapter: ShopAdapter,
               @Inject(MobileAPI) private catalogServer: string,
-              @Optional() cartService: CartService) {
+              @Optional() private cartService: CartService) {
   }
 
   public getMobiles(): Observable<HttpResponse<Array<MobileModel>>> {
@@ -92,6 +92,13 @@ export class MobileService {
         )
       },
         error => this.errorHandler.handleError(error));
+  }
+
+  addToCart(mobile: MobileFullModel, offer: KeyValue<ShopModel, number>) {
+    let product = new ProductModel(mobile.mobileId!, this.getMobileTitle(mobile), offer.value, offer.key.shopId!,
+      offer.key.name!, mobile.mainImage?.image!, offer.key.logo?.logo!, this.getMobileDescription(mobile));
+    console.log('product ' + product);
+    this.cartService?.addProduct(product);
   }
 
   getMobileTitle(mobileFull: MobileFullModel): string {

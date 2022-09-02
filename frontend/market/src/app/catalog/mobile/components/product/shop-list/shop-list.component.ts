@@ -1,8 +1,9 @@
-import {Component, HostListener, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, HostListener, Input, OnInit, Output} from '@angular/core';
 import {DomSanitizer} from "@angular/platform-browser";
 
 import {ShopModel} from "../../../../../model/shop";
 import {MobileLayout} from "../../../../../core/decorators";
+import {KeyValue} from "@angular/common";
 
 
 @Component({
@@ -15,6 +16,7 @@ import {MobileLayout} from "../../../../../core/decorators";
 export class ShopListComponent implements OnInit {
 
   @Input() offers!: Map<ShopModel, number> | undefined;
+  @Output() selectedOffer = new EventEmitter<KeyValue<ShopModel, number>>();
 
   currentDay = new Date();
   currentDayOfWeek = this.currentDay.getDay();
@@ -46,6 +48,10 @@ export class ShopListComponent implements OnInit {
       shop.workingHoursMap?.get(this.currentDayOfWeek)?.close?.getHours()! >= this.currentDay.getHours());
   }
 
+  onAddToCart(offer: KeyValue<ShopModel, number>) {
+    this.selectedOffer.emit(offer);
+  }
+
   workFrom(shop: ShopModel, dayOfWeek?: number) {
     let day = dayOfWeek === undefined ? this.currentDayOfWeek : dayOfWeek;
     return shop.workingHoursMap?.get(day)?.open;
@@ -58,5 +64,4 @@ export class ShopListComponent implements OnInit {
 
   @HostListener('window:resize')
   onResize(){}
-
 }

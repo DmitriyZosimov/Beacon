@@ -9,6 +9,13 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'cart',
+    loadChildren: () => import('./modules/cart/cart.module').then(m => m.CartModule),
+    data: {
+      title: 'Cart'
+    }
+  },
+  {
     path: 'mobile',
     loadChildren: () => import('./catalog/mobile/mobile.module').then(m => m.MobileModule),
     data: {

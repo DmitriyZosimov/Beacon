@@ -1,4 +1,5 @@
 import {Component, HostListener, OnInit} from '@angular/core';
+import {KeyValue} from "@angular/common";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Meta, Title} from "@angular/platform-browser";
 
@@ -6,6 +7,7 @@ import {Observable, of} from "rxjs";
 
 import {MobileFullModel} from "../../../../model/mobile";
 import {MobileLayout} from "../../../../core/decorators";
+import {ShopModel} from "../../../../model/shop";
 import {MobileService} from "../../service/mobile";
 
 @Component({
@@ -63,6 +65,10 @@ export class ProductComponent implements OnInit {
       images.push(this.mobileService.getImage(image.image!))
     });
     return images;
+  }
+
+  onAddToCart(offer: KeyValue<ShopModel, number>) {
+    this.mobileService.addToCart(this.mobileFull!, offer);
   }
 
   @HostListener('window:resize')
