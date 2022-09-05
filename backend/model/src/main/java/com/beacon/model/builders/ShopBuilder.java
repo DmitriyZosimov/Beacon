@@ -16,6 +16,7 @@ public class ShopBuilder {
 
     private static ShopBuilder INSTANCE = new ShopBuilder();
 
+    private Long shopId;
     private String name;
     private String description;
     private Map<DayOfWeek, WorkingHours> workingHoursMap;
@@ -23,6 +24,11 @@ public class ShopBuilder {
     private Logo logo;
 
     public static ShopBuilder create() {
+        return INSTANCE;
+    }
+
+    public ShopBuilder shopId(Long id) {
+        this.shopId = id;
         return INSTANCE;
     }
 
@@ -53,6 +59,7 @@ public class ShopBuilder {
 
     public Shop build() {
         Shop shop = new Shop();
+        shop.setShopId(shopId);
         shop.setName(name);
         shop.setDescription(description);
         shop.setWorkingHoursMap(workingHoursMap);

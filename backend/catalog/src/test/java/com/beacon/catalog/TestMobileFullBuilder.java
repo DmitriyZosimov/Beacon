@@ -2,8 +2,19 @@ package com.beacon.catalog;
 
 import com.beacon.model.MobileFull;
 import com.beacon.model.builders.MobileFullBuilder;
+import com.beacon.model.builders.ShopBuilder;
+import com.beacon.model.builders.WorkingHoursBuilder;
+import com.beacon.model.shop.PaymentMethod;
+import com.beacon.model.shop.Shop;
+import com.beacon.model.shop.WorkingHours;
 
 import java.io.File;
+import java.time.DayOfWeek;
+import java.time.LocalTime;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 public interface TestMobileFullBuilder {
 
@@ -120,5 +131,36 @@ public interface TestMobileFullBuilder {
                 .setNotMainImages(new File("src/test/resources/img/sample-phone-2.jpeg"),
                         new File("src/test/resources/img/sample-phone-3.jpeg"))
                 .build();
+    }
+
+    default Map<Shop, Double> buildOffers() {
+        Set<PaymentMethod> paymentMethodSet = new HashSet<>();
+        paymentMethodSet.add(PaymentMethod.CASH);
+        paymentMethodSet.add(PaymentMethod.CREDIT_CARD);
+        paymentMethodSet.add(PaymentMethod.DEBIT_CARD);
+        paymentMethodSet.add(PaymentMethod.ELECTRONIC_BANK_TRANSFER);
+        paymentMethodSet.add(PaymentMethod.MOBILE_PAYMENT);
+
+        Map<DayOfWeek, WorkingHours> workingHoursMap = WorkingHoursBuilder.create()
+                .setMonday(LocalTime.of(9, 0), LocalTime.of(18, 0))
+                .setTuesday(LocalTime.of(9, 0), LocalTime.of(18, 0))
+                .setWednesday(LocalTime.of(9, 0), LocalTime.of(18, 0))
+                .setThursday(LocalTime.of(9, 0), LocalTime.of(18, 0))
+                .setFriday(LocalTime.of(9, 0), LocalTime.of(18, 0))
+                .setSaturday(LocalTime.of(9, 0), LocalTime.of(18, 0))
+                .setSunday(LocalTime.of(9, 0), LocalTime.of(18, 0))
+                .build();
+
+        Map<Shop, Double> map = new HashMap<>();
+        map.put(
+                ShopBuilder.create().shopId(1L).name("test 1 shop").description("test 1 shop description")
+                        .paymentMethods(paymentMethodSet).workingHoursMap(workingHoursMap).build(), 1000.0);
+        map.put(
+                ShopBuilder.create().shopId(2L).name("test 2 shop").description("test 2 shop description")
+                        .paymentMethods(paymentMethodSet).workingHoursMap(workingHoursMap).build(), 2000.0);
+        map.put(
+                ShopBuilder.create().shopId(3L).name("test 3 shop").description("test 3 shop description")
+                        .paymentMethods(paymentMethodSet).workingHoursMap(workingHoursMap).build(), 3000.0);
+        return map;
     }
 }

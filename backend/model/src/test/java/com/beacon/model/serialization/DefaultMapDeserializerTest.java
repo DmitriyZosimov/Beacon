@@ -29,7 +29,11 @@ public class DefaultMapDeserializerTest {
         BeanDeserializerModifier modifier = new BeanDeserializerModifier() {
             @Override
             public JsonDeserializer<?> modifyMapDeserializer(DeserializationConfig config, MapType type, BeanDescription beanDesc, JsonDeserializer<?> deserializer) {
-                return new DefaultMapDeserializer(type, config.getTypeFactory());
+                if (type.getKeyType().isTypeOrSubTypeOf(Shop.class) && type.getContentType().isTypeOrSubTypeOf(Double.class)) {
+                    return new DefaultMapDeserializer<Shop, Double>(type, config.getTypeFactory());
+                } else {
+                    return deserializer;
+                }
             }
         };
 
