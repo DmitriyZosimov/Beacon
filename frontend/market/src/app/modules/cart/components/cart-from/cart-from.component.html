@@ -223,7 +223,12 @@
       </div>
     </div>
     <div class="modal-footer justify-content-center">
-      <button type="submit" class="btn btn-outline-success" [disabled]="form.invalid">Save</button>
+      <button type="submit"
+              class="btn btn-outline-success"
+              data-bs-dismiss="modal"
+              [disabled]="form.invalid">
+        Save
+      </button>
     </div>
   </form>
 </ng-template>
