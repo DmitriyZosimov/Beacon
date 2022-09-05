@@ -10,7 +10,7 @@
           <p class="card-text">{{product.description}}</p>
         </div>
         <div class="d-md-block d-none px-md-4 align-self-center fst-italic fs-3">
-          <span>{{product.price * product.count | number:'1.0-2'}}</span>
+          <span>{{product.price! * product.count | number:'1.0-2'}}</span>
         </div>
         <div class="mx-1 flex-grow-1">
           <div class="mb-2">
@@ -32,7 +32,7 @@
         <button class="btn btn-dark" (click)="onPlus(product)">+</button>
       </div>
       <div class="d-md-none px-5 fst-italic fs-3">
-        <span>{{product.price * product.count | number:'1.0-2'}}</span>
+        <span>{{product.price! * product.count | number:'1.0-2'}}</span>
       </div>
     </div>
   </div>

@@ -21,11 +21,11 @@ export class ProductComponent implements OnInit {
   }
 
   getProductImage() {
-    return this.cartService.adaptImage(this.product.productImage);
+    return this.cartService.adaptImage(this.product.productImage!);
   }
 
   getShopImage() {
-    return this.cartService.adaptImage(this.product.shopImage);
+    return this.cartService.adaptImage(this.product.shopImage!);
   }
 
   onChange(event: any, product: ProductModel) {

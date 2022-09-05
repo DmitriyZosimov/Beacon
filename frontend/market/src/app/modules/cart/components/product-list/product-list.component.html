@@ -23,7 +23,13 @@
           <p class="text-center fs-2 fst-italic mb-0">{{finalBill | number:'1.0-2'}}</p>
         </div>
         <div class="card-footer d-grid gap-2">
-          <button *ngIf="cartForm" type="button" class="btn btn-dark" (click)="onBuy()">Buy now</button>
+          <button *ngIf="cartForm"
+                  type="button"
+                  class="btn btn-dark"
+                  (click)="onBuy()"
+                  [disabled]="(products$ | async)?.length == 0">
+            Buy now
+          </button>
           <button *ngIf="!cartForm" type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#cartFormModal">Make the order</button>
         </div>
       </div>

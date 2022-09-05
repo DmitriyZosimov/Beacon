@@ -58,17 +58,35 @@ export class CartService {
     let headers = new HttpHeaders({
       'Content-type': 'application/json; charset=utf-8'
     });
-    let order = new OrderModel(cartForm, productList);
+    let order = new OrderModel(cartForm, this.reduceProduct(productList));
+    console.log(order);
     return this.httpClient.post(`${this.catalogServer}/cart/`, order,{
       headers: headers,
       observe: 'response'
     }).pipe(
       map(response => response.status)
-    )
+    );
   }
 
   /* Auxiliary methods */
   adaptImage(image: string) {
     return this.imageAdapter.adapt(image);
   }
+
+  private reduceProduct(products: Array<ProductModel>): Array<ProductModel> {
+    let convertedProducts = [];
+    while (products.length > 0) {
+      let product = products.pop();
+      delete product?.price;
+      delete product?.shopImage;
+      delete product?.productImage;
+      delete product?.name;
+      delete product?.shopName;
+      delete product?.description;
+      convertedProducts.push(product!);
+      console.log(products.length);
+    }
+    return convertedProducts;
+  }
+
 }

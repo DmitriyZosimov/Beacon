@@ -39,7 +39,7 @@ export class ProductListComponent implements OnInit {
 
   get finalBill() {
     let bill = 0;
-    this.products$.subscribe(products => products.forEach(product => bill += product.price * product.count));
+    this.products$.subscribe(products => products.forEach(product => bill += product.price! * product.count));
     return bill;
   }
 
