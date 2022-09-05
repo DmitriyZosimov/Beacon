@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {StoreModule} from "@ngrx/store";
 import { CartStoreModule } from '../../modules/cart/@ngrx/cart-store.module';
+import {metaReducers} from "./meta-reducers";
 
 
 
@@ -9,7 +10,7 @@ import { CartStoreModule } from '../../modules/cart/@ngrx/cart-store.module';
   declarations: [],
   imports: [
     CommonModule,
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot({}, {metaReducers}),
     CartStoreModule,
   ]
 })
