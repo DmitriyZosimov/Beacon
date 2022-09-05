@@ -2,6 +2,9 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 
 import {Observable} from "rxjs";
+//@ngrx
+import {Store} from "@ngrx/store";
+import {AppState} from "../../../../core/@ngrx";
 
 import {CartService} from "../../services";
 import {ProductModel} from "../../../../model/product";
@@ -21,12 +24,14 @@ export class ProductListComponent implements OnInit {
 
   constructor(
     private cartService: CartService,
+    private cartStore: Store<AppState>,
     private errorService: ErrorHandlerService,
     private router: Router
   ) { }
 
   ngOnInit(): void {
     this.products$ = this.cartService.getProducts();
+    console.log("We have a store! ", this.cartStore);
   }
 
   onDeleteProduct(product: ProductModel) {

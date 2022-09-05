@@ -30,6 +30,7 @@ import {CartModule} from "./modules/cart/cart.module";
 import {MobileModule} from './catalog/mobile/mobile.module';
 import {ShopModule} from "./shop/shop.module";
 import {SpinnerModule} from "./widgets/spinner/spinner.module";
+import { RootStoreModule } from './core/@ngrx/root-store.module';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,7 @@ import {SpinnerModule} from "./widgets/spinner/spinner.module";
     MobileModule,
     ShopModule,
     SpinnerModule.forRoot(),
-    StoreModule.forRoot({}, {})
+    RootStoreModule
   ],
   providers: [
     AuthenticationService,
