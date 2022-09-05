@@ -3,6 +3,8 @@ import {BrowserModule} from '@angular/platform-browser';
 import {HttpClientModule} from "@angular/common/http";
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
+import { StoreModule } from '@ngrx/store';
+
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {
@@ -51,7 +53,8 @@ import {SpinnerModule} from "./widgets/spinner/spinner.module";
     CartModule.forRoot(),
     MobileModule,
     ShopModule,
-    SpinnerModule.forRoot()
+    SpinnerModule.forRoot(),
+    StoreModule.forRoot({}, {})
   ],
   providers: [
     AuthenticationService,
