@@ -8,7 +8,8 @@ export const addProduct = createAction(
 );
 
 export const updateProduct = createAction(
-  '[Product List Page] UPDATE_PRODUCT'
+  '[Product List Page] UPDATE_PRODUCT',
+  props<{ product: ProductModel }>()
 );
 
 export const deleteProduct = createAction(

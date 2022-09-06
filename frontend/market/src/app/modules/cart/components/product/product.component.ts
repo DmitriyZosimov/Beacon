@@ -28,7 +28,8 @@ export class ProductComponent implements OnInit {
     return this.cartService.adaptImage(this.product.shopImage!);
   }
 
-  onChange(event: any, product: ProductModel) {
+  onChange(event: any) {
+    const product = {...this.product};
     if (event.target.value < 0) {
       product.count = 0;
     } else {
@@ -41,7 +42,8 @@ export class ProductComponent implements OnInit {
     this.deleteProduct.emit(product);
   }
 
-  onMinus(product: ProductModel) {
+  onMinus() {
+    const product = {...this.product};
     --product.count;
     if (product.count < 0) {
       product.count = 0;
@@ -49,7 +51,8 @@ export class ProductComponent implements OnInit {
     this.updateProduct.emit(product);
   }
 
-  onPlus(product: ProductModel) {
+  onPlus() {
+    const product = {...this.product};
     ++product.count;
     this.updateProduct.emit(product);
   }

@@ -9,7 +9,7 @@ import {AppState} from "../../../../core/@ngrx";
 import {CartService} from "../../services";
 import {ProductModel} from "../../../../model/product";
 import {ErrorHandlerService} from "../../../../core/services";
-import {CartState} from "../../@ngrx";
+import {CartState, updateProduct} from "../../@ngrx";
 
 @Component({
   selector: 'app-product-list',
@@ -36,7 +36,7 @@ export class ProductListComponent implements OnInit {
   }
 
   onUpdateProduct(product: ProductModel) {
-    this.cartService.updateProduct(product);
+    this.cartStore.dispatch(updateProduct({ product }));
   }
 
   get finalBill() {

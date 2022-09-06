@@ -11,8 +11,15 @@ export const reducer = createReducer(
       data
     }
   }),
-  on(CartActions.updateProduct, state => {
-    return {...state};
+  on(CartActions.updateProduct, (state, { product }) => {
+    console.log('UPDATE_PRODUCT');
+    const data = [...state.data];
+    const index = data.findIndex(prod => prod.shopId === product.shopId && prod.productId === product.productId);
+    data[index] = { ...product};
+    return {
+      ...state,
+      data
+    };
   }),
   on(CartActions.deleteProduct, state => {
     return {...state};
