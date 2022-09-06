@@ -38,8 +38,8 @@ export class ProductComponent implements OnInit {
     this.updateProduct.emit(product);
   }
 
-  onDelete(product: ProductModel) {
-    this.deleteProduct.emit(product);
+  onDelete() {
+    this.deleteProduct.emit(this.product);
   }
 
   onMinus() {

@@ -13,7 +13,8 @@ export const updateProduct = createAction(
 );
 
 export const deleteProduct = createAction(
-  '[Product List Page] DELETE_PRODUCT'
+  '[Product List Page] DELETE_PRODUCT',
+  props<{ product: ProductModel }>()
 );
 
 // CART FORM

@@ -21,8 +21,12 @@ export const reducer = createReducer(
       data
     };
   }),
-  on(CartActions.deleteProduct, state => {
-    return {...state};
+  on(CartActions.deleteProduct, (state, { product }) => {
+    const data = state.data.filter(prod => prod !== product);
+    return {
+      ...state,
+      data
+    };
   }),
   on(CartActions.updateCartForm, (state, { cartForm }) => {
     return {

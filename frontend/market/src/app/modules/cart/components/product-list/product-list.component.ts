@@ -9,7 +9,7 @@ import {AppState} from "../../../../core/@ngrx";
 import {CartService} from "../../services";
 import {ProductModel} from "../../../../model/product";
 import {ErrorHandlerService} from "../../../../core/services";
-import {CartState, updateProduct} from "../../@ngrx";
+import {CartState, deleteProduct, updateProduct} from "../../@ngrx";
 
 @Component({
   selector: 'app-product-list',
@@ -32,7 +32,7 @@ export class ProductListComponent implements OnInit {
   }
 
   onDeleteProduct(product: ProductModel) {
-    this.cartService.deleteProduct(product);
+    this.cartStore.dispatch(deleteProduct({ product }));
   }
 
   onUpdateProduct(product: ProductModel) {
