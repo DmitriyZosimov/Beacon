@@ -15,6 +15,13 @@ export const reducer = createReducer(
   }),
   on(CartActions.deleteProduct, state => {
     return {...state};
+  }),
+  on(CartActions.updateCartForm, (state, { cartForm }) => {
+    return {
+      ...state,
+      cartForm,
+      isCartFormSubmitted: true
+    };
   })
 
 );

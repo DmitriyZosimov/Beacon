@@ -1,12 +1,12 @@
 <div class="d-sm-flex flex-row-reverse">
   <div class="d-lg-flex">
-    <div *ngIf="cartForm">
+    <div *ngIf="(products$ | async)?.isCartFormSubmitted">
       <div class="card bg-warning rounded mx-2">
         <div class="card-header">
           <span class="fs-4 text-decoration-underline">Destination</span>
         </div>
         <div class="card-body">
-          <app-destination [cartForm]="cartForm"></app-destination>
+          <app-destination></app-destination>
         </div>
         <div class="card-footer d-grid gap-2">
           <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#cartFormModal">Edit</button>
@@ -23,20 +23,20 @@
           <p class="text-center fs-2 fst-italic mb-0">{{finalBill | number:'1.0-2'}}</p>
         </div>
         <div class="card-footer d-grid gap-2">
-          <button *ngIf="cartForm"
+          <button *ngIf="(products$ | async)?.isCartFormSubmitted"
                   type="button"
                   class="btn btn-dark"
                   (click)="onBuy()"
-                  [disabled]="(products$ | async)?.length == 0">
+                  [disabled]="(products$ | async)?.data?.length == 0">
             Buy now
           </button>
-          <button *ngIf="!cartForm" type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#cartFormModal">Make the order</button>
+          <button *ngIf="!(products$ | async)?.isCartFormSubmitted" type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#cartFormModal">Make the order</button>
         </div>
       </div>
     </div>
   </div>
   <div class="w-sm-75">
-    <app-product *ngFor="let product of products$ | async"
+    <app-product *ngFor="let product of (products$ | async)?.data"
                  [product]="product"
                  (deleteProduct)="onDeleteProduct($event)"
                  (updateProduct)="onUpdateProduct($event)">
@@ -53,7 +53,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <app-cart-from (submittedCartForm)="onSubmitCartForm($event)"></app-cart-from>
+        <app-cart-from></app-cart-from>
       </div>
     </div>
   </div>

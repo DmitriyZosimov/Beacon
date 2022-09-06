@@ -2,11 +2,17 @@ import {ProductModel} from "../../../model/product";
 import {CartFormModel} from "../models/cart-form.model";
 
 export interface CartState {
-  products: ReadonlyArray<ProductModel>;
-  cartForm: CartFormModel;
+  data: ReadonlyArray<ProductModel>;
+  cartForm: Readonly<CartFormModel>;
+  isCartFormSubmitted: Readonly<boolean>;
+  selectedProduct: Readonly<ProductModel> | null;
+  error: Readonly<Error | string> | null
 }
 
 export const initialCartState: CartState = {
-  products: [],
-  cartForm: new CartFormModel()
+  data: [],
+  cartForm: new CartFormModel(),
+  isCartFormSubmitted: false,
+  selectedProduct: null,
+  error: null
 };

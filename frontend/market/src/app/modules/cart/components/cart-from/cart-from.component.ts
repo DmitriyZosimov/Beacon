@@ -1,21 +1,53 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+// @ngrx
+import {select, Store} from "@ngrx/store";
+
+// @rxjs
+import {Subject} from "rxjs";
+import {takeUntil} from "rxjs/operators";
 
 import {CartFormModel} from "../../models/cart-form.model";
+import {AppState} from "../../../../core/@ngrx";
+import {CartState} from "../../@ngrx";
+import * as CartActions from '../../@ngrx/cart.actions';
 
 @Component({
   selector: 'app-cart-from',
   templateUrl: './cart-from.component.html',
   styleUrls: ['./cart-from.component.css']
 })
-export class CartFromComponent implements OnInit {
+export class CartFromComponent implements OnInit, OnDestroy {
 
   cartForm!: CartFormModel;
-  @Output() submittedCartForm: EventEmitter<CartFormModel> = new EventEmitter<CartFormModel>();
 
-  constructor() { }
+  private componentDestroyed$: Subject<void> = new Subject<void>();
+
+  constructor(
+    private store: Store<AppState>
+  ) { }
 
   ngOnInit(): void {
-    this.cartForm = new CartFormModel();
+    let observer = {
+      next: (cartState: CartState) => {
+        this.cartForm = { ...cartState.cartForm } as CartFormModel;
+      },
+      error(err: Error | string) {
+        console.log(err);
+      },
+      complete() {
+        console.log('Stream is completed')
+      }
+    };
+
+    this.store.pipe(
+      select('cart'),
+      takeUntil(this.componentDestroyed$)
+    ).subscribe(observer);
+  }
+
+  ngOnDestroy(): void {
+    this.componentDestroyed$.next();
+    this.componentDestroyed$.complete();
   }
 
   onChangeDelivery(toAddress: boolean) {
@@ -23,19 +55,7 @@ export class CartFromComponent implements OnInit {
   }
 
   onSaveCartForm() {
-    this.submittedCartForm.emit(new CartFormModel(
-      this.cartForm.isDeliveryToAddress,
-      this.cartForm.firstName,
-      this.cartForm.lastName,
-      this.cartForm.email,
-      this.cartForm.phoneNumber,
-      this.cartForm.city,
-      this.cartForm.street,
-      this.cartForm.building,
-      this.cartForm.flat,
-      this.cartForm.porch,
-      this.cartForm.floor,
-      this.cartForm.comment
-      ));
+    const cartForm = { ...this.cartForm };
+    this.store.dispatch(CartActions.updateCartForm({ cartForm }));
   }
 }

@@ -1,15 +1,15 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 
 import {Observable} from "rxjs";
 //@ngrx
-import {Store} from "@ngrx/store";
+import {select, Store} from "@ngrx/store";
 import {AppState} from "../../../../core/@ngrx";
 
 import {CartService} from "../../services";
 import {ProductModel} from "../../../../model/product";
-import {CartFormModel} from "../../models/cart-form.model";
 import {ErrorHandlerService} from "../../../../core/services";
+import {CartState} from "../../@ngrx";
 
 @Component({
   selector: 'app-product-list',
@@ -18,9 +18,7 @@ import {ErrorHandlerService} from "../../../../core/services";
 })
 export class ProductListComponent implements OnInit {
 
-  products$!: Observable<Array<ProductModel>>;
-
-  @Input() cartForm!: CartFormModel;
+  products$!: Observable<CartState>;
 
   constructor(
     private cartService: CartService,
@@ -30,8 +28,7 @@ export class ProductListComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.products$ = this.cartService.getProducts();
-    console.log("We have a store! ", this.cartStore);
+    this.products$ = this.cartStore.pipe(select('cart'));
   }
 
   onDeleteProduct(product: ProductModel) {
@@ -44,24 +41,20 @@ export class ProductListComponent implements OnInit {
 
   get finalBill() {
     let bill = 0;
-    this.products$.subscribe(products => products.forEach(product => bill += product.price! * product.count));
+    this.products$.subscribe(products => products.data.forEach(product => bill += product.price! * product.count));
     return bill;
   }
 
   onBuy() {
-    this.cartService.saveOrder(this.cartForm)
-      .subscribe(status => {
-          if (status === 200) {
-            this.router.navigate(['/success'])
-          } else {
-            this.router.navigate(['/fail'])
-          }
-        },
-        error => this.errorService.handleError(error)
-      )
-  }
-
-  onSubmitCartForm(submittedCartForm: CartFormModel) {
-    this.cartForm = submittedCartForm;
+    // this.cartService.saveOrder(this.cartForm)
+    //   .subscribe(status => {
+    //       if (status === 200) {
+    //         this.router.navigate(['/success'])
+    //       } else {
+    //         this.router.navigate(['/fail'])
+    //       }
+    //     },
+    //     error => this.errorService.handleError(error)
+    //   )
   }
 }
