@@ -3,6 +3,9 @@ import {KeyValue} from "@angular/common";
 import {HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse} from "@angular/common/http";
 import {Router} from "@angular/router";
 
+// @ngrx
+import {Store} from "@ngrx/store";
+
 //rxjs
 import {EMPTY, Observable, of} from "rxjs";
 import {catchError, map, switchMap} from "rxjs/operators";
@@ -15,9 +18,10 @@ import {AuthenticationService, ErrorHandlerService} from "../../../../core/servi
 import {MobileAPI} from "../../mobile.config";
 import {ShopModel} from "../../../../model/shop";
 import {ImageAdapter, ShopAdapter} from "../../../../core/adapter";
-import {CartService} from "../../../../modules/cart/services";
 import {ProductModel} from "../../../../model/product";
 import {SafeUrl} from "@angular/platform-browser";
+import {AppState} from "../../../../core/@ngrx";
+import {addProduct} from "../../../../modules/cart/@ngrx";
 
 @Injectable({
   providedIn: 'any'
@@ -32,7 +36,7 @@ export class MobileService {
               private imageAdapter: ImageAdapter,
               private shopAdapter: ShopAdapter,
               @Inject(MobileAPI) private catalogServer: string,
-              @Optional() private cartService: CartService) {
+              private store: Store<AppState>) {
   }
 
   public getMobiles(): Observable<HttpResponse<Array<MobileModel>>> {
@@ -98,7 +102,7 @@ export class MobileService {
     let product = new ProductModel(mobile.mobileId!, offer.key.shopId!, this.getMobileTitle(mobile), offer.value,
       offer.key.name!, mobile.mainImage?.image!, offer.key.logo?.logo!, this.getMobileDescription(mobile));
     console.log('product ' + product);
-    this.cartService?.addProduct(product);
+    this.store.dispatch(addProduct({ product }));
   }
 
   getMobileTitle(mobileFull: MobileFullModel): string {

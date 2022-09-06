@@ -4,8 +4,12 @@ import * as CartActions from './cart.actions';
 
 export const reducer = createReducer(
   initialCartState,
-  on(CartActions.addProduct, state => {
-    return {...state};
+  on(CartActions.addProduct, (state, { product }) => {
+    const data = [...state.data, {...product}];
+    return {
+      ...state,
+      data
+    }
   }),
   on(CartActions.updateProduct, state => {
     return {...state};

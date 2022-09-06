@@ -3,7 +3,8 @@ import {ProductModel} from "../../../model/product";
 import {CartFormModel} from "../models/cart-form.model";
 
 export const addProduct = createAction(
-  '[Product (Mobile) Page] ADD_PRODUCT'
+  '[Product (Mobile) Page] ADD_PRODUCT',
+  props<{ product: ProductModel }>()
 );
 
 export const updateProduct = createAction(

@@ -25,20 +25,6 @@ export class CartService {
   ) { }
 
   /* Main methods */
-  getProducts(): Observable<Array<ProductModel>> {
-    return this.products$
-      .pipe(
-        catchError(err => {
-          console.log(err);
-          return EMPTY;
-        })
-      );
-  }
-
-  addProduct(product: ProductModel) {
-    productList.push(product);
-  }
-
   updateProduct(product: ProductModel) {
     const index = productList.findIndex(prod => prod === product);
     if (index > -1) {
