@@ -4,9 +4,6 @@ import * as CartActions from './cart.actions';
 
 export const reducer = createReducer(
   initialCartState,
-  on(CartActions.getProducts, state => {
-    return {...state};
-  }),
   on(CartActions.addProduct, state => {
     return {...state};
   }),

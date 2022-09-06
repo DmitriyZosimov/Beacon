@@ -2,11 +2,6 @@ import { createAction, props } from '@ngrx/store';
 import {ProductModel} from "../../../model/product";
 import {CartFormModel} from "../models/cart-form.model";
 
-export const getProducts = createAction(
-  '[Product List Page] GET_PRODUCTS',
-  props<{ data: ProductModel[] }>()
-);
-
 export const addProduct = createAction(
   '[Product (Mobile) Page] ADD_PRODUCT'
 );
