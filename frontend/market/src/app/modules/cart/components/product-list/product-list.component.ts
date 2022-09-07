@@ -1,15 +1,14 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from "@angular/router";
 
 import {Observable} from "rxjs";
 //@ngrx
 import {select, Store} from "@ngrx/store";
 import {AppState} from "../../../../core/@ngrx";
+import {CartState} from "../../@ngrx";
+import * as CartActions from "../../@ngrx";
 
 import {CartService} from "../../services";
 import {ProductModel} from "../../../../model/product";
-import {ErrorHandlerService} from "../../../../core/services";
-import {CartState, deleteProduct, updateProduct} from "../../@ngrx";
 
 @Component({
   selector: 'app-product-list',
@@ -22,9 +21,7 @@ export class ProductListComponent implements OnInit {
 
   constructor(
     private cartService: CartService,
-    private cartStore: Store<AppState>,
-    private errorService: ErrorHandlerService,
-    private router: Router
+    private cartStore: Store<AppState>
   ) { }
 
   ngOnInit(): void {
@@ -32,11 +29,11 @@ export class ProductListComponent implements OnInit {
   }
 
   onDeleteProduct(product: ProductModel) {
-    this.cartStore.dispatch(deleteProduct({ product }));
+    this.cartStore.dispatch(CartActions.deleteProduct({ product }));
   }
 
   onUpdateProduct(product: ProductModel) {
-    this.cartStore.dispatch(updateProduct({ product }));
+    this.cartStore.dispatch(CartActions.updateProduct({ product }));
   }
 
   get finalBill() {
@@ -46,15 +43,14 @@ export class ProductListComponent implements OnInit {
   }
 
   onBuy() {
-    // this.cartService.saveOrder(this.cartForm)
-    //   .subscribe(status => {
-    //       if (status === 200) {
-    //         this.router.navigate(['/success'])
-    //       } else {
-    //         this.router.navigate(['/fail'])
-    //       }
-    //     },
-    //     error => this.errorService.handleError(error)
-    //   )
+    let cartForm;
+    let products;
+    this.products$.subscribe(state => {
+      cartForm = { ...state.cartForm};
+      products = [...state.data];
+    });
+    if (cartForm && products) {
+      this.cartStore.dispatch(CartActions.saveOrder({cartForm, products}));
+    }
   }
 }

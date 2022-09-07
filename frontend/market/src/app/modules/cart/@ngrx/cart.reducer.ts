@@ -34,8 +34,13 @@ export const reducer = createReducer(
       cartForm,
       isCartFormSubmitted: true
     };
+  }),
+  on(CartActions.saveOrderSuccess, (state) => {
+    return {
+      ...state,
+      data: []
+    };
   })
-
 );
 
 export function cartReducer(state: CartState | undefined, action: Action) {

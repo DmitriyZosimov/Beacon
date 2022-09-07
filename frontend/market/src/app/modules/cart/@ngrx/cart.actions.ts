@@ -22,3 +22,18 @@ export const updateCartForm = createAction(
   '[Cart Form Page] UPDATE_CART_FORM',
   props<{ cartForm: CartFormModel}>()
 );
+
+// EFFECT
+export const saveOrder = createAction(
+  '[Save Order Effect] SAVE_ORDER',
+  props<{ cartForm: CartFormModel, products: ProductModel[] }>()
+);
+
+export const saveOrderSuccess = createAction(
+  '[Save Order Effect] SAVE_ORDER_SUCCESS'
+);
+
+export const saveOrderFailure = createAction(
+  '[Save Order Effect] SAVE_ORDER_Failure',
+  props<{ error: Error | string }>()
+);
