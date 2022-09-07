@@ -1,0 +1,75 @@
+<div class="container-md">
+  <div class="border-bottom">
+    <h1>Tasks</h1>
+  </div>
+  <div>
+    <div *ngFor="let task of tasks">
+      <div class="mb-3">
+        <div class="card shadow">
+          <div class="card-header task-header" [class]="task.isDone ? 'bg-color-cinnamon': 'bg-color-caramel'">
+            <span class="text-white">Task</span>
+            <span *ngIf="task.isDone" class="fst-italic text-white"> (Done)</span>
+          </div>
+          <div class="card-body d-md-flex task-body">
+            <div class="me-md-2">
+              <ul>
+                <li *ngIf="task.destination.isDeliveryToAddress">Delivery to address</li>
+                <li>
+                  <span class="fw-bold">Contact information</span>
+                  <ul>
+                    <li>{{task.destination.firstName}} {{task.destination.lastName}}</li>
+                    <li>{{task.destination.phoneNumber}}</li>
+                    <li>{{task.destination.email}}</li>
+                    <li>{{task.destination.city}}</li>
+                    <li>{{task.destination.street}} {{task.destination.building}}</li>
+                    <li>
+                      <span *ngIf="task.destination.porch as porch">Porch {{porch}}, </span>
+                      <span *ngIf="task.destination.floor as floor">floor {{floor}}, </span>
+                      <span>door {{task.destination.flat}}</span>
+                    </li>
+                    <li *ngIf="task.destination.comment as comment">Comment:<br>
+                      <span>{{comment}}</span>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <span class="fw-bold">Products:</span>
+              <div class="d-md-flex">
+                <div class="list-group me-md-3" *ngFor="let product of task.products">
+                  <table class="list-group-item table task-products">
+                    <tbody>
+                    <tr>
+                      <th>Brand:</th><td>{{product.model}}</td>
+                    </tr>
+                    <tr>
+                      <th>Model:</th><td>{{product.model}}</td>
+                    </tr>
+                    <tr>
+                      <th>Color:</th><td>{{product.color}}</td>
+                    </tr>
+                    <tr>
+                      <th>Price:</th><td>{{product.price}}</td>
+                    </tr>
+                    <tr>
+                      <th>Order date:</th><td>{{product.orderDate | date:'short'}}</td>
+                    </tr>
+                    <tr>
+                      <th>Item number:</th><td>{{product.itemNumber}}</td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer task-footer">
+            <button *ngIf="!task.isDone" class="btn btn-emerald-blue">Done</button>
+            <button *ngIf="task.isDone" class="btn btn-danger">Reset</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
