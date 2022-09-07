@@ -9,7 +9,7 @@ import {Subject} from "rxjs";
 
 import {CartFormModel} from "../../models/cart-form.model";
 import {AppState} from "../../../../core/@ngrx";
-import {CartState} from "../../@ngrx";
+import {selectCartForm} from "../../@ngrx";
 
 @Component({
   selector: 'app-destination',
@@ -28,8 +28,8 @@ export class DestinationComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     let observer = {
-      next: (cartState: CartState) => {
-        this.cartForm = {...cartState.cartForm} as CartFormModel;
+      next: (cartForm: CartFormModel) => {
+        this.cartForm = {...cartForm};
       },
       error(err: Error | string) {
         console.log(err);
@@ -40,7 +40,7 @@ export class DestinationComponent implements OnInit, OnDestroy {
     };
 
     this.store.pipe(
-      select('cart'),
+      select(selectCartForm),
       takeUntil(this.componentDestroyed$)
     ).subscribe(observer);
   }

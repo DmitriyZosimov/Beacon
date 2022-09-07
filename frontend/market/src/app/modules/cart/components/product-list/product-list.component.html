@@ -1,6 +1,6 @@
 <div class="d-sm-flex flex-row-reverse">
   <div class="d-lg-flex">
-    <div *ngIf="(products$ | async)?.isCartFormSubmitted">
+    <div *ngIf="isCartFormSubmitted$ | async">
       <div class="card bg-warning rounded mx-2">
         <div class="card-header">
           <span class="fs-4 text-decoration-underline">Destination</span>
@@ -23,20 +23,20 @@
           <p class="text-center fs-2 fst-italic mb-0">{{finalBill | number:'1.0-2'}}</p>
         </div>
         <div class="card-footer d-grid gap-2">
-          <button *ngIf="(products$ | async)?.isCartFormSubmitted"
+          <button *ngIf="isCartFormSubmitted$ | async"
                   type="button"
                   class="btn btn-dark"
                   (click)="onBuy()"
-                  [disabled]="(products$ | async)?.data?.length == 0">
+                  [disabled]="(products$ | async)?.length == 0">
             Buy now
           </button>
-          <button *ngIf="!(products$ | async)?.isCartFormSubmitted" type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#cartFormModal">Make the order</button>
+          <button *ngIf="!(isCartFormSubmitted$ | async)" type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#cartFormModal">Make the order</button>
         </div>
       </div>
     </div>
   </div>
   <div class="w-sm-75">
-    <app-product *ngFor="let product of (products$ | async)?.data"
+    <app-product *ngFor="let product of (products$ | async)"
                  [product]="product"
                  (deleteProduct)="onDeleteProduct($event)"
                  (updateProduct)="onUpdateProduct($event)">

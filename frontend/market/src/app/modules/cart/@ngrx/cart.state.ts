@@ -5,7 +5,6 @@ export interface CartState {
   data: ReadonlyArray<ProductModel>;
   cartForm: Readonly<CartFormModel>;
   isCartFormSubmitted: Readonly<boolean>;
-  selectedProduct: Readonly<ProductModel> | null;
   error: Readonly<Error | string> | null
 }
 
@@ -13,6 +12,5 @@ export const initialCartState: CartState = {
   data: [],
   cartForm: new CartFormModel(),
   isCartFormSubmitted: false,
-  selectedProduct: null,
   error: null
 };

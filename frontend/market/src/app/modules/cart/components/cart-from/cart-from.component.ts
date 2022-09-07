@@ -8,7 +8,7 @@ import {takeUntil} from "rxjs/operators";
 
 import {CartFormModel} from "../../models/cart-form.model";
 import {AppState} from "../../../../core/@ngrx";
-import {CartState} from "../../@ngrx";
+import {selectCartForm} from "../../@ngrx";
 import * as CartActions from '../../@ngrx/cart.actions';
 
 @Component({
@@ -28,8 +28,8 @@ export class CartFromComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     let observer = {
-      next: (cartState: CartState) => {
-        this.cartForm = { ...cartState.cartForm } as CartFormModel;
+      next: (cartForm: CartFormModel) => {
+        this.cartForm = { ...cartForm };
       },
       error(err: Error | string) {
         console.log(err);
@@ -40,7 +40,7 @@ export class CartFromComponent implements OnInit, OnDestroy {
     };
 
     this.store.pipe(
-      select('cart'),
+      select(selectCartForm),
       takeUntil(this.componentDestroyed$)
     ).subscribe(observer);
   }
