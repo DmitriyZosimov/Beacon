@@ -23,7 +23,7 @@ export class CartEffects {
     this.actions$.pipe(
       ofType(CartActions.saveOrder),
       concatMap(value =>
-        this.cartService.saveOrder(value.cartForm, value.products).pipe(
+        this.cartService.saveOrder(value.destination, value.products).pipe(
           map(() => {
             this.router.navigate(['/success']);
             return CartActions.saveOrderSuccess();

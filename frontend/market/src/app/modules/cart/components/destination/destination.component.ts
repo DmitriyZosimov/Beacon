@@ -7,9 +7,9 @@ import {select, Store} from "@ngrx/store";
 import {takeUntil} from "rxjs/operators";
 import {Subject} from "rxjs";
 
-import {CartFormModel} from "../../models/cart-form.model";
+import {DestinationModel} from "../../models/destination.model";
 import {AppState} from "../../../../core/@ngrx";
-import {selectCartForm} from "../../@ngrx";
+import {selectDestination} from "../../@ngrx";
 
 @Component({
   selector: 'app-destination',
@@ -18,7 +18,7 @@ import {selectCartForm} from "../../@ngrx";
 })
 export class DestinationComponent implements OnInit, OnDestroy {
 
-  cartForm!: CartFormModel;
+  destination!: DestinationModel;
   private componentDestroyed$: Subject<void> = new Subject<void>();
 
   constructor(
@@ -28,8 +28,8 @@ export class DestinationComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     let observer = {
-      next: (cartForm: CartFormModel) => {
-        this.cartForm = {...cartForm};
+      next: (destination: DestinationModel) => {
+        this.destination = {...destination};
       },
       error(err: Error | string) {
         console.log(err);
@@ -40,7 +40,7 @@ export class DestinationComponent implements OnInit, OnDestroy {
     };
 
     this.store.pipe(
-      select(selectCartForm),
+      select(selectDestination),
       takeUntil(this.componentDestroyed$)
     ).subscribe(observer);
   }

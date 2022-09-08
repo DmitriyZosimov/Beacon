@@ -28,10 +28,10 @@ export const reducer = createReducer(
       data
     };
   }),
-  on(CartActions.updateCartForm, (state, { cartForm }) => {
+  on(CartActions.updateCartForm, (state, { destination }) => {
     return {
       ...state,
-      cartForm,
+      destination,
       isCartFormSubmitted: true
     };
   }),

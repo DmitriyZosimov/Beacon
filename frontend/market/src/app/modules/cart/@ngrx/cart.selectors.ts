@@ -5,5 +5,5 @@ import { CartState } from './cart.state';
 export const selectCartState = createFeatureSelector<CartState>('cart');
 
 export const selectProductsData = createSelector(selectCartState, (state: CartState) => state.data);
-export const selectCartForm = createSelector(selectCartState, (state: CartState) => state.cartForm);
-export const selectIsCartFormSubmitted = createSelector(selectCartState, (state: CartState) => state.isCartFormSubmitted);
+export const selectDestination = createSelector(selectCartState, (state: CartState) => state.destination);
+export const selectIsDestinationSubmitted = createSelector(selectCartState, (state: CartState) => state.isDestinationSubmitted);

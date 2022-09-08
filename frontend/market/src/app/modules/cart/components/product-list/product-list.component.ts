@@ -4,12 +4,16 @@ import {Observable} from "rxjs";
 //@ngrx
 import {select, Store} from "@ngrx/store";
 import {AppState} from "../../../../core/@ngrx";
-import {selectCartForm, selectIsCartFormSubmitted, selectProductsData} from "../../@ngrx";
+import {
+  selectDestination,
+  selectIsDestinationSubmitted,
+  selectProductsData
+} from "../../@ngrx";
 import * as CartActions from "../../@ngrx";
 
 import {CartService} from "../../services";
 import {ProductModel} from "../../../../model/product";
-import {CartFormModel} from "../../models/cart-form.model";
+import {DestinationModel} from "../../models/destination.model";
 
 @Component({
   selector: 'app-product-list',
@@ -19,8 +23,8 @@ import {CartFormModel} from "../../models/cart-form.model";
 export class ProductListComponent implements OnInit {
 
   products$!: Observable<ReadonlyArray<ProductModel>>;
-  cartForm$!: Observable<Readonly<CartFormModel>>;
-  isCartFormSubmitted$!: Observable<Readonly<boolean>>;
+  destination!: Observable<Readonly<DestinationModel>>;
+  isDestinationSubmitted$!: Observable<Readonly<boolean>>;
 
   constructor(
     private cartService: CartService,
@@ -29,8 +33,8 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit(): void {
     this.products$ = this.cartStore.pipe(select(selectProductsData));
-    this.cartForm$ = this.cartStore.pipe(select(selectCartForm));
-    this.isCartFormSubmitted$ = this.cartStore.pipe(select(selectIsCartFormSubmitted));
+    this.destination = this.cartStore.pipe(select(selectDestination));
+    this.isDestinationSubmitted$ = this.cartStore.pipe(select(selectIsDestinationSubmitted));
   }
 
   onDeleteProduct(product: ProductModel) {
@@ -48,12 +52,12 @@ export class ProductListComponent implements OnInit {
   }
 
   onBuy() {
-    let cartForm;
-    this.cartForm$.subscribe(form => cartForm = {...form});
+    let destination;
+    this.destination.subscribe(form => destination = {...form});
     let products;
     this.products$.subscribe(prod => products = [...prod]);
-    if (cartForm && products) {
-      this.cartStore.dispatch(CartActions.saveOrder({cartForm, products}));
+    if (destination && products) {
+      this.cartStore.dispatch(CartActions.saveOrder({destination, products}));
     }
   }
 }

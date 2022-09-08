@@ -5,7 +5,7 @@ import {Observable, of} from "rxjs";
 import {map} from "rxjs/operators";
 
 import {ProductModel} from "../../../model/product";
-import {CartFormModel} from "../models/cart-form.model";
+import {DestinationModel} from "../models/destination.model";
 import {MobileAPI} from "../../../catalog/mobile/mobile.config";
 import {OrderModel} from "../models/order.model";
 import {ImageAdapter} from "../../../core/adapter";
@@ -20,7 +20,7 @@ export class CartService {
   ) { }
 
   /* Http methods */
-  saveOrder(cartForm: CartFormModel, products: ProductModel[]): Observable<number> {
+  saveOrder(cartForm: DestinationModel, products: ProductModel[]): Observable<number> {
     let headers = new HttpHeaders({
       'Content-type': 'application/json; charset=utf-8'
     });

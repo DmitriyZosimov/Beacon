@@ -1,4 +1,4 @@
-export class CartFormModel {
+export class DestinationModel {
   constructor(
     public isDeliveryToAddress: boolean = true,
     public firstName: string = '',

@@ -1,13 +1,13 @@
-<div *ngIf="cartForm">
-    <div class="fw-bold">{{cartForm.firstName}} {{cartForm.lastName}}</div>
-    <div>{{cartForm.email}}</div>
-    <div>{{cartForm.phoneNumber}}</div>
-    <div>{{cartForm.city}}</div>
-    <div>{{cartForm.street}} {{cartForm.building}}</div>
+<div *ngIf="destination">
+    <div class="fw-bold">{{destination.firstName}} {{destination.lastName}}</div>
+    <div>{{destination.email}}</div>
+    <div>{{destination.phoneNumber}}</div>
+    <div>{{destination.city}}</div>
+    <div>{{destination.street}} {{destination.building}}</div>
     <div>
-      <span *ngIf="cartForm.porch">Porch {{cartForm.porch}}, </span>
-      <span *ngIf="cartForm.floor">Floor {{cartForm.floor}}, </span>
-      <span>Flat {{cartForm.flat}}</span>
+      <span *ngIf="destination.porch">Porch {{destination.porch}}, </span>
+      <span *ngIf="destination.floor">Floor {{destination.floor}}, </span>
+      <span>Flat {{destination.flat}}</span>
     </div>
-    <div *ngIf="cartForm.comment">{{cartForm.comment}}</div>
+    <div *ngIf="destination.comment">{{destination.comment}}</div>
 </div>

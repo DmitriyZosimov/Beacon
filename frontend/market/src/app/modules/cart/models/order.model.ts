@@ -1,10 +1,10 @@
-import {CartFormModel} from "./cart-form.model";
+import {DestinationModel} from "./destination.model";
 import {ProductModel} from "../../../model/product";
 
 export class OrderModel {
 
   constructor(
-    public cartForm: CartFormModel,
+    public destination: DestinationModel,
     public products: Array<ProductModel>
   ) {}
 }
