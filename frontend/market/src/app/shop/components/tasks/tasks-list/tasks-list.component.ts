@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+// @ngrx
+import {select, Store} from "@ngrx/store";
+//rxjs
+import {Observable} from "rxjs";
+
 import {TaskModel} from "../../../models/task.model";
-import {DestinationModel} from "../../../models/destination.model";
-import {ProductModel} from "../../../models/product.model";
+import {AppState} from "../../../../core/@ngrx";
+import {selectTasksData, selectTasksError} from "../../../@ngrx/tasks";
+import * as TasksActions from "../../../@ngrx/tasks/tasks.action";
 
 @Component({
   selector: 'app-tasks-list',
@@ -10,16 +16,26 @@ import {ProductModel} from "../../../models/product.model";
 })
 export class TasksListComponent implements OnInit {
 
-  tasks!: Array<TaskModel>;
-  constructor() { }
+  tasks$!: Observable<ReadonlyArray<TaskModel>>;
+  errors$!: Observable<Error | string | null>;
+  constructor(
+    private store: Store<AppState>
+  ) { }
 
   ngOnInit(): void {
-    this.tasks = [];
-    let destination = new DestinationModel('Dmitriy', 'Zosimov', 'zos@mail.ru', '+375291397045',
-      'Minsk', 'atakum bulvari', '187', 4, 1, 7, 'I want a pizza', 1);
-    let newProduct = new ProductModel(1, 'Apple', '13', 'black', 1100.6, new Date(), '111');
-    this.tasks.push(new TaskModel(1, destination, [newProduct, newProduct], false));
-    this.tasks.push(new TaskModel(1, destination, [newProduct, newProduct], true));
+    this.tasks$ = this.store.pipe(select(selectTasksData));
+    this.errors$ = this.store.pipe(select(selectTasksError));
+    this.store.dispatch(TasksActions.getTasks())
+  }
+
+  onDone(task: TaskModel) {
+    task.isDone = true;
+    this.store.dispatch(TasksActions.updateTask({task}))
+  }
+
+  onReset(task: TaskModel) {
+    task.isDone = false;
+    this.store.dispatch(TasksActions.updateTask({task}))
   }
 
 }

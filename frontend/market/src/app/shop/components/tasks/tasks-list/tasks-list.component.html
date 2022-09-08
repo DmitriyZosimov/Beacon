@@ -2,8 +2,11 @@
   <div class="border-bottom">
     <h1>Tasks</h1>
   </div>
+  <div class="alert alert-danger" role="alert" *ngIf="(errors$ | async) as errorMessage">
+    <i class="bi bi-exclamation-triangle-fill"></i> {{errorMessage}}
+  </div>
   <div>
-    <div *ngFor="let task of tasks">
+    <div *ngFor="let task of (tasks$ | async)">
       <div class="mb-3">
         <div class="card shadow">
           <div class="card-header task-header" [class]="task.isDone ? 'bg-color-cinnamon': 'bg-color-caramel'">
@@ -65,8 +68,8 @@
             </div>
           </div>
           <div class="card-footer task-footer">
-            <button *ngIf="!task.isDone" class="btn btn-emerald-blue">Done</button>
-            <button *ngIf="task.isDone" class="btn btn-danger">Reset</button>
+            <button *ngIf="!task.isDone" class="btn btn-emerald-blue" (click)="onDone(task)">Done</button>
+            <button *ngIf="task.isDone" class="btn btn-danger" (click)="onReset(task)">Reset</button>
           </div>
         </div>
       </div>
