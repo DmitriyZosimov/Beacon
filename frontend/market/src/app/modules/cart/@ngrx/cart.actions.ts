@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import {ProductModel} from "../../../model/product";
-import {DestinationModel} from "../models/destination.model";
+import {DestinationModel} from "../../../model/destination";
 
 export const addProduct = createAction(
   '[Product (Mobile) Page] ADD_PRODUCT',

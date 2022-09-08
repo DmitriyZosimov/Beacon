@@ -32,7 +32,7 @@ export const reducer = createReducer(
     return {
       ...state,
       destination,
-      isCartFormSubmitted: true
+      isDestinationSubmitted: true
     };
   }),
   on(CartActions.saveOrderSuccess, (state) => {

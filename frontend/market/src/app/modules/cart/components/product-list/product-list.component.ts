@@ -13,7 +13,7 @@ import * as CartActions from "../../@ngrx";
 
 import {CartService} from "../../services";
 import {ProductModel} from "../../../../model/product";
-import {DestinationModel} from "../../models/destination.model";
+import {DestinationModel} from "../../../../model/destination";
 
 @Component({
   selector: 'app-product-list',

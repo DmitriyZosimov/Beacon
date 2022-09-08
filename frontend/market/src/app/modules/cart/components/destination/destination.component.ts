@@ -7,7 +7,7 @@ import {select, Store} from "@ngrx/store";
 import {takeUntil} from "rxjs/operators";
 import {Subject} from "rxjs";
 
-import {DestinationModel} from "../../models/destination.model";
+import {DestinationModel} from "../../../../model/destination";
 import {AppState} from "../../../../core/@ngrx";
 import {selectDestination} from "../../@ngrx";
 

@@ -1,4 +1,4 @@
-import {DestinationModel} from "./destination.model";
+import {DestinationModel} from "../../model/destination/destination.model";
 import {ProductModel} from "./product.model";
 
 export class TaskModel {

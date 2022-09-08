@@ -5,7 +5,7 @@ import {Observable, of} from "rxjs";
 import {map} from "rxjs/operators";
 
 import {ProductModel} from "../../../model/product";
-import {DestinationModel} from "../models/destination.model";
+import {DestinationModel} from "../../../model/destination";
 import {MobileAPI} from "../../../catalog/mobile/mobile.config";
 import {OrderModel} from "../models/order.model";
 import {ImageAdapter} from "../../../core/adapter";

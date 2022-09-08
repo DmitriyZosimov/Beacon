@@ -7,7 +7,7 @@ export class DestinationModel {
     public city: string = 'Minsk',
     public street: string = '',
     public building: string = '',
-    public flat: number,
+    public flat?: number,
     public porch?: number,
     public floor?: number,
     public comment?: string,
