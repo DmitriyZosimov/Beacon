@@ -1,6 +1,9 @@
 .task-header {
   background-color: #323030;
 }
+.task-header-success {
+  background-color: seagreen;
+}
 .task-body, .task-footer {
   background-color: #FFF9EC;
 }

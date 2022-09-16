@@ -24,9 +24,8 @@ export class TasksEffects {
     this.actions$.pipe(
       ofType(TasksActions.getTasks),
       switchMap(action => {
-        console.log(this.activatedRoute.snapshot.firstChild?.url[0]);
-        let shopId = this.activatedRoute.snapshot.firstChild?.url[0].path;
-        return this.tasksService.getTasks('3').pipe(
+        let shopId = this.activatedRoute.snapshot.firstChild?.firstChild?.url[0].path;
+        return this.tasksService.getTasks(shopId!).pipe(
           map(tasks => TasksActions.getTasksSuccess({ tasks })),
           catchError(error => of(TasksActions.getTasksFailure({ error })))
         )
@@ -39,8 +38,8 @@ export class TasksEffects {
       ofType(TasksActions.updateTask),
       pluck('task'),
       concatMap((task: TaskModel) => {
-        let shopId = this.activatedRoute.snapshot.url[0].path;
-        return this.tasksService.updateTask(shopId, task).pipe(
+        let shopId = this.activatedRoute.snapshot.firstChild?.firstChild?.url[0].path;
+        return this.tasksService.updateTask(shopId!, task).pipe(
           map(task => TasksActions.updateTaskSuccess({ task })),
           catchError(error => of(TasksActions.updateTaskFaluire({ error })))
         )

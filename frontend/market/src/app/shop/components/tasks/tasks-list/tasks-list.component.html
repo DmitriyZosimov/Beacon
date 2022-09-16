@@ -9,63 +9,68 @@
     <div *ngFor="let task of (task$ | async)">
       <div class="mb-3">
         <div class="card shadow">
-          <div class="card-header task-header" [class]="isDone(task) ? 'bg-color-cinnamon': 'bg-color-caramel'">
+          <div class="card-header" [class]="isDone(task) ? 'task-header-success': 'task-header'">
             <span class="text-white">Task</span>
             <span *ngIf="isDone(task)" class="fst-italic text-white"> (Done)</span>
           </div>
-          <div class="card-body row task-body">
-            <div class="col-md-3">
-              <ul>
-                <li *ngIf="task.isDeliveryToAddress">Delivery to address</li>
-                <li>
-                  <span class="fw-bold">Contact information</span>
-                  <ul>
-                    <li>{{task.firstName}} {{task.lastName}}</li>
-                    <li>{{task.phoneNumber}}</li>
-                    <li>{{task.email}}</li>
-                    <li>{{task.city}}</li>
-                    <li>{{task.street}} {{task.building}}</li>
-                    <li>
-                      <span *ngIf="task.porch as porch">Porch {{porch}}, </span>
-                      <span *ngIf="task.floor as floor">floor {{floor}}, </span>
-                      <span>door {{task.flat}}</span>
-                    </li>
-                    <li *ngIf="task.comment as comment">Comment:<br>
-                      <span>{{comment}}</span>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
-            <div class="col-md-9">
-              <span class="fw-bold">Orders:</span>
-              <div class="d-md-flex flex-wrap">
-                <div class="list-group me-md-3" *ngFor="let order of task.orders">
-                  <table class="list-group-item table task-products">
-                    <tbody>
-                    <tr>
-                      <th>Brand:</th><td>{{order.mobile?.brand}}</td>
-                    </tr>
-                    <tr>
-                      <th>Model:</th><td>{{order.mobile?.model}}</td>
-                    </tr>
-                    <tr>
-                      <th>Color:</th><td>{{order.mobile?.color}}</td>
-                    </tr>
-                    <tr>
-                      <th>Price:</th><td>{{order.price}}</td>
-                    </tr>
-                    <tr>
-                      <th>Count:</th><td>{{order.count}}</td>
-                    </tr>
-                    <tr>
-                      <th>Total price:</th><td class="fw-bold fst-italic">{{order.price! * order.count!}}</td>
-                    </tr>
-                    <tr>
-                      <th>Order date:</th><td>{{order.registeredDate | date:'short'}}</td>
-                    </tr>
-                    </tbody>
-                  </table>
+          <div class="card-body task-body">
+            <div class="row">
+              <div class="col-md-3">
+                <ul>
+                  <li *ngIf="task.isDeliveryToAddress">Delivery to address</li>
+                  <li>
+                    <span class="fw-bold">Contact information</span>
+                    <ul>
+                      <li>{{task.firstName}} {{task.lastName}}</li>
+                      <li>{{task.phoneNumber}}</li>
+                      <li>{{task.email}}</li>
+                      <li>{{task.city}}</li>
+                      <li>{{task.street}} {{task.building}}</li>
+                      <li>
+                        <span *ngIf="task.porch as porch">Porch {{porch}}, </span>
+                        <span *ngIf="task.floor as floor">floor {{floor}}, </span>
+                        <span>door {{task.flat}}</span>
+                      </li>
+                      <li *ngIf="task.comment as comment">Comment:<br>
+                        <span>{{comment}}</span>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    Status: <span class="fw-bold fs-4">{{task.state}}</span>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-md-9">
+                <span class="fw-bold">Orders:</span>
+                <div class="d-md-flex flex-wrap">
+                  <div class="list-group me-md-3" *ngFor="let order of task.orders">
+                    <table class="list-group-item table task-products">
+                      <tbody>
+                      <tr>
+                        <th>Brand:</th><td>{{order.mobile?.brand}}</td>
+                      </tr>
+                      <tr>
+                        <th>Model:</th><td>{{order.mobile?.model}}</td>
+                      </tr>
+                      <tr>
+                        <th>Color:</th><td>{{order.mobile?.color}}</td>
+                      </tr>
+                      <tr>
+                        <th>Price:</th><td>{{order.price}}</td>
+                      </tr>
+                      <tr>
+                        <th>Count:</th><td>{{order.count}}</td>
+                      </tr>
+                      <tr>
+                        <th>Total price:</th><td class="fw-bold fst-italic">{{order.price! * order.count!}}</td>
+                      </tr>
+                      <tr>
+                        <th>Order date:</th><td>{{order.registeredDate | date:'short'}}</td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
             </div>

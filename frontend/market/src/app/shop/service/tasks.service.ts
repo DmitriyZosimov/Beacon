@@ -7,7 +7,12 @@ import {catchError, map} from "rxjs/operators";
 
 import {ErrorHandlerService} from "../../core/services";
 import {Cookie} from "ng2-cookies";
-import {TaskModel} from "../../model/task";
+import {TaskModel, TaskStateEnum} from "../../model/task";
+
+interface StateUpdating {
+  taskId: BigInteger,
+  state: TaskStateEnum
+}
 
 @Injectable({
   providedIn: 'any'
@@ -37,12 +42,15 @@ export class TasksService {
   }
 
   updateTask(id: string, task: TaskModel): Observable<TaskModel> {
-    let headers = new HttpHeaders({
-      'Content-type': 'application/json; charset=utf-8',
-      'Authorization': 'Bearer ' + Cookie.get('access_token')
-    });
-    return this.httpClient.put(`${this.shopServer}/${id}/tasks`, {
-      headers: headers,
+    // let headers = new HttpHeaders({
+    //   'Content-type': 'application/json; charset=utf-8',
+    //   'Authorization': 'Bearer ' + Cookie.get('access_token')
+    // });
+    const request = {} as StateUpdating;
+    request.taskId = task.taskId!;
+    request.state = task.state;
+    return this.httpClient.put(`http://localhost:8010/shop/${id}/tasks`, request, {
+      // headers: headers,
       responseType: 'json',
       observe: 'response'
     }).pipe(
