@@ -2,11 +2,11 @@
   "id": "catalog",
   "realm": "catalog",
   "displayName": "Beacon catalog",
-  "notBefore": 1659370244,
+  "notBefore": 1661437686,
   "defaultSignatureAlgorithm": "RS256",
   "revokeRefreshToken": false,
   "refreshTokenMaxReuse": 0,
-  "accessTokenLifespan": 60,
+  "accessTokenLifespan": 300,
   "accessTokenLifespanForImplicitFlow": 900,
   "ssoSessionIdleTimeout": 1800,
   "ssoSessionMaxLifespan": 36000,
@@ -61,13 +61,121 @@
         "attributes": {}
       },
       {
-        "id": "3f77ae04-b2d4-4585-a707-7b8b3ff6ec87",
-        "name": "uma_authorization",
-        "description": "${role_uma_authorization}",
+        "id": "1bf93c5b-bfc0-4d0d-b1b5-8515c1e28026",
+        "name": "Manager-21Vek",
+        "description": "a manager of the 21 Vek shop",
+        "composite": true,
+        "composites": {
+          "realm": [
+            "Shop-manager",
+            "Employee-21vek"
+          ]
+        },
+        "clientRole": false,
+        "containerId": "catalog",
+        "attributes": {
+          "name": [
+            "Manager-21Vek"
+          ],
+          "shop": [
+            "21Vek"
+          ]
+        }
+      },
+      {
+        "id": "4ad01698-1f54-4015-b77d-fad75d508a5d",
+        "name": "Manager-TechnoMir",
+        "description": "a manager of the TechnoMir shop",
+        "composite": true,
+        "composites": {
+          "realm": [
+            "Shop-manager",
+            "Employee-TechnoMir"
+          ]
+        },
+        "clientRole": false,
+        "containerId": "catalog",
+        "attributes": {
+          "name": [
+            "Manager-TechnoMir"
+          ],
+          "shop": [
+            "TechnoMir"
+          ]
+        }
+      },
+      {
+        "id": "ff63a723-f02d-4a66-827e-5e607fcf0d8e",
+        "name": "Employee-5element",
+        "description": "an employee of the 5 element shop",
+        "composite": true,
+        "composites": {
+          "realm": [
+            "Employee"
+          ]
+        },
+        "clientRole": false,
+        "containerId": "catalog",
+        "attributes": {
+          "name": [
+            "employee-5element"
+          ],
+          "shop": [
+            "5 element"
+          ]
+        }
+      },
+      {
+        "id": "2909023b-7488-41bf-b4e5-9ab42c9f31ba",
+        "name": "Manager-TTN",
+        "description": "a manager of the TTN shop",
+        "composite": true,
+        "composites": {
+          "realm": [
+            "Shop-manager",
+            "Employee-TTN"
+          ]
+        },
+        "clientRole": false,
+        "containerId": "catalog",
+        "attributes": {
+          "name": [
+            "Manager-TTN"
+          ],
+          "shop": [
+            "TTN"
+          ]
+        }
+      },
+      {
+        "id": "0008d45f-0cd5-44c5-9ce4-dbc6e80a1b85",
+        "name": "Writer",
+        "description": "It is a simple role. The role indicates a user can create a content (like creating a new phone, computer, post and so on)",
         "composite": false,
         "clientRole": false,
         "containerId": "catalog",
         "attributes": {}
+      },
+      {
+        "id": "3a6e1f79-b07c-4a8b-b6c6-46623b0c2942",
+        "name": "Employee-7745.by",
+        "description": "an employee of the 7745.by shop",
+        "composite": true,
+        "composites": {
+          "realm": [
+            "Employee"
+          ]
+        },
+        "clientRole": false,
+        "containerId": "catalog",
+        "attributes": {
+          "name": [
+            "employee-7745.by"
+          ],
+          "shop": [
+            "7745.by"
+          ]
+        }
       },
       {
         "id": "aa3b546a-3611-47fd-ac90-82cf791900ee",
@@ -85,13 +193,97 @@
         "attributes": {}
       },
       {
-        "id": "ddf7eab8-84fd-4b43-90db-457afec792da",
-        "name": "Reader",
-        "description": "It is a simple role. The role indicates a user can read a content.",
+        "id": "b17b4fbf-3e59-4731-891d-f854b4c4be47",
+        "name": "Shop-manager",
+        "description": "A manager of shop",
+        "composite": true,
+        "composites": {
+          "realm": [
+            "Employee",
+            "Manager"
+          ]
+        },
+        "clientRole": false,
+        "containerId": "catalog",
+        "attributes": {
+          "name": [
+            "shop-manager"
+          ]
+        }
+      },
+      {
+        "id": "865f50e2-2561-4e6f-a3ad-83377db1ee2c",
+        "name": "Employee-TTN",
+        "description": "an employee of the TTN shop",
+        "composite": true,
+        "composites": {
+          "realm": [
+            "Employee"
+          ]
+        },
+        "clientRole": false,
+        "containerId": "catalog",
+        "attributes": {
+          "name": [
+            "employee-ttn"
+          ],
+          "shop": [
+            "TTN"
+          ]
+        }
+      },
+      {
+        "id": "61fb17b7-a076-4f56-b856-22fef85ebdd9",
+        "name": "Manager-Beacon",
+        "description": "a manager of the Beacon shop",
+        "composite": true,
+        "composites": {
+          "realm": [
+            "Shop-manager",
+            "Employee-Beacon"
+          ]
+        },
+        "clientRole": false,
+        "containerId": "catalog",
+        "attributes": {
+          "name": [
+            "Manager-Beacon"
+          ],
+          "shop": [
+            "Beacon"
+          ]
+        }
+      },
+      {
+        "id": "3f77ae04-b2d4-4585-a707-7b8b3ff6ec87",
+        "name": "uma_authorization",
+        "description": "${role_uma_authorization}",
         "composite": false,
         "clientRole": false,
         "containerId": "catalog",
         "attributes": {}
+      },
+      {
+        "id": "ae51b1ee-9e1f-4ba9-bf21-104de6e97d2a",
+        "name": "Manager-5Element",
+        "description": "a manager of the 5 Element shop",
+        "composite": true,
+        "composites": {
+          "realm": [
+            "Shop-manager",
+            "Employee-5element"
+          ]
+        },
+        "clientRole": false,
+        "containerId": "catalog",
+        "attributes": {
+          "name": [
+            "Manager-5Element"
+          ],
+          "shop": [
+            "5 Element"
+          ]
+        }
       },
       {
         "id": "1404b49d-89e5-400b-a4c6-56eaf8cc35d6",
@@ -130,6 +322,48 @@
         "attributes": {}
       },
       {
+        "id": "65db1381-3aea-49d8-b953-ac8318ed7469",
+        "name": "Employee-EVROSET",
+        "description": "an employee of the EVROSET shop",
+        "composite": true,
+        "composites": {
+          "realm": [
+            "Employee"
+          ]
+        },
+        "clientRole": false,
+        "containerId": "catalog",
+        "attributes": {
+          "name": [
+            "employee-evroset"
+          ],
+          "shop": [
+            "ENVROSET"
+          ]
+        }
+      },
+      {
+        "id": "6d11bfd3-c808-49b8-bcf9-dfc6c186eb72",
+        "name": "Employee-21vek",
+        "description": "an employee of the 21 vek shop",
+        "composite": true,
+        "composites": {
+          "realm": [
+            "Employee"
+          ]
+        },
+        "clientRole": false,
+        "containerId": "catalog",
+        "attributes": {
+          "name": [
+            "empoyee-21vek"
+          ],
+          "shop": [
+            "21 vek"
+          ]
+        }
+      },
+      {
         "id": "bf2bab76-ef8f-47e0-bcbc-8c88441a5159",
         "name": "User",
         "description": "It is a plain user role. Include a Reader role.",
@@ -144,15 +378,6 @@
         "attributes": {}
       },
       {
-        "id": "0008d45f-0cd5-44c5-9ce4-dbc6e80a1b85",
-        "name": "Writer",
-        "description": "It is a simple role. The role indicates a user can create a content (like creating a new phone, computer, post and so on)",
-        "composite": false,
-        "clientRole": false,
-        "containerId": "catalog",
-        "attributes": {}
-      },
-      {
         "id": "9eb4f416-954c-496e-afde-733f82349746",
         "name": "offline_access",
         "description": "${role_offline-access}",
@@ -160,6 +385,162 @@
         "clientRole": false,
         "containerId": "catalog",
         "attributes": {}
+      },
+      {
+        "id": "9815c737-8a98-4a0b-89d7-2a285a48a9c6",
+        "name": "Manager-EVROSET",
+        "description": "a manager of the EVROSET shop",
+        "composite": true,
+        "composites": {
+          "realm": [
+            "Shop-manager",
+            "Employee-EVROSET"
+          ]
+        },
+        "clientRole": false,
+        "containerId": "catalog",
+        "attributes": {
+          "name": [
+            "Manager-EVROSET"
+          ],
+          "shop": [
+            "EVROSET"
+          ]
+        }
+      },
+      {
+        "id": "ddf7eab8-84fd-4b43-90db-457afec792da",
+        "name": "Reader",
+        "description": "It is a simple role. The role indicates a user can read a content.",
+        "composite": false,
+        "clientRole": false,
+        "containerId": "catalog",
+        "attributes": {}
+      },
+      {
+        "id": "ab58b0f1-be01-4d8c-bd9f-3dcb16b036c1",
+        "name": "Employee-sila.by",
+        "description": "an employee of the sila.by shop",
+        "composite": true,
+        "composites": {
+          "realm": [
+            "Employee"
+          ]
+        },
+        "clientRole": false,
+        "containerId": "catalog",
+        "attributes": {
+          "name": [
+            "employee-sila.by"
+          ],
+          "shop": [
+            "sila.by"
+          ]
+        }
+      },
+      {
+        "id": "75447055-5602-4144-a23a-93d1d9bca54d",
+        "name": "Employee",
+        "description": "A plain role of shop employee",
+        "composite": true,
+        "composites": {
+          "realm": [
+            "Consumer"
+          ]
+        },
+        "clientRole": false,
+        "containerId": "catalog",
+        "attributes": {
+          "name": [
+            "employee"
+          ]
+        }
+      },
+      {
+        "id": "ca5189ed-18f8-4e79-92f4-06ac93c8742e",
+        "name": "Manager-7745.by",
+        "description": "a manager of the 7745.by shop",
+        "composite": true,
+        "composites": {
+          "realm": [
+            "Shop-manager",
+            "Employee-7745.by"
+          ]
+        },
+        "clientRole": false,
+        "containerId": "catalog",
+        "attributes": {
+          "name": [
+            "Manager-7745.by"
+          ],
+          "shop": [
+            "7745.by"
+          ]
+        }
+      },
+      {
+        "id": "1487206d-dae4-418e-afde-87a1e67259f3",
+        "name": "Employee-TechnoMir",
+        "description": "an employee of the TechnoMir shop",
+        "composite": true,
+        "composites": {
+          "realm": [
+            "Employee"
+          ]
+        },
+        "clientRole": false,
+        "containerId": "catalog",
+        "attributes": {
+          "name": [
+            "Employee-TechnoMir"
+          ],
+          "shop": [
+            "TechnoMir"
+          ]
+        }
+      },
+      {
+        "id": "f5ebc20f-da6f-4934-be2a-f3a72809d0a8",
+        "name": "Employee-Beacon",
+        "description": "an employee of the Beacon shop",
+        "composite": true,
+        "composites": {
+          "realm": [
+            "Employee"
+          ]
+        },
+        "clientRole": false,
+        "containerId": "catalog",
+        "attributes": {
+          "name": [
+            "Employee-Beacon"
+          ],
+          "shop": [
+            "Beacon"
+          ]
+        }
+      },
+      {
+        "id": "302ff93e-e0e5-4f5f-8abd-dfcdf761b107",
+        "name": "Manager-sila.by",
+        "description": "a manager of the sila.by shop",
+        "composite": true,
+        "composites": {
+          "realm": [
+            "Shop-manager",
+            "Employee-sila.by"
+          ]
+        },
+        "clientRole": false,
+        "containerId": "catalog",
+        "attributes": {
+          "name": [
+            "Manager-sila.by"
+          ],
+          "shop": [
+            "sila.by"
+          ]
+        }
       }
     ],
     "client": {
@@ -471,7 +852,145 @@
       ]
     }
   },
-  "groups": [],
+  "groups": [
+    {
+      "id": "0cbe9d77-04dd-4507-abeb-ec27438c5bb6",
+      "name": "21 Vek",
+      "path": "/21 Vek",
+      "attributes": {
+        "name": [
+          "21 Vek"
+        ],
+        "shop": [
+          "21 Vek"
+        ]
+      },
+      "realmRoles": [
+        "Employee-21vek"
+      ],
+      "clientRoles": {},
+      "subGroups": []
+    },
+    {
+      "id": "c0503085-21a2-4f99-b859-709c8b1b20cb",
+      "name": "5 Element",
+      "path": "/5 Element",
+      "attributes": {
+        "name": [
+          "5 Element"
+        ],
+        "shop": [
+          "5 Element"
+        ]
+      },
+      "realmRoles": [
+        "Employee-5element"
+      ],
+      "clientRoles": {},
+      "subGroups": []
+    },
+    {
+      "id": "e353459f-f3dd-42cf-b5fa-3678d8cfb89e",
+      "name": "7745.by",
+      "path": "/7745.by",
+      "attributes": {
+        "name": [
+          "7745.by"
+        ],
+        "shop": [
+          "7745.by"
+        ]
+      },
+      "realmRoles": [
+        "Employee-7745.by"
+      ],
+      "clientRoles": {},
+      "subGroups": []
+    },
+    {
+      "id": "b4f99af2-ff12-43e5-b2c2-8a646da85689",
+      "name": "Beacon",
+      "path": "/Beacon",
+      "attributes": {
+        "name": [
+          "Beacon"
+        ],
+        "shop": [
+          "Beacon"
+        ]
+      },
+      "realmRoles": [
+        "Employee-Beacon"
+      ],
+      "clientRoles": {},
+      "subGroups": []
+    },
+    {
+      "id": "37c1e0b1-5bab-4d59-8ecc-1cf2048cafff",
+      "name": "EVROSET",
+      "path": "/EVROSET",
+      "attributes": {
+        "name": [
+          "EVROSET"
+        ],
+        "shop": [
+          "EVROSET"
+        ]
+      },
+      "realmRoles": [
+        "Employee-EVROSET"
+      ],
+      "clientRoles": {},
+      "subGroups": []
+    },
+    {
+      "id": "6c8ffe90-470d-4ade-a644-3284bd9f7f6b",
+      "name": "TTN",
+      "path": "/TTN",
+      "attributes": {},
+      "realmRoles": [
+        "Employee-TTN"
+      ],
+      "clientRoles": {},
+      "subGroups": []
+    },
+    {
+      "id": "3edcc062-e91e-455d-8feb-4095f285efb5",
+      "name": "TechnoMir",
+      "path": "/TechnoMir",
+      "attributes": {
+        "name": [
+          "TechnoMir"
+        ],
+        "shop": [
+          "TechnoMir"
+        ]
+      },
+      "realmRoles": [
+        "Employee-TechnoMir"
+      ],
+      "clientRoles": {},
+      "subGroups": []
+    },
+    {
+      "id": "855b014b-d9ec-48f0-9b4f-b35a528ac4a1",
+      "name": "sila.by",
+      "path": "/sila.by",
+      "attributes": {
+        "name": [
+          "sila.by"
+        ],
+        "shop": [
+          "sila.by"
+        ]
+      },
+      "realmRoles": [
+        "Employee-sila.by"
+      ],
+      "clientRoles": {},
+      "subGroups": []
+    }
+  ],
   "defaultRole": {
     "id": "1404b49d-89e5-400b-a4c6-56eaf8cc35d6",
     "name": "default-roles-catalog",
@@ -1532,37 +2051,6 @@
   "components": {
     "org.keycloak.services.clientregistration.policy.ClientRegistrationPolicy": [
       {
-        "id": "e7043aeb-326d-4237-9d60-f15bb77af64c",
-        "name": "Trusted Hosts",
-        "providerId": "trusted-hosts",
-        "subType": "anonymous",
-        "subComponents": {},
-        "config": {
-          "host-sending-registration-request-must-match": [
-            "true"
-          ],
-          "client-uris-must-match": [
-            "true"
-          ]
-        }
-      },
-      {
-        "id": "8dd96097-4c0f-4ae1-8bd9-b279f364b6c5",
-        "name": "Full Scope Disabled",
-        "providerId": "scope",
-        "subType": "anonymous",
-        "subComponents": {},
-        "config": {}
-      },
-      {
-        "id": "51213df1-68f5-4b16-a8f3-950f89d0a35d",
-        "name": "Consent Required",
-        "providerId": "consent-required",
-        "subType": "anonymous",
-        "subComponents": {},
-        "config": {}
-      },
-      {
         "id": "3908db19-c639-42bf-9780-0fde0ac05a77",
         "name": "Allowed Protocol Mapper Types",
         "providerId": "allowed-protocol-mappers",
@@ -1582,6 +2070,21 @@
         }
       },
       {
+        "id": "e7043aeb-326d-4237-9d60-f15bb77af64c",
+        "name": "Trusted Hosts",
+        "providerId": "trusted-hosts",
+        "subType": "anonymous",
+        "subComponents": {},
+        "config": {
+          "host-sending-registration-request-must-match": [
+            "true"
+          ],
+          "client-uris-must-match": [
+            "true"
+          ]
+        }
+      },
+      {
         "id": "0f8acbc7-07d6-47b6-81e6-1953ab40f0f6",
         "name": "Allowed Client Scopes",
         "providerId": "allowed-client-templates",
@@ -1592,6 +2095,14 @@
             "true"
           ]
         }
+      },
+      {
+        "id": "8dd96097-4c0f-4ae1-8bd9-b279f364b6c5",
+        "name": "Full Scope Disabled",
+        "providerId": "scope",
+        "subType": "anonymous",
+        "subComponents": {},
+        "config": {}
       },
       {
         "id": "d2528f2c-91a2-4a44-a4c3-dbef94438355",
@@ -1635,12 +2146,12 @@
             "200"
           ]
         }
-      }
-    ],
-    "org.keycloak.userprofile.UserProfileProvider": [
+      },
       {
-        "id": "35df86d5-1712-474e-9217-3f1cc3eaa658",
-        "providerId": "declarative-user-profile",
+        "id": "51213df1-68f5-4b16-a8f3-950f89d0a35d",
+        "name": "Consent Required",
+        "providerId": "consent-required",
+        "subType": "anonymous",
         "subComponents": {},
         "config": {}
       }
@@ -2395,4 +2906,4 @@
   "clientPolicies": {
     "policies": []
   }
-}
+} 
