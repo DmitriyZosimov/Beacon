@@ -12,11 +12,12 @@ import java.util.Map;
  */
 public class WorkingHoursBuilder {
 
-    private static final WorkingHoursBuilder BUILDER = new WorkingHoursBuilder();
+    private static WorkingHoursBuilder BUILDER;
 
     Map<DayOfWeek, WorkingHours> workingHoursMap = new HashMap<>();
 
     public static WorkingHoursBuilder create() {
+        BUILDER = new WorkingHoursBuilder();
         return BUILDER;
     }
 

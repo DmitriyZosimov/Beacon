@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class MobileFullBuilder {
 
-    private static MobileFullBuilder INSTANCE = new MobileFullBuilder();
+    private static MobileFullBuilder INSTANCE;
     private String mobileId;
     private String brand;
     private String model;
@@ -72,6 +72,7 @@ public class MobileFullBuilder {
     private List<MobileNotMainImage> notMainImages;
 
     public static MobileFullBuilder create() {
+        INSTANCE = new MobileFullBuilder();
         return INSTANCE;
     }
 

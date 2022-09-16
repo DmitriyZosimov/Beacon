@@ -14,7 +14,7 @@ import java.util.Set;
  */
 public class ShopBuilder {
 
-    private static ShopBuilder INSTANCE = new ShopBuilder();
+    private static ShopBuilder INSTANCE;
 
     private Long shopId;
     private String name;
@@ -24,6 +24,7 @@ public class ShopBuilder {
     private Logo logo;
 
     public static ShopBuilder create() {
+        INSTANCE = new ShopBuilder();
         return INSTANCE;
     }
 
