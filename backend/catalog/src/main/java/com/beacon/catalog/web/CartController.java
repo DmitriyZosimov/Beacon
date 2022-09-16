@@ -1,5 +1,7 @@
 package com.beacon.catalog.web;
 
+import com.beacon.catalog.service.TaskService;
+import com.beacon.model.order.Task;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -11,9 +13,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/cart")
 public class CartController {
 
+    private TaskService taskService;
+
+    public CartController(TaskService taskService) {
+        this.taskService = taskService;
+    }
+
     @PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity createOrder(@RequestBody Object object) {
-        System.out.println("Order " + object.toString());
-        return ResponseEntity.ok().build();
+    public ResponseEntity createTask(@RequestBody Task Task) {
+        return this.taskService.saveTask(Task) ? ResponseEntity.created(null).build()
+                : ResponseEntity.badRequest().body("Something went wrong. Try to send request later");
     }
 }
