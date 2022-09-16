@@ -52,7 +52,8 @@ INSERT INTO task (building, city, comment, email, first_name, flat, floor, last_
 ('12', 'Mercin', 'I want a car', 'mercin@email.com', 'Steve', 2, 1, 'Lill', '+133333333', 1, 'Second street', 1),
 ('12', 'Mercin', 'I want a car', 'mercin@email.com', 'Steve', 2, 1, 'Lill', '+133333333', 1, 'Second street', 1),
 ('12', 'Mercin', 'I want a car', 'mercin@email.com', 'Steve', 2, 1, 'Lill', '+133333333', 1, 'Second street', 1),
-('100', 'Bursa', 'I want a flat', 'bursa@email.com', 'Vlad', 34, 7, 'Dracula', '+144444444', 2, 'Transelvania street', 1);
+('100', 'Bursa', 'I want a flat', 'bursa@email.com', 'Vlad', 34, 7, 'Dracula', '+144444444', 2, 'Transelvania street', 1),
+('11', 'Ankara', 'I want money', 'ankara@email.com', 'Vsevolod', 56, 4, 'Ivanov', '+14555555', 2, 'Main street', 0);
 
 INSERT INTO orders (task_id, mobile_id, price, count, registered_date, shop_id) VALUES
 (1, 'honor508128black', 2405.8, 1, '2022-02-02', 1),
@@ -64,4 +65,7 @@ INSERT INTO orders (task_id, mobile_id, price, count, registered_date, shop_id) 
 (5, 'pocox3pro8256green', 2900.3, 2, '2022-03-02', 7),
 (6, 'honor508128black', 2306.4, 3, '2022-03-03', 5),
 (7, 'honor508128black', 2405.8, 3, '2022-03-03', 1),
-(7, 'pocox3pro8256green', 2435.2, 2, '2022-04-03', 1);
+(8, 'pocox3pro8256green', 2435.2, 2, '2022-04-03', 1),
+(8, 'honor508128black', 2405.8, 2, '2022-04-03', 1),
+(9, 'pocox3pro8256green', 2435.2, 2, '2022-04-03', 1),
+(9, 'honor508128black', 2405.8, 2, '2022-04-03', 1);

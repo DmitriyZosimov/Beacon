@@ -12,6 +12,8 @@ import org.springframework.test.context.ContextConfiguration;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicLong;
+import java.util.concurrent.atomic.AtomicReference;
 
 @DataJpaTest
 @ContextConfiguration(classes = DaoConfiguration.class)
@@ -19,6 +21,31 @@ public class TaskDaoIT implements TestTaskBuilder {
 
     @Autowired
     TaskDao taskDao;
+
+    @Test
+    public void shouldReturnOrderedListOfTask() {
+        AtomicReference<TaskState> currentState = new AtomicReference(TaskState.NEW);
+        AtomicLong currentTaskId = new AtomicLong(0L);
+        long shopId = 1L;
+        List<Task> tasks = taskDao.findAllByShopIdInOrders(shopId);
+        Assertions.assertFalse(tasks.isEmpty());
+        tasks.forEach(task -> {
+            if (!task.getState().equals(currentState.get())) {
+                if (TaskState.NEW.equals(currentState.get())) {
+                    Assertions.assertEquals(TaskState.IN_PROGRESS, task.getState());
+                } else if (TaskState.IN_PROGRESS.equals(currentState.get())) {
+                    Assertions.assertEquals(TaskState.COMPLETED, task.getState());
+                } else if (TaskState.COMPLETED.equals(currentState.get())) {
+                    Assertions.assertEquals(TaskState.CANCELLED, task.getState());
+                }
+                currentState.set(task.getState());
+                currentTaskId.set(0L);
+            } else {
+                Assertions.assertTrue(currentTaskId.get() <= task.getTaskId());
+                currentTaskId.set(task.getTaskId());
+            }
+        });
+    }
 
     @Test
     public void shouldReturnSavedTask() {

@@ -20,7 +20,8 @@ public interface TaskDao extends JpaRepository<Task, Long> {
      * @return list of Tasks.
      */
     @Query(value = "SELECT * FROM task t WHERE t.task_id IN "
-            + "(SELECT o.task_id FROM orders o WHERE o.shop_id=:shop_id)",
+            + "(SELECT o.task_id FROM orders o WHERE o.shop_id=:shop_id)"
+            + "ORDER BY t.state, t.task_id",
             nativeQuery = true)
     List<Task> findAllByShopIdInOrders(@Param("shop_id") Long shopId);
 
