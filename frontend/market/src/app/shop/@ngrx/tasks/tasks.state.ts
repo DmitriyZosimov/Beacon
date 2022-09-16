@@ -1,4 +1,4 @@
-import {TaskModel} from "../../models/task.model";
+import {TaskModel} from "../../../model/task";
 
 export interface TasksState {
   tasks: ReadonlyArray<TaskModel>;

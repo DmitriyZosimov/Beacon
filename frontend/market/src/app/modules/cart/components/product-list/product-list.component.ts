@@ -5,15 +5,15 @@ import {Observable} from "rxjs";
 import {select, Store} from "@ngrx/store";
 import {AppState} from "../../../../core/@ngrx";
 import {
-  selectDestination,
-  selectIsDestinationSubmitted,
+  selectTask,
+  selectIsTaskSubmitted,
   selectProductsData
 } from "../../@ngrx";
 import * as CartActions from "../../@ngrx";
 
 import {CartService} from "../../services";
 import {ProductModel} from "../../../../model/product";
-import {DestinationModel} from "../../../../model/destination";
+import {TaskModel} from "../../../../model/task";
 
 @Component({
   selector: 'app-product-list',
@@ -23,8 +23,8 @@ import {DestinationModel} from "../../../../model/destination";
 export class ProductListComponent implements OnInit {
 
   products$!: Observable<ReadonlyArray<ProductModel>>;
-  destination!: Observable<Readonly<DestinationModel>>;
-  isDestinationSubmitted$!: Observable<Readonly<boolean>>;
+  task!: Observable<Readonly<TaskModel>>;
+  isTaskSubmitted$!: Observable<Readonly<boolean>>;
 
   constructor(
     private cartService: CartService,
@@ -33,8 +33,8 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit(): void {
     this.products$ = this.cartStore.pipe(select(selectProductsData));
-    this.destination = this.cartStore.pipe(select(selectDestination));
-    this.isDestinationSubmitted$ = this.cartStore.pipe(select(selectIsDestinationSubmitted));
+    this.task = this.cartStore.pipe(select(selectTask));
+    this.isTaskSubmitted$ = this.cartStore.pipe(select(selectIsTaskSubmitted));
   }
 
   onDeleteProduct(product: ProductModel) {
@@ -52,12 +52,12 @@ export class ProductListComponent implements OnInit {
   }
 
   onBuy() {
-    let destination;
-    this.destination.subscribe(form => destination = {...form});
+    let task;
+    this.task.subscribe(form => task = {...form});
     let products;
     this.products$.subscribe(prod => products = [...prod]);
-    if (destination && products) {
-      this.cartStore.dispatch(CartActions.saveOrder({destination, products}));
+    if (task && products) {
+      this.cartStore.dispatch(CartActions.saveOrder({task, products}));
     }
   }
 }

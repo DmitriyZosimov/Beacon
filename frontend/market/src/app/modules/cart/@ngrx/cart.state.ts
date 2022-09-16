@@ -1,16 +1,16 @@
 import {ProductModel} from "../../../model/product";
-import {DestinationModel} from "../../../model/destination";
+import {TaskModel} from "../../../model/task";
 
 export interface CartState {
   data: ReadonlyArray<ProductModel>;
-  destination: Readonly<DestinationModel>;
-  isDestinationSubmitted: Readonly<boolean>;
+  task: Readonly<TaskModel>;
+  isTaskSubmitted: Readonly<boolean>;
   error: Readonly<Error | string> | null
 }
 
 export const initialCartState: CartState = {
   data: [],
-  destination: new DestinationModel(),
-  isDestinationSubmitted: false,
+  task: new TaskModel(),
+  isTaskSubmitted: false,
   error: null
 };

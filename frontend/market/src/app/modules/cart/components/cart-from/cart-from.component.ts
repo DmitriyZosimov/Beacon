@@ -6,10 +6,10 @@ import {select, Store} from "@ngrx/store";
 import {Subject} from "rxjs";
 import {takeUntil} from "rxjs/operators";
 
-import {DestinationModel} from "../../../../model/destination";
 import {AppState} from "../../../../core/@ngrx";
-import {selectDestination} from "../../@ngrx";
 import * as CartActions from '../../@ngrx/cart.actions';
+import {TaskModel} from "../../../../model/task";
+import {selectTask} from "../../@ngrx";
 
 @Component({
   selector: 'app-cart-from',
@@ -18,7 +18,7 @@ import * as CartActions from '../../@ngrx/cart.actions';
 })
 export class CartFromComponent implements OnInit, OnDestroy {
 
-  destination!: DestinationModel;
+  task!: TaskModel;
 
   private componentDestroyed$: Subject<void> = new Subject<void>();
 
@@ -28,8 +28,8 @@ export class CartFromComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     let observer = {
-      next: (destination: DestinationModel) => {
-        this.destination = { ...destination };
+      next: (task: TaskModel) => {
+        this.task = { ...task };
       },
       error(err: Error | string) {
         console.log(err);
@@ -40,7 +40,7 @@ export class CartFromComponent implements OnInit, OnDestroy {
     };
 
     this.store.pipe(
-      select(selectDestination),
+      select(selectTask),
       takeUntil(this.componentDestroyed$)
     ).subscribe(observer);
   }
@@ -51,11 +51,11 @@ export class CartFromComponent implements OnInit, OnDestroy {
   }
 
   onChangeDelivery(toAddress: boolean) {
-    this.destination.isDeliveryToAddress = toAddress;
+    this.task.isDeliveryToAddress = toAddress;
   }
 
-  onSaveDestination() {
-    const destination = { ...this.destination };
-    this.store.dispatch(CartActions.updateCartForm({ destination }));
+  onSaveTask() {
+    const task = { ...this.task };
+    this.store.dispatch(CartActions.updateCartForm({ task }));
   }
 }

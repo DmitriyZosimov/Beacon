@@ -7,9 +7,9 @@ import {select, Store} from "@ngrx/store";
 import {takeUntil} from "rxjs/operators";
 import {Subject} from "rxjs";
 
-import {DestinationModel} from "../../../../model/destination";
 import {AppState} from "../../../../core/@ngrx";
-import {selectDestination} from "../../@ngrx";
+import {selectTask} from "../../@ngrx";
+import {TaskModel} from "../../../../model/task";
 
 @Component({
   selector: 'app-destination',
@@ -18,7 +18,7 @@ import {selectDestination} from "../../@ngrx";
 })
 export class DestinationComponent implements OnInit, OnDestroy {
 
-  destination!: DestinationModel;
+  task!: TaskModel;
   private componentDestroyed$: Subject<void> = new Subject<void>();
 
   constructor(
@@ -28,8 +28,8 @@ export class DestinationComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     let observer = {
-      next: (destination: DestinationModel) => {
-        this.destination = {...destination};
+      next: (task: TaskModel) => {
+        this.task = {...task};
       },
       error(err: Error | string) {
         console.log(err);
@@ -40,7 +40,7 @@ export class DestinationComponent implements OnInit, OnDestroy {
     };
 
     this.store.pipe(
-      select(selectDestination),
+      select(selectTask),
       takeUntil(this.componentDestroyed$)
     ).subscribe(observer);
   }

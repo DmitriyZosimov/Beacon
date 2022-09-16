@@ -1,4 +1,7 @@
-export class DestinationModel {
+import {OrderModel} from "./order.model";
+import {TaskStateEnum} from "./task-state.enum";
+
+export class TaskModel {
   constructor(
     public firstName: string = '',
     public lastName: string = '',
@@ -11,7 +14,9 @@ export class DestinationModel {
     public porch?: number,
     public floor?: number,
     public comment?: string,
-    public destinationId?: number,
+    public taskId?: BigInteger,
+    public orders?: Array<OrderModel>,
     public isDeliveryToAddress: boolean = true,
+    public state: TaskStateEnum = TaskStateEnum.NEW
   ) {}
 }

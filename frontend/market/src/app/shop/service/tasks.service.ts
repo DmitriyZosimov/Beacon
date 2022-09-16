@@ -5,9 +5,9 @@ import {ShopAPI} from "../shop.config";
 import {Observable} from "rxjs";
 import {catchError, map} from "rxjs/operators";
 
-import {TaskModel} from "../models/task.model";
 import {ErrorHandlerService} from "../../core/services";
 import {Cookie} from "ng2-cookies";
+import {TaskModel} from "../../model/task";
 
 @Injectable({
   providedIn: 'any'
@@ -21,12 +21,12 @@ export class TasksService {
   ) { }
 
   getTasks(id: string): Observable<Array<TaskModel>> {
-    let headers = new HttpHeaders({
-      'Content-type': 'application/json; charset=utf-8',
-      'Authorization': 'Bearer ' + Cookie.get('access_token')
-    });
-    return this.httpClient.get<Array<TaskModel>>(`${this.shopServer}/${id}/tasks`, {
-      headers: headers,
+    // let headers = new HttpHeaders({
+    //   'Content-type': 'application/json; charset=utf-8',
+    //   'Authorization': 'Bearer ' + Cookie.get('access_token')
+    // });
+    return this.httpClient.get<Array<TaskModel>>(`http://localhost:8010/shop/${id}/tasks`, {
+      // headers: headers,
       responseType: 'json',
       observe: "response"
     })

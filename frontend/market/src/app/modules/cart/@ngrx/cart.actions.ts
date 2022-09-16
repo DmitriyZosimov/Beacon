@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import {ProductModel} from "../../../model/product";
-import {DestinationModel} from "../../../model/destination";
+import {TaskModel} from "../../../model/task";
 
 export const addProduct = createAction(
   '[Product (Mobile) Page] ADD_PRODUCT',
@@ -20,13 +20,13 @@ export const deleteProduct = createAction(
 // CART FORM
 export const updateCartForm = createAction(
   '[Cart Form Page] UPDATE_CART_FORM',
-  props<{ destination: DestinationModel}>()
+  props<{ task: TaskModel}>()
 );
 
 // EFFECT
 export const saveOrder = createAction(
   '[Save Order Effect] SAVE_ORDER',
-  props<{ destination: DestinationModel, products: ProductModel[] }>()
+  props<{ task: TaskModel, products: ProductModel[] }>()
 );
 
 export const saveOrderSuccess = createAction(

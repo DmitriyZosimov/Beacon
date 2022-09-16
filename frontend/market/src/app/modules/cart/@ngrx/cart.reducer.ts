@@ -28,11 +28,11 @@ export const reducer = createReducer(
       data
     };
   }),
-  on(CartActions.updateCartForm, (state, { destination }) => {
+  on(CartActions.updateCartForm, (state, { task }) => {
     return {
       ...state,
-      destination,
-      isDestinationSubmitted: true
+      task,
+      isTaskSubmitted: true
     };
   }),
   on(CartActions.saveOrderSuccess, (state) => {

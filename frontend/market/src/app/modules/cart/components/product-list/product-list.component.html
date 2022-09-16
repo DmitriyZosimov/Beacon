@@ -1,6 +1,6 @@
 <div class="d-sm-flex flex-row-reverse">
   <div class="d-lg-flex">
-    <div *ngIf="isDestinationSubmitted$ | async">
+    <div *ngIf="isTaskSubmitted$ | async">
       <div class="card bg-warning rounded mx-2">
         <div class="card-header">
           <span class="fs-4 text-decoration-underline">Destination</span>
@@ -23,14 +23,14 @@
           <p class="text-center fs-2 fst-italic mb-0">{{finalBill | number:'1.0-2'}}</p>
         </div>
         <div class="card-footer d-grid gap-2">
-          <button *ngIf="isDestinationSubmitted$ | async"
+          <button *ngIf="(isTaskSubmitted$ | async)"
                   type="button"
                   class="btn btn-dark"
                   (click)="onBuy()"
                   [disabled]="(products$ | async)?.length == 0">
             Buy now
           </button>
-          <button *ngIf="!(isDestinationSubmitted$ | async)" type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#cartFormModal">Make the order</button>
+          <button *ngIf="!(isTaskSubmitted$ | async)" type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#cartFormModal">Make the order</button>
         </div>
       </div>
     </div>

@@ -6,60 +6,63 @@
     <i class="bi bi-exclamation-triangle-fill"></i> {{errorMessage}}
   </div>
   <div>
-    <div *ngFor="let task of (tasks$ | async)">
+    <div *ngFor="let task of (task$ | async)">
       <div class="mb-3">
         <div class="card shadow">
-          <div class="card-header task-header" [class]="task.isDone ? 'bg-color-cinnamon': 'bg-color-caramel'">
+          <div class="card-header task-header" [class]="isDone(task) ? 'bg-color-cinnamon': 'bg-color-caramel'">
             <span class="text-white">Task</span>
-            <span *ngIf="task.isDone" class="fst-italic text-white"> (Done)</span>
+            <span *ngIf="isDone(task)" class="fst-italic text-white"> (Done)</span>
           </div>
-          <div class="card-body d-md-flex task-body">
-            <div class="me-md-2">
+          <div class="card-body row task-body">
+            <div class="col-md-3">
               <ul>
-                <li *ngIf="task.destination.isDeliveryToAddress">Delivery to address</li>
+                <li *ngIf="task.isDeliveryToAddress">Delivery to address</li>
                 <li>
                   <span class="fw-bold">Contact information</span>
                   <ul>
-                    <li>{{task.destination.firstName}} {{task.destination.lastName}}</li>
-                    <li>{{task.destination.phoneNumber}}</li>
-                    <li>{{task.destination.email}}</li>
-                    <li>{{task.destination.city}}</li>
-                    <li>{{task.destination.street}} {{task.destination.building}}</li>
+                    <li>{{task.firstName}} {{task.lastName}}</li>
+                    <li>{{task.phoneNumber}}</li>
+                    <li>{{task.email}}</li>
+                    <li>{{task.city}}</li>
+                    <li>{{task.street}} {{task.building}}</li>
                     <li>
-                      <span *ngIf="task.destination.porch as porch">Porch {{porch}}, </span>
-                      <span *ngIf="task.destination.floor as floor">floor {{floor}}, </span>
-                      <span>door {{task.destination.flat}}</span>
+                      <span *ngIf="task.porch as porch">Porch {{porch}}, </span>
+                      <span *ngIf="task.floor as floor">floor {{floor}}, </span>
+                      <span>door {{task.flat}}</span>
                     </li>
-                    <li *ngIf="task.destination.comment as comment">Comment:<br>
+                    <li *ngIf="task.comment as comment">Comment:<br>
                       <span>{{comment}}</span>
                     </li>
                   </ul>
                 </li>
               </ul>
             </div>
-            <div>
-              <span class="fw-bold">Products:</span>
-              <div class="d-md-flex">
-                <div class="list-group me-md-3" *ngFor="let product of task.products">
+            <div class="col-md-9">
+              <span class="fw-bold">Orders:</span>
+              <div class="d-md-flex flex-wrap">
+                <div class="list-group me-md-3" *ngFor="let order of task.orders">
                   <table class="list-group-item table task-products">
                     <tbody>
                     <tr>
-                      <th>Brand:</th><td>{{product.model}}</td>
+                      <th>Brand:</th><td>{{order.mobile?.brand}}</td>
                     </tr>
                     <tr>
-                      <th>Model:</th><td>{{product.model}}</td>
+                      <th>Model:</th><td>{{order.mobile?.model}}</td>
                     </tr>
                     <tr>
-                      <th>Color:</th><td>{{product.color}}</td>
+                      <th>Color:</th><td>{{order.mobile?.color}}</td>
                     </tr>
                     <tr>
-                      <th>Price:</th><td>{{product.price}}</td>
+                      <th>Price:</th><td>{{order.price}}</td>
                     </tr>
                     <tr>
-                      <th>Order date:</th><td>{{product.orderDate | date:'short'}}</td>
+                      <th>Count:</th><td>{{order.count}}</td>
                     </tr>
                     <tr>
-                      <th>Item number:</th><td>{{product.itemNumber}}</td>
+                      <th>Total price:</th><td class="fw-bold fst-italic">{{order.price! * order.count!}}</td>
+                    </tr>
+                    <tr>
+                      <th>Order date:</th><td>{{order.registeredDate | date:'short'}}</td>
                     </tr>
                     </tbody>
                   </table>
@@ -68,8 +71,8 @@
             </div>
           </div>
           <div class="card-footer task-footer">
-            <button *ngIf="!task.isDone" class="btn btn-emerald-blue" (click)="onDone(task)">Done</button>
-            <button *ngIf="task.isDone" class="btn btn-danger" (click)="onReset(task)">Reset</button>
+            <button *ngIf="!isDone(task)" class="btn btn-emerald-blue" (click)="onNextState(task)">Change state</button>
+            <button *ngIf="isDone(task)" class="btn btn-danger" (click)="onReset(task)">Reset</button>
           </div>
         </div>
       </div>

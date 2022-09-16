@@ -9,7 +9,7 @@ import {catchError, concatMap, map, pluck, switchMap} from "rxjs/operators";
 
 import * as TasksActions from "./tasks.action";
 import {TasksService} from "../../service";
-import {TaskModel} from "../../models/task.model";
+import {TaskModel} from "../../../model/task";
 
 @Injectable()
 export class TasksEffects {
@@ -26,7 +26,7 @@ export class TasksEffects {
       switchMap(action => {
         console.log(this.activatedRoute.snapshot.firstChild?.url[0]);
         let shopId = this.activatedRoute.snapshot.firstChild?.url[0].path;
-        return this.tasksService.getTasks(shopId!).pipe(
+        return this.tasksService.getTasks('3').pipe(
           map(tasks => TasksActions.getTasksSuccess({ tasks })),
           catchError(error => of(TasksActions.getTasksFailure({ error })))
         )

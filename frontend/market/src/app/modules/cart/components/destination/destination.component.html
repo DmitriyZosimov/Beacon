@@ -1,13 +1,13 @@
-<div *ngIf="destination">
-    <div class="fw-bold">{{destination.firstName}} {{destination.lastName}}</div>
-    <div>{{destination.email}}</div>
-    <div>{{destination.phoneNumber}}</div>
-    <div>{{destination.city}}</div>
-    <div>{{destination.street}} {{destination.building}}</div>
+<div *ngIf="task">
+    <div class="fw-bold">{{task.firstName}} {{task.lastName}}</div>
+    <div>{{task.email}}</div>
+    <div>{{task.phoneNumber}}</div>
+    <div>{{task.city}}</div>
+    <div>{{task.street}} {{task.building}}</div>
     <div>
-      <span *ngIf="destination.porch">Porch {{destination.porch}}, </span>
-      <span *ngIf="destination.floor">Floor {{destination.floor}}, </span>
-      <span>Flat {{destination.flat}}</span>
+      <span *ngIf="task.porch">Porch {{task.porch}}, </span>
+      <span *ngIf="task.floor">Floor {{task.floor}}, </span>
+      <span>Flat {{task.flat}}</span>
     </div>
-    <div *ngIf="destination.comment">{{destination.comment}}</div>
+    <div *ngIf="task.comment">{{task.comment}}</div>
 </div>
