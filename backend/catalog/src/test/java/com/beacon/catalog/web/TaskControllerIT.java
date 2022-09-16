@@ -61,7 +61,7 @@ public class TaskControllerIT {
     }
 
     @Test
-//    @WithMockUser(roles = "Consumer")
+    @WithMockUser(roles = "Employee-Beacon")
     public void shouldReturnTasksWithOrdersWhereShopIdEqualsIncomingShopId_OK() throws Exception {
         Long shopId = 1L;
         MockHttpServletResponse response = mockMvc.perform(MockMvcRequestBuilders.get(TASK_URL + shopId +"/tasks")
@@ -76,7 +76,7 @@ public class TaskControllerIT {
     }
 
     @Test
-//    @WithMockUser()
+    @WithMockUser(roles = "Employee-Beacon")
     public void shouldUpdateTaskAndReturn_OK() throws Exception {
         long shopId = 1L;
         MockHttpServletResponse getResponse = mockMvc.perform(MockMvcRequestBuilders.get(TASK_URL + shopId +"/tasks"))

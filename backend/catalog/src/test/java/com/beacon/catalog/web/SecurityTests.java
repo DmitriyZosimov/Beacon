@@ -36,6 +36,7 @@ import static org.springframework.security.test.web.servlet.setup.SecurityMockMv
 public class SecurityTests implements TestMobileFullBuilder {
     private static final String MOBILE_URL = "/mobile/";
     private static final String MOBILE_ID_URL = "/mobile/";
+    private static final String TASK_URL = "/shop/";
 
     @Autowired
     WebApplicationContext context;
@@ -106,5 +107,34 @@ public class SecurityTests implements TestMobileFullBuilder {
                 .andExpect(MockMvcResultMatchers.status().isUnauthorized())
                 .andReturn().getResponse();
         Assertions.assertNotNull(response);
+    }
+
+    @Test
+    public void tryToGetTasks_401_NotAuthorized() throws Exception {
+        Long shopId = 1L;
+        MockHttpServletResponse response = mockMvc.perform(MockMvcRequestBuilders.get(TASK_URL + shopId +"/tasks")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isUnauthorized())
+                .andReturn().getResponse();
+    }
+
+    @Test
+    @WithMockUser(roles = "Consumer")
+    public void tryToGetTasks_403_WithoutSuitableRole() throws Exception {
+        Long shopId = 1L;
+        MockHttpServletResponse response = mockMvc.perform(MockMvcRequestBuilders.get(TASK_URL + shopId +"/tasks")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isForbidden())
+                .andReturn().getResponse();
+    }
+
+    @Test
+    @WithMockUser(roles = "Employee-Beacon")
+    public void tryToGetTasks_200_WithSuitableRole() throws Exception {
+        Long shopId = 1L;
+        MockHttpServletResponse response = mockMvc.perform(MockMvcRequestBuilders.get(TASK_URL + shopId +"/tasks")
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn().getResponse();
     }
 }

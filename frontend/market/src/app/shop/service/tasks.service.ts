@@ -26,12 +26,12 @@ export class TasksService {
   ) { }
 
   getTasks(id: string): Observable<Array<TaskModel>> {
-    // let headers = new HttpHeaders({
-    //   'Content-type': 'application/json; charset=utf-8',
-    //   'Authorization': 'Bearer ' + Cookie.get('access_token')
-    // });
+    let headers = new HttpHeaders({
+      'Content-type': 'application/json; charset=utf-8',
+      'Authorization': 'Bearer ' + Cookie.get('access_token')
+    });
     return this.httpClient.get<Array<TaskModel>>(`http://localhost:8010/shop/${id}/tasks`, {
-      // headers: headers,
+      headers: headers,
       responseType: 'json',
       observe: "response"
     })
@@ -42,15 +42,15 @@ export class TasksService {
   }
 
   updateTask(id: string, task: TaskModel): Observable<TaskModel> {
-    // let headers = new HttpHeaders({
-    //   'Content-type': 'application/json; charset=utf-8',
-    //   'Authorization': 'Bearer ' + Cookie.get('access_token')
-    // });
+    let headers = new HttpHeaders({
+      'Content-type': 'application/json; charset=utf-8',
+      'Authorization': 'Bearer ' + Cookie.get('access_token')
+    });
     const request = {} as StateUpdating;
     request.taskId = task.taskId!;
     request.state = task.state;
     return this.httpClient.put(`http://localhost:8010/shop/${id}/tasks`, request, {
-      // headers: headers,
+      headers: headers,
       responseType: 'json',
       observe: 'response'
     }).pipe(
