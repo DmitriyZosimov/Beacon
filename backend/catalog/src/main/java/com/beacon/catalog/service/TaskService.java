@@ -15,9 +15,16 @@ public interface TaskService {
 
     /**
      * Save task with orders
-     * @param Task incoming {@code Task}
+     * @param task incoming {@code Task}
      * @return true if task was saved, or Exception
      * @throws RuntimeException if task was not save
      */
-    boolean saveTask(Task Task);
+    boolean saveTask(Task task);
+
+    /**
+     * Update incoming task in DB.
+     * @param task incoming entity that will be updated
+     * @return 1 if state was updated, 0 if is not.
+     */
+    int updateTaskState(Task task);
 }

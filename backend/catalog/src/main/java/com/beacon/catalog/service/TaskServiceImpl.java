@@ -4,12 +4,14 @@ import com.beacon.catalog.dao.TaskDao;
 import com.beacon.model.order.Order;
 import com.beacon.model.order.Task;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional
 public class TaskServiceImpl implements TaskService {
 
     private TaskDao taskDao;
@@ -18,6 +20,7 @@ public class TaskServiceImpl implements TaskService {
         this.taskDao = taskDao;
     }
 
+    @Transactional(readOnly = true)
     @Override
     public List<Task> findAllByShopIdInOrders(Long shopId) {
         return taskDao.findAllByShopIdInOrders(shopId);
@@ -44,5 +47,10 @@ public class TaskServiceImpl implements TaskService {
             }
         });
         return true;
+    }
+
+    @Override
+    public int updateTaskState(Task task) {
+        return taskDao.updateStateByTaskId(task.getTaskId(), task.getState());
     }
 }

@@ -1,6 +1,7 @@
 package com.beacon.catalog.web;
 
 import com.beacon.model.order.Task;
+import com.beacon.model.order.TaskState;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -72,5 +73,26 @@ public class TaskControllerIT {
         tasks.forEach(task -> {
             task.getOrders().forEach(order -> Assertions.assertEquals(shopId, order.getShopId()));
         });
+    }
+
+    @Test
+//    @WithMockUser()
+    public void shouldUpdateTaskAndReturn_OK() throws Exception {
+        long shopId = 1L;
+        MockHttpServletResponse getResponse = mockMvc.perform(MockMvcRequestBuilders.get(TASK_URL + shopId +"/tasks"))
+                .andReturn().getResponse();
+        List<Task> tasks = objectMapper.readValue(getResponse.getContentAsString(), new TypeReference<List<Task>>() {});
+        Assertions.assertFalse(tasks.isEmpty());
+        Task task = tasks.get(0);
+        task.setState(TaskState.COMPLETED);
+        String json = objectMapper.writeValueAsString(task);
+
+        MockHttpServletResponse putResponse = mockMvc.perform(MockMvcRequestBuilders.put(TASK_URL + shopId +"/tasks")
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(json))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn().getResponse();
+        Assertions.assertNotNull(putResponse);
     }
 }

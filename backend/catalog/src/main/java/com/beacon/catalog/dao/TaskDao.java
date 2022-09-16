@@ -1,7 +1,9 @@
 package com.beacon.catalog.dao;
 
 import com.beacon.model.order.Task;
+import com.beacon.model.order.TaskState;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -21,4 +23,14 @@ public interface TaskDao extends JpaRepository<Task, Long> {
             + "(SELECT o.task_id FROM orders o WHERE o.shop_id=:shop_id)",
             nativeQuery = true)
     List<Task> findAllByShopIdInOrders(@Param("shop_id") Long shopId);
+
+    /**
+     * Update state of task
+     * @param taskId identification of task
+     * @param state new state
+     * @return 1 if updated, 0 if not updated
+     */
+    @Modifying
+    @Query(value = "UPDATE Task SET state=:state WHERE taskId=:taskId")
+    int updateStateByTaskId(@Param("taskId") Long taskId, @Param("state") TaskState state);
 }
