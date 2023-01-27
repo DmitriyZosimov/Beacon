@@ -3,6 +3,8 @@ package com.beacon.catalog.web;
 import com.beacon.catalog.service.MobileFullService;
 import com.beacon.model.MobileFull;
 import com.beacon.model.tools.MobileIdToUrlPathConverter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +15,8 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/mobile")
 public class MobileFullController {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(MobileFullController.class);
 
     private MobileFullService mobileFullService;
 
@@ -30,6 +34,7 @@ public class MobileFullController {
     @GetMapping("/{brand}/{id}")
     public ResponseEntity findMobileFullById(@PathVariable(name = "brand") String brand,
                                              @PathVariable(name = "id") String id) {
+        LOGGER.info("Mobile finding by brand {} and id {}", brand, id);
         Optional<MobileFull> mobileFull = mobileFullService.findMobileFullById(brand + id);
         return ResponseEntity.of(mobileFull);
     }
@@ -42,14 +47,19 @@ public class MobileFullController {
      */
     @PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity createMobileFull(@RequestBody MobileFull mobileFull) {
+        LOGGER.info("MobileFull creating");
         MobileFull saved = mobileFullService.saveMobileFull(mobileFull);
-        return saved.getMainImage() == null && saved.getMobileId() != null || saved.getMainImage().getImageId() != null ? ResponseEntity
-                .created(ServletUriComponentsBuilder
-                        .fromCurrentRequest()
-                        .path("{id}")
-                        .buildAndExpand(MobileIdToUrlPathConverter.convert(saved))
-                        .toUri())
-                .build() :
-                ResponseEntity.badRequest().body("The mistake was happened in saving entity. Retry the request later...");
+        if (saved.getMainImage() == null && saved.getMobileId() != null || saved.getMainImage().getImageId() != null) {
+            return ResponseEntity
+                    .created(ServletUriComponentsBuilder
+                            .fromCurrentRequest()
+                            .path("{id}")
+                            .buildAndExpand(MobileIdToUrlPathConverter.convert(saved))
+                            .toUri())
+                    .build();
+        } else {
+            LOGGER.error("MobileFull was not created: {}", mobileFull.toString());
+            return ResponseEntity.badRequest().body("The mistake was happened in saving entity. Retry the request later...");
+        }
     }
 }
