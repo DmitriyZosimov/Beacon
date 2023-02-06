@@ -20,8 +20,10 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
 
     compileOnly postgresql.postgresql
-    testRuntimeOnly postgresql.postgresql
-    
+
+    testImplementation postgresql.postgresql
+    testImplementation zonky.embedded_database_spring_test
+    testImplementation zonky.embedded_postgres
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
     testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'

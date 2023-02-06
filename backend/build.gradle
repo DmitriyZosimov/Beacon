@@ -42,4 +42,9 @@ ext {
     postgresql = [
             postgresql  :   "org.postgresql:postgresql:$postgresqlVersion"
     ]
+
+    zonky = [
+            embedded_database_spring_test : "io.zonky.test:embedded-database-spring-test:$zonkyEmbeddedDatabaseSpringTestVersion",
+            embedded_postgres : "io.zonky.test:embedded-postgres:$zonkyEmbeddedPostgresqlVersion"
+    ]
 }
