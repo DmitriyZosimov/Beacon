@@ -3,6 +3,7 @@ plugins {
     id 'io.spring.dependency-management' version "$springDependencyManagmentVersion"
     id 'org.asciidoctor.convert' version "$asciidoctorConvertVersion"
     id 'maven-publish'
+    id 'jacoco'
 }
 
 ext {
@@ -36,6 +37,7 @@ bootJar {
 tasks.named('test') {
     outputs.dir snippetsDir
     useJUnitPlatform()
+    finalizedBy jacocoTestReport, jacocoTestCoverageVerification
 }
 
 tasks.named('asciidoctor') {
@@ -48,6 +50,31 @@ project.afterEvaluate {
         publications {
             maven(MavenPublication) {
                 artifact bootJar
+            }
+        }
+    }
+}
+
+jacoco {
+    toolVersion = "$jacocoVersion"
+}
+
+jacocoTestReport {
+    dependsOn test
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: [
+                    "com/beacon/catalog/CatalogApplication.class"
+            ])
+        }))
+    }
+}
+
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            limit {
+                minimum = 0.8
             }
         }
     }
