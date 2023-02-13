@@ -22,7 +22,7 @@ fi
 echo "The latest build version is $LAST_BUILD_VERSION"
 SECOND_TAG_NUMBER=$(echo "$LAST_BUILD_VERSION" | cut -d. -f2)
 SECOND_FILE_NUMBER=$(cat .github/workflows/buildVersion.txt | cut -d. -f2)
-if [ "SECOND_TAG_NUMBER" = "SECOND_FILE_NUMBER" ]; then
+if [ "SECOND_TAG_NUMBER" != "SECOND_FILE_NUMBER" ]; then
   NEXT_BUILD_VERSION=$(cat .github/workflows/buildversion.txt | cut -d. -f1-2).0
 else
   BUILD_NUMBER=$(echo "$LAST_BUILD_VERSION" | cut -d. -f3)
