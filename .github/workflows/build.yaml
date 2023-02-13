@@ -21,7 +21,8 @@ jobs:
       - name: Update build number
         shell: bash
         run: |
-          sh buildVersion.sh
+          ll
+          sh ./buildVersion.sh
           build_version=`cat buildVersion.txt`
           echo "The newest version: $build_version"
 #      - name: Upload buildVersion.txt for subsequent jobs
