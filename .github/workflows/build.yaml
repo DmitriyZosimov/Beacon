@@ -21,6 +21,7 @@ jobs:
       - name: Update build number
         shell: bash
         run: |
+          ls -la
           sh ./Beacon/.github/workflows/buildVersion.sh
           build_version=`cat buildVersion.txt`
           echo "The newest version: $build_version"
