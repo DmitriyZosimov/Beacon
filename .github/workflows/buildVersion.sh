@@ -16,6 +16,7 @@ if [ "$LAST_BUILD_VERSION" = "" ]; then
 #    exit 1
 # }
  echo "Finished creating initial tag version: $NEXT_BUILD_VERSION"
+ ls -la
  echo "$NEXT_BUILD_VERSION" >buildversion.txt
  exit 0
 fi
