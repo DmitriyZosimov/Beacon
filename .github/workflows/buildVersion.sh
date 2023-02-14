@@ -42,7 +42,7 @@ git tag -d "$NEXT_BUILD_VERSION" || true
     echo "ERROR: Tagging commit failed"
     exit 1
   }
-  git push origin --tags || {
+  git push -u origin master || {
     echo "ERROR: Pushing tags failed"
     exit 1
  }
