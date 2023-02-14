@@ -11,7 +11,7 @@ if [ "$LAST_BUILD_VERSION" = "" ]; then
     echo "ERROR: Tagging commit failed"
     exit 1
   }
-  git push origin --tags || {
+  git push origin master --tags || {
     echo "ERROR: Pushing tags failed"
     exit 1
  }
@@ -39,7 +39,7 @@ git tag -d "$NEXT_BUILD_VERSION" || true
     echo "ERROR: Tagging commit failed"
     exit 1
   }
-  git push origin --tags || {
+  git push origin master --tags || {
     echo "ERROR: Pushing tags failed"
     exit 1
  }
