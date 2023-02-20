@@ -5,8 +5,10 @@ if [ "$TOKEN" = "" ]; then
   exit 1
 fi
 
+git config user.name github-actions
+git config user.email github-actions@github.com
+
 GITHUB_URL="https://$TOKEN@github.com/DmitriyZosimov/Beacon.git"
-git config --global url."https://$TOKEN@github.com/DmitriyZosimov/".insteadOf "https://github.com/DmitriyZosimov/"
 LAST_TAG=$(git describe --match "*" --abbrev=0 --tags "$(git rev-list --tags --max-count=1)")
 echo "The latest tag version: $LAST_TAG"
 LAST_BUILD_VERSION=$LAST_TAG
