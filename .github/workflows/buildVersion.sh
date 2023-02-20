@@ -49,7 +49,7 @@ git tag "$NEXT_BUILD_VERSION" || {
   exit 1
 }
 echo "TEST 2"
-git push -f "$GITHUB_URL" || {
+git push "$GITHUB_URL" || {
   echo "ERROR: Pushing tags failed"
   exit 1
 }
