@@ -41,6 +41,11 @@ jobs:
       - name: Run build
         run: backend/gradlew build
 
+      - name: Set Env Variables
+        shell: bash
+        run: |
+          echo "::set-env name=TOKEN::$(echo ${{ secrets.BEACON_TOKEN }})"
+
       - name: Update build number
         shell: bash
         run: |
