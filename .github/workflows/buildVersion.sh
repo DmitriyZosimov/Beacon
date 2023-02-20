@@ -9,6 +9,9 @@ git config user.name github-actions
 git config user.email github-actions@github.com
 
 GITHUB_URL="https://$TOKEN@github.com/DmitriyZosimov/Beacon.git"
+git remote add origin "$GITHUB_URL"
+git remote -v
+
 LAST_TAG=$(git describe --match "*" --abbrev=0 --tags)
 echo "The latest tag version: $LAST_TAG"
 LAST_BUILD_VERSION=$LAST_TAG
@@ -16,12 +19,12 @@ if [ "$LAST_BUILD_VERSION" = "" ]; then
   NEXT_BUILD_VERSION="0.0.1"
   echo "There are currently no tag version. Tagging commit with version $NEXT_BUILD_VERSION"
   git tag -d "$NEXT_BUILD_VERSION" || true
-  git push --delete "$GITHUB_URL" "$NEXT_BUILD_VERSION" || true
+  git push --delete origin "$NEXT_BUILD_VERSION" || true
   git tag "$NEXT_BUILD_VERSION" || {
     echo "ERROR: Tagging commit failed"
     exit 1
   }
-  git push "$GITHUB_URL" --tags || {
+  git push origin --tags || {
     echo "ERROR: Pushing tags failed"
     exit 1
  }
@@ -42,7 +45,7 @@ fi
 
 echo "The next build version is $NEXT_BUILD_VERSION"
 git tag -d "$NEXT_BUILD_VERSION" || true
-git push --delete "$GITHUB_URL" "$NEXT_BUILD_VERSION" || true
+git push --delete origin "$NEXT_BUILD_VERSION" || true
 echo "TEST 1"
 echo "$NEXT_BUILD_VERSION" >.github/workflows/buildVersion.txt
 git add .github/workflows/buildVersion.txt
@@ -52,7 +55,7 @@ git tag "$NEXT_BUILD_VERSION" || {
   exit 1
 }
 echo "TEST 2"
-git push "$GITHUB_URL" || {
+git push origin || {
   echo "ERROR: Pushing tags failed"
   exit 1
 }
