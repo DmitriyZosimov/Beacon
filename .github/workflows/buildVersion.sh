@@ -6,6 +6,7 @@ if [ "$TOKEN" = "" ]; then
 fi
 
 GITHUB_URL="https://$TOKEN@github.com/DmitriyZosimov/Beacon.git"
+echo "$GITHUB_URL"
 LAST_TAG=$(git describe --match "*" --abbrev=0 --tags "$(git rev-list --tags --max-count=1)")
 echo "The latest tag version: $LAST_TAG"
 LAST_BUILD_VERSION=$LAST_TAG
