@@ -47,6 +47,7 @@ jobs:
           echo "TOKEN=$(echo ${{ secrets.BEACON_TOKEN }})" >> $GITHUB_ENV
 
       - name: Update build number
+        uses: actions/checkout@v3
         shell: bash
         run: |
           chmod u+x .github/ -R
