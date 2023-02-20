@@ -9,7 +9,7 @@ git config user.name github-actions
 git config user.email github-actions@github.com
 
 GITHUB_URL="https://$TOKEN@github.com/DmitriyZosimov/Beacon.git"
-git remote add origin "$GITHUB_URL"
+git remote set-url origin "$GITHUB_URL"
 git remote -v
 
 LAST_TAG=$(git describe --match "*" --abbrev=0 --tags)
