@@ -44,7 +44,7 @@ jobs:
       - name: Set Env Variables
         shell: bash
         run: |
-          echo "::set-env name=TOKEN::$(echo ${{ secrets.BEACON_TOKEN }})"
+          echo "TOKEN=$(echo ${{ secrets.BEACON_TOKEN }})" >> $GITHUB_ENV
 
       - name: Update build number
         shell: bash
