@@ -5,8 +5,8 @@ if [ "$TOKEN" = "" ]; then
   exit 1
 fi
 
-git config user.name DmitriyZosimov
-git config user.email DmitriyZosimov@epam.com
+git config user.name github-actions
+git config user.email github-actions@github.com
 
 GITHUB_URL="https://$TOKEN@github.com/DmitriyZosimov/Beacon.git"
 LAST_TAG=$(git describe --match "*" --abbrev=0 --tags)
