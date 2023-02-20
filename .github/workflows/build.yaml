@@ -16,8 +16,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
+#        with:
+#          fetch-depth: 0
 #      - name: Upload buildVersion.txt for subsequent jobs
 #        uses: actions/upload-artifact@v3
 #        with:
@@ -47,7 +47,6 @@ jobs:
           echo "TOKEN=$(echo ${{ secrets.BEACON_TOKEN }})" >> $GITHUB_ENV
 
       - name: Update build number
-        uses: actions/checkout@v3
         shell: bash
         run: |
           chmod u+x .github/ -R
