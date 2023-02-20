@@ -9,7 +9,7 @@ git config user.name github-actions
 git config user.email github-actions@github.com
 
 GITHUB_URL="https://$TOKEN@github.com/DmitriyZosimov/Beacon.git"
-git tag -l
+echo $(git tag -l)
 LAST_TAG=$(git describe --match "*" --abbrev=0 --tags)
 echo "The latest tag version: $LAST_TAG"
 LAST_BUILD_VERSION=$LAST_TAG
