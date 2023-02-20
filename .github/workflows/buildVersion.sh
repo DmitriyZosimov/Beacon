@@ -19,7 +19,6 @@ if [ "$LAST_BUILD_VERSION" = "" ]; then
   NEXT_BUILD_VERSION="0.0.1"
   echo "There are currently no tag version. Tagging commit with version $NEXT_BUILD_VERSION"
   git tag -d "$NEXT_BUILD_VERSION" || true
-  git push --delete origin "$NEXT_BUILD_VERSION" || true
   git tag "$NEXT_BUILD_VERSION" || {
     echo "ERROR: Tagging commit failed"
     exit 1
@@ -45,7 +44,6 @@ fi
 
 echo "The next build version is $NEXT_BUILD_VERSION"
 git tag -d "$NEXT_BUILD_VERSION" || true
-git push --delete origin "$NEXT_BUILD_VERSION" || true
 echo "TEST 1"
 echo "$NEXT_BUILD_VERSION" >.github/workflows/buildVersion.txt
 git add .github/workflows/buildVersion.txt
