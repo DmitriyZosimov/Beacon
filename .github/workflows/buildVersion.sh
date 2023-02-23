@@ -11,8 +11,6 @@ GITHUB_URL="https://$TOKEN@github.com/DmitriyZosimov/Beacon.git"
 git remote set-url origin "$GITHUB_URL"
 git remote -v
 
-git checkout master
-
 LAST_TAG=$(git describe --match "*" --abbrev=0 --tags)
 echo "The latest tag version: $LAST_TAG"
 LAST_BUILD_VERSION=$LAST_TAG
@@ -52,6 +50,8 @@ git tag "$NEXT_BUILD_VERSION" || {
   echo "ERROR: Tagging commit failed"
   exit 1
 }
+
+git checkout master
 git push -u origin refs/heads/master:master || {
   echo "ERROR: Pushing tags failed"
   exit 1
