@@ -63,4 +63,3 @@ jobs:
           .github/workflows/buildVersion.sh
           build_version=`cat .github/workflows/buildVersion.txt`
           echo "The newest version: $build_version"
-          git tag -l

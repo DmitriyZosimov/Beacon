@@ -1,19 +1,12 @@
 #!/bin/bash
 
-if [ "$TOKEN" = "" ]; then
-  echo "The token is not available, can not set build version"
-  exit 1
-fi
 git config --local user.name "GitHub Actions"
 git config --local user.email actions@github.com
-
-#GITHUB_URL="https://$TOKEN@github.com/DmitriyZosimov/Beacon.git"
-#git remote set-url origin "$GITHUB_URL"
-#git remote -v
 
 LAST_TAG=$(git describe --match "*" --abbrev=0 --tags)
 echo "The latest tag version: $LAST_TAG"
 LAST_BUILD_VERSION=$LAST_TAG
+
 if [ "$LAST_BUILD_VERSION" = "" ]; then
   NEXT_BUILD_VERSION="0.0.1"
   echo "There are currently no tag version. Tagging commit with version $NEXT_BUILD_VERSION"
@@ -30,9 +23,11 @@ if [ "$LAST_BUILD_VERSION" = "" ]; then
  echo "$NEXT_BUILD_VERSION" >./buildVersion.txt
  exit 0
 fi
+
 echo "The latest build version is $LAST_BUILD_VERSION"
 SECOND_TAG_NUMBER=$(echo "$LAST_BUILD_VERSION" | cut -d. -f2)
 SECOND_FILE_NUMBER=$(cat ./buildVersion.txt | cut -d. -f2)
+
 if [ "$SECOND_TAG_NUMBER" = "$SECOND_FILE_NUMBER" ];
 then
   BUILD_NUMBER=$(echo "$LAST_BUILD_VERSION" | cut -d. -f3)
@@ -50,9 +45,6 @@ git tag "$NEXT_BUILD_VERSION" || {
   exit 1
 }
 
-#git push origin --tags || {
-#  echo "ERROR: Pushing tags failed"
-#}
 git add -A
 git commit -m "version $NEXT_BUILD_VERSION"
 
@@ -62,4 +54,3 @@ git push || {
 }
 
 exit 0
-
