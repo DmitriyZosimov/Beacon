@@ -56,7 +56,7 @@ git push origin --tags || {
 git add -A
 git commit -m "version $NEXT_BUILD_VERSION"
 
-git push || {
+git push $GITHUB_URL master:refs/heads/master || {
   echo "ERROR: Pushing the new version failed"
   exit 1
 }
