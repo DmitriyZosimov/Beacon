@@ -11,7 +11,7 @@ GITHUB_URL="https://$TOKEN@github.com/DmitriyZosimov/Beacon.git"
 git remote set-url origin "$GITHUB_URL"
 git remote -v
 
-git fetch origin
+git checkout master
 
 LAST_TAG=$(git describe --match "*" --abbrev=0 --tags)
 echo "The latest tag version: $LAST_TAG"
