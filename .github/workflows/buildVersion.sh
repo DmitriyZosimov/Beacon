@@ -50,7 +50,7 @@ git tag "$NEXT_BUILD_VERSION" || {
   echo "ERROR: Tagging commit failed"
   exit 1
 }
-git push -u origin master || {
+git push -u origin master:master || {
   echo "ERROR: Pushing tags failed"
   exit 1
 }
