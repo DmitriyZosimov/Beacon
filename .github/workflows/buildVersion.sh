@@ -4,9 +4,9 @@ if [ "$TOKEN" = "" ]; then
   echo "The token is not available, can not set build version"
   exit 1
 fi
-
-git config user.name github-actions
-git config user.email github-actions@github.com
+echo "GIT USER NAME $GIT_USER_NAME"
+git config --local user.name $GIT_USER_NAME
+git config --local user.email $GIT_USER_EMAIL
 
 GITHUB_URL="https://$TOKEN@github.com/DmitriyZosimov/Beacon.git"
 git remote set-url origin "$GITHUB_URL"
@@ -44,7 +44,6 @@ fi
 
 echo "The next build version is $NEXT_BUILD_VERSION"
 git tag -d "$NEXT_BUILD_VERSION" || true
-echo "TEST 1"
 echo "$NEXT_BUILD_VERSION" >.github/workflows/buildVersion.txt
 git add .github/workflows/buildVersion.txt
 git commit -m "version $NEXT_BUILD_VERSION"
@@ -52,7 +51,6 @@ git tag "$NEXT_BUILD_VERSION" || {
   echo "ERROR: Tagging commit failed"
   exit 1
 }
-echo "TEST 2"
 git push origin || {
   echo "ERROR: Pushing tags failed"
   exit 1
