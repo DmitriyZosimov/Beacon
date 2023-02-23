@@ -43,7 +43,7 @@ jobs:
         run: backend/gradlew build
 
   updateVersion:
-    name: update version
+    name: Update version
     needs: "build"
     runs-on: ubuntu-latest
     timeout-minutes: 60
@@ -61,5 +61,5 @@ jobs:
         run: |
           chmod u+x .github/ -R
           .github/workflows/buildVersion.sh
-          build_version=`cat .github/workflows/buildVersion.txt`
+          build_version=`cat ./buildVersion.txt`
           echo "The newest version: $build_version"
