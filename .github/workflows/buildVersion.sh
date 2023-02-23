@@ -43,7 +43,7 @@ fi
 
 echo "The next build version is $NEXT_BUILD_VERSION"
 git tag -d "$NEXT_BUILD_VERSION" || true
-echo "$NEXT_BUILD_VERSION" >.github/workflows/buildVersion.txt
+echo "$NEXT_BUILD_VERSION" >./buildVersion.txt
 
 git tag "$NEXT_BUILD_VERSION" || {
   echo "ERROR: Tagging commit failed"
