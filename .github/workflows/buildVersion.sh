@@ -53,10 +53,10 @@ git tag "$NEXT_BUILD_VERSION" || {
 git push origin --tags || {
   echo "ERROR: Pushing tags failed"
 }
-git add .github/workflows/buildVersion.txt
+git add -A
 git commit -m "version $NEXT_BUILD_VERSION"
 
-git push -u origin || {
+git push || {
   echo "ERROR: Pushing the new version failed"
   exit 1
 }
