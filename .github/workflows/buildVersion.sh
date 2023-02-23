@@ -44,16 +44,20 @@ fi
 echo "The next build version is $NEXT_BUILD_VERSION"
 git tag -d "$NEXT_BUILD_VERSION" || true
 echo "$NEXT_BUILD_VERSION" >.github/workflows/buildVersion.txt
-git add .github/workflows/buildVersion.txt
-git commit -m "version $NEXT_BUILD_VERSION"
+
 git tag "$NEXT_BUILD_VERSION" || {
   echo "ERROR: Tagging commit failed"
   exit 1
 }
 
-git checkout master
-git push -u origin refs/heads/master:master || {
+git push origin --tags || {
   echo "ERROR: Pushing tags failed"
+}
+git add .github/workflows/buildVersion.txt
+git commit -m "version $NEXT_BUILD_VERSION"
+
+git push -u origin || {
+  echo "ERROR: Pushing the new version failed"
   exit 1
 }
 
