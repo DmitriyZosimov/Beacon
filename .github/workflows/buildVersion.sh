@@ -4,8 +4,8 @@ if [ "$TOKEN" = "" ]; then
   echo "The token is not available, can not set build version"
   exit 1
 fi
-git config --local user.name DmitriyZosimov
-git config --local user.email Dmitriy_Zosimov@epam.com
+git config --local user.name "GitHub Actions"
+git config --local user.email actions@github.com
 
 GITHUB_URL="https://$TOKEN@github.com/DmitriyZosimov/Beacon.git"
 git remote set-url origin "$GITHUB_URL"
