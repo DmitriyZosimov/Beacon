@@ -75,6 +75,7 @@ public class MobileDaoIT {
         // Also check release_years. First goes the newest phone.
         Assertions.assertEquals("pocox3pro8256green", dtos.get(0).getMobileId());
         Assertions.assertNotNull(dtos.get(0).getReleaseYear());
+        System.out.println("TEST :" + SECOND_IMAGE.length);
         for (int i = 0; i < SECOND_IMAGE.length; i++) {
             Assertions.assertEquals(SECOND_IMAGE[i], dtos.get(0).getMainImage().getImage()[i]);
         }
