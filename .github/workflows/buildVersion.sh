@@ -3,6 +3,8 @@
 git config --local user.name "GitHub Actions"
 git config --local user.email actions@github.com
 
+git pull
+
 LAST_TAG=$(git describe --match "*" --abbrev=0 --tags)
 echo "The latest tag version: $LAST_TAG"
 LAST_BUILD_VERSION=$LAST_TAG
