@@ -1,0 +1,13 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+catalog,com.beacon.catalog.web,TaskController,0,31,0,0,0,9,0,4,0,4
+catalog,com.beacon.catalog.web,CartController,8,22,1,1,2,7,1,3,0,3
+catalog,com.beacon.catalog.web,MobileController,0,20,0,0,0,7,0,3,0,3
+catalog,com.beacon.catalog.web,MobileFullController,9,58,2,4,2,17,2,5,0,4
+catalog,com.beacon.catalog.service,MobileFullServiceImpl,0,95,0,18,0,22,0,16,0,7
+catalog,com.beacon.catalog.service,TaskServiceImpl,0,92,0,4,0,22,0,9,0,7
+catalog,com.beacon.catalog.service,MobileServiceImpl,0,10,0,0,0,4,0,2,0,2
+catalog,com.beacon.catalog.service,MobileFullService,0,40,0,0,0,7,0,1,0,1
+catalog,com.beacon.catalog.config,DaoConfiguration,0,3,0,0,0,1,0,1,0,1
+catalog,com.beacon.catalog.config,ContextConfiguration.new BeanDeserializerModifier() {...},0,35,2,6,0,5,2,4,0,2
+catalog,com.beacon.catalog.config,ContextConfiguration.new BeanSerializerModifier() {...},0,10,0,0,0,2,0,2,0,2
+catalog,com.beacon.catalog.config,ContextConfiguration,0,51,0,0,0,7,0,3,0,3
