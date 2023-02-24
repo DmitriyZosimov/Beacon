@@ -62,6 +62,7 @@ jacocoTestReport {
     reports {
         xml.enabled false
         csv.enabled true
+        csv.destination file("${buildDir}/reports/jacoco/jacocoTestReport-catalog.csv")
     }
     afterEvaluate {
         classDirectories.setFrom(files(classDirectories.files.collect {

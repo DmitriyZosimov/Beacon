@@ -5,6 +5,8 @@
     <foreignObject width="100%" height="100%">
         <div xmlns="http://www.w3.org/1999/xhtml">
             <img alt="Catalog coverage" src="https://github.com/DmitriyZosimov/Beacon/blob/master/.github/badges/catalog-coverage.svg"/>
+            <img alt="Search coverage" src="https://github.com/DmitriyZosimov/Beacon/blob/master/.github/badges/search-coverage.svg"/>
+            <img alt="Shop coverage" src="https://github.com/DmitriyZosimov/Beacon/blob/master/.github/badges/shop-coverage.svg"/>
         </div>
     </foreignObject>
 </svg>
