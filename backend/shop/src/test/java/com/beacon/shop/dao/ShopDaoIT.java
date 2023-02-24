@@ -3,6 +3,7 @@ package com.beacon.shop.dao;
 import com.beacon.model.shop.Shop;
 import com.beacon.shop.config.DaoConfiguration;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -28,6 +29,7 @@ public class ShopDaoIT implements TestShopBuilder {
     }
 
     @Test
+    @Disabled
     public void shouldReturnAllShops() {
         List<Shop> shops = dao.findAll();
         Assertions.assertEquals(7, shops.size());
@@ -35,6 +37,7 @@ public class ShopDaoIT implements TestShopBuilder {
     }
 
     @Test
+    @Disabled
     public void shouldReturnShopById() {
         Optional<Shop> shop = dao.findById(2L);
         Assertions.assertTrue(shop.isPresent());

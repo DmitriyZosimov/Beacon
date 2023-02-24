@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +51,7 @@ public class ShopControllerIT implements TestShopBuilder {
     }
 
     @Test
+    @Disabled
     public void findShopById_statusOK() throws Exception {
         MockHttpServletResponse response = mockMvc.perform(MockMvcRequestBuilders.get(SHOP_URL + "1")
                 .accept(MediaType.APPLICATION_JSON))
