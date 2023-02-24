@@ -30,7 +30,9 @@ jobs:
 #          node-version: ${{ env.NODE_VERSION }}
 
       - name: Run build
-        run: backend/gradlew build
+        run: |
+          cd backend
+          ./gradlew build
 
       - name: Upload catalog jacoco report for subsequent jobs
         uses: actions/upload-artifact@v3
