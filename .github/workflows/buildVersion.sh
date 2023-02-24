@@ -45,6 +45,10 @@ git tag "$NEXT_BUILD_VERSION" || {
   exit 1
 }
 
+git push --tags || {
+  echo "ERROR: Publishing tags failed"
+}
+
 git add -A
 git commit -m "version $NEXT_BUILD_VERSION"
 
