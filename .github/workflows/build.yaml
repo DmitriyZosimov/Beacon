@@ -39,7 +39,7 @@ jobs:
         with:
           name: catalog-jacoco-report
           path: |
-            backend/catalog/build/reports/jacoco/test/jacocoTestReport.csv
+            ./catalog/build/reports/jacoco/test/jacocoTestReport.csv
 
   updateVersion:
     name: Update version
