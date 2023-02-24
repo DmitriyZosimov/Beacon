@@ -68,6 +68,10 @@ jacoco {
 
 jacocoTestReport {
     dependsOn test
+    reports {
+        xml.enabled false
+        csv.enabled true
+    }
     afterEvaluate {
         classDirectories.setFrom(files(classDirectories.files.collect {
             fileTree(dir: it, exclude: [
