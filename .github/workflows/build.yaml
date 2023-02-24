@@ -82,15 +82,15 @@ jobs:
       - name: Generate catalog code coverage
         uses: cicirello/jacoco-badge-generator@v2
         with:
-          jacoco-csv-file: ./jacocoTestReport-catalog.csv
+          jacoco-csv-file: ./backend/catalog/build/reports/jacoco/jacocoTestReport-catalog.csv
           coverage-badge-filename: catalog-coverage.svg
       - name: Generate search code coverage
         uses: cicirello/jacoco-badge-generator@v2
         with:
-          jacoco-csv-file: ./jacocoTestReport-search.csv
+          jacoco-csv-file: ./backend/search/build/reports/jacoco/jacocoTestReport-search.csv
           coverage-badge-filename: search-coverage.svg
       - name: Generate shop code coverage
         uses: cicirello/jacoco-badge-generator@v2
         with:
-          jacoco-csv-file: ./jacocoTestReport-shop.csv
+          jacoco-csv-file: ./backend/shop/build/reports/jacoco/jacocoTestReport-shop.csv
           coverage-badge-filename: shop-coverage.svg
