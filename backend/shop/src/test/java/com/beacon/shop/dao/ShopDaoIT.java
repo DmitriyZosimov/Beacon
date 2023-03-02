@@ -29,7 +29,6 @@ public class ShopDaoIT implements TestShopBuilder {
     }
 
     @Test
-    @Disabled
     public void shouldReturnAllShops() {
         List<Shop> shops = dao.findAll();
         Assertions.assertEquals(7, shops.size());
@@ -37,7 +36,6 @@ public class ShopDaoIT implements TestShopBuilder {
     }
 
     @Test
-    @Disabled
     public void shouldReturnShopById() {
         Optional<Shop> shop = dao.findById(2L);
         Assertions.assertTrue(shop.isPresent());

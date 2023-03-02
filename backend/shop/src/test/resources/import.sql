@@ -1,11 +1,11 @@
 INSERT INTO shop_logo(logo) VALUES
- (FILE_READ('/home/dmitriy_zosimov/work/BEACON/Beacon/backend/shop/src/test/resources/img/beacon-small-logo.png')),
- (FILE_READ('/home/dmitriy_zosimov/work/BEACON/Beacon/backend/shop/src/test/resources/img/beacon-small-logo.png')),
- (FILE_READ('/home/dmitriy_zosimov/work/BEACON/Beacon/backend/shop/src/test/resources/img/beacon-small-logo.png')),
- (FILE_READ('/home/dmitriy_zosimov/work/BEACON/Beacon/backend/shop/src/test/resources/img/beacon-small-logo.png')),
- (FILE_READ('/home/dmitriy_zosimov/work/BEACON/Beacon/backend/shop/src/test/resources/img/beacon-small-logo.png')),
- (FILE_READ('/home/dmitriy_zosimov/work/BEACON/Beacon/backend/shop/src/test/resources/img/beacon-small-logo.png')),
- (FILE_READ('/home/dmitriy_zosimov/work/BEACON/Beacon/backend/shop/src/test/resources/img/beacon-small-logo.png'));
+ (FILE_READ('classpath:img/beacon-small-logo.png')),
+ (FILE_READ('classpath:img/beacon-small-logo.png')),
+ (FILE_READ('classpath:img/beacon-small-logo.png')),
+ (FILE_READ('classpath:img/beacon-small-logo.png')),
+ (FILE_READ('classpath:img/beacon-small-logo.png')),
+ (FILE_READ('classpath:img/beacon-small-logo.png')),
+ (FILE_READ('classpath:img/beacon-small-logo.png'));
 
 INSERT INTO shop(name, description, logo_id)
 VALUES ('21Vek', 'Гарантия 12 месяцев. Код товара 7.556.886. Без выходных. Собственная курьерская служба. Цена без рассрочки. Более 1 000 000 товаров. Мы работаем для Вас с 2004 года!', 1),

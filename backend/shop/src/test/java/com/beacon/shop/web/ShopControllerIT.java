@@ -51,7 +51,6 @@ public class ShopControllerIT implements TestShopBuilder {
     }
 
     @Test
-    @Disabled
     public void findShopById_statusOK() throws Exception {
         MockHttpServletResponse response = mockMvc.perform(MockMvcRequestBuilders.get(SHOP_URL + "1")
                 .accept(MediaType.APPLICATION_JSON))
