@@ -19,14 +19,17 @@ host       all         all     172.17.0.0/16       md5
 ```agsl
 sudo service postgresql restart
 ```
-5. Change ``spring.datasource.url`` in application-local.properties:
+5. Replace ```localhost``` in all properties with docker IP address in application-local.properties:
 ```agsl
 spring.datasource.url=jdbc:postgresql://172.17.0.1:5432/catalog
+spring.security.oauth2.resourceserver.jwt.issuer-uri=http://172.17.0.1:8180/realms/catalog
+...
 ```
 6. Run ``start.sh``:,
 ```agsl
 sh start.sh
 ```
+7. Go to [http://localhost:8010/](http://localhost:8010/)
 
 To stop docker run:
 ```agsl
