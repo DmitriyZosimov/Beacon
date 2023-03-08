@@ -20,7 +20,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
 
-    compileOnly postgresql.postgresql
+    runtimeOnly postgresql.postgresql
 
     testImplementation postgresql.postgresql
     testImplementation zonky.embedded_database_spring_test
