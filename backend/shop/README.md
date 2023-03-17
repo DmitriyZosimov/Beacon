@@ -1,4 +1,4 @@
-# Catalog
+# Shop
 
 ## Launch Docker
 1. Run the next command and find docker ip address:
