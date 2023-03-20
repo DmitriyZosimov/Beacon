@@ -4,6 +4,7 @@ plugins {
     id 'org.asciidoctor.convert' version "$asciidoctorConvertVersion"
     id 'maven-publish'
     id 'jacoco'
+    id 'org.flywaydb.flyway' version "$flywayVersion"
 }
 
 ext {
@@ -19,6 +20,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-jersey'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
+    compileOnly "org.flywaydb:flyway-core:$flywayVersion"
 
     compileOnly lombok.lombok
     annotationProcessor lombok.lombok
@@ -83,4 +85,11 @@ jacocoTestCoverageVerification {
             }
         }
     }
+}
+
+flyway {
+    url = 'jdbc:postgresql://localhost:5432/catalog'
+    user = 'flyway'
+    password = 'flyway'
+    locations = ['classpath:db/migration']
 }
