@@ -1,11 +1,17 @@
+.task-background {
+  background-color: #04202C;
+}
 .task-header {
-  background-color: #323030;
+  background-color: #304044;
 }
 .task-header-success {
   background-color: seagreen;
 }
-.task-body, .task-footer {
-  background-color: #FFF9EC;
+.task-body {
+  background-color: #F9F9FF;
+}
+.task-footer {
+  background-color: #5B7065;
 }
 .task-products {
   background-color: #F4EBDB;
