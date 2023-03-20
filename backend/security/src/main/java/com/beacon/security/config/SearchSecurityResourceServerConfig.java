@@ -9,15 +9,15 @@ public class SearchSecurityResourceServerConfig extends AbstractBeaconSecurity {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.cors()
-                .and()
-                .authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/search**")
-                .permitAll()
-                .anyRequest()
-                .authenticated()
-                .and()
-                .oauth2ResourceServer()
-                .jwt();
+        super.configure(http);
+        http
+            .authorizeRequests()
+            .antMatchers(HttpMethod.GET, "/search**")
+            .permitAll()
+            .anyRequest()
+            .authenticated()
+            .and()
+            .oauth2ResourceServer()
+            .jwt();
     }
 }

@@ -9,15 +9,15 @@ public class ShopSecurityResourceServerConfig extends AbstractBeaconSecurity {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.cors()
-                .and()
-                .authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/shop/*")
-                .permitAll()
-                .anyRequest()
-                .authenticated()
-                .and()
-                .oauth2ResourceServer()
-                .jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationToken()));
+        super.configure(http);
+        http
+            .authorizeRequests()
+            .antMatchers(HttpMethod.GET, "/shop/*")
+            .permitAll()
+            .anyRequest()
+            .authenticated()
+            .and()
+            .oauth2ResourceServer()
+            .jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationToken()));
     }
 }
