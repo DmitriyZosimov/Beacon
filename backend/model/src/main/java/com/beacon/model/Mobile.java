@@ -48,7 +48,7 @@ import javax.persistence.*;
 @Inheritance(strategy = InheritanceType.JOINED)
 @Data
 @NoArgsConstructor
-public class Mobile {
+public class Mobile extends Product {
 
     @Id
     @Column(name = "mobile_id", nullable = false, unique = true)
@@ -104,6 +104,7 @@ public class Mobile {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
 
         Mobile mobile = (Mobile) o;
 
@@ -138,7 +139,8 @@ public class Mobile {
 
     @Override
     public int hashCode() {
-        int result = mobileId != null ? mobileId.hashCode() : 0;
+        int result = super.hashCode();
+        result += mobileId != null ? mobileId.hashCode() : 0;
         result = 31 * result + (brand != null ? brand.hashCode() : 0);
         result = 31 * result + (model != null ? model.hashCode() : 0);
         result = 31 * result + (os != null ? os.hashCode() : 0);

@@ -43,7 +43,7 @@ public interface MobileSearchDao extends JpaRepository<Mobile, String> {
                     "   ) as ir " +
                     "group by ir.mobile_id, ir.brand, ir.model, ir.os, ir.battery, ir.color, ir.chipset_model, " +
                     "ir.camera_resolution, ir.ram, ir.storage_capacity, ir.release_year, ir.display_resolution, " +
-                    "ir.display_technology, ir.screen_size, ir.sim_card_slot " +
+                    "ir.display_technology, ir.screen_size, ir.sim_card_slot, ir.relevant " +
                     "order by count(*) desc, ir.release_year desc limit 10")
     public List<Mobile> search(@Param("query") String query);
 }
