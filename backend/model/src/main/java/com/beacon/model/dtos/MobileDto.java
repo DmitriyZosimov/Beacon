@@ -41,6 +41,8 @@ public class MobileDto {
 
     private String releaseYear;
 
+    private Integer relevant;
+
     private MobileMainImage mainImage;
 
     private Long countOfOffers;
@@ -50,7 +52,7 @@ public class MobileDto {
     public MobileDto(String mobileId, String brand, String model, String os, String screenSize, String displayResolution,
                      String displayTechnology, Integer ram, Integer storageCapacity, String chipsetModel,
                      String cameraResolution, String simCardSlot, Integer battery, String color, String releaseYear,
-                     Long imageId, byte[] image, Long countOfOffers, Double minimalPrice) {
+                     Integer relevant, Long imageId, byte[] image, Long countOfOffers, Double minimalPrice) {
         this.mobileId = mobileId;
         this.brand = brand;
         this.model = model;
@@ -66,6 +68,7 @@ public class MobileDto {
         this.battery = battery;
         this.color = color;
         this.releaseYear = releaseYear;
+        this.relevant = relevant;
         this.countOfOffers = countOfOffers;
         this.minimalPrice = minimalPrice;
         this.mainImage = new MobileMainImage(imageId, image);

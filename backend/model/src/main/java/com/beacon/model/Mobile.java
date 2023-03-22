@@ -14,17 +14,19 @@ import javax.persistence.*;
 
 @NamedNativeQueries(
         @NamedNativeQuery(name = "Mobile.findAllMobileDtos",
-                query = "SELECT m.mobile_id, m.brand, m.model, m.os, m.screen_size, m.display_resolution, " +
+                query = "SELECT * FROM ( " +
+                        "SELECT m.mobile_id, m.brand, m.model, m.os, m.screen_size, m.display_resolution, " +
                         "m.display_technology, m.ram, m.storage_capacity, m.chipset_model, m.camera_resolution, " +
-                        "m.sim_card_slot, m.battery, m.color, m.release_year, " +
+                        "m.sim_card_slot, m.battery, m.color, m.release_year, m.relevant, " +
                         "im.image_id, lo_get(im.image) as image, " +
                         "COUNT(shop_id) AS count_of_offers, MIN(price) AS minimal_price " +
                         "FROM mobile m LEFT JOIN offers o ON m.mobile_id=o.mobile_id " +
                         "LEFT JOIN mobile_image im ON m.mobile_id=im.mobile_id AND im.main=1 " +
                         "GROUP BY m.mobile_id, m.brand, m.model, m.os, m.screen_size, m.display_resolution, " +
                         "m.display_technology, m.ram, m.storage_capacity, m.chipset_model, m.camera_resolution, " +
-                        "m.sim_card_slot, m.battery, m.color, m.release_year, im.image_id, im.image " +
-                        "ORDER BY release_year DESC;",
+                        "m.sim_card_slot, m.battery, m.color, m.release_year, m.relevant, im.image_id, im.image " +
+                        ") AS preresult " +
+                        "ORDER BY minimal_price IS NULL, relevant DESC, release_year DESC;",
                 resultSetMapping = "Mapping.MobileDto")
 )
 @SqlResultSetMappings(
@@ -38,7 +40,8 @@ import javax.persistence.*;
                                 @ColumnResult(name = "storage_capacity"), @ColumnResult(name = "chipset_model"),
                                 @ColumnResult(name = "camera_resolution"), @ColumnResult(name = "sim_card_slot"),
                                 @ColumnResult(name = "battery"), @ColumnResult(name = "color"),
-                                @ColumnResult(name = "release_year"), @ColumnResult(name = "image_id", type = Long.class),
+                                @ColumnResult(name = "release_year"), @ColumnResult(name = "relevant"),
+                                @ColumnResult(name = "image_id", type = Long.class),
                                 @ColumnResult(name = "image", type = byte[].class),
                                 @ColumnResult(name = "count_of_offers", type = Long.class), @ColumnResult(name = "minimal_price")
                         }))
