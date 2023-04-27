@@ -39,7 +39,7 @@ const reducer = createReducer(
     }
   }),
 
-  on(TasksAction.updateTaskFaluire, (state, { error }) => {
+  on(TasksAction.updateTaskFailure, (state, { error }) => {
     return {
       ...state,
       error
