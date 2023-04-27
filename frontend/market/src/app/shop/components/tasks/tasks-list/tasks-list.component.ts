@@ -34,14 +34,24 @@ export class TasksListComponent implements OnInit {
     this.store.dispatch(TasksActions.updateTask({ task }))
   }
 
+  onCancel(oldTask: TaskModel) {
+    let task = { ...oldTask};
+    task.state = TaskStateEnum.CANCELLED;
+    this.store.dispatch(TasksActions.updateTask({ task }))
+  }
+
   onReset(oldTask: TaskModel) {
     let task = { ...oldTask};
-    task.state = TaskStateEnum.NEW;
+    task.state == TaskStateEnum.CANCELLED ? task.state = TaskStateEnum.NEW : task.state = TaskStateEnum.RESET;
     this.store.dispatch(TasksActions.updateTask({ task }))
   }
 
   isDone(task: TaskModel) {
     return task.state == TaskStateEnum.COMPLETED;
+  }
+
+  isCanceled(task: TaskModel) {
+    return task.state == TaskStateEnum.CANCELLED;
   }
 
   private next(value: TaskStateEnum): TaskStateEnum {

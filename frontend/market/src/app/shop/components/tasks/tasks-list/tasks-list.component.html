@@ -9,9 +9,10 @@
     <div *ngFor="let task of (task$ | async)">
       <div class="mb-3">
         <div class="card shadow">
-          <div class="card-header" [class]="isDone(task) ? 'task-header-success': 'task-header'">
+          <div class="card-header" [class]="isDone(task) ? 'task-header-success': isCanceled(task) ? 'bg-secondary' : 'task-header'">
             <span class="text-white">Task</span>
             <span *ngIf="isDone(task)" class="fst-italic text-white"> (Done)</span>
+            <span *ngIf="isCanceled(task)" class="fst-italic text-white"> (Canceled)</span>
           </div>
           <div class="card-body task-body">
             <div class="row">
@@ -76,8 +77,9 @@
             </div>
           </div>
           <div class="card-footer task-footer">
-            <button *ngIf="!isDone(task)" class="btn btn-emerald-blue" (click)="onNextState(task)">Change state</button>
-            <button *ngIf="isDone(task)" class="btn btn-danger" (click)="onReset(task)">Reset</button>
+            <button *ngIf="!isDone(task) && !isCanceled(task)" class="btn btn-emerald-blue me-1" (click)="onNextState(task)">Change state</button>
+            <button *ngIf="!isDone(task) && !isCanceled(task)" class="btn btn-emerald-blue" (click)="onCancel(task)">Cancel</button>
+            <button *ngIf="isDone(task) || isCanceled(task)" class="btn btn-danger" (click)="onReset(task)">Reset</button>
           </div>
         </div>
       </div>

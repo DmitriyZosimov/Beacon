@@ -25,7 +25,7 @@ export const updateTaskSuccess = createAction(
   props<{ task: TaskModel }>()
 );
 
-export const updateTaskFaluire = createAction(
+export const updateTaskFailure = createAction(
   '[Complete/Reset Task Effect] COMPLETE/RESET_TASK_FAILURE',
   props<{ error: Error | string }>()
 );

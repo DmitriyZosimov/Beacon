@@ -41,7 +41,7 @@ export class TasksEffects {
         let shopId = this.activatedRoute.snapshot.firstChild?.firstChild?.url[0].path;
         return this.tasksService.updateTask(shopId!, task).pipe(
           map(task => TasksActions.updateTaskSuccess({ task })),
-          catchError(error => of(TasksActions.updateTaskFaluire({ error })))
+          catchError(error => of(TasksActions.updateTaskFailure({ error })))
         )
       })
     )

@@ -10,7 +10,10 @@ public enum TaskState {
     @JsonProperty("completed")
     COMPLETED("completed"),
     @JsonProperty("cancelled")
-    CANCELLED("cancelled");
+    CANCELLED("cancelled"),
+
+    @JsonProperty("reset")
+    RESET("reset");
 
     private String state;
 
