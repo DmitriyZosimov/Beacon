@@ -99,7 +99,8 @@ public class Mobile extends Product {
     @Column(name = "release_year")
     private String releaseYear;
 
-    @OneToOne(mappedBy = "mobile", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    // orphanRemoval = true is best practice by "Spring Boot Persistence Best Practices (Anghel Leonard)"
+    @OneToOne(mappedBy = "mobile", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
     private MobileMainImage mainImage;
 

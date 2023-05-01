@@ -135,7 +135,8 @@ public class MobileFull extends Mobile {
     @Column(name = "charge_time")
     private String chargeTime;
 
-    @OneToMany(mappedBy = "mobileFull", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    // orphanRemoval = true is best practice by "Spring Boot Persistence Best Practices (Anghel Leonard)"
+    @OneToMany(mappedBy = "mobileFull", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     @Where(clause = "main=2")
     @JsonManagedReference
     private List<MobileNotMainImage> notMainImages;

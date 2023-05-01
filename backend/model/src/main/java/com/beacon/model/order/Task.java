@@ -64,6 +64,7 @@ public class Task implements Cloneable {
     @Enumerated
     private TaskState state;
 
+    // orphanRemoval = true is best practice by "Spring Boot Persistence Best Practices (Anghel Leonard)"
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "task", fetch = FetchType.EAGER)
     @JsonManagedReference
     @OnDelete(action = OnDeleteAction.CASCADE)

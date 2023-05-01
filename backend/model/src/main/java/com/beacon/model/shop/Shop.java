@@ -26,7 +26,8 @@ public class Shop {
     @Column(name = "description", length = 500)
     private String description;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    // orphanRemoval = true is best practice by "Spring Boot Persistence Best Practices (Anghel Leonard)"
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinTable(name = "shop_working_hours_mapping",
             joinColumns = {@JoinColumn(name = "shop_id", referencedColumnName = "shop_id")},
             inverseJoinColumns = {@JoinColumn(name = "working_hours_id", referencedColumnName = "id")})
@@ -40,7 +41,8 @@ public class Shop {
     @Enumerated(EnumType.STRING)
     private Set<PaymentMethod> paymentMethods;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    // orphanRemoval = true is best practice by "Spring Boot Persistence Best Practices (Anghel Leonard)"
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "logo_id", referencedColumnName = "logo_id")
     private Logo logo;
 
