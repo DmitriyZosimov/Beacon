@@ -1,5 +1,6 @@
-package com.beacon.model;
+package com.beacon.model.builder;
 
+import com.beacon.model.MobileFull;
 import com.beacon.model.builders.MobileFullBuilder;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
