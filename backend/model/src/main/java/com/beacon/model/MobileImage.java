@@ -58,7 +58,7 @@ abstract class MobileImage {
     public String toString() {
         return "MobileImage{" +
                 "imageId=" + imageId +
-                ", image=" + Arrays.toString(image) +
+                ", image=" + image +
                 '}';
     }
 }

@@ -1,6 +1,8 @@
 package com.beacon.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,6 +12,8 @@ import javax.persistence.*;
 @DiscriminatorValue(value = "1")
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class MobileMainImage extends MobileImage {
 
     @OneToOne(fetch = FetchType.LAZY)
