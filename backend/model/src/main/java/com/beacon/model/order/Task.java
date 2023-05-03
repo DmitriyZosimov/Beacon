@@ -14,6 +14,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "task")
+@NamedEntityGraph(name = "task-all", includeAllAttributes = true)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

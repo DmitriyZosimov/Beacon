@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @DiscriminatorValue(value = "2")
@@ -25,13 +26,13 @@ public class MobileNotMainImage extends MobileImage {
 
         MobileNotMainImage that = (MobileNotMainImage) o;
 
-        return mobileFull.equals(that.mobileFull);
+        return Objects.equals(mobileFull, that.mobileFull);
     }
 
     @Override
     public int hashCode() {
         int result = super.hashCode();
-        result = 31 * result + mobileFull.hashCode();
+        result = 31 * result + (mobileFull != null ? mobileFull.hashCode() : 0);
         return result;
     }
 

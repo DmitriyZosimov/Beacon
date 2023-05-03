@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Contains additional information of mobile.
@@ -17,6 +17,7 @@ import java.util.Map;
 
 @Entity
 @Table(name = "mobile_full")
+@NamedEntityGraph(name = "mobile-all", includeAllAttributes = true)
 @Data
 @NoArgsConstructor
 public class MobileFull extends Mobile {
@@ -136,10 +137,10 @@ public class MobileFull extends Mobile {
     private String chargeTime;
 
     // orphanRemoval = true is best practice by "Spring Boot Persistence Best Practices (Anghel Leonard)"
-    @OneToMany(mappedBy = "mobileFull", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "mobileFull", cascade = CascadeType.ALL, orphanRemoval = true)
     @Where(clause = "main=2")
     @JsonManagedReference
-    private List<MobileNotMainImage> notMainImages;
+    private Set<MobileNotMainImage> notMainImages;
 
     @ElementCollection
     @CollectionTable(name = "offers", joinColumns = @JoinColumn(name = "mobile_id"))

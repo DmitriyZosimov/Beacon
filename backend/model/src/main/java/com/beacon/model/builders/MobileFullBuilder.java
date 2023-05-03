@@ -5,9 +5,7 @@ import com.beacon.model.MobileMainImage;
 import com.beacon.model.MobileNotMainImage;
 
 import java.io.*;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * MobileFullBuilder is helpful for creating test.
@@ -69,7 +67,7 @@ public class MobileFullBuilder {
     private String batteryType;
     private String chargeTime;
     private MobileMainImage mainImage;
-    private List<MobileNotMainImage> notMainImages;
+    private Set<MobileNotMainImage> notMainImages;
 
     public static MobileFullBuilder create() {
         INSTANCE = new MobileFullBuilder();
@@ -352,7 +350,7 @@ public class MobileFullBuilder {
             MobileNotMainImage image = new MobileNotMainImage();
             image.setImage(readImage(file));
             return image;
-        }).collect(LinkedList::new, LinkedList::offer, LinkedList::addAll);
+        }).collect(LinkedHashSet::new, LinkedHashSet::add, LinkedHashSet::addAll);
         return INSTANCE;
     }
 

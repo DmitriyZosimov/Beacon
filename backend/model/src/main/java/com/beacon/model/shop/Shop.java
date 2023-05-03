@@ -13,6 +13,7 @@ import java.util.Set;
 @Table(name = "shop")
 @Data
 @Entity
+@NamedEntityGraph(name = "shop-all", includeAllAttributes = true)
 public class Shop {
 
     @Id

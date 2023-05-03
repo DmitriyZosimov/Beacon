@@ -1,6 +1,7 @@
 package com.beacon.catalog.dao;
 
 import com.beacon.model.MobileFull;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -15,6 +16,7 @@ import java.util.Optional;
 @Repository
 public interface MobileFullDao extends JpaRepository<MobileFull, String> {
 
+    @EntityGraph(value = "mobile-all", type = EntityGraph.EntityGraphType.FETCH)
     Optional<MobileFull> findByMobileId(String mobileId);
 
     int deleteByMobileId(String mobileId);

@@ -33,7 +33,7 @@ public class MobileFullServiceImpl implements MobileFullService {
     @Transactional(readOnly = true)
     @Override
     public Optional<MobileFull> findMobileFullById(String mobileId) {
-        return mobileFullDao.findById(mobileId);
+        return mobileFullDao.findByMobileId(mobileId);
     }
 
     @Override
