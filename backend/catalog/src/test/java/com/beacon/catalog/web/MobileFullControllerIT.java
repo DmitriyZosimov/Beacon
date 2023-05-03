@@ -136,4 +136,54 @@ public class MobileFullControllerIT implements TestMobileFullBuilder {
         Assertions.assertEquals(FULL_MOBILE_ID_URL + MobileIdToUrlPathConverter.convert(build()),
                 response.getRedirectedUrl());
     }
+
+    @DirtiesContext
+    @Test
+    @WithMockUser(roles = "Manager-content")
+    public void deleteMobileFull_PathVariableId_statusNoContent() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.delete(MOBILE_ID_URL + "?mobileId=honor508128black")
+                        .with(csrf()))
+                .andExpect(MockMvcResultMatchers.status().isNoContent());
+
+        mockMvc.perform(MockMvcRequestBuilders.get(MOBILE_ID_URL + "honor/508128black")
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isNotFound());
+    }
+
+    @Test
+    @WithMockUser(roles = "Manager-content")
+    public void deleteMobileFull_PathVariableId_WhenIdDoesNotExist_statusNoContent() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.delete(MOBILE_ID_URL + "?mobileId=honor")
+                        .with(csrf()))
+                .andExpect(MockMvcResultMatchers.status().isNoContent());
+    }
+
+
+    @DirtiesContext
+    @Test
+    @WithMockUser(roles = "Manager-content")
+    public void deleteMobileFull_RequestBody_statusNoContent() throws Exception {
+        String json = "[\"honor508128black\", \"pocox3pro8256green\"]";
+        mockMvc.perform(MockMvcRequestBuilders.delete(MOBILE_ID_URL)
+                        .content(json)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .with(csrf()))
+                .andExpect(MockMvcResultMatchers.status().isNoContent());
+
+        mockMvc.perform(MockMvcRequestBuilders.get(MOBILE_ID_URL + "honor/508128black")
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isNotFound());
+
+        mockMvc.perform(MockMvcRequestBuilders.get(MOBILE_ID_URL + "poco/x3pro8256green")
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(MockMvcResultMatchers.status().isNotFound());
+    }
+
+    @Test
+    @WithMockUser(roles = "Manager-content")
+    public void deleteMobileFull_NoRequestBody_NoParams_statusBadRequest() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.delete(MOBILE_ID_URL)
+                        .with(csrf()))
+                .andExpect(MockMvcResultMatchers.status().isBadRequest());
+    }
 }

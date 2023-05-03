@@ -42,7 +42,7 @@ public class Order {
     @Column(name = "registered_date", updatable = false)
     private LocalDate registeredDate;
 
-    @ManyToOne(cascade=CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "task_id", updatable = false, nullable = false)
     @JsonBackReference
     private Task task;
@@ -50,6 +50,13 @@ public class Order {
     @PrePersist
     void onRegisteredDate() {
         this.registeredDate = LocalDate.now();
+    }
+
+    public void setMobile(Mobile mobile) {
+        this.mobile = mobile;
+        if (mobile != null) {
+            this.mobileId = mobile.getMobileId();
+        }
     }
 
     @Override
@@ -87,7 +94,7 @@ public class Order {
     public String toString() {
         return "Order{" +
                 "orderId=" + orderId +
-                ", mobile=" + mobile +
+                ", mobile=" +
                 ", mobileId='" + mobileId + '\'' +
                 ", shopId=" + shopId +
                 ", price=" + price +

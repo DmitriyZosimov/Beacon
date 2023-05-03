@@ -25,7 +25,7 @@ import java.util.Arrays;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-abstract class MobileImage {
+public abstract class MobileImage {
 
     @Id
     @Column(name = "image_id", nullable = false, updatable = false)

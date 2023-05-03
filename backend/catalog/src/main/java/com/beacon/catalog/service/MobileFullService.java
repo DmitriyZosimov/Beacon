@@ -28,6 +28,18 @@ public interface MobileFullService {
     MobileFull saveMobileFull(MobileFull MobileFull);
 
     /**
+     * Delete MobileFull by identifier
+     * @param id - id of mobileFull
+     */
+    void deleteMobileFullById(String id);
+
+    /**
+     * Batch delete MobileFulls by identifier
+     * @param ids - collection of ids
+     */
+    void deleteMobileFullInBatch(Iterable<String> ids);
+
+    /**
      * Generate a complex id for the incoming {@code MobileFull}
      *
      * @param m incoming {@code MobileFull}
