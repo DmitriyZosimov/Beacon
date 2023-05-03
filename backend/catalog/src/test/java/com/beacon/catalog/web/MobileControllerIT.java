@@ -1,5 +1,6 @@
 package com.beacon.catalog.web;
 
+import com.beacon.model.MobileHelpers;
 import com.beacon.model.dtos.MobileDto;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -91,7 +92,7 @@ public class MobileControllerIT {
                 new TypeReference<Iterable<MobileDto>>() {
                 });
         Assertions.assertNotNull(resultList);
-        Assertions.assertEquals(2, resultList.size());
+        Assertions.assertEquals(3, resultList.size());
         Assertions.assertEquals("pocox3pro8256green", resultList.get(0).getMobileId());
         Assertions.assertEquals("green", resultList.get(0).getColor());
         Assertions.assertEquals("honor508128black", resultList.get(1).getMobileId());
@@ -99,8 +100,10 @@ public class MobileControllerIT {
         Assertions.assertEquals("50", resultList.get(1).getModel());
 
         resultList.forEach(dto -> {
-            Assertions.assertNotNull(dto.getCountOfOffers());
-            Assertions.assertNotNull(dto.getMinimalPrice());
+            if (!dto.getMobileId().equals(MobileHelpers.REMOVED.getId())) {
+                Assertions.assertNotNull(dto.getCountOfOffers());
+                Assertions.assertNotNull(dto.getMinimalPrice());
+            }
         });
 
         for (int i = 0; i < SECOND_IMAGE.length; i++) {

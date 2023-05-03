@@ -1,5 +1,6 @@
 package com.beacon.catalog.service;
 
+import com.beacon.model.MobileHelpers;
 import com.beacon.model.dtos.MobileDto;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -31,7 +32,7 @@ public class MobileServiceImplIT {
         Assertions.assertNotNull(list);
         //if it doesn't pass, see import.sql
         // Also check release_years. First goes the newest phone.
-        Assertions.assertEquals(2, list.size());
+        Assertions.assertEquals(3, list.size());
         Assertions.assertEquals("pocox3pro8256green", list.get(0).getMobileId());
         Assertions.assertEquals("green", list.get(0).getColor());
         Assertions.assertEquals(MobileDto.class, list.get(0).getClass());
@@ -43,8 +44,10 @@ public class MobileServiceImplIT {
         System.out.println(list.get(1).toString());
 
         list.forEach(dto -> {
-            Assertions.assertNotNull(dto.getCountOfOffers());
-            Assertions.assertNotNull(dto.getMinimalPrice());
+            if (!dto.getMobileId().equals(MobileHelpers.REMOVED.getId())) {
+                Assertions.assertNotNull(dto.getCountOfOffers());
+                Assertions.assertNotNull(dto.getMinimalPrice());
+            }
         });
     }
 

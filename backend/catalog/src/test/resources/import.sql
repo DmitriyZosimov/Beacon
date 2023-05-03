@@ -10,6 +10,13 @@ insert into mobile_full (mobile_id, type, os_version, processor_clock_frequency,
 ('honor508128black', 'smartphone', '10', 2700, 4, 14, 'plastic', 'nano', 180, 70, 8, 150, 2, true, true, true, true, 'f/1.9', true, '22', 'f/2.8', true, true, false, true, true, true, true, true, true, '3.1', true, '3.5 jack', true, '801.1', true, false, 'li-on', '4 hours'),
 ('pocox3pro8256green', 'smartphone', '10', 2700, 4, 14, 'plastic', 'nano', 180, 70, 8, 150, 2, true, true, true, true, 'f/1.9', true, '22', 'f/2.8', true, true, false, true, true, true, true, true, true, '3.1', true, '3.5 jack', true, '801.1', true, false, 'li-on', '4 hours');
 
+-- insert mobile helpers
+insert into mobile (mobile_id, brand, relevant) values
+('removed', 'removed', 0);
+
+insert into mobile_full (mobile_id) values
+('removed');
+
 insert into mobile_image (mobile_id, main, image) values ('honor508128black', 1, FILE_READ('classpath:img/sample-phone.jpeg'));
 insert into mobile_image (mobile_id, main, image) values ('honor508128black', 2, FILE_READ('classpath:img/sample-phone-2.jpeg'));
 insert into mobile_image (mobile_id, main, image) values ('honor508128black', 2, FILE_READ('classpath:img/sample-phone-3.jpeg'));

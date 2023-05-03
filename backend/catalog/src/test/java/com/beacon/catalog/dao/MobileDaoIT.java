@@ -2,6 +2,7 @@ package com.beacon.catalog.dao;
 
 import com.beacon.catalog.config.DaoConfiguration;
 import com.beacon.model.Mobile;
+import com.beacon.model.MobileHelpers;
 import com.beacon.model.dtos.MobileDto;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -70,7 +71,7 @@ public class MobileDaoIT {
     public void getAllMobileDto_FirstShouldPOCOPhone_BecauseItIsTheNewestPhone() {
         List<Mobile> dtos = mobileDao.findAll();
         Assertions.assertNotNull(dtos);
-        Assertions.assertEquals(2, dtos.size());
+        Assertions.assertEquals(3, dtos.size());
         // if it doesn't pass, check import.sql. Mobiles should be inserted in row
         // Also check release_years. First goes the newest phone.
         Assertions.assertEquals("pocox3pro8256green", dtos.get(0).getMobileId());
@@ -107,8 +108,10 @@ public class MobileDaoIT {
 
         Assertions.assertEquals(1, YearsComparator.COMPARATOR.compare(dtos.get(0).getReleaseYear(), dtos.get(1).getReleaseYear()));
         dtos.forEach(dto -> {
-            Assertions.assertNotNull(dto.getCountOfOffers());
-            Assertions.assertNotNull(dto.getMinimalPrice());
+            if (!dto.getMobileId().equals(MobileHelpers.REMOVED.getId())) {
+                Assertions.assertNotNull(dto.getCountOfOffers());
+                Assertions.assertNotNull(dto.getMinimalPrice());
+            }
         });
     }
 
