@@ -1,5 +1,6 @@
 package com.beacon.model.shop;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -43,8 +44,8 @@ public class Shop {
     private Set<PaymentMethod> paymentMethods;
 
     // orphanRemoval = true is best practice by "Spring Boot Persistence Best Practices (Anghel Leonard)"
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "logo_id", referencedColumnName = "logo_id")
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "shop")
+    @JsonManagedReference
     private Logo logo;
 
     @Override

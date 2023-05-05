@@ -1,5 +1,6 @@
 package com.beacon.model.shop;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -14,13 +15,17 @@ import java.util.Arrays;
 public class Logo {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "logo_id", updatable = false, nullable = false, unique = true)
     private Long logoId;
 
     @Lob
     @Column(name = "logo")
     private byte[] logo;
+
+    @MapsId
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "shop_id", referencedColumnName = "shop_id")
+    @JsonBackReference
+    private Shop shop;
 
     @Override
     public boolean equals(Object o) {

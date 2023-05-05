@@ -66,6 +66,7 @@ public class ShopBuilder {
         shop.setWorkingHoursMap(workingHoursMap);
         shop.setPaymentMethods(paymentMethods);
         shop.setLogo(logo);
+        logo.setShop(shop);
         return shop;
     }
 }
