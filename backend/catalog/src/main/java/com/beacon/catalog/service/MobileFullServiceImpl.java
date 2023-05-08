@@ -62,10 +62,10 @@ public class MobileFullServiceImpl implements MobileFullService {
     }
 
     private void replaceOrderByRemoved(Iterable<String> ids) {
-        Optional<MobileFull> removedMobile = mobileFullDao.findByMobileId(MobileHelpers.REMOVED.getId());
-        if (removedMobile.isPresent()) {
+        MobileFull removedMobile = mobileFullDao.getReferenceById(MobileHelpers.REMOVED.getId());
+        if (removedMobile != null) {
             List<Order> orders = orderDao.findAllByMobileIdIn(ids);
-            List<Order> updatedOrders = orders.parallelStream().peek(order -> order.setMobile(removedMobile.get())).collect(Collectors.toList());
+            List<Order> updatedOrders = orders.parallelStream().peek(order -> order.setMobile(removedMobile)).collect(Collectors.toList());
             orderDao.deleteAllByMobileIdIn(ids);
             orderDao.saveAll(updatedOrders);
         } else {
