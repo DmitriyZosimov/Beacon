@@ -23,7 +23,7 @@ ALTER TABLE task ALTER COLUMN task_id DROP IDENTITY;
 ALTER TABLE task ALTER COLUMN task_id SET DEFAULT nextval('hilo_task_seq');
 
 -- create sequence for working_hours table
-CREATE SEQUENCE hilo_task_seq START with 1 INCREMENT BY 7;
+CREATE SEQUENCE hilo_working_hours_seq START with 1 INCREMENT BY 7;
 SELECT setval('hilo_working_hours_seq', (SELECT MAX(id) + 1 FROM working_hours));
 
 ALTER TABLE working_hours ALTER COLUMN id DROP IDENTITY;
