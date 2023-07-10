@@ -201,14 +201,14 @@ SELECT nextval('hilo_task_seq'), '11', 'Ankara', 'I want money', 'ankara@email.c
 -- orders
 INSERT INTO orders(order_id, task_id, mobile_id, price, count, registered_date, shop_id) select nextval('hilo_order_seq'), 1, 'honor508128black', 2405.8, 1, '2022-02-02', 1;
 INSERT INTO orders(order_id, task_id, mobile_id, price, count, registered_date, shop_id) select nextval('hilo_order_seq'), 1, 'pocox3pro8256green', 2435.2, 2, '2022-02-02', 1;
-INSERT INTO orders(order_id, task_id, mobile_id, price, count, registered_date, shop_id) select nextval('hilo_order_seq'), 2, 'pocox3pro8256green', 2785.3, 2, '2022-02-02', 3;
-INSERT INTO orders(order_id, task_id, mobile_id, price, count, registered_date, shop_id) select nextval('hilo_order_seq'), 2, 'honor508128black', 2105.4, 1, '2022-02-02', 3;
-INSERT INTO orders(order_id, task_id, mobile_id, price, count, registered_date, shop_id) select nextval('hilo_order_seq'), 3, 'honor508128black', 2405.2, 3, '2022-02-02', 6;
-INSERT INTO orders(order_id, task_id, mobile_id, price, count, registered_date, shop_id) select nextval('hilo_order_seq'), 4, 'pocox3pro8256green', 2910.4, 1, '2022-02-02', 8;
-INSERT INTO orders(order_id, task_id, mobile_id, price, count, registered_date, shop_id) select nextval('hilo_order_seq'), 5, 'pocox3pro8256green', 2900.3, 2, '2022-03-02', 7;
-INSERT INTO orders(order_id, task_id, mobile_id, price, count, registered_date, shop_id) select nextval('hilo_order_seq'), 6, 'honor508128black', 2306.4, 3, '2022-03-03', 5;
-INSERT INTO orders(order_id, task_id, mobile_id, price, count, registered_date, shop_id) select nextval('hilo_order_seq'), 7, 'honor508128black', 2405.8, 3, '2022-03-03', 1;
-INSERT INTO orders(order_id, task_id, mobile_id, price, count, registered_date, shop_id) select nextval('hilo_order_seq'), 8, 'pocox3pro8256green', 2435.2, 2, '2022-04-03', 1;
-INSERT INTO orders(order_id, task_id, mobile_id, price, count, registered_date, shop_id) select nextval('hilo_order_seq'), 8, 'honor508128black', 2405.8, 2, '2022-04-03', 1;
-INSERT INTO orders(order_id, task_id, mobile_id, price, count, registered_date, shop_id) select nextval('hilo_order_seq'), 9, 'pocox3pro8256green', 2435.2, 2, '2022-04-03', 1;
-INSERT INTO orders(order_id, task_id, mobile_id, price, count, registered_date, shop_id) select nextval('hilo_order_seq'), 9, 'honor508128black', 2405.8, 2, '2022-04-03', 1;
+INSERT INTO orders(order_id, task_id, mobile_id, price, count, registered_date, shop_id) select nextval('hilo_order_seq'), 6, 'pocox3pro8256green', 2785.3, 2, '2022-02-02', 3;
+INSERT INTO orders(order_id, task_id, mobile_id, price, count, registered_date, shop_id) select nextval('hilo_order_seq'), 6, 'honor508128black', 2105.4, 1, '2022-02-02', 3;
+INSERT INTO orders(order_id, task_id, mobile_id, price, count, registered_date, shop_id) select nextval('hilo_order_seq'), 11, 'honor508128black', 2405.2, 3, '2022-02-02', 6;
+INSERT INTO orders(order_id, task_id, mobile_id, price, count, registered_date, shop_id) select nextval('hilo_order_seq'), 16, 'pocox3pro8256green', 2910.4, 1, '2022-02-02', 8;
+INSERT INTO orders(order_id, task_id, mobile_id, price, count, registered_date, shop_id) select nextval('hilo_order_seq'), 21, 'pocox3pro8256green', 2900.3, 2, '2022-03-02', 7;
+INSERT INTO orders(order_id, task_id, mobile_id, price, count, registered_date, shop_id) select nextval('hilo_order_seq'), 26, 'honor508128black', 2306.4, 3, '2022-03-03', 5;
+INSERT INTO orders(order_id, task_id, mobile_id, price, count, registered_date, shop_id) select nextval('hilo_order_seq'), 31, 'honor508128black', 2405.8, 3, '2022-03-03', 1;
+INSERT INTO orders(order_id, task_id, mobile_id, price, count, registered_date, shop_id) select nextval('hilo_order_seq'), 36, 'pocox3pro8256green', 2435.2, 2, '2022-04-03', 1;
+INSERT INTO orders(order_id, task_id, mobile_id, price, count, registered_date, shop_id) select nextval('hilo_order_seq'), 36, 'honor508128black', 2405.8, 2, '2022-04-03', 1;
+INSERT INTO orders(order_id, task_id, mobile_id, price, count, registered_date, shop_id) select nextval('hilo_order_seq'), 41, 'pocox3pro8256green', 2435.2, 2, '2022-04-03', 1;
+INSERT INTO orders(order_id, task_id, mobile_id, price, count, registered_date, shop_id) select nextval('hilo_order_seq'), 41, 'honor508128black', 2405.8, 2, '2022-04-03', 1;
