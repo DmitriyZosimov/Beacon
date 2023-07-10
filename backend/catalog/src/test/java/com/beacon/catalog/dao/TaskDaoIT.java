@@ -1,5 +1,6 @@
 package com.beacon.catalog.dao;
 
+import com.beacon.catalog.TestConfig;
 import com.beacon.catalog.TestTaskBuilder;
 import com.beacon.catalog.config.DaoConfiguration;
 import com.beacon.model.order.Task;
@@ -16,7 +17,7 @@ import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.AtomicReference;
 
 @DataJpaTest
-@ContextConfiguration(classes = DaoConfiguration.class)
+@ContextConfiguration(classes = {DaoConfiguration.class, TestConfig.class})
 public class TaskDaoIT implements TestTaskBuilder {
 
     @Autowired

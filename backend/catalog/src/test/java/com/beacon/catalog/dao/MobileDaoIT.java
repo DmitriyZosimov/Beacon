@@ -1,5 +1,6 @@
 package com.beacon.catalog.dao;
 
+import com.beacon.catalog.TestConfig;
 import com.beacon.catalog.config.DaoConfiguration;
 import com.beacon.model.Mobile;
 import com.beacon.model.MobileHelpers;
@@ -35,7 +36,7 @@ import java.util.List;
  */
 
 @DataJpaTest
-@ContextConfiguration(classes = DaoConfiguration.class)
+@ContextConfiguration(classes = {DaoConfiguration.class, TestConfig.class})
 public class MobileDaoIT {
 
     @Autowired

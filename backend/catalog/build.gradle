@@ -21,6 +21,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
     implementation "org.flywaydb:flyway-core:$flywayVersion"
+    implementation ttddyy.datasource_proxy
 
     compileOnly lombok.lombok
     annotationProcessor lombok.lombok

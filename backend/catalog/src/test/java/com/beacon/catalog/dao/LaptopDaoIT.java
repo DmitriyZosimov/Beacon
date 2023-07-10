@@ -1,6 +1,7 @@
 package com.beacon.catalog.dao;
 
 import com.beacon.catalog.BaseIT;
+import com.beacon.catalog.TestConfig;
 import com.beacon.catalog.config.DaoConfiguration;
 import com.beacon.catalog.transformer.LaptopTransformer;
 import com.beacon.model.dtos.LaptopDto;
@@ -18,7 +19,7 @@ import java.util.Optional;
 import java.util.Set;
 
 @DataJpaTest
-@ContextConfiguration(classes = DaoConfiguration.class)
+@ContextConfiguration(classes = { DaoConfiguration.class, TestConfig.class})
 public class LaptopDaoIT implements BaseIT {
 
     @Autowired

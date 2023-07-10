@@ -51,6 +51,10 @@ ext {
             core : "org.spockframework:spock-core:$spockVersion"
     ]
 
+    ttddyy = [
+            datasource_proxy : "net.ttddyy:datasource-proxy:$ttddyyVersion"
+    ]
+
     zonky = [
             embedded_database_spring_test : "io.zonky.test:embedded-database-spring-test:$zonkyEmbeddedDatabaseSpringTestVersion",
             embedded_postgres : "io.zonky.test:embedded-postgres:$zonkyEmbeddedPostgresqlVersion"

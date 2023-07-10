@@ -1,5 +1,6 @@
 package com.beacon.catalog.dao;
 
+import com.beacon.catalog.TestConfig;
 import com.beacon.catalog.config.DaoConfiguration;
 import com.beacon.model.MobileFull;
 import com.beacon.model.MobileNotMainImage;
@@ -15,7 +16,7 @@ import java.util.Optional;
 import java.util.Set;
 
 @DataJpaTest
-@ContextConfiguration(classes = DaoConfiguration.class)
+@ContextConfiguration(classes = {DaoConfiguration.class, TestConfig.class})
 public class MobileFullDaoIT {
 
     @Autowired
