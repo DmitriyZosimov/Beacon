@@ -5,11 +5,13 @@ import lombok.Data;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
+import org.hibernate.annotations.NaturalId;
 import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "laptop")
@@ -41,6 +43,9 @@ public class Laptop extends Computer {
     @Column(nullable = false)
     private String model;
     private String subModel;
+
+    @NaturalId
+    @Column(name = "serial_id", nullable = false, updatable = false, unique = true)
     private String serialId;
     private String releaseYear;
     @Enumerated
@@ -151,4 +156,19 @@ public class Laptop extends Computer {
     @JsonManagedReference
     private List<ComputerNotMainImage> computerNotMainImages;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Laptop laptop = (Laptop) o;
+
+        if (!computerId.equals(laptop.computerId)) return false;
+        return serialId.equals(laptop.serialId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(computerId, serialId);
+    }
 }

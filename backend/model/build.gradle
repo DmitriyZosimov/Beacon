@@ -1,4 +1,5 @@
 plugins {
+    id 'groovy'
     id 'maven-publish'
 }
 
@@ -12,7 +13,7 @@ dependencies {
 
     compileOnly lombok.lombok
     annotationProcessor lombok.lombok
-    testImplementation  junit.jupiter
+    testImplementation  junit.jupiter, spock.core, h2.h2, hibernate.core, reflections.reflections
 }
 
 project.afterEvaluate {
@@ -25,6 +26,6 @@ project.afterEvaluate {
     }
 }
 
-tasks.named('test') {
+test {
     useJUnitPlatform()
 }

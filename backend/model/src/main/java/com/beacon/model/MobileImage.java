@@ -1,11 +1,13 @@
 package com.beacon.model;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
 
 import javax.persistence.*;
-import java.util.Arrays;
 
 /**
  * Superclass of all mobile images. This class contains common values, including the image itself.
@@ -22,20 +24,30 @@ import java.util.Arrays;
 @Table(name = "mobile_image")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "main", discriminatorType = DiscriminatorType.INTEGER, length = 1)
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public abstract class MobileImage {
 
     @Id
-    @Column(name = "image_id", nullable = false, updatable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "image_id", nullable = false, updatable = false, unique = true)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "hilopooled")
+    @GenericGenerator(name = "hilopooled",
+            strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
+            parameters = {
+                @Parameter(name = "sequence_name", value = "hilo_mobile_image_seq"),
+                @Parameter(name = "initial_value", value = "1"),
+                @Parameter(name = "increment_size", value = "5"),
+                @Parameter(name = "optimizer", value = "pooled")
+            })
     private Long imageId;
 
     @Lob
     @Column(name = "image", nullable = false)
     private byte[] image;
 
+    // Item 68. Spring Boot persistence best practices.
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -43,15 +55,12 @@ public abstract class MobileImage {
 
         MobileImage that = (MobileImage) o;
 
-        if (imageId != null ? !imageId.equals(that.imageId) : that.imageId != null) return false;
-        return Arrays.equals(image, that.image);
+        return imageId != null && imageId.equals(that.imageId);
     }
 
     @Override
     public int hashCode() {
-        int result = imageId != null ? imageId.hashCode() : 0;
-        result = 31 * result + Arrays.hashCode(image);
-        return result;
+        return 4041;
     }
 
     @Override

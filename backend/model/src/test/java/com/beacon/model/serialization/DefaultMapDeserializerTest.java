@@ -45,7 +45,7 @@ public class DefaultMapDeserializerTest {
     public void getSerializedMapAsListOfEntryMap() throws JsonProcessingException {
         String json = "[ {\n" +
                 "  \"key\" : {\n" +
-                "    \"shopId\" : null,\n" +
+                "    \"shopId\" : 1,\n" +
                 "    \"name\" : \"test1\",\n" +
                 "    \"description\" : \"desc1\",\n" +
                 "    \"workingHoursMap\" : null,\n" +
@@ -55,7 +55,7 @@ public class DefaultMapDeserializerTest {
                 "  \"value\" : 4500.5\n" +
                 "}, {\n" +
                 "  \"key\" : {\n" +
-                "    \"shopId\" : null,\n" +
+                "    \"shopId\" : 2,\n" +
                 "    \"name\" : \"test2\",\n" +
                 "    \"description\" : \"desc2\",\n" +
                 "    \"workingHoursMap\" : null,\n" +
@@ -66,8 +66,8 @@ public class DefaultMapDeserializerTest {
                 "} ]";
 
         Map<Shop, Double> map = new HashMap<>();
-        map.put(ShopBuilder.create().name("test1").description("desc1").build(), 4500.5);
-        map.put(ShopBuilder.create().name("test2").description("desc2").build(), 2500.5);
+        map.put(ShopBuilder.create().shopId(1L).name("test1").description("desc1").build(), 4500.5);
+        map.put(ShopBuilder.create().shopId(2L).name("test2").description("desc2").build(), 2500.5);
 
         Map<Shop, Double> mapResult = mapper.readValue(json, new TypeReference<Map<Shop, Double>>() {
         });

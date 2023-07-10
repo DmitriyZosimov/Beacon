@@ -3,10 +3,12 @@ package com.beacon.model;
 import com.beacon.model.dtos.MobileDto;
 import com.beacon.model.tools.ToStringTool;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 /**
  * Mobile is a model with small information of mobile.
@@ -49,7 +51,8 @@ import javax.persistence.*;
 @Entity
 @Table(name = "mobile")
 @Inheritance(strategy = InheritanceType.JOINED)
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class Mobile extends Product {
 
@@ -111,29 +114,7 @@ public class Mobile extends Product {
         if (!super.equals(o)) return false;
 
         Mobile mobile = (Mobile) o;
-
-        if (mobileId != null ? !mobileId.equals(mobile.mobileId) : mobile.mobileId != null) return false;
-        if (brand != null ? !brand.equals(mobile.brand) : mobile.brand != null) return false;
-        if (model != null ? !model.equals(mobile.model) : mobile.model != null) return false;
-        if (os != null ? !os.equals(mobile.os) : mobile.os != null) return false;
-        if (screenSize != null ? !screenSize.equals(mobile.screenSize) : mobile.screenSize != null) return false;
-        if (displayResolution != null ? !displayResolution.equals(mobile.displayResolution) : mobile.displayResolution != null)
-            return false;
-        if (displayTechnology != null ? !displayTechnology.equals(mobile.displayTechnology) : mobile.displayTechnology != null)
-            return false;
-        if (ram != null ? !ram.equals(mobile.ram) : mobile.ram != null) return false;
-        if (storageCapacity != null ? !storageCapacity.equals(mobile.storageCapacity) : mobile.storageCapacity != null)
-            return false;
-        if (chipsetModel != null ? !chipsetModel.equals(mobile.chipsetModel) : mobile.chipsetModel != null)
-            return false;
-        if (cameraResolution != null ? !cameraResolution.equals(mobile.cameraResolution) : mobile.cameraResolution != null)
-            return false;
-        if (simCardSlot != null ? !simCardSlot.equals(mobile.simCardSlot) : mobile.simCardSlot != null)
-            return false;
-        if (battery != null ? !battery.equals(mobile.battery) : mobile.battery != null) return false;
-        if (releaseYear != null ? !releaseYear.equals(mobile.releaseYear) : mobile.releaseYear != null)
-            return false;
-        return color != null ? color.equals(mobile.color) : mobile.color == null;
+        return Objects.equals(mobileId, mobile.getMobileId());
     }
 
     @Override
@@ -143,22 +124,6 @@ public class Mobile extends Product {
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
-        result += mobileId != null ? mobileId.hashCode() : 0;
-        result = 31 * result + (brand != null ? brand.hashCode() : 0);
-        result = 31 * result + (model != null ? model.hashCode() : 0);
-        result = 31 * result + (os != null ? os.hashCode() : 0);
-        result = 31 * result + (screenSize != null ? screenSize.hashCode() : 0);
-        result = 31 * result + (displayResolution != null ? displayResolution.hashCode() : 0);
-        result = 31 * result + (displayTechnology != null ? displayTechnology.hashCode() : 0);
-        result = 31 * result + (ram != null ? ram.hashCode() : 0);
-        result = 31 * result + (storageCapacity != null ? storageCapacity.hashCode() : 0);
-        result = 31 * result + (chipsetModel != null ? chipsetModel.hashCode() : 0);
-        result = 31 * result + (cameraResolution != null ? cameraResolution.hashCode() : 0);
-        result = 31 * result + (simCardSlot != null ? simCardSlot.hashCode() : 0);
-        result = 31 * result + (battery != null ? battery.hashCode() : 0);
-        result = 31 * result + (color != null ? color.hashCode() : 0);
-        result = 31 * result + (releaseYear != null ? releaseYear.hashCode() : 0);
-        return result;
+        return Objects.hash(mobileId);
     }
 }

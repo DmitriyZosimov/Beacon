@@ -2,14 +2,17 @@ package com.beacon.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
 @DiscriminatorValue(value = "2")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class MobileNotMainImage extends MobileImage {
 
@@ -22,18 +25,12 @@ public class MobileNotMainImage extends MobileImage {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-
-        MobileNotMainImage that = (MobileNotMainImage) o;
-
-        return Objects.equals(mobileFull, that.mobileFull);
+        return super.equals(o);
     }
 
     @Override
     public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + (mobileFull != null ? mobileFull.hashCode() : 0);
-        return result;
+        return super.hashCode();
     }
 
     @Override

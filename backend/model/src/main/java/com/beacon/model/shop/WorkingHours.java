@@ -1,6 +1,9 @@
 package com.beacon.model.shop;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
 
 import javax.persistence.*;
 import java.time.LocalTime;
@@ -9,14 +12,23 @@ import java.time.LocalTime;
  * Every {@code Shop} have yourself working hours.
  * It is a plain class including only time of open and close.
  */
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "working_hours")
 public class WorkingHours {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true, nullable = false, updatable = false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "hilopooled")
+    @GenericGenerator(name = "hilopooled",
+            strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
+            parameters = {
+                    @Parameter(name = "sequence_name", value = "hilo_working_hours_seq"),
+                    @Parameter(name = "initial_value", value = "1"),
+                    @Parameter(name = "increment_size", value = "7"),
+                    @Parameter(name = "optimizer", value = "pooled")
+            })
     private Long id;
 
     @Column(name = "open")
@@ -40,17 +52,12 @@ public class WorkingHours {
 
         WorkingHours that = (WorkingHours) o;
 
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
-        if (!open.equals(that.open)) return false;
-        return close.equals(that.close);
+        return id != null && id.equals(that.id);
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + open.hashCode();
-        result = 31 * result + close.hashCode();
-        return result;
+        return 2035;
     }
 
     @Override

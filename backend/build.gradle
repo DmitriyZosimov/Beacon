@@ -43,6 +43,14 @@ ext {
             postgresql  :   "org.postgresql:postgresql:$postgresqlVersion"
     ]
 
+    reflections = [
+            reflections : "org.reflections:reflections:$reflectionVersion"
+    ]
+
+    spock = [
+            core : "org.spockframework:spock-core:$spockVersion"
+    ]
+
     zonky = [
             embedded_database_spring_test : "io.zonky.test:embedded-database-spring-test:$zonkyEmbeddedDatabaseSpringTestVersion",
             embedded_postgres : "io.zonky.test:embedded-postgres:$zonkyEmbeddedPostgresqlVersion"

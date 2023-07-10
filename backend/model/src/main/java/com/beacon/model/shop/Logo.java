@@ -1,7 +1,8 @@
 package com.beacon.model.shop;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Arrays;
@@ -11,7 +12,8 @@ import java.util.Arrays;
  */
 @Entity
 @Table(name = "shop_logo")
-@Data
+@Getter
+@Setter
 public class Logo {
 
     @Id
@@ -34,15 +36,12 @@ public class Logo {
 
         Logo logo1 = (Logo) o;
 
-        if (logoId != null ? !logoId.equals(logo1.logoId) : logo1.logoId != null) return false;
-        return Arrays.equals(logo, logo1.logo);
+        return logoId != null && logoId.equals(logo1.logoId);
     }
 
     @Override
     public int hashCode() {
-        int result = logoId != null ? logoId.hashCode() : 0;
-        result = 31 * result + Arrays.hashCode(logo);
-        return result;
+        return 3013;
     }
 
     @Override

@@ -2,11 +2,11 @@ package com.beacon.model.order;
 
 import com.beacon.model.builders.TaskBuilder;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.hibernate.annotations.Parameter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -15,13 +15,22 @@ import java.util.List;
 @Entity
 @Table(name = "task")
 @NamedEntityGraph(name = "task-all", includeAllAttributes = true)
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Task implements Cloneable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "hilopooled")
+    @GenericGenerator(name = "hilopooled",
+            strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
+            parameters = {
+                    @Parameter(name = "sequence_name", value = "hilo_task_seq"),
+                    @Parameter(name = "initial_value", value = "1"),
+                    @Parameter(name = "increment_size", value = "5"),
+                    @Parameter(name = "optimizer", value = "pooled")
+            })
     @Column(nullable = false, updatable = false, unique = true)
     private Long taskId;
 
@@ -79,39 +88,22 @@ public class Task implements Cloneable {
         Task task = (Task) o;
 
         if (taskId != null ? !taskId.equals(task.taskId) : task.taskId != null) return false;
-        if (!isDeliveryToAddress.equals(task.isDeliveryToAddress)) return false;
         if (!firstName.equals(task.firstName)) return false;
         if (!lastName.equals(task.lastName)) return false;
         if (!email.equals(task.email)) return false;
         if (!phoneNumber.equals(task.phoneNumber)) return false;
-        if (!city.equals(task.city)) return false;
-        if (street != null ? !street.equals(task.street) : task.street != null) return false;
-        if (building != null ? !building.equals(task.building) : task.building != null) return false;
-        if (flat != null ? !flat.equals(task.flat) : task.flat != null) return false;
-        if (porch != null ? !porch.equals(task.porch) : task.porch != null) return false;
-        if (floor != null ? !floor.equals(task.floor) : task.floor != null) return false;
-        if (comment != null ? !comment.equals(task.comment) : task.comment != null) return false;
-        if (orders != null ? !orders.equals(task.orders) : task.orders != null) return false;
-        return state == task.state;
+        return city.equals(task.city);
     }
 
     @Override
     public int hashCode() {
-        int result = taskId != null ? taskId.hashCode() : 0;
-        result = 31 * result + isDeliveryToAddress.hashCode();
+        int result = 2021;
         result = 31 * result + firstName.hashCode();
         result = 31 * result + lastName.hashCode();
         result = 31 * result + email.hashCode();
         result = 31 * result + phoneNumber.hashCode();
         result = 31 * result + city.hashCode();
-        result = 31 * result + (street != null ? street.hashCode() : 0);
-        result = 31 * result + (building != null ? building.hashCode() : 0);
-        result = 31 * result + (flat != null ? flat.hashCode() : 0);
-        result = 31 * result + (porch != null ? porch.hashCode() : 0);
-        result = 31 * result + (floor != null ? floor.hashCode() : 0);
-        result = 31 * result + (comment != null ? comment.hashCode() : 0);
-        result = 31 * result + (orders != null ? orders.hashCode() : 0);
-        return 31 * result + state.hashCode();
+        return result;
     }
 
     @Override

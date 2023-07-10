@@ -1,7 +1,8 @@
 package com.beacon.model.shop;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.DayOfWeek;
@@ -12,7 +13,8 @@ import java.util.Set;
  * A main model of shop.
  */
 @Table(name = "shop")
-@Data
+@Getter
+@Setter
 @Entity
 @NamedEntityGraph(name = "shop-all", includeAllAttributes = true)
 public class Shop {
@@ -48,6 +50,7 @@ public class Shop {
     @JsonManagedReference
     private Logo logo;
 
+    //Item 68. Spring Boot Persistence Best Practices
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -55,25 +58,12 @@ public class Shop {
 
         Shop shop = (Shop) o;
 
-        if (shopId != null ? !shopId.equals(shop.shopId) : shop.shopId != null) return false;
-        if (!name.equals(shop.name)) return false;
-        if (description != null ? !description.equals(shop.description) : shop.description != null) return false;
-        if (workingHoursMap != null ? !workingHoursMap.equals(shop.workingHoursMap) : shop.workingHoursMap != null)
-            return false;
-        if (paymentMethods != null ? !paymentMethods.equals(shop.paymentMethods) : shop.paymentMethods != null)
-            return false;
-        return logo != null ? logo.equals(shop.logo) : shop.logo == null;
+        return shopId != null && shopId.equals(shop.shopId);
     }
 
     @Override
     public int hashCode() {
-        int result = shopId != null ? shopId.hashCode() : 0;
-        result = 31 * result + name.hashCode();
-        result = 31 * result + (description != null ? description.hashCode() : 0);
-        result = 31 * result + (workingHoursMap != null ? workingHoursMap.hashCode() : 0);
-        result = 31 * result + (paymentMethods != null ? paymentMethods.hashCode() : 0);
-        result = 31 * result + (logo != null ? logo.hashCode() : 0);
-        return result;
+        return 2031;
     }
 
     @Override

@@ -3,23 +3,33 @@ package com.beacon.model.order;
 import com.beacon.model.Mobile;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "orders")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Order {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_id", unique = true, nullable = false, updatable = false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "hilopooled")
+    @GenericGenerator(name = "hilopooled",
+            strategy = "org.hibernate.id.enhanced.SequenceStyleGenerator",
+            parameters = {
+                    @Parameter(name = "sequence_name", value = "hilo_order_seq"),
+                    @Parameter(name = "initial_value", value = "1"),
+                    @Parameter(name = "increment_size", value = "5"),
+                    @Parameter(name = "optimizer", value = "pooled")
+            })
     private Long orderId;
 
     @ManyToOne(optional = false, targetEntity = Mobile.class, fetch = FetchType.EAGER)
@@ -30,7 +40,7 @@ public class Order {
     @Column(name = "mobile_id", nullable = false, updatable = false)
     private String mobileId;
 
-    @Column(name = "shop_id")
+    @Column(name = "shop_id", nullable = false, updatable = false)
     private Long shopId;
 
     @Column(name = "price", nullable = false)
@@ -67,26 +77,15 @@ public class Order {
         Order order = (Order) o;
 
         if (orderId != null ? !orderId.equals(order.orderId) : order.orderId != null) return false;
-        if (mobile != null ? !mobile.equals(order.mobile) : order.mobile != null) return false;
         if (!mobileId.equals(order.mobileId)) return false;
-        if (!shopId.equals(order.shopId)) return false;
-        if (!price.equals(order.price)) return false;
-        if (!count.equals(order.count)) return false;
-        if (registeredDate != null ? !registeredDate.equals(order.registeredDate) : order.registeredDate != null)
-            return false;
-        return task.equals(order.task);
+        return shopId.equals(order.shopId);
     }
 
     @Override
     public int hashCode() {
-        int result = orderId != null ? orderId.hashCode() : 0;
-        result = 31 * result + (mobile != null ? mobile.hashCode() : 0);
+        int result = 2022;
         result = 31 * result + mobileId.hashCode();
         result = 31 * result + shopId.hashCode();
-        result = 31 * result + price.hashCode();
-        result = 31 * result + count.hashCode();
-        result = 31 * result + (registeredDate != null ? registeredDate.hashCode() : 0);
-        result = 31 * result + task.hashCode();
         return result;
     }
 

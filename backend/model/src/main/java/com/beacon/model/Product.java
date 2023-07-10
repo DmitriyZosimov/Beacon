@@ -2,6 +2,8 @@ package com.beacon.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
@@ -10,7 +12,8 @@ import javax.persistence.PreUpdate;
 import java.util.Map;
 
 @MappedSuperclass
-@Data
+@Getter
+@Setter
 public abstract class Product {
 
 

@@ -15,24 +15,70 @@ INSERT INTO shop_logo(logo, shop_id) VALUES
  (FILE_READ('classpath:img/beacon-small-logo.png'), 5),
  (FILE_READ('classpath:img/beacon-small-logo.png'), 6),
  (FILE_READ('classpath:img/beacon-small-logo.png'), 7);
+-- working_hours
+-- first
+INSERT INTO working_hours(id, close, open) SELECT nextval('hilo_working_hours_seq'), '21:00:00', '09:00:00';
+INSERT INTO working_hours(id, close, open) SELECT nextval('hilo_working_hours_seq'), '21:00:00', '09:00:00';
+INSERT INTO working_hours(id, close, open) SELECT nextval('hilo_working_hours_seq'), '21:00:00', '09:00:00';
+INSERT INTO working_hours(id, close, open) SELECT nextval('hilo_working_hours_seq'), '21:00:00', '09:00:00';
+INSERT INTO working_hours(id, close, open) SELECT nextval('hilo_working_hours_seq'), '21:00:00', '09:00:00';
+INSERT INTO working_hours(id, close, open) SELECT nextval('hilo_working_hours_seq'), '21:00:00', '09:00:00';
+INSERT INTO working_hours(id, close, open) SELECT nextval('hilo_working_hours_seq'), '21:00:00', '09:00:00';
+-- second
+INSERT INTO working_hours(id, close, open) SELECT nextval('hilo_working_hours_seq'), '21:00:00', '09:00:00';
+INSERT INTO working_hours(id, close, open) SELECT nextval('hilo_working_hours_seq'), '21:00:00', '09:00:00';
+INSERT INTO working_hours(id, close, open) SELECT nextval('hilo_working_hours_seq'), '21:00:00', '09:00:00';
+INSERT INTO working_hours(id, close, open) SELECT nextval('hilo_working_hours_seq'), '21:00:00', '09:00:00';
+INSERT INTO working_hours(id, close, open) SELECT nextval('hilo_working_hours_seq'), '21:00:00', '09:00:00';
+INSERT INTO working_hours(id, close, open) SELECT nextval('hilo_working_hours_seq'), '21:00:00', '09:00:00';
+INSERT INTO working_hours(id, close, open) SELECT nextval('hilo_working_hours_seq'), '21:00:00', '09:00:00';
+-- third
+INSERT INTO working_hours(id, close, open) SELECT nextval('hilo_working_hours_seq'), '19:00:00', '10:00:00';
+INSERT INTO working_hours(id, close, open) SELECT nextval('hilo_working_hours_seq'), '19:00:00', '10:00:00';
+INSERT INTO working_hours(id, close, open) SELECT nextval('hilo_working_hours_seq'), '19:00:00', '10:00:00';
+INSERT INTO working_hours(id, close, open) SELECT nextval('hilo_working_hours_seq'), '19:00:00', '10:00:00';
+INSERT INTO working_hours(id, close, open) SELECT nextval('hilo_working_hours_seq'), '19:00:00', '10:00:00';
+-- fourth
+INSERT INTO working_hours(id, close, open) SELECT nextval('hilo_working_hours_seq'), '19:00:00', '10:00:00';
+INSERT INTO working_hours(id, close, open) SELECT nextval('hilo_working_hours_seq'), '19:00:00', '10:00:00';
+INSERT INTO working_hours(id, close, open) SELECT nextval('hilo_working_hours_seq'), '19:00:00', '10:00:00';
+INSERT INTO working_hours(id, close, open) SELECT nextval('hilo_working_hours_seq'), '19:00:00', '10:00:00';
+INSERT INTO working_hours(id, close, open) SELECT nextval('hilo_working_hours_seq'), '19:00:00', '10:00:00';
+INSERT INTO working_hours(id, close, open) SELECT nextval('hilo_working_hours_seq'), '15:00:00', '10:00:00';
+-- fifth
+INSERT INTO working_hours(id, close, open) SELECT nextval('hilo_working_hours_seq'), '19:00:00', '10:00:00';
+INSERT INTO working_hours(id, close, open) SELECT nextval('hilo_working_hours_seq'), '19:00:00', '10:00:00';
+INSERT INTO working_hours(id, close, open) SELECT nextval('hilo_working_hours_seq'), '19:00:00', '10:00:00';
+INSERT INTO working_hours(id, close, open) SELECT nextval('hilo_working_hours_seq'), '19:00:00', '10:00:00';
+INSERT INTO working_hours(id, close, open) SELECT nextval('hilo_working_hours_seq'), '19:00:00', '10:00:00';
+INSERT INTO working_hours(id, close, open) SELECT nextval('hilo_working_hours_seq'), '15:00:00', '10:00:00';
+-- sixth
+INSERT INTO working_hours(id, close, open) SELECT nextval('hilo_working_hours_seq'), '21:00:00', '09:00:00';
+INSERT INTO working_hours(id, close, open) SELECT nextval('hilo_working_hours_seq'), '21:00:00', '09:00:00';
+INSERT INTO working_hours(id, close, open) SELECT nextval('hilo_working_hours_seq'), '21:00:00', '09:00:00';
+INSERT INTO working_hours(id, close, open) SELECT nextval('hilo_working_hours_seq'), '21:00:00', '09:00:00';
+INSERT INTO working_hours(id, close, open) SELECT nextval('hilo_working_hours_seq'), '21:00:00', '09:00:00';
+INSERT INTO working_hours(id, close, open) SELECT nextval('hilo_working_hours_seq'), '21:00:00', '09:00:00';
+INSERT INTO working_hours(id, close, open) SELECT nextval('hilo_working_hours_seq'), '21:00:00', '09:00:00';
+-- seventh
+INSERT INTO working_hours(id, close, open) SELECT nextval('hilo_working_hours_seq'), '21:00:00', '09:00:00';
+INSERT INTO working_hours(id, close, open) SELECT nextval('hilo_working_hours_seq'), '21:00:00', '09:00:00';
+INSERT INTO working_hours(id, close, open) SELECT nextval('hilo_working_hours_seq'), '21:00:00', '09:00:00';
+INSERT INTO working_hours(id, close, open) SELECT nextval('hilo_working_hours_seq'), '21:00:00', '09:00:00';
+INSERT INTO working_hours(id, close, open) SELECT nextval('hilo_working_hours_seq'), '21:00:00', '09:00:00';
+INSERT INTO working_hours(id, close, open) SELECT nextval('hilo_working_hours_seq'), '21:00:00', '09:00:00';
+INSERT INTO working_hours(id, close, open) SELECT nextval('hilo_working_hours_seq'), '21:00:00', '09:00:00';
 
-INSERT INTO working_hours(close, open) VALUES
-('21:00:00', '09:00:00'), ('21:00:00', '09:00:00'), ('21:00:00', '09:00:00'), ('21:00:00', '09:00:00'), ('21:00:00', '09:00:00'), ('21:00:00', '09:00:00'), ('21:00:00', '09:00:00'),
-('21:00:00', '09:00:00'), ('21:00:00', '09:00:00'), ('21:00:00', '09:00:00'), ('21:00:00', '09:00:00'), ('21:00:00', '09:00:00'), ('21:00:00', '09:00:00'), ('21:00:00', '09:00:00'),
-('19:00:00', '10:00:00'), ('19:00:00', '10:00:00'), ('19:00:00', '10:00:00'), ('19:00:00', '10:00:00'), ('19:00:00', '10:00:00'),
-('19:00:00', '10:00:00'), ('19:00:00', '10:00:00'), ('19:00:00', '10:00:00'), ('19:00:00', '10:00:00'), ('19:00:00', '10:00:00'), ('15:00:00', '10:00:00'),
-('19:00:00', '10:00:00'), ('19:00:00', '10:00:00'), ('19:00:00', '10:00:00'), ('19:00:00', '10:00:00'), ('19:00:00', '10:00:00'), ('15:00:00', '10:00:00'),
-('21:00:00', '09:00:00'), ('21:00:00', '09:00:00'), ('21:00:00', '09:00:00'), ('21:00:00', '09:00:00'), ('21:00:00', '09:00:00'), ('21:00:00', '09:00:00'), ('21:00:00', '09:00:00'),
-('21:00:00', '09:00:00'), ('21:00:00', '09:00:00'), ('21:00:00', '09:00:00'), ('21:00:00', '09:00:00'), ('21:00:00', '09:00:00'), ('21:00:00', '09:00:00'), ('21:00:00', '09:00:00');
+select * from working_hours;
 
 INSERT INTO shop_working_hours_mapping(shop_id, working_hours_id, working_hours_map_key) VALUES
-(1, 1, 'MONDAY'), (1, 2, 'TUESDAY'), (1, 3, 'WEDNESDAY'), (1, 4, 'THURSDAY'), (1, 5, 'FRIDAY'), (1, 6, 'SATURDAY'), (1, 7, 'SUNDAY'),
-(2, 8, 'MONDAY'), (2, 9, 'TUESDAY'), (2, 10, 'WEDNESDAY'), (2, 11, 'THURSDAY'), (2, 12, 'FRIDAY'), (2, 13, 'SATURDAY'), (2, 14, 'SUNDAY'),
-(3, 15, 'MONDAY'), (3, 16, 'TUESDAY'), (3, 17, 'WEDNESDAY'), (3, 18, 'THURSDAY'), (3, 19, 'FRIDAY'),
-(4, 20, 'MONDAY'), (4, 21, 'TUESDAY'), (4, 22, 'WEDNESDAY'), (4, 23, 'THURSDAY'), (4, 24, 'FRIDAY'), (4, 25, 'SATURDAY'),
-(5, 26, 'MONDAY'), (5, 27, 'TUESDAY'), (5, 28, 'WEDNESDAY'), (5, 29, 'THURSDAY'), (5, 30, 'FRIDAY'), (5, 31, 'SATURDAY'),
-(6, 32, 'MONDAY'), (6, 33, 'TUESDAY'), (6, 34, 'WEDNESDAY'), (6, 35, 'THURSDAY'), (6, 36, 'FRIDAY'), (6, 37, 'SATURDAY'), (6, 38, 'SUNDAY'),
-(7, 39, 'MONDAY'), (7, 40, 'TUESDAY'), (7, 41, 'WEDNESDAY'), (7, 42, 'THURSDAY'), (7, 43, 'FRIDAY'), (7, 44, 'SATURDAY'), (7, 45, 'SUNDAY');
+(1, 1, 'MONDAY'), (1, 8, 'TUESDAY'), (1, 15, 'WEDNESDAY'), (1, 22, 'THURSDAY'), (1, 29, 'FRIDAY'), (1, 36, 'SATURDAY'), (1, 43, 'SUNDAY'),
+(2, 50, 'MONDAY'), (2, 57, 'TUESDAY'), (2, 64, 'WEDNESDAY'), (2, 71, 'THURSDAY'), (2, 78, 'FRIDAY'), (2, 85, 'SATURDAY'), (2, 92, 'SUNDAY'),
+(3, 99, 'MONDAY'), (3, 106, 'TUESDAY'), (3, 113, 'WEDNESDAY'), (3, 120, 'THURSDAY'), (3, 127, 'FRIDAY'),
+(4, 134, 'MONDAY'), (4, 141, 'TUESDAY'), (4, 148, 'WEDNESDAY'), (4, 155, 'THURSDAY'), (4, 162, 'FRIDAY'), (4, 169, 'SATURDAY'),
+(5, 176, 'MONDAY'), (5, 183, 'TUESDAY'), (5, 190, 'WEDNESDAY'), (5, 197, 'THURSDAY'), (5, 204, 'FRIDAY'), (5, 211, 'SATURDAY'),
+(6, 218, 'MONDAY'), (6, 225, 'TUESDAY'), (6, 232, 'WEDNESDAY'), (6, 239, 'THURSDAY'), (6, 246, 'FRIDAY'), (6, 253, 'SATURDAY'), (6, 260, 'SUNDAY'),
+(7, 267, 'MONDAY'), (7, 274, 'TUESDAY'), (7, 281, 'WEDNESDAY'), (7, 288, 'THURSDAY'), (7, 295, 'FRIDAY'), (7, 302, 'SATURDAY'), (7, 309, 'SUNDAY');
 
 INSERT INTO shops_payment_methods(shop_id, payment_method) VALUES
 (1, 'CASH'), (1, 'DEBIT_CARD'), (1, 'CREDIT_CARD'), (1, 'MOBILE_PAYMENT'), (1, 'ELECTRONIC_BANK_TRANSFER'),

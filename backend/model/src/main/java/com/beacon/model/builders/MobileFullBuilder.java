@@ -410,10 +410,14 @@ public class MobileFullBuilder {
         mobileFull.setBatteryType(this.batteryType);
         mobileFull.setChargeTime(this.chargeTime);
         mobileFull.setMainImage(this.mainImage);
-        this.mainImage.setMobile(mobileFull);
+        if (this.mainImage != null) {
+            this.mainImage.setMobile(mobileFull);
+        }
 
         mobileFull.setNotMainImages(this.notMainImages);
-        this.notMainImages.forEach(image -> image.setMobileFull(mobileFull));
+        if (this.notMainImages != null) {
+            this.notMainImages.forEach(image -> image.setMobileFull(mobileFull));
+        }
         return mobileFull;
     }
 

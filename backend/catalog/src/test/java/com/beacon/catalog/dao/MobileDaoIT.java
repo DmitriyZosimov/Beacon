@@ -27,7 +27,7 @@ import java.util.List;
  * <p>
  * By default, this annotation tries to auto-configure use an embedded database (e.g. H2) as the
  * DataSource. While an in-memory database might not be a good choice to verify a native query using
- * proprietary features, you can disable this auto-configuration with {@code
+ * proprietary features, you can disable this autoconfiguration with {@code
  * AutoConfigureTestDatabase} and use e.g. Testcontainers to create a PostgreSQL database for
  * testing.
  * <p>
